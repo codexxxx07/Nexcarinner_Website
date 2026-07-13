@@ -1,11 +1,11 @@
 const About = () => {
   const team = [
-    { name: 'Alex Johnson', role: 'Founder & Lead', description: 'Passionate about building tech communities.' },
-    { name: 'Sarah Chen', role: 'Technical Director', description: 'Expert in full-stack development.' },
-    { name: 'Michael Brown', role: 'Community Manager', description: 'Dedicated to member engagement.' },
-    { name: 'Emily Davis', role: 'Event Coordinator', description: 'Organizes impactful tech events.' },
-    { name: 'David Wilson', role: 'Mentorship Lead', description: 'Connects students with industry mentors.' },
-    { name: 'Lisa Anderson', role: 'Content Creator', description: 'Creates educational resources.' }
+    { name: 'XYZ', role: 'Founder & Lead', description: 'Passionate about building tech communities.' },
+    { name: 'XYZ', role: 'Technical Director', description: 'Expert in full-stack development.' },
+    { name: 'XYZ', role: 'Community Manager', description: 'Dedicated to member engagement.' },
+    { name: 'XYZ', role: 'Event Coordinator', description: 'Organizes impactful tech events.' },
+    { name: 'XYZ', role: 'Mentorship Lead', description: 'Connects students with industry mentors.' },
+    { name: 'XYZ', role: 'Content Creator', description: 'Creates educational resources.' }
   ]
 
   const timeline = [
