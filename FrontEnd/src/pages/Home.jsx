@@ -158,7 +158,7 @@ const Hero = () => (
                 (g, i) => (
                   <span
                     key={i}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br ${g} ring-4 ring-white font-display text-xs font-bold text-white shadow-md`}
+                    className={`flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br ${g} ring-4 ring-white font-display text-xs font-bold text-white shadow-md`}
                   >
                     {['A', 'M', 'K', 'S'][i]}
                   </span>
@@ -176,7 +176,7 @@ const Hero = () => (
       {/* Visual */}
       <Reveal variant="zoom" delay={200} className="relative">
         <div className="relative mx-auto max-w-lg">
-          <div className="absolute -inset-6 rounded-[2rem] bg-gradient-to-br from-brand-400/20 via-flare-pink/15 to-flare-cyan/20 blur-2xl" />
+          <div className="absolute -inset-6 rounded-4xl bg-linear-to-br from-brand-400/20 via-flare-pink/15 to-flare-cyan/20 blur-2xl" />
 
           <div className="glass relative overflow-hidden rounded-[1.75rem] p-2.5">
             <img
@@ -249,8 +249,8 @@ const Announcements = () => {
 
   return (
     <section className="relative overflow-hidden border-y border-ink-800/70 bg-white/60 py-4">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-ink-950 to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-ink-950 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-linear-to-r from-ink-950 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-linear-to-l from-ink-950 to-transparent" />
       <Marquee duration={48}>
         {row}
       </Marquee>
@@ -301,7 +301,7 @@ const Communities = () => (
           <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
             <div className="relative">
               <span
-                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
               >
                 <community.icon className="h-5 w-5" />
               </span>
@@ -452,12 +452,12 @@ const Groups = () => (
                   key={item}
                   className="flex items-center gap-3 text-sm text-ink-400 group-hover:text-ink-700"
                 >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-gradient-to-r from-brand-600 to-flare-pink" />
+                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-linear-to-r from-brand-600 to-flare-pink" />
                   {item}
                 </li>
               ))}
             </ul>
-            <div className="mt-6 h-px w-full bg-gradient-to-r from-brand-500/40 to-transparent" />
+            <div className="mt-6 h-px w-full bg-linear-to-r from-brand-500/40 to-transparent" />
           </div>
         </Reveal>
       ))}

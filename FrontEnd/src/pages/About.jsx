@@ -144,7 +144,7 @@ const About = () => {
             <Reveal key={value.title} delay={(index % 3) * 80}>
               <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
                 <span
-                  className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${value.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                  className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${value.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                 >
                   <value.icon className="h-5 w-5" />
                 </span>
@@ -176,7 +176,7 @@ const About = () => {
             <Reveal key={member.role} delay={(index % 3) * 80}>
               <div className="glass card-lift group h-full rounded-2xl p-8 text-center">
                 <span
-                  className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} font-display text-2xl font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,58,237,0.55),inset_0_1px_0_rgba(255,255,255,0.3)] ring-4 ring-white`}
+                  className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-2xl font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,58,237,0.55),inset_0_1px_0_rgba(255,255,255,0.3)] ring-4 ring-white`}
                 >
                   {member.initials}
                 </span>
@@ -206,7 +206,7 @@ const About = () => {
           }
         />
         <div className="relative">
-          <div className="absolute left-[22px] top-2 h-full w-px bg-gradient-to-b from-brand-500 via-flare-pink to-transparent sm:left-1/2" />
+          <div className="absolute left-5.5 top-2 h-full w-px bg-linear-to-b from-brand-500 via-flare-pink to-transparent sm:left-1/2" />
           <div className="space-y-12">
             {timeline.map((item, index) => (
               <Reveal
@@ -234,7 +234,7 @@ const About = () => {
                   </div>
                 </div>
                 <span
-                  className={`absolute left-[14px] top-6 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-600 bg-white shadow-sm sm:left-1/2 sm:-translate-x-1/2`}
+                  className={`absolute left-3.5 top-6 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-600 bg-white shadow-sm sm:left-1/2 sm:-translate-x-1/2`}
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
                 </span>
