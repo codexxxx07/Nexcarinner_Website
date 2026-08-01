@@ -182,6 +182,10 @@ const Hero = () => (
             <img
               src={heroImg}
               alt="Nexcarinner community"
+              width={343}
+              height={361}
+              fetchPriority="high"
+              decoding="async"
               className="w-full rounded-[1.25rem] object-cover"
             />
           </div>

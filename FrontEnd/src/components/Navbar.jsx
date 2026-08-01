@@ -9,6 +9,11 @@ const links = [
   { to: '/contact', label: 'Contact' },
 ]
 
+const navLinkClass = ({ isActive }) =>
+  `relative text-sm font-semibold transition-colors duration-200 ${
+    isActive ? 'text-brand-700' : 'text-ink-400 hover:text-ink-900'
+  }`
+
 const Logo = () => (
   <Link to="/" className="flex items-center gap-3">
     <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
@@ -39,11 +44,6 @@ const Navbar = () => {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
-
-  const navLinkClass = ({ isActive }) =>
-    `relative text-sm font-semibold transition-colors duration-200 ${
-      isActive ? 'text-brand-700' : 'text-ink-400 hover:text-ink-900'
-    }`
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
