@@ -1,38 +1,137 @@
-import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import { FiMenu, FiX, FiArrowRight, FiStar } from 'react-icons/fi'
+
+const links = [
+  { to: '/', label: 'Home' },
+  { to: '/events', label: 'Events' },
+  { to: '/about', label: 'About' },
+  { to: '/contact', label: 'Contact' },
+]
+
+const Logo = () => (
+  <Link to="/" className="flex items-center gap-3">
+    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_8px_16px_-8px_rgba(124,58,237,0.65),inset_0_1px_0_rgba(255,255,255,0.35)]">
+      NC
+    </span>
+    <span className="font-display text-lg font-bold tracking-tight text-ink-50">
+      Nexcarinner
+    </span>
+  </Link>
+)
 
 const Navbar = () => {
-  return (
-    <nav className="border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link to="/" className="text-xl font-bold text-black">
-            Nexcarinner
-          </Link>
+  const [scrolled, setScrolled] = useState(false)
+  const [open, setOpen] = useState(false)
 
-          {/* Navigation Links */}
-          <div className="flex items-center gap-8">
-            <Link to="/" className="text-gray-700 hover:text-black transition-colors duration-200">
-              Home
-            </Link>
-            <Link to="/events" className="text-gray-700 hover:text-black transition-colors duration-200">
-              Events
-            </Link>
-            <Link to="/about" className="text-gray-700 hover:text-black transition-colors duration-200">
-              About
-            </Link>
-            <Link to="/contact" className="text-gray-700 hover:text-black transition-colors duration-200">
-              Contact
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  const navLinkClass = ({ isActive }) =>
+    `relative text-sm font-semibold transition-colors duration-200 ${
+      isActive ? 'text-brand-700' : 'text-ink-400 hover:text-ink-900'
+    }`
+
+  return (
+    <header className="fixed inset-x-0 top-0 z-50">
+      <div
+        className={`transition-colors duration-200 ${
+          scrolled
+            ? 'border-b border-ink-800/70 bg-white/88 shadow-[0_4px_16px_-8px_rgba(34,29,58,0.18),inset_0_-1px_0_rgba(34,29,58,0.06)] backdrop-blur-xl'
+            : 'border-b border-transparent bg-transparent'
+        }`}
+      >
+        <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
+          <Logo />
+
+          {/* Desktop links */}
+          <div className="hidden items-center gap-1 rounded-full border border-ink-800/60 bg-white/70 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_8px_-4px_rgba(34,29,58,0.12)] lg:flex">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
+                className={navLinkClass}
+              >
+                {({ isActive }) => (
+                  <span
+                    className={`rounded-full px-4 py-2 transition-colors duration-200 ${
+                      isActive
+                        ? 'bg-brand-500/10 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-1px_0_rgba(124,58,237,0.1)]'
+                        : 'hover:bg-ink-800/50 hover:text-ink-900'
+                    }`}
+                  >
+                    {link.label}
+                  </span>
+                )}
+              </NavLink>
+            ))}
+          </div>
+
+          <div className="hidden items-center gap-4 lg:flex">
+            <span className="flex items-center gap-1.5 text-xs font-medium text-ink-400">
+              <FiStar className="h-3.5 w-3.5 text-brand-600" />
+              500+ members
+            </span>
+            <Link
+              to="/contact"
+              className="btn-gradient inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white"
+            >
+              Join Now
+              <FiArrowRight className="h-4 w-4" />
             </Link>
           </div>
 
-          {/* CTA Button */}
-          <button className="bg-black text-white px-6 py-2 hover:bg-gray-800 transition-colors duration-200">
-            Join Now
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Toggle menu"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-ink-800/70 bg-white/70 text-ink-500 shadow-sm transition-colors hover:text-ink-900 lg:hidden"
+          >
+            {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
           </button>
+        </nav>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`border-b border-ink-800/70 bg-white/95 backdrop-blur-xl lg:hidden ${
+          open ? 'shadow-[0_8px_20px_-10px_rgba(34,29,58,0.25)]' : 'hidden'
+        }`}
+      >
+        <div className="flex flex-col gap-1 px-6 py-6">
+          {links.map((link) => (
+            <NavLink
+              key={link.to}
+              to={link.to}
+              end={link.to === '/'}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) =>
+                `rounded-xl px-4 py-3 font-medium transition-colors duration-200 ${
+                  isActive
+                    ? 'bg-brand-500/10 text-brand-700'
+                    : 'text-ink-500 hover:bg-ink-800/50 hover:text-ink-900'
+                }`
+              }
+            >
+              {link.label}
+            </NavLink>
+          ))}
+          <Link
+            to="/contact"
+            onClick={() => setOpen(false)}
+            className="btn-gradient mt-3 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
+          >
+            Join Now
+            <FiArrowRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
-    </nav>
+    </header>
   )
 }
 
