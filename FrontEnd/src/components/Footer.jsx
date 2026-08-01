@@ -30,9 +30,12 @@ const Footer = () => {
   }
 
   return (
-    <footer className="relative overflow-hidden border-t border-ink-800/70 bg-gradient-to-b from-transparent to-ink-900/50">
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
-      <div className="pointer-events-none absolute -bottom-56 left-1/2 h-96 w-[46rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl" />
+    <footer className="relative overflow-hidden border-t border-ink-800/70"
+      style={{
+        background: 'linear-gradient(180deg, transparent 0%, rgba(242,240,247,0.4) 100%)',
+      }}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/40 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-16 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-12">
@@ -57,7 +60,7 @@ const Footer = () => {
                   key={social.name}
                   href={social.url}
                   aria-label={social.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-800 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_5px_-2px_rgba(34,29,58,0.1)] transition-colors duration-200 hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_4px_12px_-4px_rgba(124,58,237,0.35)]"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-ink-800 bg-white text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.1),0_3px_8px_-4px_rgba(34,29,58,0.12)] transition-colors duration-200 hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08),0_6px_14px_-6px_rgba(124,58,237,0.3)]"
                 >
                   <social.icon className="h-4 w-4" />
                 </a>
@@ -136,14 +139,14 @@ const Footer = () => {
                   You're in! Watch your inbox for updates.
                 </p>
               ) : (
-                <div className="flex overflow-hidden rounded-full border border-ink-300/60 bg-white shadow-[inset_0_1.5px_3px_rgba(34,29,58,0.06),0_1px_0_rgba(255,255,255,0.85)] focus-within:border-brand-600/50 focus-within:ring-4 focus-within:ring-brand-500/10">
+                <div className="flex overflow-hidden rounded-full border border-ink-300/60 bg-white shadow-[inset_0_2px_4px_rgba(34,29,58,0.07),inset_0_1px_2px_rgba(34,29,58,0.04),0_1px_0_rgba(255,255,255,0.9)] focus-within:border-brand-600/50 focus-within:shadow-[inset_0_2px_4px_rgba(34,29,58,0.05),0_0_0_4px_rgba(124,58,237,0.1)]">
                   <input
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="you@email.com"
                     aria-label="Email address"
-                    className="w-full bg-transparent px-5 py-3 text-sm text-ink-100 placeholder:text-ink-500 focus:outline-none"
+                    className="w-full bg-transparent px-5 py-3 text-sm text-ink-50 placeholder:text-ink-400 focus:outline-none"
                     required
                   />
                   <button

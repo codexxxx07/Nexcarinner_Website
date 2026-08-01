@@ -258,9 +258,8 @@ const Stats = () => (
   <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
     <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
       {stats.map((stat, index) => (
-        <Reveal key={stat.label} delay={index * 100}>
+        <Reveal key={stat.label} delay={index * 80}>
           <div className="glass card-lift group relative overflow-hidden rounded-2xl p-6 text-center sm:p-8">
-            <div className="pointer-events-none absolute -top-10 left-1/2 h-24 w-24 -translate-x-1/2 rounded-full bg-brand-500/0 blur-2xl group-hover:bg-brand-500/12" />
             <CountUp
               end={stat.end}
               suffix={stat.suffix}
@@ -292,16 +291,13 @@ const Communities = () => (
       {communities.map((community, index) => (
         <Reveal
           key={community.title}
-          delay={(index % 3) * 100}
+          delay={(index % 3) * 80}
           className={community.large ? 'lg:col-span-2' : ''}
         >
           <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
-            <div
-              className={`pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full bg-gradient-to-br ${community.accent} opacity-0 blur-3xl group-hover:opacity-15`}
-            />
             <div className="relative">
               <span
-                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${community.accent} text-white shadow-[0_10px_20px_-10px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35)]`}
+                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
               >
                 <community.icon className="h-5 w-5" />
               </span>
@@ -311,12 +307,12 @@ const Communities = () => (
               <p className="mt-3 text-sm leading-relaxed text-ink-400">
                 {community.description}
               </p>
-              <div className="mt-6 flex items-center justify-between border-t border-ink-800/80 pt-5">
+              <div className="mt-6 flex items-center justify-between border-t border-ink-800/70 pt-5">
                 <span className="flex items-center gap-2 text-sm text-ink-400">
                   <FiUsers className="h-4 w-4 text-brand-600" />
                   {community.members} members
                 </span>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-300/70 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition-colors duration-200 group-hover:border-brand-600/50 group-hover:text-brand-700">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] transition-colors duration-200 group-hover:border-brand-600/50 group-hover:text-brand-700">
                   <FiArrowUpRight className="h-4 w-4" />
                 </span>
               </div>
@@ -343,9 +339,11 @@ const Spotlight = () => (
     <div className="grid gap-6 lg:grid-cols-3">
       {/* Large spotlight */}
       <Reveal variant="zoom" className="lg:col-span-2">
-        <div className="glass card-lift relative h-full overflow-hidden rounded-2xl p-8 sm:p-12">
-          <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-flare-pink/15 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-24 -left-16 h-64 w-64 rounded-full bg-brand-500/15 blur-3xl" />
+        <div className="glass card-lift relative h-full overflow-hidden rounded-2xl p-8 sm:p-12"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255,255,255,0.98) 0%, rgba(248,247,252,0.95) 60%, rgba(253,246,255,0.96) 100%)',
+          }}
+        >
 
           <div className="relative flex h-full flex-col justify-between gap-10 sm:flex-row sm:items-end">
             <div className="max-w-md">
@@ -439,7 +437,7 @@ const Groups = () => (
 
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {groups.map((group, index) => (
-        <Reveal key={group.category} delay={index * 100}>
+        <Reveal key={group.category} delay={index * 80}>
           <div className="glass card-lift group h-full rounded-2xl p-7">
             <h3 className="font-display text-lg font-bold text-ink-50">
               {group.category}
@@ -455,7 +453,7 @@ const Groups = () => (
                 </li>
               ))}
             </ul>
-            <div className="mt-6 h-px w-full bg-gradient-to-r from-brand-500/50 to-transparent" />
+            <div className="mt-6 h-px w-full bg-gradient-to-r from-brand-500/40 to-transparent" />
           </div>
         </Reveal>
       ))}

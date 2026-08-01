@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, memo } from 'react'
 
-const CountUp = ({ end, duration = 1800, prefix = '', suffix = '', className = '' }) => {
+const CountUp = memo(({ end, duration = 1800, prefix = '', suffix = '', className = '' }) => {
   const [value, setValue] = useState(0)
   const ref = useRef(null)
   const started = useRef(false)
@@ -35,11 +35,11 @@ const CountUp = ({ end, duration = 1800, prefix = '', suffix = '', className = '
 
   return (
     <span ref={ref} className={className}>
-      {prefix}
-      {value}
-      {suffix}
+      {prefix}{value}{suffix}
     </span>
   )
-}
+})
+
+CountUp.displayName = 'CountUp'
 
 export default CountUp

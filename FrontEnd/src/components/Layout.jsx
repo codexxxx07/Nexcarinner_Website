@@ -4,12 +4,26 @@ import Footer from './Footer'
 const Layout = ({ children }) => {
   return (
     <div className="relative flex min-h-screen flex-col bg-ink-950">
-      {/* Static ambient background — no animation for performance */}
-      <div className="pointer-events-none fixed inset-0 z-0">
+      {/*
+       * Ambient background — CSS radial-gradient orbs instead of DOM divs with blur.
+       * blur-[120px] on fixed elements forces GPU repaints on every scroll frame.
+       * A single background-image with multiple radial gradients costs ~0 at runtime.
+       */}
+      <div
+        className="pointer-events-none fixed inset-0 z-0"
+        aria-hidden="true"
+      >
         <div className="absolute inset-0 grid-pattern" />
-        <div className="absolute -top-40 -left-32 h-[32rem] w-[32rem] rounded-full bg-brand-500/5 blur-[120px]" />
-        <div className="absolute top-1/3 -right-40 h-[30rem] w-[30rem] rounded-full bg-flare-pink/4 blur-[130px]" />
-        <div className="absolute bottom-0 left-1/4 h-[26rem] w-[26rem] rounded-full bg-flare-cyan/4 blur-[120px]" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: [
+              'radial-gradient(ellipse 55% 40% at 0% 0%, rgba(139,92,246,0.07) 0%, transparent 70%)',
+              'radial-gradient(ellipse 50% 35% at 100% 33%, rgba(232,121,249,0.05) 0%, transparent 70%)',
+              'radial-gradient(ellipse 45% 35% at 25% 100%, rgba(34,211,238,0.05) 0%, transparent 70%)',
+            ].join(', '),
+          }}
+        />
       </div>
 
       <Navbar />

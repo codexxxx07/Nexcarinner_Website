@@ -141,13 +141,10 @@ const About = () => {
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((value, index) => (
-            <Reveal key={value.title} delay={(index % 3) * 100}>
+            <Reveal key={value.title} delay={(index % 3) * 80}>
               <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
-                <div
-                  className={`pointer-events-none absolute -right-14 -top-14 h-32 w-32 rounded-full bg-gradient-to-br ${value.gradient} opacity-0 blur-3xl group-hover:opacity-15`}
-                />
                 <span
-                  className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${value.gradient} text-white shadow-[0_10px_20px_-10px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35)]`}
+                  className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${value.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                 >
                   <value.icon className="h-5 w-5" />
                 </span>
@@ -176,10 +173,10 @@ const About = () => {
         />
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member, index) => (
-            <Reveal key={member.role} delay={(index % 3) * 100}>
+            <Reveal key={member.role} delay={(index % 3) * 80}>
               <div className="glass card-lift group h-full rounded-2xl p-8 text-center">
                 <span
-                  className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} font-display text-2xl font-bold text-white shadow-[0_16px_30px_-14px_rgba(124,58,237,0.6)] ring-4 ring-white`}
+                  className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} font-display text-2xl font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,58,237,0.55),inset_0_1px_0_rgba(255,255,255,0.3)] ring-4 ring-white`}
                 >
                   {member.initials}
                 </span>

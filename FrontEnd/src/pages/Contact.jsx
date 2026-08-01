@@ -107,8 +107,7 @@ const Contact = () => {
           {/* Form */}
           <Reveal variant="left" className="lg:col-span-3">
             <div className="glass relative h-full overflow-hidden rounded-3xl p-8 sm:p-10">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/60 to-transparent" />
-              <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-brand-500/10 blur-3xl" />
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
 
               {submitted ? (
                 <div className="relative flex h-full min-h-[28rem] flex-col items-center justify-center text-center">
@@ -211,10 +210,10 @@ const Contact = () => {
           {/* Info panel */}
           <div className="flex flex-col gap-6 lg:col-span-2">
             {contactInfo.map((item, index) => (
-              <Reveal key={item.label} variant="right" delay={index * 100}>
+              <Reveal key={item.label} variant="right" delay={index * 80}>
                 <div className="glass card-lift group flex items-center gap-5 rounded-2xl p-6">
                   <span
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} text-white shadow-[0_10px_20px_-10px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35)]`}
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                   >
                     <item.icon className="h-5 w-5" />
                   </span>
@@ -241,7 +240,7 @@ const Contact = () => {
                       key={social.name}
                       href="#"
                       aria-label={social.name}
-                      className="flex h-12 items-center justify-center rounded-xl border border-ink-300/60 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition-colors duration-200 hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_4px_10px_-4px_rgba(124,58,237,0.3)]"
+                      className="flex h-12 items-center justify-center rounded-xl border border-ink-300/60 bg-white text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.09),0_3px_8px_-4px_rgba(34,29,58,0.1)] transition-colors duration-200 hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07),0_6px_14px_-6px_rgba(124,58,237,0.28)]"
                     >
                       <social.icon className="h-5 w-5" />
                     </a>
@@ -250,10 +249,20 @@ const Contact = () => {
               </div>
             </Reveal>
 
-            <Reveal variant="right" delay={400}>
-              <div className="relative overflow-hidden rounded-2xl p-6 text-center shadow-[0_20px_44px_-18px_rgba(124,58,237,0.6)]">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-600 via-brand-500 to-flare-pink" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/60 to-transparent" />
+            <Reveal variant="right" delay={380}>
+              <div
+                className="relative overflow-hidden rounded-2xl p-6 text-center"
+                style={{
+                  background: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #c026d3 100%)',
+                  boxShadow: [
+                    'inset 0 1px 0 rgba(255,255,255,0.25)',
+                    '0 1px 2px rgba(34,29,58,0.15)',
+                    '0 8px 20px -8px rgba(124,58,237,0.5)',
+                    '0 20px 44px -18px rgba(124,58,237,0.4)',
+                  ].join(', '),
+                }}
+              >
+                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
                 <div className="relative">
                   <p className="font-display text-lg font-bold text-white">
                     Want to sponsor or partner?
@@ -263,7 +272,7 @@ const Contact = () => {
                   </p>
                   <a
                     href="#"
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-6 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur hover:bg-white/30"
+                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-6 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur hover:bg-white/30"
                   >
                     Partner with us
                     <FiArrowRight className="h-4 w-4" />

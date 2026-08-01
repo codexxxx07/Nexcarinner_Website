@@ -13,11 +13,21 @@ const CtaBanner = ({
   return (
     <section className="mx-auto max-w-7xl px-6 lg:px-8 py-20 sm:py-24">
       <Reveal variant="zoom">
-        <div className="relative overflow-hidden rounded-[2rem] border border-ink-800/60 bg-gradient-to-b from-white via-white to-ink-900/60 p-10 shadow-[0_2px_4px_rgba(34,29,58,0.04),0_24px_60px_-28px_rgba(34,29,58,0.28),inset_0_1px_0_rgba(255,255,255,0.95)] sm:p-16 text-center">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/60 to-transparent" />
-          <div className="pointer-events-none absolute -top-32 left-1/2 h-64 w-[36rem] -translate-x-1/2 rounded-full bg-brand-500/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-40 -right-24 h-72 w-72 rounded-full bg-flare-pink/10 blur-3xl" />
-          <div className="pointer-events-none absolute -bottom-40 -left-24 h-72 w-72 rounded-full bg-flare-cyan/10 blur-3xl" />
+        <div
+          className="relative overflow-hidden rounded-4xl border border-ink-800/50 p-10 sm:p-16 text-center"
+          style={{
+            background: 'linear-gradient(160deg, #ffffff 0%, #faf9fc 45%, #f3f0ff 100%)',
+            boxShadow: [
+              'inset 0 1px 0 rgba(255,255,255,1)',
+              '0 1px 2px rgba(34,29,58,0.05)',
+              '0 12px 32px -12px rgba(34,29,58,0.16)',
+              '0 36px 72px -32px rgba(34,29,58,0.2)',
+              '0 40px 80px -40px rgba(124,58,237,0.12)',
+            ].join(', '),
+          }}
+        >
+          {/* Top highlight line */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
 
           <div className="relative">
             <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-ink-50 tracking-tight">

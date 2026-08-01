@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FiMenu, FiX, FiArrowRight, FiStar } from 'react-icons/fi'
 
@@ -11,7 +11,7 @@ const links = [
 
 const Logo = () => (
   <Link to="/" className="flex items-center gap-3">
-    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_8px_16px_-8px_rgba(124,58,237,0.65),inset_0_1px_0_rgba(255,255,255,0.35)]">
+    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
       NC
     </span>
     <span className="font-display text-lg font-bold tracking-tight text-ink-50">
@@ -23,9 +23,18 @@ const Logo = () => (
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  // Use a ref for the scroll handler to avoid recreating it on every render
+  const scrolledRef = useRef(false)
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () => {
+      const shouldBeScrolled = window.scrollY > 24
+      // Only trigger a state update when the value actually changes
+      if (shouldBeScrolled !== scrolledRef.current) {
+        scrolledRef.current = shouldBeScrolled
+        setScrolled(shouldBeScrolled)
+      }
+    }
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -39,9 +48,9 @@ const Navbar = () => {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <div
-        className={`transition-colors duration-200 ${
+        className={`transition-[background-color,border-color,box-shadow] duration-200 ${
           scrolled
-            ? 'border-b border-ink-800/70 bg-white/88 shadow-[0_4px_16px_-8px_rgba(34,29,58,0.18),inset_0_-1px_0_rgba(34,29,58,0.06)] backdrop-blur-xl'
+            ? 'border-b border-ink-800/70 bg-white/90 shadow-[0_1px_2px_rgba(34,29,58,0.06),0_6px_20px_-8px_rgba(34,29,58,0.14),inset_0_-1px_0_rgba(34,29,58,0.05)] backdrop-blur-xl'
             : 'border-b border-transparent bg-transparent'
         }`}
       >
@@ -49,7 +58,7 @@ const Navbar = () => {
           <Logo />
 
           {/* Desktop links */}
-          <div className="hidden items-center gap-1 rounded-full border border-ink-800/60 bg-white/70 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_8px_-4px_rgba(34,29,58,0.12)] lg:flex">
+          <div className="hidden items-center gap-1 rounded-full border border-ink-800/60 bg-white/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06),0_3px_8px_-4px_rgba(34,29,58,0.1)] lg:flex">
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -61,8 +70,8 @@ const Navbar = () => {
                   <span
                     className={`rounded-full px-4 py-2 transition-colors duration-200 ${
                       isActive
-                        ? 'bg-brand-500/10 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.7),inset_0_-1px_0_rgba(124,58,237,0.1)]'
-                        : 'hover:bg-ink-800/50 hover:text-ink-900'
+                        ? 'bg-brand-500/10 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(124,58,237,0.08)]'
+                        : 'hover:bg-ink-800/40 hover:text-ink-900'
                     }`}
                   >
                     {link.label}
@@ -90,7 +99,7 @@ const Navbar = () => {
           <button
             onClick={() => setOpen((v) => !v)}
             aria-label="Toggle menu"
-            className="flex h-10 w-10 items-center justify-center rounded-xl border border-ink-800/70 bg-white/70 text-ink-500 shadow-sm transition-colors hover:text-ink-900 lg:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border border-ink-800/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] transition-colors hover:text-ink-900 lg:hidden"
           >
             {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
           </button>
@@ -98,39 +107,37 @@ const Navbar = () => {
       </div>
 
       {/* Mobile menu */}
-      <div
-        className={`border-b border-ink-800/70 bg-white/95 backdrop-blur-xl lg:hidden ${
-          open ? 'shadow-[0_8px_20px_-10px_rgba(34,29,58,0.25)]' : 'hidden'
-        }`}
-      >
-        <div className="flex flex-col gap-1 px-6 py-6">
-          {links.map((link) => (
-            <NavLink
-              key={link.to}
-              to={link.to}
-              end={link.to === '/'}
+      {open && (
+        <div className="border-b border-ink-800/70 bg-white/95 shadow-[0_6px_20px_-8px_rgba(34,29,58,0.2)] backdrop-blur-xl lg:hidden">
+          <div className="flex flex-col gap-1 px-6 py-6">
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={link.to}
+                end={link.to === '/'}
+                onClick={() => setOpen(false)}
+                className={({ isActive }) =>
+                  `rounded-xl px-4 py-3 font-medium transition-colors duration-200 ${
+                    isActive
+                      ? 'bg-brand-500/10 text-brand-700'
+                      : 'text-ink-500 hover:bg-ink-800/40 hover:text-ink-900'
+                  }`
+                }
+              >
+                {link.label}
+              </NavLink>
+            ))}
+            <Link
+              to="/contact"
               onClick={() => setOpen(false)}
-              className={({ isActive }) =>
-                `rounded-xl px-4 py-3 font-medium transition-colors duration-200 ${
-                  isActive
-                    ? 'bg-brand-500/10 text-brand-700'
-                    : 'text-ink-500 hover:bg-ink-800/50 hover:text-ink-900'
-                }`
-              }
+              className="btn-gradient mt-3 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
             >
-              {link.label}
-            </NavLink>
-          ))}
-          <Link
-            to="/contact"
-            onClick={() => setOpen(false)}
-            className="btn-gradient mt-3 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
-          >
-            Join Now
-            <FiArrowRight className="h-4 w-4" />
-          </Link>
+              Join Now
+              <FiArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   )
 }
