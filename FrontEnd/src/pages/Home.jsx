@@ -33,7 +33,7 @@ const stats = [
 
 const communities = [
   {
-    title: 'Web Development',
+    title: 'Full Stack Development',
     members: 150,
     description: 'Build modern, production-grade web apps with the latest stack.',
     icon: FaCode,
@@ -41,40 +41,33 @@ const communities = [
     large: true,
   },
   {
-    title: 'AI & Machine Learning',
+    title: 'Artificial Intelligence & Machine Learning',
     members: 100,
     description: 'Explore neural nets, LLMs, and applied ML hands-on.',
     icon: FaBrain,
     accent: 'from-flare-pink to-brand-500',
   },
   {
-    title: 'Mobile Development',
+    title: 'Data Science',
     members: 120,
-    description: 'Create native and cross-platform apps that feel great.',
-    icon: FaMobileAlt,
+    description: 'Turn raw data into stories and predictive models.',
+    icon: FaChartLine,
     accent: 'from-flare-cyan to-brand-500',
   },
   {
-    title: 'Cloud Computing',
+    title: 'Data Analytics',
     members: 80,
     description: 'Ship and scale with modern cloud infrastructure.',
     icon: FaCloud,
     accent: 'from-brand-500 to-flare-cyan',
   },
   {
-    title: 'Cybersecurity',
+    title: 'Cybersecurity & Ethical Hacking',
     members: 90,
     description: 'Defensive security, ethical hacking, and secure engineering.',
     icon: FaShieldAlt,
     accent: 'from-brand-500 to-flare-pink',
     large: true,
-  },
-  {
-    title: 'Data Science',
-    members: 110,
-    description: 'Turn raw data into stories and predictive models.',
-    icon: FaChartLine,
-    accent: 'from-flare-cyan to-brand-500',
   },
 ]
 
