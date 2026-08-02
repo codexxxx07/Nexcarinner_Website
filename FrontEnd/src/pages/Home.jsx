@@ -6,6 +6,7 @@ import {
   FaCloud,
   FaShieldAlt,
   FaChartLine,
+  FaGlobe,
 } from 'react-icons/fa'
 import {
   FiArrowRight,
@@ -33,41 +34,31 @@ const stats = [
 
 const communities = [
   {
-    title: 'Full Stack Development',
-    members: 150,
-    description: 'Build modern, production-grade web apps with the latest stack.',
-    icon: FaCode,
+    title: 'Nexcarinner Network',
+    members: '1300+',
+    description: 'A central hub for networking, resources, promotions, and general discussions.',
+    icon: FiUsers,
     accent: 'from-brand-500 to-brand-600',
-    large: true,
+    link: 'https://chat.whatsapp.com/HRMehMJ6vCnK1vP3qR7gyH?s=cl&p=a&ilr=1',
+    groups: ['Networking Group', 'General Group', 'Learning Resources', 'Promotion Group'],
   },
   {
-    title: 'Artificial Intelligence & Machine Learning',
-    members: 100,
-    description: 'Explore neural nets, LLMs, and applied ML hands-on.',
-    icon: FaBrain,
-    accent: 'from-flare-pink to-brand-500',
-  },
-  {
-    title: 'Data Science',
-    members: 120,
-    description: 'Turn raw data into stories and predictive models.',
-    icon: FaChartLine,
+    title: 'Nexcarinner Tech',
+    members: '1200+',
+    description: 'Dedicated tech community covering development, AI, cybersecurity, and data.',
+    icon: FaCode,
     accent: 'from-flare-cyan to-brand-500',
+    link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
+    groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
   },
   {
-    title: 'Data Analytics',
-    members: 80,
-    description: 'Ship and scale with modern cloud infrastructure.',
-    icon: FaCloud,
-    accent: 'from-brand-500 to-flare-cyan',
-  },
-  {
-    title: 'Cybersecurity & Ethical Hacking',
-    members: 90,
-    description: 'Defensive security, ethical hacking, and secure engineering.',
-    icon: FaShieldAlt,
-    accent: 'from-brand-500 to-flare-pink',
-    large: true,
+    title: 'Nexcarinner',
+    members: '1800+',
+    description: 'Opportunities, jobs, skills, and hackathons all in one place.',
+    icon: FaGlobe,
+    accent: 'from-flare-pink to-brand-500',
+    link: 'https://chat.whatsapp.com/LFpegPQ2vMkKnQ4W07DDqH?s=cl&p=a&ilr=1',
+    groups: ['Internship & Job Alerts', 'Government Job Alerts', 'Skill Building & Learning', 'Hackathons & Competitions'],
   },
 ]
 
@@ -288,33 +279,39 @@ const Communities = () => (
       {communities.map((community, index) => (
         <Reveal
           key={community.title}
-          delay={(index % 3) * 80}
-          className={community.large ? 'lg:col-span-2' : ''}
+          delay={index * 80}
         >
-          <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
-            <div className="relative">
-              <span
-                className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
-              >
-                <community.icon className="h-5 w-5" />
-              </span>
-              <h3 className="mt-6 font-display text-xl font-bold text-ink-50">
-                {community.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink-400">
-                {community.description}
-              </p>
-              <div className="mt-6 flex items-center justify-between border-t border-ink-800/70 pt-5">
-                <span className="flex items-center gap-2 text-sm text-ink-400">
-                  <FiUsers className="h-4 w-4 text-brand-600" />
-                  {community.members} members
+          <a
+            href={community.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full"
+          >
+            <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+              <div className="relative">
+                <span
+                  className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                >
+                  <community.icon className="h-5 w-5" />
                 </span>
-                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] transition-colors duration-200 group-hover:border-brand-600/50 group-hover:text-brand-700">
-                  <FiArrowUpRight className="h-4 w-4" />
-                </span>
+                <h3 className="mt-6 font-display text-xl font-bold text-ink-50">
+                  {community.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-ink-400">
+                  {community.description}
+                </p>
+                <div className="mt-6 flex items-center justify-between border-t border-ink-800/70 pt-5">
+                  <span className="flex items-center gap-2 text-sm text-ink-400">
+                    <FiUsers className="h-4 w-4 text-brand-600" />
+                    {community.members} members
+                  </span>
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] transition-colors duration-200 group-hover:border-brand-600/50 group-hover:text-brand-700">
+                    <FiArrowUpRight className="h-4 w-4" />
+                  </span>
+                </div>
               </div>
             </div>
-          </div>
+          </a>
         </Reveal>
       ))}
     </div>
