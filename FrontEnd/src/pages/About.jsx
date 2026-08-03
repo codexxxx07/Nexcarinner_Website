@@ -5,6 +5,9 @@ import {
   FiHeart,
   FiAward,
   FiShield,
+  FiLinkedin,
+  FiInstagram,
+  FiGithub,
 } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
@@ -50,12 +53,84 @@ const values = [
 ]
 
 const team = [
-  { initials: 'AR', name: 'Aarav R.', role: 'Founder & Lead', gradient: 'from-brand-500 to-flare-pink' },
-  { initials: 'ZK', name: 'Zara K.', role: 'Technical Director', gradient: 'from-flare-cyan to-brand-500' },
-  { initials: 'DS', name: 'Dev S.', role: 'Community Manager', gradient: 'from-flare-pink to-brand-500' },
-  { initials: 'ML', name: 'Maya L.', role: 'Event Coordinator', gradient: 'from-brand-500 to-flare-cyan' },
-  { initials: 'RT', name: 'Rahul T.', role: 'Mentorship Lead', gradient: 'from-brand-600 to-flare-pink' },
-  { initials: 'NP', name: 'Nia P.', role: 'Content Creator', gradient: 'from-flare-cyan to-flare-pink' },
+  {
+    name: 'Aarav R.',
+    role: 'Founder & Lead',
+    description: 'Built the complete website architecture and AI logic system',
+    image: null,
+    initials: 'AR',
+    gradient: 'from-brand-500 to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
+  {
+    name: 'Zara K.',
+    role: 'Technical Director',
+    description: 'Leading the technical vision and infrastructure development',
+    image: null,
+    initials: 'ZK',
+    gradient: 'from-flare-cyan to-brand-500',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
+  {
+    name: 'Dev S.',
+    role: 'Community Manager',
+    description: 'Building and nurturing our amazing developer community',
+    image: null,
+    initials: 'DS',
+    gradient: 'from-flare-pink to-brand-500',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
+  {
+    name: 'Maya L.',
+    role: 'Event Coordinator',
+    description: 'Organizing hackathons and community events',
+    image: null,
+    initials: 'ML',
+    gradient: 'from-brand-500 to-flare-cyan',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
+  {
+    name: 'Rahul T.',
+    role: 'Mentorship Lead',
+    description: 'Running mentorship programs and guiding new developers',
+    image: null,
+    initials: 'RT',
+    gradient: 'from-brand-600 to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
+  {
+    name: 'Nia P.',
+    role: 'Content Creator',
+    description: 'Creating content and managing community communications',
+    image: null,
+    initials: 'NP',
+    gradient: 'from-flare-cyan to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#'
+    }
+  },
 ]
 
 const timeline = [
@@ -75,6 +150,71 @@ const timeline = [
     description: '500+ members across six communities, with mentorship and demo days every month.',
   },
 ]
+
+const TeamCard = ({ member }) => {
+  return (
+    <div className="group relative h-full">
+      <div className="h-full rounded-3xl bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
+        {/* Profile Image/Initials */}
+        <div className="flex justify-center">
+          {member.image ? (
+            <img
+              src={member.image}
+              alt={member.name}
+              className="h-24 w-24 rounded-full object-cover shadow-lg ring-4 ring-white"
+            />
+          ) : (
+            <span
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ring-white`}
+            >
+              {member.initials}
+            </span>
+          )}
+        </div>
+
+        {/* Name and Role */}
+        <div className="mt-6 text-center">
+          <h3 className="font-display text-xl font-bold text-gray-900">
+            {member.name}
+          </h3>
+          <p className="mt-1 text-sm font-medium text-gray-500">
+            {member.role}
+          </p>
+        </div>
+
+        {/* Description */}
+        <p className="mt-4 text-center text-sm leading-relaxed text-gray-600">
+          {member.description}
+        </p>
+
+        {/* Social Icons */}
+        <div className="mt-6 flex justify-center gap-3">
+          <a
+            href={member.socials.linkedin}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-md"
+            aria-label="LinkedIn"
+          >
+            <FiLinkedin className="h-5 w-5" />
+          </a>
+          <a
+            href={member.socials.instagram}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-gradient-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md"
+            aria-label="Instagram"
+          >
+            <FiInstagram className="h-5 w-5" />
+          </a>
+          <a
+            href={member.socials.github}
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md"
+            aria-label="GitHub"
+          >
+            <FiGithub className="h-5 w-5" />
+          </a>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 const About = () => {
   return (
@@ -171,25 +311,10 @@ const About = () => {
           }
           description="A small, obsessed crew keeping the community sharp, welcoming, and always moving."
         />
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {team.map((member, index) => (
-            <Reveal key={member.role} delay={(index % 3) * 80}>
-              <div className="glass card-lift group h-full rounded-2xl p-8 text-center">
-                <span
-                  className={`mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-2xl font-bold text-white shadow-[0_10px_24px_-10px_rgba(124,58,237,0.55),inset_0_1px_0_rgba(255,255,255,0.3)] ring-4 ring-white`}
-                >
-                  {member.initials}
-                </span>
-                <h3 className="mt-6 font-display text-xl font-bold text-ink-50">
-                  {member.name}
-                </h3>
-                <p className="mt-1 text-sm font-semibold text-brand-700">
-                  {member.role}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-400">
-                  Part of the team making this community what it is.
-                </p>
-              </div>
+            <Reveal key={member.name} delay={(index % 3) * 80}>
+              <TeamCard member={member} />
             </Reveal>
           ))}
         </div>
