@@ -5,10 +5,13 @@ import {
   FiHeart,
   FiAward,
   FiShield,
-  FiLinkedin,
-  FiInstagram,
-  FiGithub,
 } from 'react-icons/fi'
+import {
+  FaLinkedin,
+  FaInstagram,
+  FaGithub,
+  FaDiscord,
+} from 'react-icons/fa'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
@@ -63,7 +66,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
   {
@@ -76,7 +80,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
   {
@@ -89,7 +94,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
   {
@@ -102,7 +108,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
   {
@@ -115,7 +122,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
   {
@@ -128,7 +136,8 @@ const team = [
     socials: {
       linkedin: '#',
       instagram: '#',
-      github: '#'
+      github: '#',
+      discord: '#'
     }
   },
 ]
@@ -194,22 +203,31 @@ const TeamCard = ({ member }) => {
             className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-md"
             aria-label="LinkedIn"
           >
-            <FiLinkedin className="h-5 w-5" />
+            <FaLinkedin className="h-5 w-5" />
           </a>
           <a
             href={member.socials.instagram}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md"
             aria-label="Instagram"
           >
-            <FiInstagram className="h-5 w-5" />
+            <FaInstagram className="h-5 w-5" />
           </a>
           <a
             href={member.socials.github}
             className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md"
             aria-label="GitHub"
           >
-            <FiGithub className="h-5 w-5" />
+            <FaGithub className="h-5 w-5" />
           </a>
+          {member.socials.discord && (
+            <a
+              href={member.socials.discord}
+              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md"
+              aria-label="Discord"
+            >
+              <FaDiscord className="h-5 w-5" />
+            </a>
+          )}
         </div>
       </div>
     </div>
