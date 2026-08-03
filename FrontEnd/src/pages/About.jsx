@@ -154,7 +154,7 @@ const timeline = [
 const TeamCard = ({ member }) => {
   return (
     <div className="group relative h-full">
-      <div className="h-full rounded-3xl bg-gradient-to-br from-gray-50 to-gray-100 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
+      <div className="h-full rounded-3xl bg-linear-to-br from-gray-50 to-gray-100 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
         {/* Profile Image/Initials */}
         <div className="flex justify-center">
           {member.image ? (
@@ -165,7 +165,7 @@ const TeamCard = ({ member }) => {
             />
           ) : (
             <span
-              className={`flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ring-white`}
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ring-white`}
             >
               {member.initials}
             </span>
@@ -198,7 +198,7 @@ const TeamCard = ({ member }) => {
           </a>
           <a
             href={member.socials.instagram}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-gradient-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md"
+            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md"
             aria-label="Instagram"
           >
             <FiInstagram className="h-5 w-5" />
