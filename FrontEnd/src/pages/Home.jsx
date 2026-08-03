@@ -23,7 +23,7 @@ import Marquee from '../components/Marquee'
 import CountUp from '../components/CountUp'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
-import heroImg from '../assets/hero.png'
+import heroImg from '../assets/NCW_Logo.jpg'
 
 const stats = [
   { end: 500, suffix: '+', label: 'Active Members' },
@@ -173,43 +173,7 @@ const Hero = () => (
               className="w-full rounded-[1.25rem] object-cover"
             />
           </div>
-
-          {/* Floating card: event */}
-          <div className="glass-strong absolute -left-6 top-10 hidden items-center gap-3 rounded-2xl px-5 py-4 sm:flex">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/10 text-brand-700">
-              <FiCalendar className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-xs text-ink-400">Upcoming</p>
-              <p className="text-sm font-semibold text-ink-700">
-                Annual Hackathon
-              </p>
-            </div>
-          </div>
-
-          {/* Floating card: live */}
-          <div className="glass-strong absolute -right-4 bottom-14 hidden items-center gap-3 rounded-2xl px-5 py-4 sm:flex">
-            <span className="h-3 w-3 rounded-full bg-brand-600" />
-            <div>
-              <p className="text-xs text-ink-400">Right now</p>
-              <p className="text-sm font-semibold text-ink-700">
-                42 members online
-              </p>
-            </div>
-          </div>
-
-          {/* Floating card: time */}
-          <div className="glass-strong absolute -bottom-6 left-1/2 hidden -translate-x-1/2 items-center gap-3 rounded-2xl px-5 py-4 sm:flex">
-            <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-100/80 text-cyan-700">
-              <FiClock className="h-5 w-5" />
-            </span>
-            <div>
-              <p className="text-xs text-ink-400">Weekly sync</p>
-              <p className="text-sm font-semibold text-ink-700">
-                Fridays, 6:00 PM
-              </p>
-            </div>
-          </div>
+                    
         </div>
       </Reveal>
     </div>
