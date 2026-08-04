@@ -10,7 +10,7 @@ const links = [
 ]
 
 const navLinkClass = ({ isActive }) =>
-  `relative text-sm font-semibold transition-colors duration-200 ${
+  `relative text-base font-semibold transition-all duration-200 ease-in-out ${
     isActive ? 'text-brand-700' : 'text-ink-400 hover:text-ink-900'
   }`
 
@@ -58,7 +58,7 @@ const Navbar = () => {
           <Logo />
 
           {/* Desktop links */}
-          <div className="hidden items-center gap-1 rounded-full border border-ink-800/60 bg-white/80 p-1 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06),0_3px_8px_-4px_rgba(34,29,58,0.1)] lg:flex">
+          <div className="hidden items-center gap-3 rounded-full border border-ink-800/60 bg-white/80 p-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06),0_3px_8px_-4px_rgba(34,29,58,0.1)] lg:flex">
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -68,10 +68,10 @@ const Navbar = () => {
               >
                 {({ isActive }) => (
                   <span
-                    className={`rounded-full px-4 py-2 transition-colors duration-200 ${
+                    className={`rounded-full px-4 py-1.5 backdrop-blur-md transition-all duration-200 ease-in-out ${
                       isActive
-                        ? 'bg-brand-500/10 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(124,58,237,0.08)]'
-                        : 'hover:bg-ink-800/40 hover:text-ink-900'
+                        ? 'bg-white/40 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(124,58,237,0.08),0_2px_8px_-2px_rgba(124,58,237,0.18)] border border-white/30'
+                        : 'border border-transparent hover:bg-white/30 hover:border-white/30 hover:scale-105 hover:text-ink-900'
                     }`}
                   >
                     {link.label}
