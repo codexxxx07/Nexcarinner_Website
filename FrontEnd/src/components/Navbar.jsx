@@ -16,7 +16,7 @@ const navLinkClass = ({ isActive }) =>
 
 const Logo = () => (
   <Link to="/" className="flex items-center gap-3">
-    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
+    <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-brand-500 to-brand-700 font-display text-sm font-bold text-white shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
       NC
     </span>
     <span className="font-display text-lg font-bold tracking-tight text-ink-50">
