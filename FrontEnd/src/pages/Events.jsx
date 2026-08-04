@@ -8,14 +8,27 @@ import {
 } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import CtaBanner from '../components/CtaBanner'
+import { useTheme } from '../context/ThemeContext'
 
 const filters = ['All', 'Workshops', 'Hackathons', 'Meetups', 'Webinars']
 
 const typeStyles = {
-  Workshops: { text: 'text-cyan-800', bg: 'bg-cyan-100/70', border: 'border-cyan-200' },
-  Hackathons: { text: 'text-pink-600', bg: 'bg-pink-100/70', border: 'border-pink-200' },
-  Meetups: { text: 'text-violet-700', bg: 'bg-violet-100/70', border: 'border-violet-200' },
-  Webinars: { text: 'text-sky-700', bg: 'bg-sky-100/70', border: 'border-sky-200' },
+  Workshops: {
+    light: { text: 'text-cyan-800', bg: 'bg-cyan-100/70', border: 'border-cyan-200' },
+    dark: { text: 'text-cyan-300', bg: 'bg-cyan-900/20', border: 'border-cyan-800/40' },
+  },
+  Hackathons: {
+    light: { text: 'text-pink-600', bg: 'bg-pink-100/70', border: 'border-pink-200' },
+    dark: { text: 'text-pink-300', bg: 'bg-pink-900/20', border: 'border-pink-800/40' },
+  },
+  Meetups: {
+    light: { text: 'text-violet-700', bg: 'bg-violet-100/70', border: 'border-violet-200' },
+    dark: { text: 'text-violet-300', bg: 'bg-violet-900/20', border: 'border-violet-800/40' },
+  },
+  Webinars: {
+    light: { text: 'text-sky-700', bg: 'bg-sky-100/70', border: 'border-sky-200' },
+    dark: { text: 'text-sky-300', bg: 'bg-sky-900/20', border: 'border-sky-800/40' },
+  },
 }
 
 const events = [
@@ -71,6 +84,7 @@ const events = [
 ]
 
 const Events = () => {
+  const { dark } = useTheme()
   const [activeFilter, setActiveFilter] = useState('All')
 
   const filteredEvents =
@@ -86,12 +100,20 @@ const Events = () => {
           <span className="chip">What's happening</span>
         </Reveal>
         <Reveal delay={100}>
-          <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-ink-50 sm:text-5xl lg:text-6xl">
+          <h1
+            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+              dark ? 'text-white' : 'text-ink-50'
+            }`}
+          >
             Workshops, hackathons, <span className="text-gradient-animate">and everything in between</span>
           </h1>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-400">
+          <p
+            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+              dark ? 'text-gray-400' : 'text-ink-400'
+            }`}
+          >
             Level up your skills and meet the people who make this community
             tick.
           </p>
@@ -109,7 +131,9 @@ const Events = () => {
                 className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-200 ${
                   activeFilter === filter
                     ? 'btn-gradient text-white'
-                    : 'border border-ink-300/50 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(34,29,58,0.05)] hover:border-brand-600/40 hover:text-brand-700'
+                    : dark
+                      ? 'border border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:text-white'
+                      : 'border border-ink-300/50 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(34,29,58,0.05)] hover:border-brand-600/40 hover:text-brand-700'
                 }`}
               >
                 {filter}
@@ -123,7 +147,8 @@ const Events = () => {
       <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredEvents.map((event, index) => {
-            const style = typeStyles[event.type] || typeStyles.Workshops
+            const styleSet = typeStyles[event.type] || typeStyles.Workshops
+            const style = dark ? styleSet.dark : styleSet.light
             return (
               <Reveal key={event.title} delay={(index % 3) * 100}>
                 <div
@@ -132,7 +157,11 @@ const Events = () => {
                   }`}
                 >
                   {event.featured && (
-                    <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-flare-pink to-transparent" />
+                    <div
+                      className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+                        dark ? 'via-white/20' : 'via-flare-pink'
+                      } to-transparent`}
+                    />
                   )}
 
                   <div className="flex items-center justify-between gap-3">
@@ -142,31 +171,53 @@ const Events = () => {
                       {event.type === 'Webinars' && <FiRadio className="h-3 w-3" />}
                       {event.type}
                     </span>
-                    <span className="flex items-center gap-1.5 text-xs text-ink-400">
+                    <span
+                      className={`flex items-center gap-1.5 text-xs transition-colors duration-300 ${
+                        dark ? 'text-gray-500' : 'text-ink-400'
+                      }`}
+                    >
                       <FiCalendar className="h-3.5 w-3.5" />
                       {event.date}
                     </span>
                   </div>
 
-                  <h3 className="mt-6 font-display text-xl font-bold text-ink-50">
+                  <h3
+                    className={`mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                      dark ? 'text-white' : 'text-ink-50'
+                    }`}
+                  >
                     {event.title}
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-ink-400">
+                  <p
+                    className={`mt-3 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
+                      dark ? 'text-gray-400' : 'text-ink-400'
+                    }`}
+                  >
                     {event.description}
                   </p>
 
-                  <div className="mt-6 flex items-center gap-6 border-t border-ink-800/80 pt-5 text-sm text-ink-400">
+                  <div
+                    className={`mt-6 flex items-center gap-6 border-t pt-5 text-sm transition-colors duration-300 ${
+                      dark
+                        ? 'border-white/8 text-gray-500'
+                        : 'border-ink-800/80 text-ink-400'
+                    }`}
+                  >
                     <span className="flex items-center gap-2">
-                      <FiClock className="h-4 w-4 text-brand-600" />
+                      <FiClock className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
                       {event.time}
                     </span>
                     <span className="flex items-center gap-2 truncate">
-                      <FiMapPin className="h-4 w-4 text-brand-600" />
+                      <FiMapPin className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
                       {event.location}
                     </span>
                   </div>
 
-                  <button className="btn-outline group mt-6 w-full items-center justify-center py-3 text-sm font-semibold text-ink-300">
+                  <button
+                    className={`btn-outline group mt-6 w-full items-center justify-center py-3 text-sm font-semibold ${
+                      dark ? 'text-gray-300' : 'text-ink-300'
+                    }`}
+                  >
                     Register
                     <FiArrowRight className="h-4 w-4" />
                   </button>

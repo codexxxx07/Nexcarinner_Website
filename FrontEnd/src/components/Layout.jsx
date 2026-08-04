@@ -1,9 +1,17 @@
+import { useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import { ThemeProvider, useTheme } from '../context/ThemeContext'
 
-const Layout = ({ children }) => {
+const LayoutInner = ({ children }) => {
+  const { dark } = useTheme()
+
   return (
-    <div className="relative flex min-h-screen flex-col bg-ink-950">
+    <div
+      className={`relative flex min-h-screen flex-col transition-colors duration-300 ${
+        dark ? 'bg-[#0f0f0f]' : 'bg-ink-950'
+      }`}
+    >
       {/*
        * Ambient background — CSS radial-gradient orbs instead of DOM divs with blur.
        * blur-[120px] on fixed elements forces GPU repaints on every scroll frame.
@@ -17,11 +25,17 @@ const Layout = ({ children }) => {
         <div
           className="absolute inset-0"
           style={{
-            backgroundImage: [
-              'radial-gradient(ellipse 55% 40% at 0% 0%, rgba(139,92,246,0.07) 0%, transparent 70%)',
-              'radial-gradient(ellipse 50% 35% at 100% 33%, rgba(232,121,249,0.05) 0%, transparent 70%)',
-              'radial-gradient(ellipse 45% 35% at 25% 100%, rgba(34,211,238,0.05) 0%, transparent 70%)',
-            ].join(', '),
+            backgroundImage: dark
+              ? [
+                  'radial-gradient(ellipse 55% 40% at 0% 0%, rgba(255,255,255,0.015) 0%, transparent 70%)',
+                  'radial-gradient(ellipse 50% 35% at 100% 33%, rgba(255,255,255,0.01) 0%, transparent 70%)',
+                  'radial-gradient(ellipse 45% 35% at 25% 100%, rgba(255,255,255,0.01) 0%, transparent 70%)',
+                ].join(', ')
+              : [
+                  'radial-gradient(ellipse 55% 40% at 0% 0%, rgba(139,92,246,0.07) 0%, transparent 70%)',
+                  'radial-gradient(ellipse 50% 35% at 100% 33%, rgba(232,121,249,0.05) 0%, transparent 70%)',
+                  'radial-gradient(ellipse 45% 35% at 25% 100%, rgba(34,211,238,0.05) 0%, transparent 70%)',
+                ].join(', '),
           }}
         />
       </div>
@@ -32,6 +46,14 @@ const Layout = ({ children }) => {
         <Footer />
       </div>
     </div>
+  )
+}
+
+const Layout = ({ children }) => {
+  return (
+    <ThemeProvider>
+      <LayoutInner>{children}</LayoutInner>
+    </ThemeProvider>
   )
 }
 

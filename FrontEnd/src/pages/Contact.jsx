@@ -11,6 +11,7 @@ import {
 import { FaGithub, FaLinkedinIn, FaDiscord, FaXTwitter } from 'react-icons/fa6'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
+import { useTheme } from '../context/ThemeContext'
 
 const contactInfo = [
   {
@@ -60,6 +61,7 @@ const faqs = [
 ]
 
 const Contact = () => {
+  const { dark } = useTheme()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -89,12 +91,20 @@ const Contact = () => {
           <span className="chip">Say hello</span>
         </Reveal>
         <Reveal delay={100}>
-          <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-ink-50 sm:text-5xl lg:text-6xl">
+          <h1
+            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+              dark ? 'text-white' : 'text-ink-50'
+            }`}
+          >
             Questions? <span className="text-gradient-animate">Let's talk.</span>
           </h1>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-400">
+          <p
+            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+              dark ? 'text-gray-400' : 'text-ink-400'
+            }`}
+          >
             Want to get involved, propose an idea, or just say hi? We'd love to
             hear from you.
           </p>
@@ -107,23 +117,33 @@ const Contact = () => {
           {/* Form */}
           <Reveal variant="left" className="lg:col-span-3">
             <div className="glass relative h-full overflow-hidden rounded-3xl p-8 sm:p-10">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand-500/50 to-transparent" />
+              <div
+                className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+                  dark ? 'via-white/12' : 'via-brand-500/50'
+                } to-transparent`}
+              />
 
               {submitted ? (
-                <div className="relative flex h-full min-h-[28rem] flex-col items-center justify-center text-center">
-                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-brand-500 to-brand-700 text-white shadow-[0_18px_34px_-14px_rgba(124,58,237,0.8),inset_0_1px_0_rgba(255,255,255,0.35)]">
+                <div className="relative flex h-full min-h-112 flex-col items-center justify-center text-center">
+                  <span className="flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-brand-500 to-brand-700 text-white shadow-[0_18px_34px_-14px_rgba(124,58,237,0.8),inset_0_1px_0_rgba(255,255,255,0.35)]">
                     <FiCheck className="h-8 w-8" />
                   </span>
-                  <h3 className="mt-6 font-display text-2xl font-bold text-ink-50">
+                  <h3
+                    className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                      dark ? 'text-white' : 'text-ink-50'
+                    }`}
+                  >
                     Message sent!
                   </h3>
-                  <p className="mt-3 max-w-sm text-ink-400">
+                  <p className={`mt-3 max-w-sm transition-colors duration-300 ${dark ? 'text-gray-400' : 'text-ink-400'}`}>
                     Thanks for reaching out, {formData.name || 'friend'}. We'll
                     get back to you within a day or two.
                   </p>
                   <button
                     onClick={() => setSubmitted(false)}
-                    className="btn-outline mt-8 px-6 py-3 text-sm font-semibold text-ink-300"
+                    className={`btn-outline mt-8 px-6 py-3 text-sm font-semibold ${
+                      dark ? 'text-gray-300' : 'text-ink-300'
+                    }`}
                   >
                     Send another
                   </button>
@@ -132,7 +152,12 @@ const Contact = () => {
                 <form onSubmit={handleSubmit} className="relative space-y-5">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink-600">
+                      <label
+                        htmlFor="name"
+                        className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                          dark ? 'text-gray-400' : 'text-ink-600'
+                        }`}
+                      >
                         Name
                       </label>
                       <input
@@ -147,7 +172,12 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink-600">
+                      <label
+                        htmlFor="email"
+                        className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                          dark ? 'text-gray-400' : 'text-ink-600'
+                        }`}
+                      >
                         Email
                       </label>
                       <input
@@ -164,7 +194,12 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="subject" className="mb-2 block text-sm font-medium text-ink-600">
+                    <label
+                      htmlFor="subject"
+                      className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                        dark ? 'text-gray-400' : 'text-ink-600'
+                      }`}
+                    >
                       Subject
                     </label>
                     <input
@@ -180,7 +215,12 @@ const Contact = () => {
                   </div>
 
                   <div>
-                    <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink-600">
+                    <label
+                      htmlFor="message"
+                      className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                        dark ? 'text-gray-400' : 'text-ink-600'
+                      }`}
+                    >
                       Message
                     </label>
                     <textarea
@@ -213,15 +253,23 @@ const Contact = () => {
               <Reveal key={item.label} variant="right" delay={index * 80}>
                 <div className="glass card-lift group flex items-center gap-5 rounded-2xl p-6">
                   <span
-                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${item.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                    className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-linear-to-br ${item.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                   >
                     <item.icon className="h-5 w-5" />
                   </span>
                   <div>
-                    <p className="text-xs uppercase tracking-widest text-ink-400">
+                    <p
+                      className={`text-xs uppercase tracking-widest transition-colors duration-300 ${
+                        dark ? 'text-gray-500' : 'text-ink-400'
+                      }`}
+                    >
                       {item.label}
                     </p>
-                    <p className="mt-1 font-semibold text-ink-700">
+                    <p
+                      className={`mt-1 font-semibold transition-colors duration-300 ${
+                        dark ? 'text-gray-200' : 'text-ink-700'
+                      }`}
+                    >
                       {item.value}
                     </p>
                   </div>
@@ -231,7 +279,11 @@ const Contact = () => {
 
             <Reveal variant="right" delay={300}>
               <div className="glass rounded-2xl p-6">
-                <p className="text-sm font-semibold text-ink-700">
+                <p
+                  className={`text-sm font-semibold transition-colors duration-300 ${
+                    dark ? 'text-gray-300' : 'text-ink-700'
+                  }`}
+                >
                   Follow the community
                 </p>
                 <div className="mt-4 grid grid-cols-4 gap-3">
@@ -240,7 +292,11 @@ const Contact = () => {
                       key={social.name}
                       href="#"
                       aria-label={social.name}
-                      className="flex h-12 items-center justify-center rounded-xl border border-ink-300/60 bg-white text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.09),0_3px_8px_-4px_rgba(34,29,58,0.1)] transition-colors duration-200 hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07),0_6px_14px_-6px_rgba(124,58,237,0.28)]"
+                      className={`flex h-12 items-center justify-center rounded-xl border transition-colors duration-200 ${
+                        dark
+                          ? 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
+                          : 'border-ink-300/60 bg-white text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.09),0_3px_8px_-4px_rgba(34,29,58,0.1)] hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07),0_6px_14px_-6px_rgba(124,58,237,0.28)]'
+                      }`}
                     >
                       <social.icon className="h-5 w-5" />
                     </a>
@@ -253,26 +309,47 @@ const Contact = () => {
               <div
                 className="relative overflow-hidden rounded-2xl p-6 text-center"
                 style={{
-                  background: 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #c026d3 100%)',
-                  boxShadow: [
-                    'inset 0 1px 0 rgba(255,255,255,0.25)',
-                    '0 1px 2px rgba(34,29,58,0.15)',
-                    '0 8px 20px -8px rgba(124,58,237,0.5)',
-                    '0 20px 44px -18px rgba(124,58,237,0.4)',
-                  ].join(', '),
+                  background: dark
+                    ? 'rgba(255,255,255,0.05)'
+                    : 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #c026d3 100%)',
+                  border: dark ? '1px solid rgba(255,255,255,0.1)' : undefined,
+                  boxShadow: dark
+                    ? 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px_20px_-8px_rgba(0,0,0,0.5)'
+                    : [
+                        'inset 0 1px 0 rgba(255,255,255,0.25)',
+                        '0 1px 2px rgba(34,29,58,0.15)',
+                        '0 8px 20px -8px rgba(124,58,237,0.5)',
+                        '0 20px 44px -18px rgba(124,58,237,0.4)',
+                      ].join(', '),
                 }}
               >
-                <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/50 to-transparent" />
+                <div
+                  className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+                    dark ? 'via-white/12' : 'via-white/50'
+                  } to-transparent`}
+                />
                 <div className="relative">
-                  <p className="font-display text-lg font-bold text-white">
+                  <p
+                    className={`font-display text-lg font-bold transition-colors duration-300 ${
+                      dark ? 'text-gray-200' : 'text-white'
+                    }`}
+                  >
                     Want to sponsor or partner?
                   </p>
-                  <p className="mt-2 text-sm text-white/85">
+                  <p
+                    className={`mt-2 text-sm transition-colors duration-300 ${
+                      dark ? 'text-gray-500' : 'text-white/85'
+                    }`}
+                  >
                     We're always open to collaborations that help students grow.
                   </p>
                   <a
                     href="#"
-                    className="mt-4 inline-flex items-center gap-2 rounded-full bg-white/20 px-6 py-2.5 text-sm font-semibold text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] backdrop-blur hover:bg-white/30"
+                    className={`mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold backdrop-blur transition-colors ${
+                      dark
+                        ? 'bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white border border-white/10'
+                        : 'bg-white/20 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.35)] hover:bg-white/30'
+                    }`}
                   >
                     Partner with us
                     <FiArrowRight className="h-4 w-4" />
@@ -301,19 +378,29 @@ const Contact = () => {
               <Reveal key={faq.question} delay={index * 80}>
                 <div
                   className={`glass overflow-hidden rounded-2xl ${
-                    isOpen ? 'border-brand-600/30' : ''
+                    isOpen ? (dark ? 'border-white/15' : 'border-brand-600/30') : ''
                   }`}
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? -1 : index)}
                     className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
                   >
-                    <span className="font-semibold text-ink-700">
+                    <span
+                      className={`font-semibold transition-colors duration-300 ${
+                        dark ? 'text-gray-200' : 'text-ink-700'
+                      }`}
+                    >
                       {faq.question}
                     </span>
                     <span
-                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink-300/70 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] ${
-                        isOpen ? 'rotate-180 border-brand-600/40 text-brand-700' : ''
+                      className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border transition-all duration-200 ${
+                        isOpen
+                          ? dark
+                            ? 'rotate-180 border-white/20 bg-white/10 text-white'
+                            : 'rotate-180 border-brand-600/40 bg-white/70 text-brand-700'
+                          : dark
+                            ? 'border-white/10 bg-white/5 text-gray-400'
+                            : 'border-ink-300/70 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9)]'
                       }`}
                     >
                       <FiChevronDown className="h-4 w-4" />
@@ -324,7 +411,11 @@ const Contact = () => {
                       isOpen ? 'opacity-100' : 'hidden opacity-0'
                     }`}
                   >
-                    <p className="px-6 pb-6 text-sm leading-relaxed text-ink-400">
+                    <p
+                      className={`px-6 pb-6 text-sm leading-relaxed transition-colors duration-300 ${
+                        dark ? 'text-gray-500' : 'text-ink-400'
+                      }`}
+                    >
                       {faq.answer}
                     </p>
                   </div>

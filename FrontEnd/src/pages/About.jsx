@@ -15,6 +15,7 @@ import {
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
+import { useTheme } from '../context/ThemeContext'
 
 const values = [
   {
@@ -161,20 +162,31 @@ const timeline = [
 ]
 
 const TeamCard = ({ member }) => {
+  const { dark } = useTheme()
   return (
     <div className="group relative h-full">
-      <div className="h-full rounded-3xl bg-linear-to-br from-gray-50 to-gray-100 p-8 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]">
+      <div
+        className={`h-full rounded-3xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 ${
+          dark
+            ? 'bg-[#1a1a1a] border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.07)]'
+            : 'bg-linear-to-br from-gray-50 to-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]'
+        }`}
+      >
         {/* Profile Image/Initials */}
         <div className="flex justify-center">
           {member.image ? (
             <img
               src={member.image}
               alt={member.name}
-              className="h-24 w-24 rounded-full object-cover shadow-lg ring-4 ring-white"
+              className={`h-24 w-24 rounded-full object-cover shadow-lg ring-4 ${
+                dark ? 'ring-[#1a1a1a]' : 'ring-white'
+              }`}
             />
           ) : (
             <span
-              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ring-white`}
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ${
+                dark ? 'ring-[#1a1a1a]' : 'ring-white'
+              }`}
             >
               {member.initials}
             </span>
@@ -183,16 +195,28 @@ const TeamCard = ({ member }) => {
 
         {/* Name and Role */}
         <div className="mt-6 text-center">
-          <h3 className="font-display text-xl font-bold text-gray-900">
+          <h3
+            className={`font-display text-xl font-bold transition-colors duration-300 ${
+              dark ? 'text-white' : 'text-gray-900'
+            }`}
+          >
             {member.name}
           </h3>
-          <p className="mt-1 text-sm font-medium text-gray-500">
+          <p
+            className={`mt-1 text-sm font-medium transition-colors duration-300 ${
+              dark ? 'text-gray-500' : 'text-gray-500'
+            }`}
+          >
             {member.role}
           </p>
         </div>
 
         {/* Description */}
-        <p className="mt-4 text-center text-sm leading-relaxed text-gray-600">
+        <p
+          className={`mt-4 text-center text-sm leading-relaxed transition-colors duration-300 ${
+            dark ? 'text-gray-500' : 'text-gray-600'
+          }`}
+        >
           {member.description}
         </p>
 
@@ -200,21 +224,29 @@ const TeamCard = ({ member }) => {
         <div className="mt-6 flex justify-center gap-3">
           <a
             href={member.socials.linkedin}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-md"
+            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:shadow-md ${
+              dark
+                ? 'bg-white/8 text-gray-400 hover:bg-[#0077b5] hover:text-white'
+                : 'bg-gray-200 text-gray-600 hover:bg-[#0077b5] hover:text-white'
+            }`}
             aria-label="LinkedIn"
           >
             <FaLinkedin className="h-5 w-5" />
           </a>
           <a
             href={member.socials.instagram}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md"
+            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
+              dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+            }`}
             aria-label="Instagram"
           >
             <FaInstagram className="h-5 w-5" />
           </a>
           <a
             href={member.socials.github}
-            className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md"
+            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
+              dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+            }`}
             aria-label="GitHub"
           >
             <FaGithub className="h-5 w-5" />
@@ -222,7 +254,9 @@ const TeamCard = ({ member }) => {
           {member.socials.discord && (
             <a
               href={member.socials.discord}
-              className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-200 text-gray-600 transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md"
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md ${
+                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+              }`}
               aria-label="Discord"
             >
               <FaDiscord className="h-5 w-5" />
@@ -235,6 +269,7 @@ const TeamCard = ({ member }) => {
 }
 
 const About = () => {
+  const { dark } = useTheme()
   return (
     <>
       {/* Header */}
@@ -243,12 +278,20 @@ const About = () => {
           <span className="chip">Who we are</span>
         </Reveal>
         <Reveal delay={100}>
-          <h1 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight text-ink-50 sm:text-5xl lg:text-6xl">
+          <h1
+            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+              dark ? 'text-white' : 'text-ink-50'
+            }`}
+          >
             More than a club — <span className="text-gradient-animate">a launchpad</span>
           </h1>
         </Reveal>
         <Reveal delay={200}>
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-400">
+          <p
+            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+              dark ? 'text-gray-400' : 'text-ink-400'
+            }`}
+          >
             Nexcarinner exists to help students level up, find their people,
             and build things worth showing off.
           </p>
@@ -261,10 +304,18 @@ const About = () => {
           <Reveal variant="left">
             <div className="glass card-lift h-full rounded-2xl p-8 sm:p-10">
               <span className="chip">Our mission</span>
-              <h2 className="mt-6 font-display text-2xl font-bold text-ink-50">
+              <h2
+                className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                  dark ? 'text-white' : 'text-ink-50'
+                }`}
+              >
                 Make learning feel alive
               </h2>
-              <p className="mt-4 leading-relaxed text-ink-400">
+              <p
+                className={`mt-4 leading-relaxed transition-colors duration-300 ${
+                  dark ? 'text-gray-400' : 'text-ink-400'
+                }`}
+              >
                 To create an inclusive, hands-on environment where students
                 learn by doing, collaborate on real problems, and grow their
                 technical skills — faster than they would on their own.
@@ -274,10 +325,18 @@ const About = () => {
           <Reveal variant="right" delay={120}>
             <div className="glass card-lift h-full rounded-2xl p-8 sm:p-10">
               <span className="chip">Our vision</span>
-              <h2 className="mt-6 font-display text-2xl font-bold text-ink-50">
+              <h2
+                className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                  dark ? 'text-white' : 'text-ink-50'
+                }`}
+              >
                 The default home for student builders
               </h2>
-              <p className="mt-4 leading-relaxed text-ink-400">
+              <p
+                className={`mt-4 leading-relaxed transition-colors duration-300 ${
+                  dark ? 'text-gray-400' : 'text-ink-400'
+                }`}
+              >
                 To become the leading student tech community — empowering the
                 next generation of developers, designers, and innovators to
                 shape what comes next.
@@ -306,10 +365,18 @@ const About = () => {
                 >
                   <value.icon className="h-5 w-5" />
                 </span>
-                <h3 className="relative mt-6 font-display text-xl font-bold text-ink-50">
+                <h3
+                  className={`relative mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                    dark ? 'text-white' : 'text-ink-50'
+                  }`}
+                >
                   {value.title}
                 </h3>
-                <p className="relative mt-3 text-sm leading-relaxed text-ink-400">
+                <p
+                  className={`relative mt-3 text-sm leading-relaxed transition-colors duration-300 ${
+                    dark ? 'text-gray-400' : 'text-ink-400'
+                  }`}
+                >
                   {value.description}
                 </p>
               </div>
@@ -368,16 +435,26 @@ const About = () => {
                     <span className="font-display text-3xl font-bold text-gradient">
                       {item.year}
                     </span>
-                    <h3 className="mt-3 font-display text-xl font-bold text-ink-50">
+                    <h3
+                      className={`mt-3 font-display text-xl font-bold transition-colors duration-300 ${
+                        dark ? 'text-white' : 'text-ink-50'
+                      }`}
+                    >
                       {item.title}
                     </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-400">
+                    <p
+                      className={`mt-2 text-sm leading-relaxed transition-colors duration-300 ${
+                        dark ? 'text-gray-400' : 'text-ink-400'
+                      }`}
+                    >
                       {item.description}
                     </p>
                   </div>
                 </div>
                 <span
-                  className={`absolute left-3.5 top-6 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-600 bg-white shadow-sm sm:left-1/2 sm:-translate-x-1/2`}
+                  className={`absolute left-3.5 top-6 flex h-4 w-4 items-center justify-center rounded-full border-2 border-brand-600 shadow-sm sm:left-1/2 sm:-translate-x-1/2 ${
+                    dark ? 'bg-[#1a1a1a]' : 'bg-white'
+                  }`}
                 >
                   <span className="h-1.5 w-1.5 rounded-full bg-brand-600" />
                 </span>
