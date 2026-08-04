@@ -50,7 +50,7 @@ const Navbar = () => {
       <div
         className={`transition-[background-color,border-color,box-shadow] duration-200 ${
           scrolled
-            ? 'border-b border-ink-800/70 bg-white/90 shadow-[0_1px_2px_rgba(34,29,58,0.06),0_6px_20px_-8px_rgba(34,29,58,0.14),inset_0_-1px_0_rgba(34,29,58,0.05)] backdrop-blur-xl'
+            ? 'border-b border-white/50 bg-white/80 shadow-[0_12px_30px_rgba(0,0,0,0.12),_0_6px_12px_rgba(0,0,0,0.08),_0_1px_0_rgba(255,255,255,0.9)_inset] backdrop-blur-md'
             : 'border-b border-transparent bg-transparent'
         }`}
       >
@@ -108,7 +108,7 @@ const Navbar = () => {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-b border-ink-800/70 bg-white/95 shadow-[0_6px_20px_-8px_rgba(34,29,58,0.2)] backdrop-blur-xl lg:hidden">
+        <div className="border-b border-white/50 bg-white/80 shadow-[0_12px_30px_rgba(0,0,0,0.12),_0_6px_12px_rgba(0,0,0,0.08)] backdrop-blur-md lg:hidden">
           <div className="flex flex-col gap-1 px-6 py-6">
             {links.map((link) => (
               <NavLink
