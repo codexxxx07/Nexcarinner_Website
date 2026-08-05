@@ -227,13 +227,13 @@ const Footer = () => {
                 <FiMapPin
                   className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`}
                 />
-                San Francisco, CA
+                Bihar, Aurangabad 
               </li>
               <li className="flex items-center gap-3">
                 <FiPhone
                   className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`}
                 />
-                +1 (555) 123-4567
+                +91 62056 39470
               </li>
             </ul>
 
