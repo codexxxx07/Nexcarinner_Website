@@ -12,10 +12,10 @@ import { useTheme } from '../context/ThemeContext'
 
 const socials = [
   { name: 'GitHub', icon: FaGithub, url: '#' },
-  { name: 'LinkedIn', icon: FaLinkedinIn, url: '#' },
+  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/nexcarinner/' },
   { name: 'Discord', icon: FaDiscord, url: '#' },
-  { name: 'X', icon: FaXTwitter, url: '#' },
-  { name: 'Instagram', icon: FaInstagram, url: '#' },
+  { name: 'X', icon: FaXTwitter, url: 'https://x.com/nexcarinner' },
+  { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/nexcarinner?utm_source=qr&igsh=MWo0MzY4NnFjMXN0cA==' },
 ]
 
 const Footer = () => {
