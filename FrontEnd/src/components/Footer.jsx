@@ -82,20 +82,51 @@ const Footer = () => {
             </p>
 
             <div className="mt-6 flex gap-3">
-              {socials.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.url}
-                  aria-label={social.name}
-                  className={`flex h-10 w-10 items-center justify-center rounded-full border transition-colors duration-200 ${
-                    dark
-                      ? 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
-                      : 'border-ink-800 bg-white text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.1),0_3px_8px_-4px_rgba(34,29,58,0.12)] hover:border-brand-600/40 hover:text-brand-700 hover:shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08),0_6px_14px_-6px_rgba(124,58,237,0.3)]'
-                  }`}
-                >
-                  <social.icon className="h-4 w-4" />
-                </a>
-              ))}
+              <a
+                href={socials[0].url}
+                aria-label="GitHub"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
+                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                <FaGithub className="h-5 w-5" />
+              </a>
+              <a
+                href={socials[1].url}
+                aria-label="LinkedIn"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-md ${
+                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                <FaLinkedinIn className="h-5 w-5" />
+              </a>
+              <a
+                href={socials[2].url}
+                aria-label="Discord"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md ${
+                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                <FaDiscord className="h-5 w-5" />
+              </a>
+              <a
+                href={socials[3].url}
+                aria-label="X"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
+                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                <FaXTwitter className="h-5 w-5" />
+              </a>
+              <a
+                href={socials[4].url}
+                aria-label="Instagram"
+                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
+                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+                }`}
+              >
+                <FaInstagram className="h-5 w-5" />
+              </a>
             </div>
           </div>
 
