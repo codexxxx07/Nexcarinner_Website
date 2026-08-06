@@ -16,6 +16,17 @@ import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
 import { useTheme } from '../context/ThemeContext'
+import GunjanImg from '../assets/Gunjan.jpg'
+import AnkitaImg from '../assets/Ankita.jpg'
+import AnkurImg from '../assets/Ankur.jpg'
+import KrishImg from '../assets/Krish.jpg'
+import LakshyaImg from '../assets/Lakshya.jpg'
+import SauryaImg from '../assets/Saurya.jpg'
+import ShadowImg from '../assets/Shadow.jpg'
+import PahuImg from '../assets/Pahu.jpg'
+import SurajitImg from '../assets/Surajit.jpg'
+import SiddiquaImg from '../assets/Siddiqua.jpg'
+import GourabImg from '../assets/Gourab.jpg'
 
 const values = [
   {
@@ -58,11 +69,11 @@ const values = [
 
 const team = [
   {
-    name: 'Aarav R.',
-    role: 'Founder & Lead',
+    name: 'Gunjan',
+    role: 'Founder',
     description: 'Built the complete website architecture and AI logic system',
-    image: null,
-    initials: 'AR',
+    image: GunjanImg,
+    initials: 'GK',
     gradient: 'from-brand-500 to-flare-pink',
     socials: {
       linkedin: '#',
@@ -72,11 +83,11 @@ const team = [
     }
   },
   {
-    name: 'Zara K.',
-    role: 'Technical Director',
+    name: 'Saurya',
+    role: 'Co-Founder',
     description: 'Leading the technical vision and infrastructure development',
-    image: null,
-    initials: 'ZK',
+    image: SauryaImg,
+    initials: 'AN',
     gradient: 'from-flare-cyan to-brand-500',
     socials: {
       linkedin: '#',
@@ -86,11 +97,11 @@ const team = [
     }
   },
   {
-    name: 'Dev S.',
-    role: 'Community Manager',
+    name: 'Krish',
+    role: 'Community Manager/Lead + Tech & Full-Stack Lead',
     description: 'Building and nurturing our amazing developer community',
-    image: null,
-    initials: 'DS',
+    image: KrishImg,
+    initials: 'AK',
     gradient: 'from-flare-pink to-brand-500',
     socials: {
       linkedin: '#',
@@ -100,11 +111,11 @@ const team = [
     }
   },
   {
-    name: 'Maya L.',
-    role: 'Event Coordinator',
+    name: 'Surajit',
+    role: 'Community Manager/Lead + Data science Lead',
     description: 'Organizing hackathons and community events',
-    image: null,
-    initials: 'ML',
+    image: SurajitImg,
+    initials: 'SJ',
     gradient: 'from-brand-500 to-flare-cyan',
     socials: {
       linkedin: '#',
@@ -114,11 +125,11 @@ const team = [
     }
   },
   {
-    name: 'Rahul T.',
+    name: 'Pahulpreet',
     role: 'Mentorship Lead',
     description: 'Running mentorship programs and guiding new developers',
-    image: null,
-    initials: 'RT',
+    image: PahuImg,
+    initials: 'PP',
     gradient: 'from-brand-600 to-flare-pink',
     socials: {
       linkedin: '#',
@@ -128,11 +139,81 @@ const team = [
     }
   },
   {
-    name: 'Nia P.',
-    role: 'Content Creator',
+    name: 'Gourab',
+    role: 'Community Coordinator',
+    description: 'Running mentorship programs and guiding new developers',
+    image: GourabImg,
+    initials: 'PP',
+    gradient: 'from-brand-600 to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#',
+      discord: '#'
+    }
+  },
+  {
+    name: 'Siddiqua',
+    role: 'Community Coordinator',
+    description: 'Running mentorship programs and guiding new developers',
+    image: SiddiquaImg,
+    initials: 'SD',
+    gradient: 'from-brand-600 to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#',
+      discord: '#'
+    }
+  },
+  {
+    name: 'Ankita',
+    role: 'AIML Mentor',
     description: 'Creating content and managing community communications',
-    image: null,
-    initials: 'NP',
+    image: AnkitaImg,
+    initials: 'AK',
+    gradient: 'from-flare-cyan to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#',
+      discord: '#'
+    }
+  },
+  {
+    name: 'Ankur',
+    role: 'Full-Stack Mentor',
+    description: 'Creating content and managing community communications',
+    image: AnkurImg,
+    initials: 'AK',
+    gradient: 'from-flare-cyan to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#',
+      discord: '#'
+    }
+  },
+  {
+    name: 'Harshial',
+    role: 'Cybersecurity Mentor',
+    description: 'Creating content and managing community communications',
+    image: ShadowImg,
+    initials: 'AK',
+    gradient: 'from-flare-cyan to-flare-pink',
+    socials: {
+      linkedin: '#',
+      instagram: '#',
+      github: '#',
+      discord: '#'
+    }
+  },
+  {
+    name: 'Lakshya',
+    role: 'Data Analytics Mentor',
+    description: 'Creating content and managing community communications',
+    image: LakshyaImg,
+    initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
     socials: {
       linkedin: '#',
@@ -178,14 +259,14 @@ const TeamCard = ({ member }) => {
             <img
               src={member.image}
               alt={member.name}
-              className={`h-24 w-24 rounded-full object-cover shadow-lg ring-4 ${
-                dark ? 'ring-[#1a1a1a]' : 'ring-white'
+              className={`h-24 w-24 rounded-full object-cover shadow-lg ring-2 ring-white/10 transition-all duration-200 ease-in-out group-hover:scale-105 group-hover:shadow-xl ${
+                dark ? 'ring-white/10' : 'ring-black/10'
               }`}
             />
           ) : (
             <span
-              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-4 ${
-                dark ? 'ring-[#1a1a1a]' : 'ring-white'
+              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-2 transition-all duration-200 ease-in-out group-hover:scale-105 group-hover:shadow-xl ${
+                dark ? 'ring-white/10' : 'ring-black/10'
               }`}
             >
               {member.initials}
