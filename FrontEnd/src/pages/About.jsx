@@ -364,7 +364,7 @@ const About = () => {
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
-            More than a club — <span className="text-gradient-animate">a launchpad</span>
+            More than a community — <span className="text-gradient-animate">a launchpad</span>
           </h1>
         </Reveal>
         <Reveal delay={200}>
