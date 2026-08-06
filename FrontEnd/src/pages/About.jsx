@@ -71,7 +71,7 @@ const team = [
   {
     name: 'Gunjan',
     role: 'Founder',
-    description: 'Built the complete website architecture and AI logic system',
+    description: 'Visionary behind NexCarInner, leading the community with ideas, direction, and long-term goals',
     image: GunjanImg,
     initials: 'GK',
     gradient: 'from-brand-500 to-flare-pink',
@@ -85,9 +85,9 @@ const team = [
   {
     name: 'Saurya',
     role: 'Co-Founder',
-    description: 'Leading the technical vision and infrastructure development',
+    description: 'Co-driving the mission, supporting growth, strategy, and overall execution of the community',
     image: SauryaImg,
-    initials: 'AN',
+    initials: 'SY',
     gradient: 'from-flare-cyan to-brand-500',
     socials: {
       linkedin: '#',
@@ -99,9 +99,9 @@ const team = [
   {
     name: 'Krish',
     role: 'Community Manager/Lead + Tech & Full-Stack Lead',
-    description: 'Building and nurturing our amazing developer community',
+    description: 'Managing the community while leading the tech side, building and maintaining the platform from scratch',
     image: KrishImg,
-    initials: 'AK',
+    initials: 'KR',
     gradient: 'from-flare-pink to-brand-500',
     socials: {
       linkedin: '#',
@@ -113,7 +113,7 @@ const team = [
   {
     name: 'Surajit',
     role: 'Community Manager/Lead + Data science Lead',
-    description: 'Organizing hackathons and community events',
+    description: 'Handling community engagement while driving data-focused initiatives and insights',
     image: SurajitImg,
     initials: 'SJ',
     gradient: 'from-brand-500 to-flare-cyan',
@@ -126,8 +126,8 @@ const team = [
   },
   {
     name: 'Pahulpreet',
-    role: 'Mentorship Lead',
-    description: 'Running mentorship programs and guiding new developers',
+    role: 'Recruitment Head',
+    description: 'Responsible for onboarding talent and growing the team with the right people',
     image: PahuImg,
     initials: 'PP',
     gradient: 'from-brand-600 to-flare-pink',
@@ -141,7 +141,7 @@ const team = [
   {
     name: 'Gourab',
     role: 'Community Coordinator',
-    description: 'Running mentorship programs and guiding new developers',
+    description: 'Ensuring smooth communication and coordination within the community',
     image: GourabImg,
     initials: 'PP',
     gradient: 'from-brand-600 to-flare-pink',
@@ -154,8 +154,8 @@ const team = [
   },
   {
     name: 'Siddiqua',
-    role: 'Community Coordinator',
-    description: 'Running mentorship programs and guiding new developers',
+    role: 'Opportunity Curator',
+    description: 'Finding and sharing valuable opportunities, resources, and updates for the community',
     image: SiddiquaImg,
     initials: 'SD',
     gradient: 'from-brand-600 to-flare-pink',
@@ -169,7 +169,7 @@ const team = [
   {
     name: 'Ankita',
     role: 'AIML Mentor',
-    description: 'Creating content and managing community communications',
+    description: 'Guiding members in AI/ML, helping them learn and grow in the field',
     image: AnkitaImg,
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
@@ -183,7 +183,7 @@ const team = [
   {
     name: 'Ankur',
     role: 'Full-Stack Mentor',
-    description: 'Creating content and managing community communications',
+    description: 'Supporting full-stack development learning and sharing resources with the team',
     image: AnkurImg,
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
@@ -197,7 +197,7 @@ const team = [
   {
     name: 'Harshial',
     role: 'Cybersecurity Mentor',
-    description: 'Creating content and managing community communications',
+    description: 'Guiding members to understand cybersecurity and ethical hacking fundamentals',
     image: ShadowImg,
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
@@ -211,7 +211,7 @@ const team = [
   {
     name: 'Lakshya',
     role: 'Data Analytics Mentor',
-    description: 'Creating content and managing community communications',
+    description: 'Guiding members in data analytics, helping them understand data, tools and real-world insights',
     image: LakshyaImg,
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
