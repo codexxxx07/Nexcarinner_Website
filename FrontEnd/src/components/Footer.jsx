@@ -179,10 +179,15 @@ const Footer = () => {
               Resources
             </h4>
             <ul className="mt-5 space-y-3 text-sm">
-              {['Blog', 'Documentation', 'Guides', 'FAQ'].map((item) => (
-                <li key={item}>
-                  <a
-                    href="#"
+              {[
+                { label: 'Blog', to: '/blog' },
+                { label: 'Documentation', to: '/documentation' },
+                { label: 'Guides', to: '/guides' },
+                { label: 'FAQ', to: '/faq' },
+              ].map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
                     className={`group inline-flex items-center gap-2 transition-colors duration-200 ${
                       dark
                         ? 'text-gray-500 hover:text-white'
@@ -196,8 +201,8 @@ const Footer = () => {
                           : 'bg-ink-300 group-hover:bg-brand-600'
                       }`}
                     />
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               ))}
             </ul>
