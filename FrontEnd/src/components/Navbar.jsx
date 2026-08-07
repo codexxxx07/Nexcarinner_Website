@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FiMenu, FiX, FiArrowRight, FiStar, FiMoon, FiSun } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import Logo from './Logo'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -9,27 +10,6 @@ const links = [
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
-
-const Logo = ({ dark }) => (
-  <Link to="/" className="flex items-center gap-3">
-    <span
-      className={`flex h-10 w-10 items-center justify-center rounded-xl font-display text-sm font-bold shadow-[0_6px_14px_-6px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)] transition-colors duration-300 ${
-        dark
-          ? 'bg-white/10 text-white border border-white/15'
-          : 'bg-linear-to-br from-brand-500 to-brand-700 text-white'
-      }`}
-    >
-      NC
-    </span>
-    <span
-      className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
-        dark ? 'text-white' : 'text-ink-50'
-      }`}
-    >
-      Nexcarinner
-    </span>
-  </Link>
-)
 
 const ThemeToggle = () => {
   const { dark, toggle } = useTheme()
@@ -86,7 +66,16 @@ const Navbar = () => {
         }`}
       >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
-          <Logo dark={dark} />
+          <Link to="/" className="flex items-center gap-3">
+            <Logo />
+            <span
+              className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
+                dark ? 'text-white' : 'text-ink-50'
+              }`}
+            >
+              Nexcarinner
+            </span>
+          </Link>
 
           {/* Desktop links */}
           <div

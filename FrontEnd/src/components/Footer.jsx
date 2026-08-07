@@ -9,6 +9,7 @@ import {
 } from 'react-icons/fa6'
 import { FiArrowRight, FiMail, FiMapPin, FiPhone } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
+import Logo from './Logo'
 
 const socials = [
   { name: 'GitHub', icon: FaGithub, url: '#' },
@@ -62,15 +63,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
-              <span
-                className={`flex h-10 w-10 items-center justify-center rounded-xl font-display text-sm font-bold transition-colors duration-300 ${
-                  dark
-                    ? 'bg-white/10 text-white border border-white/15 shadow-[0_10px_20px_-10px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.1)]'
-                    : 'bg-linear-to-br from-brand-500 to-brand-700 text-white shadow-[0_10px_20px_-10px_rgba(124,58,237,0.7),inset_0_1px_0_rgba(255,255,255,0.35)]'
-                }`}
-              >
-                NC
-              </span>
+              <Logo className="h-10 lg:h-12" />
               <span
                 className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
                   dark ? 'text-white' : 'text-ink-50'
