@@ -55,7 +55,7 @@ const communities = [
   {
     title: 'Nexcarinner Tech',
     members: '1200+',
-    description: 'Dedicated tech community covering development, AI, cybersecurity, and data.',
+    description: 'Dedicated tech community covering Web Development, AI/ML, cybersecurity & Ethical Hacking, Data Science and Data Analytics',
     icon: FaCode,
     accent: 'from-flare-cyan to-brand-500',
     link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
