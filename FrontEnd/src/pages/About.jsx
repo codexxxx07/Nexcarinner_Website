@@ -69,7 +69,7 @@ const values = [
 
 const team = [
   {
-    name: 'Gunjan',
+    name: 'Gunjan Kumar Gupta',
     role: 'Founder',
     description: 'Visionary behind NexCarInner, leading the community with ideas, direction, and long-term goals',
     image: GunjanImg,
@@ -83,7 +83,7 @@ const team = [
     }
   },
   {
-    name: 'Saurya',
+    name: 'Saurya Kapoor',
     role: 'Co-Founder',
     description: 'Co-driving the mission, supporting growth, strategy, and overall execution of the community',
     image: SauryaImg,
@@ -97,7 +97,7 @@ const team = [
     }
   },
   {
-    name: 'Krish',
+    name: 'Krish Chakraborty',
     role: 'Community Manager/Lead + Tech & Full-Stack Lead',
     description: 'Managing the community while leading the tech side, building and maintaining the platform from scratch',
     image: KrishImg,
@@ -111,7 +111,7 @@ const team = [
     }
   },
   {
-    name: 'Surajit',
+    name: 'Surajit Mandal',
     role: 'Community Manager/Lead + Data science Lead',
     description: 'Handling community engagement while driving data-focused initiatives and insights',
     image: SurajitImg,
@@ -125,7 +125,7 @@ const team = [
     }
   },
   {
-    name: 'Pahulpreet',
+    name: 'Pahulpreet Singh',
     role: 'Recruitment Head',
     description: 'Responsible for onboarding talent and growing the team with the right people',
     image: PahuImg,
@@ -139,7 +139,7 @@ const team = [
     }
   },
   {
-    name: 'Gourab',
+    name: 'Gourab Gorai',
     role: 'Community Coordinator',
     description: 'Ensuring smooth communication and coordination within the community',
     image: GourabImg,
@@ -167,7 +167,7 @@ const team = [
     }
   },
   {
-    name: 'Ankita',
+    name: 'Ankita Pati',
     role: 'AIML Mentor',
     description: 'Guiding members in AI/ML, helping them learn and grow in the field',
     image: AnkitaImg,
@@ -181,7 +181,7 @@ const team = [
     }
   },
   {
-    name: 'Ankur',
+    name: 'Ankur Kumar Gupta',
     role: 'Full-Stack Mentor',
     description: 'Supporting full-stack development learning and sharing resources with the team',
     image: AnkurImg,
@@ -195,7 +195,7 @@ const team = [
     }
   },
   {
-    name: 'Harshial',
+    name: 'Harshial Rawat',
     role: 'Cybersecurity Mentor',
     description: 'Guiding members to understand cybersecurity and ethical hacking fundamentals',
     image: ShadowImg,
@@ -209,7 +209,7 @@ const team = [
     }
   },
   {
-    name: 'Lakshya',
+    name: 'Lakshya GT',
     role: 'Data Analytics Mentor',
     description: 'Guiding members in data analytics, helping them understand data, tools and real-world insights',
     image: LakshyaImg,
