@@ -27,10 +27,10 @@ import { useTheme } from '../context/ThemeContext'
 import heroImg from '../assets/NCW_Logo.jpg'
 
 const stats = [
-  { end: 500, suffix: '+', label: 'Active Members' },
-  { end: 50, suffix: '+', label: 'Events Hosted' },
+  { end: 4300, suffix: '+', label: 'Active Members' },
+  { end: 1, label: 'Event Hosted' },
   { end: 20, suffix: '+', label: 'Live Projects' },
-  { end: 15, suffix: '+', label: 'Industry Partners' },
+  { end: 9, suffix: '+', label: 'Industry Partners' },
 ]
 
 const communities = [
@@ -170,7 +170,7 @@ const Hero = () => {
                   dark ? 'text-gray-200' : 'text-ink-700'
                 }`}
               >
-                500+ members
+                4300+ members
               </p>
               <p className={`transition-colors duration-300 ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
                 learning together every week
