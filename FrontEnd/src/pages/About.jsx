@@ -25,7 +25,6 @@ import SauryaImg from '../assets/Saurya.jpg'
 import ShadowImg from '../assets/Shadow.jpg'
 import PahuImg from '../assets/Pahu.jpg'
 import SurajitImg from '../assets/Surajit.jpg'
-import SiddiquaImg from '../assets/Siddiqua.jpg'
 import GourabImg from '../assets/Gourab.jpg'
 
 const values = [
@@ -156,7 +155,7 @@ const team = [
     name: 'Siddiqua',
     role: 'Opportunity Curator',
     description: 'Finding and sharing valuable opportunities, resources, and updates for the community',
-    image: SiddiquaImg,
+    image: null,
     initials: 'SD',
     gradient: 'from-brand-600 to-flare-pink',
     socials: {
