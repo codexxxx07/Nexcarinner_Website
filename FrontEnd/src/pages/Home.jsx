@@ -35,6 +35,15 @@ const stats = [
 
 const communities = [
   {
+    title: 'Nexcarinner',
+    members: '1800+',
+    description: 'Opportunities, jobs, skills, and hackathons all in one place.',
+    icon: FaGlobe,
+    accent: 'from-flare-pink to-brand-500',
+    link: 'https://chat.whatsapp.com/LFpegPQ2vMkKnQ4W07DDqH?s=cl&p=a&ilr=1',
+    groups: ['Internship & Job Alerts', 'Government Job Alerts', 'Skill Building & Learning', 'Hackathons & Competitions'],
+  },
+  {
     title: 'Nexcarinner Network',
     members: '1300+',
     description: 'A central hub for networking, resources, promotions, and general discussions.',
@@ -51,15 +60,6 @@ const communities = [
     accent: 'from-flare-cyan to-brand-500',
     link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
     groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
-  },
-  {
-    title: 'Nexcarinner',
-    members: '1800+',
-    description: 'Opportunities, jobs, skills, and hackathons all in one place.',
-    icon: FaGlobe,
-    accent: 'from-flare-pink to-brand-500',
-    link: 'https://chat.whatsapp.com/LFpegPQ2vMkKnQ4W07DDqH?s=cl&p=a&ilr=1',
-    groups: ['Internship & Job Alerts', 'Government Job Alerts', 'Skill Building & Learning', 'Hackathons & Competitions'],
   },
 ]
 

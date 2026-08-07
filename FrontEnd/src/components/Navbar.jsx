@@ -129,7 +129,7 @@ const Navbar = () => {
               }`}
             >
               <FiStar className={`h-3.5 w-3.5 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-              500+ members
+              4300+ members
             </span>
             <ThemeToggle />
             <Link
