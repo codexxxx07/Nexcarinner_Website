@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft, FiCalendar, FiClock, FiTag } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import { useTheme } from '../context/ThemeContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const posts = [
   {
@@ -69,6 +70,7 @@ const posts = [
 const Blog = () => {
   const navigate = useNavigate()
   const { dark } = useTheme()
+  usePageTitle('Blog')
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${dark ? 'bg-[#0f0f0f]' : 'bg-ink-950'}`}>

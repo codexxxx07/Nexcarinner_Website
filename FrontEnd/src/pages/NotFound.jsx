@@ -2,10 +2,12 @@ import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft, FiHome } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import { useTheme } from '../context/ThemeContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const NotFound = () => {
   const navigate = useNavigate()
   const { dark } = useTheme()
+  usePageTitle('Page Not Found')
 
   return (
     <div

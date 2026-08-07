@@ -18,6 +18,13 @@ const socials = [
   { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/nexcarinner?utm_source=qr&igsh=MWo0MzY4NnFjMXN0cA==' },
 ]
 
+const resourceLinks = [
+  { label: 'Blog', to: '/blog' },
+  { label: 'Documentation', to: '/documentation' },
+  { label: 'Guides', to: '/guides' },
+  { label: 'FAQ', to: '/faq' },
+]
+
 const Footer = () => {
   const { dark } = useTheme()
   const [email, setEmail] = useState('')
@@ -179,12 +186,7 @@ const Footer = () => {
               Resources
             </h4>
             <ul className="mt-5 space-y-3 text-sm">
-              {[
-                { label: 'Blog', to: '/blog' },
-                { label: 'Documentation', to: '/documentation' },
-                { label: 'Guides', to: '/guides' },
-                { label: 'FAQ', to: '/faq' },
-              ].map((item) => (
+              {resourceLinks.map((item) => (
                 <li key={item.to}>
                   <Link
                     to={item.to}

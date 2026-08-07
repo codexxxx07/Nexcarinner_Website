@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { FiArrowLeft, FiBook, FiCode, FiUsers, FiZap, FiShield, FiGlobe } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import { useTheme } from '../context/ThemeContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const sections = [
   {
@@ -51,6 +52,7 @@ const sections = [
 const Documentation = () => {
   const navigate = useNavigate()
   const { dark } = useTheme()
+  usePageTitle('Documentation')
 
   return (
     <div className={`min-h-screen transition-colors duration-300 ${dark ? 'bg-[#0f0f0f]' : 'bg-ink-950'}`}>
