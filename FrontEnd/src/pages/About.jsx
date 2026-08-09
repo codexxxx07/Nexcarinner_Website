@@ -103,10 +103,10 @@ const team = [
     initials: 'KR',
     gradient: 'from-flare-pink to-brand-500',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/krishanjit-chakraborty-258a5237a',
+      instagram: 'https://www.instagram.com/_k_r_i_s_h_x_',
+      github: 'https://github.com/codexxxx07',
+      discord: 'https://discord.com/channels/krish014669'
     }
   },
   {
@@ -117,9 +117,9 @@ const team = [
     initials: 'SJ',
     gradient: 'from-brand-500 to-flare-cyan',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
+      linkedin: 'linkedin.com/in/surajit-mandal-4a921b328',
+      instagram: 'https://www.instagram.com/enigmatic_soul.09',
+      github: 'https://github.com/Ims2006',
       discord: '#'
     }
   },
