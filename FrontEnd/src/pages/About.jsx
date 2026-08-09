@@ -75,10 +75,8 @@ const team = [
     initials: 'GK',
     gradient: 'from-brand-500 to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/with-gunjan',
+      instagram: 'https://www.instagram.com/with_gunjan_'
     }
   },
   {
@@ -89,10 +87,8 @@ const team = [
     initials: 'SY',
     gradient: 'from-flare-cyan to-brand-500',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/saurya-kapoor',
+      github: 'https://github.com/sauryakapoor'
     }
   },
   {
@@ -183,10 +179,10 @@ const team = [
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/ankur-kumar-gupta-8b3b903a6',
+      instagram: 'https://www.instagram.com/ankur4965423',
+      github: 'https://github.com/ankurkrgupta22122006-oss',
+      discord: 'https://discordapp.com/users/krrish0998'
     }
   },
   {
@@ -197,10 +193,9 @@ const team = [
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/harshialrawat',
+      instagram: 'https://www.instagram.com/shadow_slave_02',
+      discord: 'https://discord.gg/6hprSUpY'
     }
   },
   {
