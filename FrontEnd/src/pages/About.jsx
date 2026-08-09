@@ -113,8 +113,7 @@ const team = [
     initials: 'SJ',
     gradient: 'from-brand-500 to-flare-cyan',
     socials: {
-      linkedin: 'linkedin.com/in/surajit-mandal-4a921b328',
-      instagram: 'https://www.linkedin.com/in/enigmatic_soul.09',
+      linkedin: 'https://www.linkedin.com/in/surajit-mandal-4a921b328',
       github: 'https://github.com/Ims2006',
     }
   },
@@ -151,10 +150,7 @@ const team = [
     initials: 'SD',
     gradient: 'from-brand-600 to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      github: 'https://github.com/Siddiqua2007'
     }
   },
   {
@@ -165,10 +161,7 @@ const team = [
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/ankita-p-518a462b7',
     }
   },
   {
@@ -206,10 +199,8 @@ const team = [
     initials: 'AK',
     gradient: 'from-flare-cyan to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/lakshya10',
+      instagram: 'https://www.instagram.com/__.lakxz.tkdian.__'                                                                                                                                                                                
     }
   },
 ]
@@ -293,42 +284,56 @@ const TeamCard = ({ member }) => {
 
         {/* Social Icons */}
         <div className="mt-6 flex justify-center gap-3">
-          <a
-            href={member.socials.linkedin}
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:shadow-md ${
-              dark
-                ? 'bg-white/8 text-gray-400 hover:bg-[#0077b5] hover:text-white'
-                : 'bg-gray-200 text-gray-600 hover:bg-[#0077b5] hover:text-white'
-            }`}
-            aria-label="LinkedIn"
-          >
-            <FaLinkedin className="h-5 w-5" />
-          </a>
-          <a
-            href={member.socials.instagram}
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
-              dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-            }`}
-            aria-label="Instagram"
-          >
-            <FaInstagram className="h-5 w-5" />
-          </a>
-          <a
-            href={member.socials.github}
-            className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
-              dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-            }`}
-            aria-label="GitHub"
-          >
-            <FaGithub className="h-5 w-5" />
-          </a>
-          {member.socials.discord && (
+          {member.socials.linkedin && member.socials.linkedin !== '#' && (
+            <a
+              href={member.socials.linkedin}
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:shadow-md ${
+                dark
+                  ? 'bg-white/8 text-gray-400 hover:bg-[#0077b5] hover:text-white'
+                  : 'bg-gray-200 text-gray-600 hover:bg-[#0077b5] hover:text-white'
+              }`}
+              aria-label="LinkedIn"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="h-5 w-5" />
+            </a>
+          )}
+          {member.socials.instagram && member.socials.instagram !== '#' && (
+            <a
+              href={member.socials.instagram}
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
+                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+              }`}
+              aria-label="Instagram"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="h-5 w-5" />
+            </a>
+          )}
+          {member.socials.github && member.socials.github !== '#' && (
+            <a
+              href={member.socials.github}
+              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
+                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
+              }`}
+              aria-label="GitHub"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub className="h-5 w-5" />
+            </a>
+          )}
+          {member.socials.discord && member.socials.discord !== '#' && (
             <a
               href={member.socials.discord}
               className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md ${
                 dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
               }`}
               aria-label="Discord"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <FaDiscord className="h-5 w-5" />
             </a>
