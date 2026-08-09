@@ -118,9 +118,8 @@ const team = [
     gradient: 'from-brand-500 to-flare-cyan',
     socials: {
       linkedin: 'linkedin.com/in/surajit-mandal-4a921b328',
-      instagram: 'https://www.instagram.com/enigmatic_soul.09',
+      instagram: 'https://www.linkedin.com/in/enigmatic_soul.09',
       github: 'https://github.com/Ims2006',
-      discord: '#'
     }
   },
   {
@@ -131,10 +130,8 @@ const team = [
     initials: 'PP',
     gradient: 'from-brand-600 to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/hrpahulpreetofficial',
+      instagram: 'https://www.instagram.com/hrpahulpreetofficial'
     }
   },
   {
@@ -145,10 +142,9 @@ const team = [
     initials: 'PP',
     gradient: 'from-brand-600 to-flare-pink',
     socials: {
-      linkedin: '#',
-      instagram: '#',
-      github: '#',
-      discord: '#'
+      linkedin: 'https://www.linkedin.com/in/gourab-gorai-4a51541ba',
+      instagram: 'https://www.instagram.com/gourab.gorai.9862',
+      github: 'https://github.com/GourabGorai'
     }
   },
   {
