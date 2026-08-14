@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import ClickSpark from './ClickSpark'
 import { ThemeProvider, useTheme } from '../context/ThemeContext'
 
 const LayoutInner = ({ children }) => {
@@ -40,11 +41,20 @@ const LayoutInner = ({ children }) => {
         />
       </div>
 
-      <Navbar />
-      <main className="relative z-10 flex-1 pt-16 lg:pt-20">{children}</main>
-      <div className="relative z-10">
-        <Footer />
-      </div>
+      <ClickSpark
+        className="flex flex-1 flex-col"
+        sparkColor={dark ? '#fff' : '#7c3aed'}
+        sparkSize={14}
+        sparkRadius={35}
+        sparkCount={10}
+        duration={500}
+      >
+        <Navbar />
+        <main className="relative z-10 flex-1 pt-16 lg:pt-20">{children}</main>
+        <div className="relative z-10">
+          <Footer />
+        </div>
+      </ClickSpark>
     </div>
   )
 }
