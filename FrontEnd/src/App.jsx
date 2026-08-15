@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/Layout'
+import { ThemeProvider } from './context/ThemeContext'
+import PageSkeletonLoader from './components/Skeleton/PageSkeletonLoader'
 import Home from './pages/Home'
 import Events from './pages/Events'
 import Gallery from './pages/Gallery'
@@ -13,20 +15,24 @@ import NotFound from './pages/NotFound'
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/gallery/:category?" element={<Gallery />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/blog" element={<Blog />} />
-        <Route path="/documentation" element={<Documentation />} />
-        <Route path="/guides" element={<Guides />} />
-        <Route path="/faq" element={<FAQ />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+    <ThemeProvider>
+      <PageSkeletonLoader>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/gallery/:category?" element={<Gallery />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/documentation" element={<Documentation />} />
+            <Route path="/guides" element={<Guides />} />
+            <Route path="/faq" element={<FAQ />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </PageSkeletonLoader>
+    </ThemeProvider>
   )
 }
 

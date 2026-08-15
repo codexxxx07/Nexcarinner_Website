@@ -25,6 +25,7 @@ import BlurText from '../components/reactbits/BlurText'
 import TypeWriter from '../components/TypeWriter'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
+import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
 import heroImg from '../assets/NCW_Logo.jpg'
 
 const stats = [
@@ -230,14 +231,15 @@ const Hero = () => {
             />
 
             <div className="glass relative overflow-hidden rounded-[1.75rem] p-2.5">
-              <img
+              <ImageSkeleton
                 src={heroImg}
                 alt="Nexcarinner community"
+                eager
                 width={343}
                 height={361}
                 fetchPriority="high"
-                decoding="async"
-                className="w-full rounded-[1.25rem] object-cover"
+                className="rounded-[1.25rem]"
+                imgClassName="w-full rounded-[1.25rem] object-cover"
               />
             </div>
 

@@ -614,3 +614,114 @@
 .reveal, .reveal * {
   transition-property: opacity, transform, background-color, border-color, color, box-shadow;
 }
+
+/* ============================================================
+ * SKELETON LOADING SYSTEM
+ * Wireframe surfaces that mirror the Nexcarinner design system.
+ * Light: soft off-white/gray faces. Dark: #232323 (lighter than
+ * the #0f0f0f page background). One lightweight transform shimmer.
+ * Rules live in @layer components so Tailwind utilities (rounding,
+ * sizing, opacity) can tune individual blocks.
+ * ============================================================ */
+@layer components {
+  /* Base skeleton block — any placeholder shape. Rounding and size
+   * come from Tailwind classes on the element. */
+  .skeleton-block {
+    position: relative;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    background-color: var(--color-ink-800);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.55);
+  }
+  .dark .skeleton-block {
+    background-color: #232323;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  /* Shimmer sweep — a single skewed highlight that slides across.
+   * transform-only animation, compositor-friendly and cheap. */
+  .skeleton-block::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 100%
+    );
+    animation: skeleton-shimmer 2s ease-in-out infinite;
+  }
+  .dark .skeleton-block::after {
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%
+    );
+  }
+
+  /* Quiet blocks (tiny dots / hairlines) skip the shimmer sweep. */
+  .skeleton-block--quiet::after {
+    display: none;
+  }
+
+  /* Skeleton card surface — a raised wireframe face that mimics the
+   * glass card system without shimmering underneath its content. */
+  .skeleton-surface {
+    position: relative;
+    overflow: hidden;
+    border-radius: 1rem;
+    border: 1px solid rgba(34, 29, 58, 0.08);
+    background: linear-gradient(180deg, #f5f3fa 0%, #efecf6 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+  .dark .skeleton-surface {
+    border-color: rgba(255, 255, 255, 0.07);
+    background: linear-gradient(180deg, #1c1c1c 0%, #181818 100%);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  }
+
+  /* Small dividers inside skeleton cards. */
+  .skeleton-divider {
+    height: 1px;
+    width: 100%;
+    background-color: rgba(34, 29, 58, 0.08);
+  }
+  .dark .skeleton-divider {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+}
+
+@keyframes skeleton-shimmer {
+  100% { transform: translateX(100%); }
+}
+
+/* Image skeleton fade — the placeholder dissolves into the real
+ * image. Declared after the global transition rule so opacity wins. */
+.skeleton-fade {
+  transition-property: opacity;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Full-page reveal overlay — fades the wireframe out to expose the
+ * freshly mounted page (subtle, ~340ms, no layout jump). */
+.skeleton-overlay {
+  animation: skeleton-overlay-fade 0.34s ease-out both;
+}
+@keyframes skeleton-overlay-fade {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-block::after {
+    display: none;
+  }
+  /* Snap the reveal instead of fading when motion is reduced. */
+  .skeleton-overlay {
+    animation-duration: 0.001s;
+  }
+}

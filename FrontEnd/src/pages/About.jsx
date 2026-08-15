@@ -17,6 +17,7 @@ import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
 import SocialIcon from '../components/SocialIcon'
 import { useTheme } from '../context/ThemeContext'
+import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
 import GunjanImg from '../assets/Gunjan.jpg'
 import AnkitaImg from '../assets/Ankita.jpg'
 import AnkurImg from '../assets/Ankur.jpg'
@@ -257,10 +258,11 @@ const TeamCard = ({ member }) => {
               className={`absolute -inset-1.5 rounded-full bg-linear-to-br ${member.gradient} opacity-25 blur-[6px] transition-opacity duration-300 group-hover:opacity-45`}
             />
             {member.image ? (
-              <img
+              <ImageSkeleton
                 src={member.image}
                 alt={member.name}
-                className={`relative h-28 w-28 rounded-full object-cover shadow-[0_10px_24px_-8px_rgba(34,29,58,0.35)] ring-4 transition-transform duration-200 ease-in-out group-hover:scale-105 ${
+                className="rounded-full"
+                imgClassName={`relative h-28 w-28 rounded-full object-cover shadow-[0_10px_24px_-8px_rgba(34,29,58,0.35)] ring-4 transition-transform duration-200 ease-in-out group-hover:scale-105 ${
                   dark ? 'ring-[#1c1c1c]' : 'ring-white'
                 }`}
               />

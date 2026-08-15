@@ -1,7 +1,7 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
 import ClickSpark from './ClickSpark'
-import { ThemeProvider, useTheme } from '../context/ThemeContext'
+import { useTheme } from '../context/ThemeContext'
 
 const LayoutInner = ({ children }) => {
   const { dark } = useTheme()
@@ -59,11 +59,7 @@ const LayoutInner = ({ children }) => {
 }
 
 const Layout = ({ children }) => {
-  return (
-    <ThemeProvider>
-      <LayoutInner>{children}</LayoutInner>
-    </ThemeProvider>
-  )
+  return <LayoutInner>{children}</LayoutInner>
 }
 
 export default Layout

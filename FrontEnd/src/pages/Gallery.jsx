@@ -17,6 +17,7 @@ import BlurText from '../components/reactbits/BlurText'
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
 import { usePageTitle } from '../hooks/usePageTitle'
+import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
 import {
   galleryCategories,
   categoryMeta,
@@ -86,12 +87,11 @@ const GalleryLink = ({ item, dark, className = '' }) => {
 const GalleryCover = ({ item, accent }) => {
   if (item.image) {
     return (
-      <img
+      <ImageSkeleton
         src={item.image}
         alt={item.title}
-        loading="lazy"
-        decoding="async"
-        className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        wrapperClassName="h-full w-full"
+        imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
       />
     )
   }
@@ -301,12 +301,11 @@ const CollabCard = ({ item, size, dark }) => {
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
       <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
         {item.image ? (
-          <img
+          <ImageSkeleton
             src={item.image}
             alt={item.name}
-            loading="lazy"
-            decoding="async"
-            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            wrapperClassName="h-full w-full"
+            imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
           />
         ) : (
           <div className="relative flex h-full w-full items-center justify-center bg-linear-to-br from-flare-cyan to-brand-500">
