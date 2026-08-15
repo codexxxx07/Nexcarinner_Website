@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Data Science Certification">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#e879f9"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<ellipse cx="400" cy="0" rx="520" ry="380" fill="rgba(255,255,255,0.16)"/>
+<g stroke="rgba(255,255,255,0.09)" stroke-width="1"><path d="M0 120H800M0 240H800M0 360H800M0 480H800"/><path d="M133 0V600M266 0V600M400 0V600M533 0V600M666 0V600"/></g><rect x="130" y="110" width="540" height="380" rx="22" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="3"/>
+<rect x="152" y="132" width="496" height="336" rx="16" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5"/>
+<text x="400" y="196" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="4" fill="rgba(255,255,255,0.75)">VERIFIED</text>
+<circle cx="400" cy="292" r="56" fill="rgba(255,255,255,0.16)" stroke="rgba(255,255,255,0.4)" stroke-width="2"/>
+<text x="400" y="306" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="44" font-weight="800" fill="#ffffff">C3</text>
+<text x="400" y="380" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="700" fill="rgba(255,255,255,0.95)">Data Science Certification</text>
+<text x="400" y="414" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="500" fill="rgba(255,255,255,0.6)">Member Achievement</text></svg>

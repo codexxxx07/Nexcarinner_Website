@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="AI Webinar">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#7c3aed"/></linearGradient></defs>
+<rect width="800" height="600" fill="url(#g)"/>
+<ellipse cx="400" cy="0" rx="520" ry="380" fill="rgba(255,255,255,0.16)"/>
+<g stroke="rgba(255,255,255,0.09)" stroke-width="1"><path d="M0 120H800M0 240H800M0 360H800M0 480H800"/><path d="M133 0V600M266 0V600M400 0V600M533 0V600M666 0V600"/></g><circle cx="400" cy="252" r="74" fill="rgba(255,255,255,0.14)" stroke="rgba(255,255,255,0.38)" stroke-width="2"/>
+<text x="400" y="286" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="54" font-weight="800" fill="#ffffff">E3</text>
+<text x="400" y="418" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="rgba(255,255,255,0.95)">AI Webinar</text>
+<text x="400" y="456" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="500" fill="rgba(255,255,255,0.6)">Webinars</text></svg>
