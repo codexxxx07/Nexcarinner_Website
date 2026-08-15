@@ -444,6 +444,46 @@ const FeaturedBadge = ({ dark }) => (
   </span>
 )
 
+/*
+ * Award image area — unlike the shared GalleryCover (object-cover),
+ * award/certificate images are shown with object-contain so the whole
+ * document is always visible: never cropped, stretched, or distorted.
+ * The letterbox band gets a soft framed backdrop so it looks intentional
+ * in both light and dark mode.
+ */
+const AwardImage = ({ item, dark }) => {
+  if (!item.image) {
+    return (
+      <div className={`relative flex h-full w-full items-center justify-center bg-linear-to-br ${item.accent}`}>
+        <div className="absolute inset-3 rounded-2xl border border-white/20" />
+        <span className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-white/30 bg-white/15 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_20px_-8px_rgba(0,0,0,0.45)]">
+          <FiAward className="h-6 w-6" />
+        </span>
+        <span className="absolute bottom-3 right-4 text-[10px] font-semibold uppercase tracking-widest text-white/50">
+          Nexcarinner
+        </span>
+      </div>
+    )
+  }
+
+  return (
+    <div
+      className={`flex h-full w-full items-center justify-center p-3 sm:p-5 ${
+        dark
+          ? 'bg-linear-to-br from-brand-500/15 via-black/30 to-flare-pink/15'
+          : 'bg-linear-to-br from-brand-100/50 via-white/70 to-flare-pink/30'
+      }`}
+    >
+      <ImageSkeleton
+        src={item.image}
+        alt={item.title}
+        wrapperClassName="h-full w-full"
+        imgClassName="h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)]"
+      />
+    </div>
+  )
+}
+
 const AwardCard = ({ item, size, dark }) => {
   const isHero = size === 'hero'
   const wide = size === 'wide'
@@ -487,8 +527,8 @@ const AwardCard = ({ item, size, dark }) => {
       >
         {topLine}
         <div className="grid flex-1 lg:grid-cols-2">
-          <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:h-full">
-            <GalleryCover item={item} accent={item.accent} />
+          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] lg:aspect-auto lg:h-full">
+            <AwardImage item={item} dark={dark} />
             <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
             <FeaturedBadge dark={dark} />
           </div>
@@ -501,7 +541,7 @@ const AwardCard = ({ item, size, dark }) => {
               Featured recognition
             </p>
             <h3
-              className={`mt-2 font-display text-2xl font-bold tracking-tight transition-colors duration-300 sm:text-3xl ${
+              className={`mt-2 whitespace-normal font-display text-2xl font-bold leading-tight tracking-tight break-words transition-colors duration-300 sm:text-3xl ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
@@ -524,8 +564,8 @@ const AwardCard = ({ item, size, dark }) => {
   return (
     <CardShell dark={dark} className={`${wide ? 'sm:col-span-2' : ''} ${ring}`}>
       {topLine}
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
-        <GalleryCover item={item} accent={item.accent} />
+      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
+        <AwardImage item={item} dark={dark} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
         <div className="absolute bottom-4 left-4 z-10 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/30 bg-white/15 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_20px_-8px_rgba(0,0,0,0.45)] backdrop-blur-md">
           <FiAward className="h-5 w-5" />
@@ -693,11 +733,20 @@ const Gallery = () => {
     }
 
     const Card = cardBySlug[activeCategory]
-    return gallerySections[activeCategory].map((item, index) => (
-      <Reveal key={item.id} delay={(index % 3) * 80} className="h-full">
-        <Card item={item} size={sizeFor(item, index)} dark={dark} />
-      </Reveal>
-    ))
+    return gallerySections[activeCategory].map((item, index) => {
+      const size = sizeFor(item, index)
+      const span =
+        activeCategory === 'awards' && size === 'hero'
+          ? 'sm:col-span-2 lg:col-span-3'
+          : activeCategory === 'awards' && size === 'wide'
+            ? 'sm:col-span-2'
+            : ''
+      return (
+        <Reveal key={item.id} delay={(index % 3) * 80} className={`h-full ${span}`}>
+          <Card item={item} size={size} dark={dark} />
+        </Reveal>
+      )
+    })
   }
 
   return (

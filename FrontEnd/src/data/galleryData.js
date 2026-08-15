@@ -21,9 +21,7 @@ import demoCollab3 from '../assets/demo/collab-3.svg'
 import demoCert1 from '../assets/demo/cert-1.svg'
 import demoCert2 from '../assets/demo/cert-2.svg'
 import demoCert3 from '../assets/demo/cert-3.svg'
-import demoAward1 from '../assets/demo/award-1.svg'
-import demoAward2 from '../assets/demo/award-2.svg'
-import demoAward3 from '../assets/demo/award-3.svg'
+import NexcarinnerCertTeck4Hack from '../assets/Nexcarinner_Cert_Teck4Hack.jpg'
 import demoEvent1 from '../assets/demo/event-1.svg'
 import demoEvent2 from '../assets/demo/event-2.svg'
 import demoEvent3 from '../assets/demo/event-3.svg'
@@ -313,35 +311,16 @@ export const certifications = [
  */
 export const awards = [
   {
-    id: 'rising-community',
-    title: 'Rising Community Award 2026',
-    organization: 'Demo Tech Summit',
-    image: demoAward1,
-    description:
-      'Recognition for our hackathon program, mentorship culture, and year-over-year community growth.',
-    year: '2026',
-    link: 'https://example.com/awards/nexcarinner',
-    linkLabel: 'View recognition',
+    id: 'certificate-of-participation',
+    title: 'Certificate of Participation',
+    organization: 'Tech4Hack',
+    image: NexcarinnerCertTeck4Hack,
+    description: 'Participating in buldathon',
+    year: '1st Aug, 2026',
+    link: 'https://app.truscholar.io/profile?credId=6a72399eaacd0df33c7fcd3d',
+    linkLabel: 'View certificate',
+    external: true,
     featured: 'hero',
-  },
-  {
-    id: 'best-student-community',
-    title: 'Best Student Community',
-    organization: 'Demo Education Forum',
-    image: demoAward2,
-    description:
-      'Awarded for student-led learning tracks and mentorship initiatives that keep hundreds engaged.',
-    year: '2026',
-    featured: 'wide',
-  },
-  {
-    id: 'hackathon-partner',
-    title: 'Top Hackathon Partner',
-    organization: 'Demo Hackathon Series',
-    image: demoAward3,
-    description:
-      'Honored for co-hosting regional hackathons and shipping student projects to real judging panels.',
-    year: '2025',
   },
 ]
 
@@ -519,13 +498,12 @@ export const overviewItems = [
   {
     id: 'ov-award',
     category: 'awards',
-    title: 'Rising Community Award 2026',
-    description:
-      'Recognition for our hackathon program and the community culture behind it.',
-    year: '2026',
+    title: 'Certificate of Participation',
+    description: 'Participating in buldathon',
+    year: '1st Aug, 2026',
     icon: FiAward,
     accent: 'from-flare-cyan to-flare-pink',
-    image: demoAward1,
+    image: NexcarinnerCertTeck4Hack,
     link: '/gallery/awards',
     linkLabel: 'See the awards',
     featured: 'wide',
