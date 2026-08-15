@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FiMenu, FiX, FiArrowRight, FiMoon, FiSun } from 'react-icons/fi'
+import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 import Logo from './Logo'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
@@ -133,11 +133,16 @@ const Navbar = () => {
             </span>
             <ThemeToggle />
             <Link
-              to="/contact"
-              className="btn-gradient inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold text-white"
+              to="/login"
+              className="btn-outline inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold"
             >
-              Join Now
-              <FiArrowRight className="h-4 w-4" />
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="btn-gradient inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white"
+            >
+              Sign Up
             </Link>
           </div>
 
@@ -192,12 +197,18 @@ const Navbar = () => {
             ))}
             <div className="my-3 h-px w-full bg-linear-to-r from-transparent via-ink-800/80 to-transparent dark:via-white/12" />
             <Link
-              to="/contact"
+              to="/login"
               onClick={() => setOpen(false)}
-              className="btn-gradient mt-1 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
+              className="btn-outline mt-1 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold"
             >
-              Join Now
-              <FiArrowRight className="h-4 w-4" />
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              onClick={() => setOpen(false)}
+              className="btn-gradient mt-3 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
+            >
+              Sign Up
             </Link>
           </div>
         </div>

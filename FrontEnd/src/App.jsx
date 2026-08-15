@@ -11,6 +11,8 @@ import Blog from './pages/Blog'
 import Documentation from './pages/Documentation'
 import Guides from './pages/Guides'
 import FAQ from './pages/FAQ'
+import Login from './pages/Login'
+import SignUp from './pages/SignUp'
 import NotFound from './pages/NotFound'
 
 function App() {
@@ -28,6 +30,8 @@ function App() {
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
