@@ -22,6 +22,7 @@ import CountUp from '../components/CountUp'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
 import BlurText from '../components/reactbits/BlurText'
+import TypeWriter from '../components/TypeWriter'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
 import heroImg from '../assets/NCW_Logo.jpg'
@@ -111,6 +112,8 @@ const heroPillars = [
   { label: 'Find opportunities', icon: FiBriefcase },
 ]
 
+const heroPhrases = ['together', 'with us', 'as one', 'differently']
+
 const Hero = () => {
   const { dark } = useTheme()
   return (
@@ -124,22 +127,23 @@ const Hero = () => {
             </span>
           </Reveal>
 
-          <BlurText
-            as="h1"
-            delay={70}
+          <h1
             className={`mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
-            text="Build the future of tech together"
-            wordClassNames={[
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              undefined,
-              'text-gradient-animate',
-            ]}
-          />
+          >
+            <BlurText
+              as="span"
+              delay={70}
+              text="Build the future of tech"
+            />
+            {' '}
+            <TypeWriter
+              phrases={heroPhrases}
+              className="text-gradient-animate"
+              startDelay={420}
+            />
+          </h1>
 
           <Reveal delay={220}>
             <p

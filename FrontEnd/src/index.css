@@ -529,6 +529,28 @@
   border-color: rgba(167, 139, 250, 0.3);
 }
 
+/* Typewriter caret — crisp on/off blink, brand accent. */
+.typewriter-caret {
+  display: inline-block;
+  width: 0.09em;
+  height: 1em;
+  margin-left: 0.08em;
+  vertical-align: -0.12em;
+  border-radius: 999px;
+  background-color: var(--color-brand-500);
+  animation: typewriter-blink 1.1s step-end infinite;
+}
+@keyframes typewriter-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.dark .typewriter-caret {
+  background-color: var(--color-brand-400);
+}
+@media (prefers-reduced-motion: reduce) {
+  .typewriter-caret { animation: none; }
+}
+
 /* Tooltip entrance — tiny fade + settle, no jank. */
 .tooltip-in {
   animation: tooltip-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
