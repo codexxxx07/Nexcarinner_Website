@@ -202,7 +202,7 @@ const Hero = () => {
                     dark ? 'text-gray-200' : 'text-ink-700'
                   }`}
                 >
-                  4300+ members
+                  4500+ members
                 </p>
                 <p className={`transition-colors duration-300 ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
                   learning together every week
@@ -277,7 +277,7 @@ const Hero = () => {
                 </div>
                 <div>
                   <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
-                    4300+ members
+                    4500+ members
                   </p>
                   <p className={`flex items-center gap-1.5 text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
                     <span className="presence-dot" />

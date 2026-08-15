@@ -128,7 +128,7 @@ const Navbar = () => {
               }`}
             >
               <span className="presence-dot" />
-              4300+ members
+              4500+ members
             </span>
             <ThemeToggle />
             <Link
