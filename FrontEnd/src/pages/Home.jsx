@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaCode, FaGlobe } from 'react-icons/fa'
+import { IoBarChartSharp } from "react-icons/io5";
 import {
   FiArrowRight,
   FiArrowUpRight,
@@ -26,7 +27,7 @@ import { useTheme } from '../context/ThemeContext'
 import heroImg from '../assets/NCW_Logo.jpg'
 
 const stats = [
-  { end: 4300, suffix: '+', label: 'Active Members' },
+  { end: 4500, suffix: '+', label: 'Active Members' },
   { end: 1, label: 'Event Hosted' },
   { end: 20, suffix: '+', label: 'Live Projects' },
   { end: 9, suffix: '+', label: 'Industry Partners' },
@@ -100,6 +101,7 @@ const skills = [
   { label: 'Full Stack', icon: FaCode },
   { label: 'Cybersecurity', icon: FiShield },
   { label: 'Data Science', icon: FiDatabase },
+  { label: 'Data Analysis', icon: IoBarChartSharp },
 ]
 
 const heroPillars = [
@@ -495,7 +497,7 @@ const SkillsMarquee = () => {
             {skill.label}
           </span>
           <span
-            className={`mx-6 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[2px] ${
+            className={`mx-6 h-1.5 w-1.5 shrink-0 rotate-45 rounded-xs ${
               dark ? 'bg-white/15' : 'bg-ink-300'
             }`}
           />
