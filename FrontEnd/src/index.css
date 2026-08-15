@@ -43,6 +43,10 @@
     from { transform: translateX(-50%); }
     to { transform: translateX(0); }
   }
+  @keyframes tooltip-in {
+    from { opacity: 0; transform: scale(0.96) translateY(4px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
 }
 
 @layer base {
@@ -354,30 +358,29 @@
  * the @custom-variant defined at the top of this file.
  * ============================================================ */
 
-/* Glass card — dark liquid-glass style */
+/* Glass card — dark liquid-glass style.
+ * No backdrop-filter: it is GPU-expensive at scale and the page background
+ * is flat, so the blur buys nothing visually. Elevation is carried by
+ * layered shadows only. */
 .dark .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.025) 100%);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.06),
     0 1px 2px rgba(0, 0, 0, 0.4),
     0 8px 24px -8px rgba(0, 0, 0, 0.5),
     0 24px 48px -20px rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Strong glass card — dark */
 .dark .glass-strong {
-  background: rgba(255, 255, 255, 0.06);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 1px 3px rgba(0, 0, 0, 0.5),
     0 10px 28px -10px rgba(0, 0, 0, 0.6),
     0 28px 56px -24px rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 /* Card lift hover — dark */
@@ -448,6 +451,100 @@
     linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
+
+/* ============================================================
+ * ADDITIONS — community energy + micro-interactions
+ * ============================================================ */
+
+/* Skill chip — raised rounded tag used in the tech marquee and
+ * community group lists. Reads as a small machined button. */
+.skill-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(34, 29, 58, 0.12);
+  background: linear-gradient(180deg, #ffffff 0%, #f6f5fb 100%);
+  color: var(--color-ink-500);
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 0.55rem 1.1rem;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    0 1px 2px rgba(34, 29, 58, 0.06),
+    0 3px 8px -4px rgba(34, 29, 58, 0.1);
+}
+.dark .skill-chip {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.03) 100%);
+  color: #b6b2c4;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+/* Compact skill chip — dense tag lists inside cards. */
+.skill-chip-sm {
+  padding: 0.3rem 0.72rem;
+  font-size: 0.72rem;
+  max-width: 100%;
+}
+.skill-chip-sm span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Soft pulsing presence dot — used for "live" / online indicators.
+ * Cheap (opacity-only) and never runs off-screen. */
+.presence-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--color-brand-500);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
+}
+@keyframes presence {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.45; }
+}
+.presence-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 999px;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  animation: presence 2.4s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .presence-dot::after { animation: none; }
+}
+.dark .presence-dot {
+  background: #a78bfa;
+  box-shadow: 0 0 0 3px rgba(167, 139, 250, 0.16);
+}
+.dark .presence-dot::after {
+  border-color: rgba(167, 139, 250, 0.3);
+}
+
+/* Tooltip entrance — tiny fade + settle, no jank. */
+.tooltip-in {
+  animation: tooltip-in 0.18s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .tooltip-in { animation: none; }
+}
+
+/* Stats — tabular numerals stop the counter from shifting width. */
+.stat-number {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Tabular, balanced hero subheads */
+.text-balance { text-wrap: balance; }
+
 
 /* Transition everything smoothly on theme switch */
 *, *::before, *::after {

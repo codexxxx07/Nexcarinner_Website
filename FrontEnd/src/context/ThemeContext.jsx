@@ -7,7 +7,7 @@ export const ThemeProvider = ({ children }) => {
     try {
       const stored = localStorage.getItem('theme')
       if (stored) return stored === 'dark'
-    } catch {}
+    } catch { /* storage may be unavailable */ }
     return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
 
@@ -20,7 +20,7 @@ export const ThemeProvider = ({ children }) => {
     }
     try {
       localStorage.setItem('theme', dark ? 'dark' : 'light')
-    } catch {}
+    } catch { /* storage may be unavailable */ }
   }, [dark])
 
   const toggle = () => setDark((v) => !v)

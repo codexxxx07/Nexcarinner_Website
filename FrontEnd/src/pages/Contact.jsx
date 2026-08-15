@@ -11,6 +11,7 @@ import {
 import { FaGithub, FaLinkedinIn, FaDiscord, FaXTwitter } from 'react-icons/fa6'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
+import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
 
 const contactInfo = [
@@ -22,13 +23,13 @@ const contactInfo = [
   },
   {
     label: 'Phone',
-    value: '+1 (555) 123-4567',
+    value: '+91 62056 39470',
     icon: FiPhone,
     gradient: 'from-flare-cyan to-brand-500',
   },
   {
     label: 'Location',
-    value: 'San Francisco, CA',
+    value: 'Bihar, Aurangabad',
     icon: FiMapPin,
     gradient: 'from-flare-pink to-brand-500',
   },
@@ -139,14 +140,14 @@ const Contact = () => {
                     Thanks for reaching out, {formData.name || 'friend'}. We'll
                     get back to you within a day or two.
                   </p>
-                  <button
+                  <Button
                     onClick={() => setSubmitted(false)}
-                    className={`btn-outline mt-8 px-6 py-3 text-sm font-semibold ${
-                      dark ? 'text-gray-300' : 'text-ink-300'
-                    }`}
+                    variant="outline"
+                    size="md"
+                    className={dark ? 'text-gray-300' : 'text-ink-300'}
                   >
                     Send another
-                  </button>
+                  </Button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="relative space-y-5">
@@ -235,13 +236,14 @@ const Contact = () => {
                     />
                   </div>
 
-                  <button
+                  <Button
                     type="submit"
-                    className="btn-gradient inline-flex w-full items-center justify-center gap-2 rounded-full px-8 py-4 font-semibold text-white sm:w-auto"
+                    size="lg"
+                    className="w-full sm:w-auto"
                   >
                     Send Message
                     <FiSend className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>

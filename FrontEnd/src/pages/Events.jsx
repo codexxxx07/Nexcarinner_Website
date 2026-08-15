@@ -8,6 +8,8 @@ import {
 } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import CtaBanner from '../components/CtaBanner'
+import { Button } from '../components/ui/button'
+import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
 
 const filters = ['All', 'Workshops', 'Hackathons', 'Meetups', 'Webinars']
@@ -123,22 +125,16 @@ const Events = () => {
       {/* Filters */}
       <section className="mx-auto max-w-7xl px-6 pt-6 lg:px-8">
         <Reveal>
-          <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-            {filters.map((filter) => (
-              <button
-                key={filter}
-                onClick={() => setActiveFilter(filter)}
-                className={`rounded-full px-5 py-2.5 text-sm font-semibold transition-colors duration-200 ${
-                  activeFilter === filter
-                    ? 'btn-gradient text-white'
-                    : dark
-                      ? 'border border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:text-white'
-                      : 'border border-ink-300/50 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(34,29,58,0.05)] hover:border-brand-600/40 hover:text-brand-700'
-                }`}
-              >
-                {filter}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center justify-center">
+            <Tabs value={activeFilter} onValueChange={setActiveFilter} defaultValue="All">
+              <TabsList className="flex-wrap h-auto py-1.5">
+                {filters.map((filter) => (
+                  <TabsTrigger key={filter} value={filter}>
+                    {filter}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
+            </Tabs>
           </div>
         </Reveal>
       </section>
@@ -213,14 +209,14 @@ const Events = () => {
                     </span>
                   </div>
 
-                  <button
-                    className={`btn-outline group mt-6 w-full items-center justify-center py-3 text-sm font-semibold ${
-                      dark ? 'text-gray-300' : 'text-ink-300'
-                    }`}
+                  <Button
+                    variant="outline"
+                    size="md"
+                    className={`w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
                   >
                     Register
                     <FiArrowRight className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </div>
               </Reveal>
             )

@@ -10,13 +10,40 @@ import {
 import { FiArrowRight, FiMail, FiMapPin, FiPhone } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 import Logo from './Logo'
+import SocialIcon from './SocialIcon'
 
 const socials = [
-  { name: 'GitHub', icon: FaGithub, url: '#' },
-  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/nexcarinner/' },
-  { name: 'Discord', icon: FaDiscord, url: '#' },
-  { name: 'X', icon: FaXTwitter, url: 'https://x.com/nexcarinner' },
-  { name: 'Instagram', icon: FaInstagram, url: 'https://www.instagram.com/nexcarinner?utm_source=qr&igsh=MWo0MzY4NnFjMXN0cA==' },
+  {
+    name: 'GitHub',
+    icon: FaGithub,
+    url: '#',
+    hover: 'hover:bg-gray-900 hover:text-white hover:border-transparent',
+  },
+  {
+    name: 'LinkedIn',
+    icon: FaLinkedinIn,
+    url: 'https://www.linkedin.com/company/nexcarinner/',
+    hover: 'hover:bg-[#0077b5] hover:text-white hover:border-transparent',
+  },
+  {
+    name: 'Discord',
+    icon: FaDiscord,
+    url: '#',
+    hover: 'hover:bg-[#5865F2] hover:text-white hover:border-transparent',
+  },
+  {
+    name: 'X',
+    icon: FaXTwitter,
+    url: 'https://x.com/nexcarinner',
+    hover: 'hover:bg-gray-900 hover:text-white hover:border-transparent',
+  },
+  {
+    name: 'Instagram',
+    icon: FaInstagram,
+    url: 'https://www.instagram.com/nexcarinner?utm_source=qr&igsh=MWo0MzY4NnFjMXN0cA==',
+    hover:
+      'hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:border-transparent',
+  },
 ]
 
 const resourceLinks = [
@@ -82,51 +109,15 @@ const Footer = () => {
             </p>
 
             <div className="mt-6 flex gap-3">
-              <a
-                href={socials[0].url}
-                aria-label="GitHub"
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
-                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                <FaGithub className="h-5 w-5" />
-              </a>
-              <a
-                href={socials[1].url}
-                aria-label="LinkedIn"
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#0077b5] hover:text-white hover:shadow-md ${
-                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                <FaLinkedinIn className="h-5 w-5" />
-              </a>
-              <a
-                href={socials[2].url}
-                aria-label="Discord"
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md ${
-                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                <FaDiscord className="h-5 w-5" />
-              </a>
-              <a
-                href={socials[3].url}
-                aria-label="X"
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
-                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                <FaXTwitter className="h-5 w-5" />
-              </a>
-              <a
-                href={socials[4].url}
-                aria-label="Instagram"
-                className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
-                  dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-                }`}
-              >
-                <FaInstagram className="h-5 w-5" />
-              </a>
+              {socials.map((social) => (
+                <SocialIcon
+                  key={social.name}
+                  icon={social.icon}
+                  href={social.url}
+                  label={social.name}
+                  hoverClass={social.hover}
+                />
+              ))}
             </div>
           </div>
 

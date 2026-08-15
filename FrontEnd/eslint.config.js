@@ -18,4 +18,16 @@ export default defineConfig([
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
   },
+  {
+    // shadcn/ui style files export variants alongside components by design
+    files: ['src/components/ui/**/*.jsx', 'src/components/reactbits/**/*.jsx', 'src/context/**/*.jsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off',
+    },
+  },
+  {
+    // vite config runs in Node, not the browser
+    files: ['vite.config.js'],
+    languageOptions: { globals: globals.node },
+  },
 ])

@@ -15,6 +15,7 @@ import {
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
+import SocialIcon from '../components/SocialIcon'
 import { useTheme } from '../context/ThemeContext'
 import GunjanImg from '../assets/Gunjan.jpg'
 import AnkitaImg from '../assets/Ankita.jpg'
@@ -223,50 +224,70 @@ const timeline = [
   },
 ]
 
+const socialHover = {
+  linkedin: 'hover:bg-[#0077b5] hover:text-white hover:border-transparent',
+  instagram:
+    'hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:border-transparent',
+  github: 'hover:bg-gray-900 hover:text-white hover:border-transparent',
+  discord: 'hover:bg-[#5865F2] hover:text-white hover:border-transparent',
+}
+
+const socialConfig = [
+  { key: 'linkedin', label: 'LinkedIn', icon: FaLinkedin, hover: socialHover.linkedin },
+  { key: 'instagram', label: 'Instagram', icon: FaInstagram, hover: socialHover.instagram },
+  { key: 'github', label: 'GitHub', icon: FaGithub, hover: socialHover.github },
+  { key: 'discord', label: 'Discord', icon: FaDiscord, hover: socialHover.discord },
+]
+
 const TeamCard = ({ member }) => {
   const { dark } = useTheme()
   return (
     <div className="group relative h-full">
-      <div
-        className={`h-full rounded-3xl p-8 transition-all duration-300 ease-out hover:-translate-y-2 ${
-          dark
-            ? 'bg-[#1a1a1a] border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.5),inset_0_1px_0_rgba(255,255,255,0.05)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.07)]'
-            : 'bg-linear-to-br from-gray-50 to-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.12),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.6)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.15),0_0_0_1px_rgba(0,0,0,0.05),inset_0_1px_0_rgba(255,255,255,0.8)]'
-        }`}
-      >
+      <div className="glass card-lift relative h-full overflow-hidden rounded-3xl p-8 transition-all duration-300 ease-out hover:-translate-y-1.5">
+        <div
+          className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+            dark ? 'via-white/12' : 'via-brand-500/40'
+          } to-transparent`}
+        />
+
         {/* Profile Image/Initials */}
         <div className="flex justify-center">
-          {member.image ? (
-            <img
-              src={member.image}
-              alt={member.name}
-              className={`h-24 w-24 rounded-full object-cover shadow-lg ring-2 ring-white/10 transition-all duration-200 ease-in-out group-hover:scale-105 group-hover:shadow-xl ${
-                dark ? 'ring-white/10' : 'ring-black/10'
-              }`}
+          <div className="relative">
+            <div
+              className={`absolute -inset-1.5 rounded-full bg-linear-to-br ${member.gradient} opacity-25 blur-[6px] transition-opacity duration-300 group-hover:opacity-45`}
             />
-          ) : (
-            <span
-              className={`flex h-24 w-24 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-lg ring-2 transition-all duration-200 ease-in-out group-hover:scale-105 group-hover:shadow-xl ${
-                dark ? 'ring-white/10' : 'ring-black/10'
-              }`}
-            >
-              {member.initials}
-            </span>
-          )}
+            {member.image ? (
+              <img
+                src={member.image}
+                alt={member.name}
+                className={`relative h-28 w-28 rounded-full object-cover shadow-[0_10px_24px_-8px_rgba(34,29,58,0.35)] ring-4 transition-transform duration-200 ease-in-out group-hover:scale-105 ${
+                  dark ? 'ring-[#1c1c1c]' : 'ring-white'
+                }`}
+              />
+            ) : (
+              <span
+                className={`relative flex h-28 w-28 items-center justify-center rounded-full bg-linear-to-br ${member.gradient} font-display text-3xl font-bold text-white shadow-[0_10px_24px_-8px_rgba(34,29,58,0.35),inset_0_1px_0_rgba(255,255,255,0.35)] ring-4 transition-transform duration-200 ease-in-out group-hover:scale-105 ${
+                  dark ? 'ring-[#1c1c1c]' : 'ring-white'
+                }`}
+              >
+                {member.initials}
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Name and Role */}
         <div className="mt-6 text-center">
           <h3
             className={`font-display text-xl font-bold transition-colors duration-300 ${
-              dark ? 'text-white' : 'text-gray-900'
+              dark ? 'text-white' : 'text-ink-50'
             }`}
           >
             {member.name}
           </h3>
           <p
-            className={`mt-1 text-sm font-medium transition-colors duration-300 ${
-              dark ? 'text-gray-500' : 'text-gray-500'
+            className={`mt-1.5 text-sm font-medium transition-colors duration-300 ${
+              dark ? 'text-gray-500' : 'text-ink-500'
             }`}
           >
             {member.role}
@@ -276,67 +297,24 @@ const TeamCard = ({ member }) => {
         {/* Description */}
         <p
           className={`mt-4 text-center text-sm leading-relaxed transition-colors duration-300 ${
-            dark ? 'text-gray-500' : 'text-gray-600'
+            dark ? 'text-gray-500' : 'text-ink-400'
           }`}
         >
           {member.description}
         </p>
 
-        {/* Social Icons */}
+        {/* Social Icons — rendered only when a real link exists */}
         <div className="mt-6 flex justify-center gap-3">
-          {member.socials.linkedin && member.socials.linkedin !== '#' && (
-            <a
-              href={member.socials.linkedin}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:shadow-md ${
-                dark
-                  ? 'bg-white/8 text-gray-400 hover:bg-[#0077b5] hover:text-white'
-                  : 'bg-gray-200 text-gray-600 hover:bg-[#0077b5] hover:text-white'
-              }`}
-              aria-label="LinkedIn"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaLinkedin className="h-5 w-5" />
-            </a>
-          )}
-          {member.socials.instagram && member.socials.instagram !== '#' && (
-            <a
-              href={member.socials.instagram}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:shadow-md ${
-                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-              }`}
-              aria-label="Instagram"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className="h-5 w-5" />
-            </a>
-          )}
-          {member.socials.github && member.socials.github !== '#' && (
-            <a
-              href={member.socials.github}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-gray-900 hover:text-white hover:shadow-md ${
-                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-              }`}
-              aria-label="GitHub"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaGithub className="h-5 w-5" />
-            </a>
-          )}
-          {member.socials.discord && member.socials.discord !== '#' && (
-            <a
-              href={member.socials.discord}
-              className={`flex h-10 w-10 items-center justify-center rounded-full transition-all duration-300 ease-out hover:scale-110 hover:bg-[#5865F2] hover:text-white hover:shadow-md ${
-                dark ? 'bg-white/8 text-gray-400' : 'bg-gray-200 text-gray-600'
-              }`}
-              aria-label="Discord"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaDiscord className="h-5 w-5" />
-            </a>
+          {socialConfig.map(({ key, label, icon, hover }) =>
+            member.socials[key] && member.socials[key] !== '#' ? (
+              <SocialIcon
+                key={key}
+                icon={icon}
+                href={member.socials[key]}
+                label={label}
+                hoverClass={hover}
+              />
+            ) : null,
           )}
         </div>
       </div>

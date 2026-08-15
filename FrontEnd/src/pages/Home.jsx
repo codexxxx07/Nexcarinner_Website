@@ -1,28 +1,27 @@
 import { Link } from 'react-router-dom'
-import {
-  FaCode,
-  FaMobileAlt,
-  FaBrain,
-  FaCloud,
-  FaShieldAlt,
-  FaChartLine,
-  FaGlobe,
-} from 'react-icons/fa'
+import { FaCode, FaGlobe } from 'react-icons/fa'
 import {
   FiArrowRight,
   FiArrowUpRight,
   FiCalendar,
-  FiClock,
   FiUsers,
-  FiStar,
   FiZap,
   FiMapPin,
+  FiBookOpen,
+  FiCpu,
+  FiBriefcase,
+  FiTarget,
+  FiActivity,
+  FiShield,
+  FiDatabase,
 } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import Marquee from '../components/Marquee'
 import CountUp from '../components/CountUp'
 import SectionHeading from '../components/SectionHeading'
 import CtaBanner from '../components/CtaBanner'
+import BlurText from '../components/reactbits/BlurText'
+import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
 import heroImg from '../assets/NCW_Logo.jpg'
 
@@ -86,126 +85,211 @@ const announcements = [
   { icon: FiZap, text: 'Annual Hackathon registrations are open — Feb 20, 2026' },
   { icon: FiUsers, text: 'New AI & Machine Learning study group starts this week' },
   { icon: FiCalendar, text: 'Monthly demo day — every last Friday' },
-  { icon: FiStar, text: 'Mentorship 1:1s now open for Spring 2026' },
+  { icon: FiTarget, text: 'Mentorship 1:1s now open for Spring 2026' },
   { icon: FiMapPin, text: 'Cloud Computing meetup at Tech Hub — Jun 18, 2026' },
+]
+
+const skills = [
+  { label: 'Technology', icon: FiCpu },
+  { label: 'Networking', icon: FiUsers },
+  { label: 'Learning', icon: FiBookOpen },
+  { label: 'Hackathons', icon: FiZap },
+  { label: 'Internships', icon: FiBriefcase },
+  { label: 'Jobs', icon: FiTarget },
+  { label: 'AI/ML', icon: FiActivity },
+  { label: 'Full Stack', icon: FaCode },
+  { label: 'Cybersecurity', icon: FiShield },
+  { label: 'Data Science', icon: FiDatabase },
+]
+
+const heroPillars = [
+  { label: 'Learn', icon: FiBookOpen },
+  { label: 'Network', icon: FiUsers },
+  { label: 'Build', icon: FaCode },
+  { label: 'Find opportunities', icon: FiBriefcase },
 ]
 
 const Hero = () => {
   const { dark } = useTheme()
   return (
-  <section className="relative overflow-hidden">
-    <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-16 lg:grid-cols-2 lg:px-8 lg:pb-28 lg:pt-24">
-      <div>
-        <Reveal>
-          <span className="chip">
-            <span className={`h-1.5 w-1.5 rounded-full ${dark ? 'bg-gray-400' : 'bg-brand-600'}`} />
-            Season 2026 — now onboarding
-          </span>
-        </Reveal>
+    <section className="relative overflow-hidden">
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-16 lg:grid-cols-2 lg:px-8 lg:pb-28 lg:pt-24">
+        <div>
+          <Reveal>
+            <span className="chip">
+              <span className="presence-dot" />
+              Season 2026 — now onboarding
+            </span>
+          </Reveal>
 
-        <Reveal delay={100}>
-          <h1
+          <BlurText
+            as="h1"
+            delay={70}
             className={`mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
-          >
-            Build the future
-            <br />
-            of tech <span className="text-gradient-animate">together</span>
-          </h1>
-        </Reveal>
+            text="Build the future of tech together"
+            wordClassNames={[
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              undefined,
+              'text-gradient-animate',
+            ]}
+          />
 
-        <Reveal delay={200}>
-          <p
-            className={`mt-7 max-w-lg text-lg leading-relaxed transition-colors duration-300 ${
-              dark ? 'text-gray-400' : 'text-ink-400'
-            }`}
-          >
-            Join a community of passionate students, developers, and innovators.
-            Learn, collaborate, and ship real things in a supportive
-            environment.
-          </p>
-        </Reveal>
-
-        <Reveal delay={300}>
-          <div className="mt-10 flex flex-wrap items-center gap-4">
-            <Link
-              to="/contact"
-              className="btn-gradient inline-flex items-center gap-2 rounded-full px-8 py-4 font-semibold text-white"
-            >
-              Get Started
-              <FiArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              to="/about"
-              className={`btn-outline group px-8 py-4 text-sm font-semibold ${
-                dark ? 'text-gray-300' : 'text-ink-300'
+          <Reveal delay={220}>
+            <p
+              className={`mt-7 max-w-lg text-lg leading-relaxed transition-colors duration-300 ${
+                dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
-              Learn More
-              <FiArrowUpRight className={`h-4 w-4 ${dark ? 'text-gray-500' : 'text-ink-400'}`} />
-            </Link>
-          </div>
-        </Reveal>
+              A community of students, developers, and innovators learning,
+              shipping, and finding real opportunities — together.
+            </p>
+          </Reveal>
 
-        <Reveal delay={400}>
-          <div className="mt-12 flex items-center gap-8">
-            <div className="flex -space-x-3">
-              {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
-                (g, i) => (
-                  <span
-                    key={i}
-                    className={`flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br ${g} font-display text-xs font-bold text-white shadow-md ${
-                      dark ? 'ring-4 ring-[#1a1a1a]' : 'ring-4 ring-white'
-                    }`}
-                  >
-                    {['A', 'M', 'K', 'S'][i]}
-                  </span>
-                ),
-              )}
+          <Reveal delay={300}>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {heroPillars.map((pillar) => (
+                <span key={pillar.label} className="skill-chip skill-chip-sm">
+                  <pillar.icon
+                    className={`h-3.5 w-3.5 ${dark ? 'text-gray-400' : 'text-brand-600'}`}
+                  />
+                  <span>{pillar.label}</span>
+                </span>
+              ))}
             </div>
-            <div className="text-sm">
-              <p
-                className={`font-semibold transition-colors duration-300 ${
-                  dark ? 'text-gray-200' : 'text-ink-700'
-                }`}
-              >
-                4300+ members
-              </p>
-              <p className={`transition-colors duration-300 ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
-                learning together every week
-              </p>
+          </Reveal>
+
+          <Reveal delay={380}>
+            <div className="mt-10 flex flex-wrap items-center gap-4">
+              <Button asChild size="lg">
+                <Link to="/contact">
+                  Join the Community
+                  <FiArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link to="/about" className={dark ? 'text-gray-300' : 'text-ink-300'}>
+                  Explore Nexcarinner
+                  <FiArrowUpRight className={`h-4 w-4 ${dark ? 'text-gray-500' : 'text-ink-400'}`} />
+                </Link>
+              </Button>
             </div>
+          </Reveal>
+
+          <Reveal delay={460}>
+            <div className="mt-12 flex items-center gap-8">
+              <div className="flex -space-x-3">
+                {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
+                  (g, i) => (
+                    <span
+                      key={i}
+                      className={`flex h-10 w-10 items-center justify-center rounded-full bg-linear-to-br ${g} font-display text-xs font-bold text-white shadow-[0_4px_10px_-2px_rgba(34,29,58,0.3),inset_0_1px_0_rgba(255,255,255,0.4)] ${
+                        dark ? 'ring-4 ring-[#1a1a1a]' : 'ring-4 ring-white'
+                      }`}
+                    >
+                      {['A', 'M', 'K', 'S'][i]}
+                    </span>
+                  ),
+                )}
+              </div>
+              <div className="text-sm">
+                <p
+                  className={`font-semibold transition-colors duration-300 ${
+                    dark ? 'text-gray-200' : 'text-ink-700'
+                  }`}
+                >
+                  4300+ members
+                </p>
+                <p className={`transition-colors duration-300 ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
+                  learning together every week
+                </p>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+
+        {/* Visual */}
+        <Reveal variant="zoom" delay={200} className="relative">
+          <div className="relative mx-auto max-w-lg">
+            <div
+              className={`absolute -inset-6 rounded-4xl blur-2xl ${
+                dark
+                  ? 'bg-linear-to-br from-white/5 via-white/3 to-white/5'
+                  : 'bg-linear-to-br from-brand-400/20 via-flare-pink/15 to-flare-cyan/20'
+              }`}
+            />
+
+            <div className="glass relative overflow-hidden rounded-[1.75rem] p-2.5">
+              <img
+                src={heroImg}
+                alt="Nexcarinner community"
+                width={343}
+                height={361}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full rounded-[1.25rem] object-cover"
+              />
+            </div>
+
+            {/* Floating card — next event */}
+            <Reveal
+              variant="up"
+              delay={480}
+              className="absolute right-2 top-10 sm:-right-6"
+            >
+              <div className="glass-strong flex items-center gap-3 rounded-2xl px-4 py-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-flare-pink to-brand-500 text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
+                  <FiZap className="h-5 w-5" />
+                </span>
+                <div>
+                  <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                    Annual Hackathon
+                  </p>
+                  <p className={`text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
+                    Feb 20 · Registrations open
+                  </p>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Floating card — live community */}
+            <Reveal
+              variant="up"
+              delay={580}
+              className="absolute bottom-8 left-2 sm:-left-6"
+            >
+              <div className="glass-strong flex items-center gap-3 rounded-2xl px-4 py-3">
+                <div className="flex -space-x-2">
+                  {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500'].map((g, i) => (
+                    <span
+                      key={i}
+                      className={`flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br ${g} font-display text-[9px] font-bold text-white ring-2 ${
+                        dark ? 'ring-[#242424]' : 'ring-white'
+                      }`}
+                    >
+                      {['A', 'M'][i]}
+                    </span>
+                  ))}
+                </div>
+                <div>
+                  <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                    4300+ members
+                  </p>
+                  <p className={`flex items-center gap-1.5 text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
+                    <span className="presence-dot" />
+                    120+ active now
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </Reveal>
       </div>
-
-      {/* Visual */}
-      <Reveal variant="zoom" delay={200} className="relative">
-        <div className="relative mx-auto max-w-lg">
-          <div
-            className={`absolute -inset-6 rounded-4xl blur-2xl ${
-              dark
-                ? 'bg-linear-to-br from-white/5 via-white/3 to-white/5'
-                : 'bg-linear-to-br from-brand-400/20 via-flare-pink/15 to-flare-cyan/20'
-            }`}
-          />
-
-          <div className="glass relative overflow-hidden rounded-[1.75rem] p-2.5">
-            <img
-              src={heroImg}
-              alt="Nexcarinner community"
-              width={343}
-              height={361}
-              fetchPriority="high"
-              decoding="async"
-              className="w-full rounded-[1.25rem] object-cover"
-            />
-          </div>
-        </div>
-      </Reveal>
-    </div>
-  </section>
+    </section>
   )
 }
 
@@ -266,10 +350,15 @@ const Stats = () => {
       {stats.map((stat, index) => (
         <Reveal key={stat.label} delay={index * 80}>
           <div className="glass card-lift group relative overflow-hidden rounded-2xl p-6 text-center sm:p-8">
+            <div
+              className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+                dark ? 'via-white/12' : 'via-brand-500/40'
+              } to-transparent`}
+            />
             <CountUp
               end={stat.end}
               suffix={stat.suffix}
-              className={`font-display text-4xl font-bold sm:text-5xl transition-colors duration-300 ${
+              className={`stat-number font-display text-4xl font-bold sm:text-5xl transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             />
@@ -306,60 +395,85 @@ const Communities = () => {
 
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {communities.map((community, index) => (
-        <Reveal
-          key={community.title}
-          delay={index * 80}
-        >
+        <Reveal key={community.title} delay={index * 80}>
           <a
             href={community.link}
             target="_blank"
             rel="noopener noreferrer"
             className="block h-full"
           >
-            <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8 cursor-pointer transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-              <div className="relative">
+            <div className="glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1">
+              <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${dark ? 'via-white/12' : 'via-brand-500/40'} to-transparent`} />
+
+              <div className="flex items-start justify-between gap-4">
                 <span
-                  className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                  className={`inline-flex h-13 w-13 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                 >
-                  <community.icon className="h-5 w-5" />
+                  <community.icon className="h-5.5 w-5.5" />
                 </span>
-                <h3
-                  className={`mt-6 font-display text-xl font-bold transition-colors duration-300 ${
-                    dark ? 'text-white' : 'text-ink-50'
+                <span
+                  className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors duration-200 ${
+                    dark
+                      ? 'border-white/10 bg-white/5 text-gray-400'
+                      : 'border-ink-300/60 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(34,29,58,0.05)]'
                   }`}
                 >
-                  {community.title}
-                </h3>
-                <p
-                  className={`mt-3 text-sm leading-relaxed transition-colors duration-300 ${
-                    dark ? 'text-gray-400' : 'text-ink-400'
-                  }`}
-                >
-                  {community.description}
-                </p>
-                <div
-                  className={`mt-6 flex items-center justify-between border-t pt-5 transition-colors duration-300 ${
-                    dark ? 'border-white/8' : 'border-ink-800/70'
-                  }`}
-                >
-                  <span
-                    className={`flex items-center gap-2 text-sm transition-colors duration-300 ${
-                      dark ? 'text-gray-500' : 'text-ink-400'
-                    }`}
-                  >
-                    <FiUsers className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-                    {community.members} members
+                  <FiUsers className={`h-3 w-3 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+                  {community.members} members
+                </span>
+              </div>
+
+              <h3
+                className={`mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                  dark ? 'text-white' : 'text-ink-50'
+                }`}
+              >
+                {community.title}
+              </h3>
+              <p
+                className={`mt-3 text-sm leading-relaxed transition-colors duration-300 ${
+                  dark ? 'text-gray-400' : 'text-ink-400'
+                }`}
+              >
+                {community.description}
+              </p>
+
+              <div className="mt-5 flex flex-wrap gap-1.5">
+                {community.groups.slice(0, 3).map((group) => (
+                  <span key={group} className="skill-chip skill-chip-sm">
+                    <span>{group}</span>
                   </span>
-                  <span
-                    className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 ${
-                      dark
-                        ? 'border-white/10 bg-white/5 text-gray-400 group-hover:border-white/20 group-hover:text-white'
-                        : 'border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] group-hover:border-brand-600/50 group-hover:text-brand-700'
-                    }`}
-                  >
-                    <FiArrowUpRight className="h-4 w-4" />
+                ))}
+                {community.groups.length > 3 && (
+                  <span className="skill-chip skill-chip-sm">
+                    <span>+{community.groups.length - 3} more</span>
                   </span>
-                </div>
+                )}
+              </div>
+
+              <div
+                className={`mt-auto flex items-center justify-between border-t pt-5 transition-colors duration-300 ${
+                  dark ? 'mt-6 border-white/8' : 'mt-6 border-ink-800/70'
+                }`}
+              >
+                <span
+                  className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ${
+                    dark
+                      ? 'text-gray-300 group-hover:text-white'
+                      : 'text-ink-700 group-hover:text-brand-700'
+                  }`}
+                >
+                  Join the group
+                </span>
+                <span
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200 ${
+                    dark
+                      ? 'border-white/10 bg-white/5 text-gray-400 group-hover:border-white/20 group-hover:text-white group-hover:translate-x-0.5'
+                      : 'border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] group-hover:border-brand-600/50 group-hover:text-brand-700 group-hover:translate-x-0.5'
+                  }`}
+                >
+                  <FiArrowUpRight className="h-4 w-4" />
+                </span>
               </div>
             </div>
           </a>
@@ -367,6 +481,46 @@ const Communities = () => {
       ))}
     </div>
   </section>
+  )
+}
+
+const SkillsMarquee = () => {
+  const { dark } = useTheme()
+  const row = (
+    <div className="flex items-center">
+      {skills.map((skill) => (
+        <span key={skill.label} className="flex items-center">
+          <span className="skill-chip px-6 py-2.5 text-sm">
+            <skill.icon className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+            {skill.label}
+          </span>
+          <span
+            className={`mx-6 h-1.5 w-1.5 shrink-0 rotate-45 rounded-[2px] ${
+              dark ? 'bg-white/15' : 'bg-ink-300'
+            }`}
+          />
+        </span>
+      ))}
+    </div>
+  )
+
+  return (
+    <section className="py-8">
+      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <Reveal>
+          <p
+            className={`mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
+              dark ? 'text-gray-600' : 'text-ink-400'
+            }`}
+          >
+            Wherever you are in tech — there's a seat for you
+          </p>
+        </Reveal>
+        <Marquee reverse duration={42}>
+          {row}
+        </Marquee>
+      </div>
+    </section>
   )
 }
 
@@ -416,17 +570,12 @@ const Spotlight = () => {
                 48 hours. Real problems. Prizes for the bold. Bring your team —
                 or find one at the door.
               </p>
-              <Link
-                to="/events"
-                className={`group mt-8 inline-flex items-center gap-2 font-semibold transition-colors ${
-                  dark
-                    ? 'text-gray-300 hover:text-white'
-                    : 'text-brand-700 hover:text-brand-600'
-                }`}
-              >
-                Register now
-                <FiArrowRight className="h-4 w-4" />
-              </Link>
+              <Button asChild variant="soft" className="mt-8">
+                <Link to="/events">
+                  Register now
+                  <FiArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
             <div className="grid grid-cols-2 gap-3">
@@ -543,13 +692,7 @@ const Groups = () => {
       {groups.map((group, index) => (
         <Reveal key={group.category} delay={index * 80}>
           <div className="glass card-lift group h-full rounded-2xl p-7">
-            <h3
-              className={`font-display text-lg font-bold transition-colors duration-300 ${
-                dark ? 'text-white' : 'text-ink-50'
-              }`}
-            >
-              {group.category}
-            </h3>
+            <span className="chip">{group.category}</span>
             <ul className="mt-5 space-y-3">
               {group.items.map((item) => (
                 <li
@@ -585,6 +728,7 @@ const Home = () => {
       <Announcements />
       <Stats />
       <Communities />
+      <SkillsMarquee />
       <Spotlight />
       <Groups />
       <CtaBanner

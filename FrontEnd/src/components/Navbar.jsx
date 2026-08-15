@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { FiMenu, FiX, FiArrowRight, FiStar, FiMoon, FiSun } from 'react-icons/fi'
+import { FiMenu, FiX, FiArrowRight, FiMoon, FiSun } from 'react-icons/fi'
 import { useTheme } from '../context/ThemeContext'
 import Logo from './Logo'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -14,17 +15,24 @@ const links = [
 const ThemeToggle = () => {
   const { dark, toggle } = useTheme()
   return (
-    <button
-      onClick={toggle}
-      aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={`flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300 ${
-        dark
-          ? 'border-white/15 bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white'
-          : 'border-ink-800/60 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07)] hover:text-ink-900'
-      }`}
-    >
-      {dark ? <FiSun className="h-4 w-4" /> : <FiMoon className="h-4 w-4" />}
-    </button>
+    <TooltipProvider delayDuration={250}>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            onClick={toggle}
+            aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
+            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${
+              dark
+                ? 'border-white/15 bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white'
+                : 'border-ink-800/60 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07)] hover:-translate-y-px hover:text-ink-900'
+            }`}
+          >
+            {dark ? <FiSun className="h-4 w-4" /> : <FiMoon className="h-4 w-4" />}
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>{dark ? 'Light mode' : 'Dark mode'}</TooltipContent>
+      </Tooltip>
+    </TooltipProvider>
   )
 }
 
@@ -77,12 +85,12 @@ const Navbar = () => {
             </span>
           </Link>
 
-          {/* Desktop links */}
+          {/* Desktop links — liquid-glass pill with raised depth */}
           <div
-            className={`hidden items-center gap-3 rounded-full border p-1.5 lg:flex transition-colors duration-300 ${
+            className={`hidden items-center gap-2 rounded-full border p-1.5 lg:flex transition-colors duration-300 ${
               dark
-                ? 'border-white/10 bg-white/5 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_1px_2px_rgba(0,0,0,0.4)]'
-                : 'border-ink-800/60 bg-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06),0_3px_8px_-4px_rgba(34,29,58,0.1)]'
+                ? 'border-white/10 bg-white/5 backdrop-blur-md shadow-[inset_0_1px_0_rgba(255,255,255,0.06),inset_0_-1px_0_rgba(0,0,0,0.4),0_1px_2px_rgba(0,0,0,0.4),0_6px_16px_-6px_rgba(0,0,0,0.45)]'
+                : 'border-ink-800/60 bg-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(34,29,58,0.05),0_1px_2px_rgba(34,29,58,0.06),0_6px_16px_-6px_rgba(34,29,58,0.14)]'
             }`}
           >
             {links.map((link) => (
@@ -98,10 +106,10 @@ const Navbar = () => {
                       isActive
                         ? dark
                           ? 'bg-white/10 text-white border border-white/15 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]'
-                          : 'bg-white/40 text-brand-700 shadow-[inset_0_1px_0_rgba(255,255,255,0.8),inset_0_-1px_0_rgba(124,58,237,0.08),0_2px_8px_-2px_rgba(124,58,237,0.18)] border border-white/30'
+                          : 'bg-white text-brand-700 border border-white/40 shadow-[inset_0_1px_0_rgba(255,255,255,1),inset_0_-1px_0_rgba(124,58,237,0.1),0_1px_2px_rgba(34,29,58,0.07),0_4px_10px_-3px_rgba(124,58,237,0.25)]'
                         : dark
                           ? 'border border-transparent hover:bg-white/8 hover:border-white/10 hover:text-white'
-                          : 'border border-transparent hover:bg-white/30 hover:border-white/30 hover:scale-105 hover:text-ink-900'
+                          : 'border border-transparent hover:bg-white/40 hover:border-white/60 hover:scale-105 hover:text-ink-900 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_6px_-2px_rgba(34,29,58,0.1)]'
                     }`}
                   >
                     {link.label}
@@ -113,11 +121,13 @@ const Navbar = () => {
 
           <div className="hidden items-center gap-3 lg:flex">
             <span
-              className={`flex items-center gap-1.5 text-xs font-medium transition-colors duration-300 ${
-                dark ? 'text-gray-500' : 'text-ink-400'
+              className={`flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors duration-300 ${
+                dark
+                  ? 'border-white/10 bg-white/5 text-gray-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+                  : 'border-ink-800/60 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06)]'
               }`}
             >
-              <FiStar className={`h-3.5 w-3.5 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+              <span className="presence-dot" />
               4300+ members
             </span>
             <ThemeToggle />
@@ -136,10 +146,10 @@ const Navbar = () => {
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-colors duration-300 ${
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 ${
                 dark
                   ? 'border-white/12 bg-white/8 text-gray-300 hover:text-white'
-                  : 'border-ink-800/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] hover:text-ink-900'
+                  : 'border-ink-800/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] hover:-translate-y-px hover:text-ink-900'
               }`}
             >
               {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
@@ -179,10 +189,11 @@ const Navbar = () => {
                 {link.label}
               </NavLink>
             ))}
+            <div className="my-3 h-px w-full bg-linear-to-r from-transparent via-ink-800/80 to-transparent dark:via-white/12" />
             <Link
               to="/contact"
               onClick={() => setOpen(false)}
-              className="btn-gradient mt-3 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
+              className="btn-gradient mt-1 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 font-semibold text-white"
             >
               Join Now
               <FiArrowRight className="h-4 w-4" />

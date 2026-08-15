@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom'
-import { FiArrowLeft, FiCalendar, FiClock, FiTag } from 'react-icons/fi'
+import { FiCalendar, FiClock, FiTag } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
+import BackButton from '../components/BackButton'
 import { useTheme } from '../context/ThemeContext'
 import { usePageTitle } from '../hooks/usePageTitle'
 
@@ -68,7 +68,6 @@ const posts = [
 ]
 
 const Blog = () => {
-  const navigate = useNavigate()
   const { dark } = useTheme()
   usePageTitle('Blog')
 
@@ -78,17 +77,7 @@ const Blog = () => {
 
         {/* Back button */}
         <Reveal>
-          <button
-            onClick={() => navigate(-1)}
-            className={`group mb-10 inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium transition-all duration-200 ${
-              dark
-                ? 'border-white/10 bg-white/5 text-gray-400 hover:border-white/20 hover:bg-white/10 hover:text-white'
-                : 'border-ink-300/60 bg-white text-ink-400 hover:border-brand-500/40 hover:text-brand-700'
-            }`}
-          >
-            <FiArrowLeft className="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" />
-            Back
-          </button>
+          <BackButton />
         </Reveal>
 
         {/* Header */}
