@@ -495,31 +495,34 @@
   white-space: nowrap;
 }
 
-/* Soft pulsing presence dot — used for "live" / online indicators.
- * Cheap (opacity-only) and never runs off-screen. */
+/* Status/indicator dots — used for "live", "online", and "active" states.
+ * Cheap transform + opacity pulse (no box-shadow animation) keeps the
+ * ring expand + fade glow light on the GPU. */
+@keyframes status-pulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  70% { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1); opacity: 0; }
+}
+
+/* Brand-purple presence dot — used in the nav pill and hero chips. */
 .presence-dot {
   position: relative;
   display: inline-block;
+  flex-shrink: 0;
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: var(--color-brand-500);
   box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18);
 }
-@keyframes presence {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.45; }
-}
 .presence-dot::after {
   content: "";
   position: absolute;
   inset: -3px;
   border-radius: 999px;
-  border: 1px solid rgba(139, 92, 246, 0.35);
-  animation: presence 2.4s ease-in-out infinite;
-}
-@media (prefers-reduced-motion: reduce) {
-  .presence-dot::after { animation: none; }
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  transform: scale(1);
+  animation: status-pulse 2.8s ease-out infinite;
 }
 .dark .presence-dot {
   background: #a78bfa;
@@ -527,6 +530,39 @@
 }
 .dark .presence-dot::after {
   border-color: rgba(167, 139, 250, 0.3);
+}
+
+/* Green online dot — sits on profile avatars to show the team is live.
+ * White ring keeps it visible on both light and dark card faces. */
+.online-dot {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #22c55e;
+  box-shadow: 0 0 0 2px #ffffff;
+}
+.online-dot::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(34, 197, 94, 0.5);
+  transform: scale(1);
+  animation: status-pulse 2.8s ease-out infinite;
+}
+.dark .online-dot {
+  background: #4ade80;
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.92);
+}
+.dark .online-dot::before {
+  border-color: rgba(74, 222, 128, 0.5);
+}
+@media (prefers-reduced-motion: reduce) {
+  .presence-dot::after,
+  .online-dot::before { animation: none; }
 }
 
 /* Typewriter caret — crisp on/off blink, brand accent. */

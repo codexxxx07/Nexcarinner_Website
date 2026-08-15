@@ -273,6 +273,10 @@ const TeamCard = ({ member }) => {
                 {member.initials}
               </span>
             )}
+            <span
+              aria-hidden="true"
+              className="online-dot absolute bottom-0 right-0 translate-x-1/4 translate-y-1/4"
+            />
           </div>
         </div>
 
