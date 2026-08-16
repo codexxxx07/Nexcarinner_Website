@@ -698,7 +698,11 @@ const MomentCard = ({ item, size, dark }) => {
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div
+        className={`relative overflow-hidden ${
+          item.imageAspect || (wide ? 'aspect-[16/9]' : 'aspect-[4/3]')
+        }`}
+      >
         {cover}
         {item.year && <YearChip year={item.year} className="absolute left-4 top-4 z-10" />}
       </div>

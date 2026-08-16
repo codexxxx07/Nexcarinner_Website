@@ -426,6 +426,8 @@ export const events = [
  * `fit` controls how the photo fills the card cover:
  *   'cover'   — fills the frame (slight crop, no letterbox)
  *   'contain' — shows the whole photo (letterboxed, never cropped)
+ * `imageAspect` optionally overrides the cover's aspect ratio for the
+ *   card (e.g. to fit a portrait photo without heavy letterboxing).
  * Real photos live in ../assets/CommunityMoments/. To add one later,
  * drop the file in that folder, import it above, and append an entry.
  * ----------------------------------------------------------------
@@ -441,6 +443,8 @@ export const communityMoments = [
     accent: 'from-brand-500 to-flare-pink',
     image: GunjanImg,
     featured: true,
+    fit: 'contain',
+    imageAspect: 'aspect-[4/3]',
   },
   {
     id: 'community-moment-1',
