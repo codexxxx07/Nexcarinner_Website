@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { FaCode, FaGlobe } from 'react-icons/fa'
+import { FaLightbulb } from "react-icons/fa";
 import { IoBarChartSharp } from "react-icons/io5";
 import {
   FiArrowRight,
@@ -105,10 +106,10 @@ const skills = [
 ]
 
 const heroPillars = [
+  { label: 'Innovate', icon: FaLightbulb},
   { label: 'Learn', icon: FiBookOpen },
-  { label: 'Network', icon: FiUsers },
-  { label: 'Build', icon: FaCode },
-  { label: 'Find opportunities', icon: FiBriefcase },
+  { label: 'Grow', icon: FaCode },
+  { label: 'Succeed', icon: FiBriefcase },
 ]
 
 const heroPhrases = ['together', 'with us', 'as one', 'differently']
