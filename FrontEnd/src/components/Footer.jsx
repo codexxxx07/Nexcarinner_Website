@@ -104,7 +104,7 @@ const Footer = () => {
                 dark ? 'text-gray-500' : 'text-ink-400'
               }`}
             >
-              A community for students to learn, connect, discover opportunities, and grow together.
+              A community for students to learn, connect, discover opportunities and grow together.
             </p>
 
             <div className="mt-6 flex gap-3">
