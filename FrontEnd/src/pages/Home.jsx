@@ -26,7 +26,7 @@ import TypeWriter from '../components/TypeWriter'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
 import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
-import heroImg from '../assets/NCW_Logo.jpg'
+import heroImg from '../assets/images/NCW_Logo.jpg'
 
 const stats = [
   { end: 4500, suffix: '+', label: 'Active Members' },

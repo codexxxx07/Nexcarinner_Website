@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import LogoImg from '../assets/NCW_Logo.jpg'
+import LogoImg from '../assets/images/NCW_Logo.jpg'
 
 const Logo = ({ className = '' }) => {
   const [error, setError] = useState(false)

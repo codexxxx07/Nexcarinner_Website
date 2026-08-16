@@ -1,4 +1,4 @@
-import logoImg from '../assets/NCW_Logo.jpg'
+import logoImg from '../assets/images/NCW_Logo.jpg'
 
 /*
  * Critical images that gate the full-page skeleton. The navbar logo

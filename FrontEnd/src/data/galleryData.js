@@ -14,14 +14,14 @@ import {
   FiGlobe,
   FiFilm,
 } from 'react-icons/fi'
-import GunjanImg from '../assets/Gunjan.jpg'
+import GunjanImg from '../assets/images/Gunjan.jpg'
 import demoCollab1 from '../assets/demo/collab-1.svg'
 import demoCollab2 from '../assets/demo/collab-2.svg'
 import demoCollab3 from '../assets/demo/collab-3.svg'
 import demoCert1 from '../assets/demo/cert-1.svg'
 import demoCert2 from '../assets/demo/cert-2.svg'
 import demoCert3 from '../assets/demo/cert-3.svg'
-import NexcarinnerCertTeck4Hack from '../assets/Nexcarinner_Cert_Teck4Hack.jpg'
+import NexcarinnerCertTeck4Hack from '../assets/images/Nexcarinner_Cert_Teck4Hack.jpg'
 import demoEvent1 from '../assets/demo/event-1.svg'
 import demoEvent2 from '../assets/demo/event-2.svg'
 import demoEvent3 from '../assets/demo/event-3.svg'
