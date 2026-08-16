@@ -1,0 +1,13 @@
+.shapegrid-canvas {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+/* Soft vignette mask so the animated grid melts into the page
+   background instead of stopping at hard viewport edges. */
+.shapegrid-fade {
+  mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 85% 70% at 50% 35%, black 30%, transparent 78%);
+}

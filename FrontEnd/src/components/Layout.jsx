@@ -1,6 +1,7 @@
 import Navbar from './Navbar'
 import Footer from './Footer'
 import ClickSpark from './ClickSpark'
+import ShapeGrid from './reactbits/ShapeGrid'
 import { useTheme } from '../context/ThemeContext'
 
 const LayoutInner = ({ children }) => {
@@ -13,15 +14,25 @@ const LayoutInner = ({ children }) => {
       }`}
     >
       {/*
-       * Ambient background — CSS radial-gradient orbs instead of DOM divs with blur.
-       * blur-[120px] on fixed elements forces GPU repaints on every scroll frame.
-       * A single background-image with multiple radial gradients costs ~0 at runtime.
+       * Ambient background — animated ShapeGrid + CSS radial-gradient orbs.
+       * The ShapeGrid canvas sits behind every page (pointer-events: none)
+       * and tracks the cursor on window so hover cells light up site-wide.
+       * Orbs are painted as a single background-image with multiple radial
+       * gradients — no DOM blur divs, so scroll cost stays ~0.
        */}
       <div
         className="pointer-events-none fixed inset-0 z-0"
         aria-hidden="true"
       >
-        <div className="absolute inset-0 grid-pattern" />
+        <ShapeGrid
+          className="absolute inset-0 shapegrid-fade"
+          speed={0.5}
+          squareSize={44}
+          direction="diagonal"
+          borderColor={dark ? 'rgba(255, 255, 255, 0.06)' : 'rgba(34, 29, 58, 0.06)'}
+          hoverFillColor={dark ? 'rgba(167, 139, 250, 0.12)' : 'rgba(124, 58, 237, 0.06)'}
+          hoverTrailAmount={6}
+        />
         <div
           className="absolute inset-0"
           style={{
