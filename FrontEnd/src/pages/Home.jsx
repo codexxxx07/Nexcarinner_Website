@@ -25,8 +25,6 @@ import BlurText from '../components/reactbits/BlurText'
 import TypeWriter from '../components/TypeWriter'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
-import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
-import heroImg from '../assets/images/NCW_Logo.jpg'
 
 const stats = [
   { end: 4500, suffix: '+', label: 'Active Members' },
@@ -108,9 +106,9 @@ const skills = [
 
 const heroPillars = [
   { label: 'Learn', icon: FiBookOpen },
-  { label: 'Network', icon: FiUsers },
+  { label: 'Connect', icon: FiUsers },
   { label: 'Build', icon: FaCode },
-  { label: 'Find opportunities', icon: FiBriefcase },
+  { label: 'Grow', icon: FiBriefcase },
 ]
 
 const heroPhrases = ['together', 'with us', 'as one', 'differently']
@@ -119,8 +117,8 @@ const Hero = () => {
   const { dark } = useTheme()
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto grid max-w-7xl items-center gap-14 px-6 pb-24 pt-16 lg:grid-cols-2 lg:px-8 lg:pb-28 lg:pt-24">
-        <div>
+      <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-7xl flex-col justify-center px-6 pb-24 pt-16 sm:pt-20 lg:min-h-[calc(100vh-80px)] lg:px-8 lg:pb-28 lg:pt-24">
+        <div className="mx-auto max-w-4xl">
           <Reveal>
             <span className="chip">
               <span className="presence-dot" />
@@ -129,7 +127,7 @@ const Hero = () => {
           </Reveal>
 
           <h1
-            className={`mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
+            className={`mt-7 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -138,17 +136,18 @@ const Hero = () => {
               delay={70}
               text="Build a better future for students"
             />
-            {' '}
-            <TypeWriter
-              phrases={heroPhrases}
-              className="text-gradient-animate"
-              startDelay={420}
-            />
+            <span className="block">
+              <TypeWriter
+                phrases={heroPhrases}
+                className="text-gradient-animate"
+                startDelay={420}
+              />
+            </span>
           </h1>
 
           <Reveal delay={220}>
             <p
-              className={`mt-7 max-w-lg text-lg leading-relaxed transition-colors duration-300 ${
+              className={`mt-7 max-w-2xl text-lg leading-relaxed transition-colors duration-300 sm:text-xl ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
@@ -158,7 +157,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-7 flex flex-wrap gap-2">
+            <div className="mt-8 flex flex-wrap gap-2">
               {heroPillars.map((pillar) => (
                 <span key={pillar.label} className="skill-chip skill-chip-sm">
                   <pillar.icon
@@ -171,7 +170,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={380}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-12 flex flex-wrap items-center gap-4">
               <Button asChild size="lg">
                 <Link to="/contact">
                   Join the Community
@@ -217,85 +216,56 @@ const Hero = () => {
               </div>
             </div>
           </Reveal>
-        </div>
 
-        {/* Visual */}
-        <Reveal variant="zoom" delay={200} className="relative">
-          <div className="relative mx-auto max-w-lg">
-            <div
-              className={`absolute -inset-6 rounded-4xl blur-2xl ${
-                dark
-                  ? 'bg-linear-to-br from-white/5 via-white/3 to-white/5'
-                  : 'bg-linear-to-br from-brand-400/20 via-flare-pink/15 to-flare-cyan/20'
-              }`}
-            />
-
-            <div className="glass relative overflow-hidden rounded-[1.75rem] p-2.5">
-              <ImageSkeleton
-                src={heroImg}
-                alt="Nexcarinner community"
-                eager
-                width={343}
-                height={361}
-                fetchPriority="high"
-                className="rounded-[1.25rem]"
-                imgClassName="w-full rounded-[1.25rem] object-cover"
-              />
-            </div>
-
-            {/* Floating card — next event */}
-            <Reveal
-              variant="up"
-              delay={480}
-              className="absolute right-2 top-10 sm:-right-6"
-            >
-              <div className="glass-strong flex items-center gap-3 rounded-2xl px-4 py-3">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-flare-pink to-brand-500 text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
-                  <FiZap className="h-5 w-5" />
-                </span>
-                <div>
-                  <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
-                    Annual Hackathon
-                  </p>
-                  <p className={`text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
-                    Feb 20 · Registrations open
-                  </p>
+          {/* Mobile-only stats */}
+          <div className="mt-10 flex flex-col gap-3 md:hidden">
+            <Reveal variant="up" delay={200}>
+              <div className="glass card-lift rounded-2xl p-4">
+                <div className="flex items-center gap-3">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-linear-to-br from-flare-pink to-brand-500 text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]">
+                    <FiZap className="h-4 w-4" />
+                  </span>
+                  <div>
+                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                      Annual Hackathon
+                    </p>
+                    <p className={`text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
+                      Feb 20 · Registrations open
+                    </p>
+                  </div>
                 </div>
               </div>
             </Reveal>
 
-            {/* Floating card — live community */}
-            <Reveal
-              variant="up"
-              delay={580}
-              className="absolute bottom-8 left-2 sm:-left-6"
-            >
-              <div className="glass-strong flex items-center gap-3 rounded-2xl px-4 py-3">
-                <div className="flex -space-x-2">
-                  {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500'].map((g, i) => (
-                    <span
-                      key={i}
-                      className={`flex h-7 w-7 items-center justify-center rounded-full bg-linear-to-br ${g} font-display text-[9px] font-bold text-white ring-2 ${
-                        dark ? 'ring-[#242424]' : 'ring-white'
-                      }`}
-                    >
-                      {['A', 'M'][i]}
-                    </span>
-                  ))}
-                </div>
-                <div>
-                  <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
-                    4500+ members
-                  </p>
-                  <p className={`flex items-center gap-1.5 text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
-                    <span className="presence-dot" />
-                    120+ active now
-                  </p>
+            <Reveal variant="up" delay={300}>
+              <div className="glass card-lift rounded-2xl p-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2">
+                    {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500'].map((g, i) => (
+                      <span
+                        key={i}
+                        className={`flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-br ${g} font-display text-[8px] font-bold text-white ring-2 ${
+                          dark ? 'ring-[#242424]' : 'ring-white'
+                        }`}
+                      >
+                        {['A', 'M'][i]}
+                      </span>
+                    ))}
+                  </div>
+                  <div>
+                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                      4500+ members
+                    </p>
+                    <p className={`flex items-center gap-1.5 text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
+                      <span className="presence-dot" />
+                      120+ active now
+                    </p>
+                  </div>
                 </div>
               </div>
             </Reveal>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   )
@@ -734,18 +704,20 @@ const Home = () => {
     <>
       <Hero />
       <Announcements />
-      <Stats />
       <Communities />
+      <Stats />
       <SkillsMarquee />
       <Spotlight />
       <Groups />
       <CtaBanner
         title={
           <>
-            Ready to join the <span className="text-gradient">inner circle?</span>
+            Find your community.
+            <br />
+            <span className="text-gradient">Build your future.</span>
           </>
         }
-        description="Become part of a growing community and start your journey in tech today. It's free, it's fast, and it's better together."
+        description="Learn something new, connect with people who push you, and turn opportunities into a career. Free for students — better together."
         primaryLabel="Join Nexcarinner"
         primaryTo="/contact"
         secondaryLabel="Explore events"
