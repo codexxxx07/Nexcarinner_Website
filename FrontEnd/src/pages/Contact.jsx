@@ -17,7 +17,7 @@ import { useTheme } from '../context/ThemeContext'
 const contactInfo = [
   {
     label: 'Email',
-    value: 'hello@nexcarinner.com',
+    value: 'nexcarinner.support@gmail.com',
     icon: FiMail,
     gradient: 'from-brand-500 to-flare-pink',
   },

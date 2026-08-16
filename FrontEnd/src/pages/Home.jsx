@@ -136,7 +136,7 @@ const Hero = () => {
             <BlurText
               as="span"
               delay={70}
-              text="Build the future of learning"
+              text="Build a better future for students"
             />
             {' '}
             <TypeWriter
