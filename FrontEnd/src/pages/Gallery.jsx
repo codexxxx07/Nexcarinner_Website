@@ -657,12 +657,50 @@ const EventCard = ({ item, size, dark }) => {
 /* ------------------------------------------------------- Community Moments */
 const MomentCard = ({ item, size, dark }) => {
   const wide = size === 'wide'
+  const contain = item.fit === 'contain'
+
+  let cover = <GalleryCover item={item} accent={item.accent} />
+
+  if (item.image) {
+    if (contain) {
+      /*
+       * Portrait/square photos that would be badly cropped by object-cover
+       * are shown whole with object-contain, on a soft framed backdrop so
+       * the letterboxing reads as intentional in both light and dark mode.
+       */
+      cover = (
+        <div
+          className={`flex h-full w-full items-center justify-center p-3 sm:p-5 ${
+            dark
+              ? 'bg-linear-to-br from-brand-500/15 via-black/30 to-flare-pink/15'
+              : 'bg-linear-to-br from-brand-100/50 via-white/70 to-flare-pink/30'
+          }`}
+        >
+          <ImageSkeleton
+            src={item.image}
+            alt={item.title}
+            wrapperClassName="h-full w-full"
+            imgClassName="h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)]"
+          />
+        </div>
+      )
+    } else {
+      cover = (
+        <ImageSkeleton
+          src={item.image}
+          alt={item.title}
+          wrapperClassName="h-full w-full"
+          imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
+      )
+    }
+  }
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
       <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
-        <GalleryCover item={item} accent={item.accent} />
-        <YearChip year={item.year} className="absolute left-4 top-4 z-10" />
+        {cover}
+        {item.year && <YearChip year={item.year} className="absolute left-4 top-4 z-10" />}
       </div>
 
       <div className="flex flex-1 flex-col p-6">
@@ -675,7 +713,7 @@ const MomentCard = ({ item, size, dark }) => {
             }`}
           >
             <FiHeart className="h-3.5 w-3.5" />
-            Community Moment · {item.year}
+            Community Moment{item.year ? ` · ${item.year}` : ''}
           </span>
         </div>
       </div>

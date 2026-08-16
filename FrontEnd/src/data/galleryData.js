@@ -11,7 +11,6 @@ import {
   FiLayout,
   FiCloud,
   FiHeart,
-  FiGlobe,
   FiFilm,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
@@ -28,8 +27,16 @@ import demoEvent3 from '../assets/demo/event-3.svg'
 import demoProject1 from '../assets/demo/project-1.svg'
 import demoProject2 from '../assets/demo/project-2.svg'
 import demoProject3 from '../assets/demo/project-3.svg'
-import demoMoment1 from '../assets/demo/moment-1.svg'
-import demoMoment2 from '../assets/demo/moment-2.svg'
+import communityMoment1 from '../assets/CommunityMoments/1.jpg'
+import communityMoment2 from '../assets/CommunityMoments/2.jpg'
+import communityMoment3 from '../assets/CommunityMoments/3.jpg'
+import communityMoment4 from '../assets/CommunityMoments/4.jpg'
+import communityMoment5 from '../assets/CommunityMoments/5.jpg'
+import communityMoment6 from '../assets/CommunityMoments/6.jpg'
+import communityMoment7 from '../assets/CommunityMoments/7.jpg'
+import communityMoment8 from '../assets/CommunityMoments/8.jpg'
+import communityMoment9 from '../assets/CommunityMoments/9.jpg'
+import communityMoment10 from '../assets/CommunityMoments/10.jpg'
 
 /*
  * Gallery category system.
@@ -415,6 +422,12 @@ export const events = [
  * Community Moments — casual and memorable moments from the
  * community. Fields: id, title, description, year, icon, accent,
  * image, featured.
+ *
+ * `fit` controls how the photo fills the card cover:
+ *   'cover'   — fills the frame (slight crop, no letterbox)
+ *   'contain' — shows the whole photo (letterboxed, never cropped)
+ * Real photos live in ../assets/CommunityMoments/. To add one later,
+ * drop the file in that folder, import it above, and append an entry.
  * ----------------------------------------------------------------
  */
 export const communityMoments = [
@@ -430,34 +443,114 @@ export const communityMoments = [
     featured: true,
   },
   {
-    id: 'members-4500',
-    title: '4500+ Members and Counting',
+    id: 'community-moment-1',
+    title: 'Community Time',
     description:
-      'From one WhatsApp group to a growing family of communities across tech and beyond.',
-    year: '2026',
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
     icon: FiHeart,
     accent: 'from-brand-600 to-flare-cyan',
-    featured: 'wide',
+    image: communityMoment1,
+    fit: 'cover',
   },
   {
-    id: 'late-night-debugging',
-    title: 'Late-Night Debugging',
+    id: 'community-moment-2',
+    title: 'Team Collaboration',
     description:
-      'Hackathon nights where the bug eventually falls — and the high-five is loudest.',
-    year: '2025',
-    icon: FiZap,
-    accent: 'from-flare-pink to-brand-500',
-    image: demoMoment1,
-  },
-  {
-    id: 'one-family',
-    title: 'One Family, Many Lanes',
-    description:
-      'From the core community to specialized tech tracks — each lane has its own culture, all on one shared mission.',
-    year: '2026',
-    icon: FiGlobe,
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
     accent: 'from-brand-500 to-flare-cyan',
-    image: demoMoment2,
+    image: communityMoment2,
+    fit: 'cover',
+  },
+  {
+    id: 'community-moment-3',
+    title: 'Learning Together',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-flare-pink to-brand-500',
+    image: communityMoment3,
+    fit: 'contain',
+  },
+  {
+    id: 'community-moment-4',
+    title: 'Community Workshop',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-brand-500 to-flare-pink',
+    image: communityMoment4,
+    fit: 'contain',
+  },
+  {
+    id: 'community-moment-5',
+    title: 'Building Together',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-flare-cyan to-brand-500',
+    image: communityMoment5,
+    fit: 'cover',
+  },
+  {
+    id: 'community-moment-6',
+    title: 'Community Activities',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-brand-600 to-flare-pink',
+    image: communityMoment6,
+    fit: 'cover',
+  },
+  {
+    id: 'community-moment-7',
+    title: 'Sharing a Moment',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-flare-pink to-flare-cyan',
+    image: communityMoment7,
+    fit: 'cover',
+  },
+  {
+    id: 'community-moment-8',
+    title: 'Collaboration in Action',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-brand-500 to-brand-700',
+    image: communityMoment8,
+    fit: 'cover',
+  },
+  {
+    id: 'community-moment-9',
+    title: 'Working Together',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-flare-cyan to-brand-600',
+    image: communityMoment9,
+    fit: 'contain',
+  },
+  {
+    id: 'community-moment-10',
+    title: 'Community Meetup',
+    description:
+      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+    year: '',
+    icon: FiHeart,
+    accent: 'from-brand-500 to-flare-cyan',
+    image: communityMoment10,
+    fit: 'contain',
   },
 ]
 
