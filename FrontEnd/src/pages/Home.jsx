@@ -106,9 +106,9 @@ const skills = [
 
 const heroPillars = [
   { label: 'Learn', icon: FiBookOpen },
-  { label: 'Connect', icon: FiUsers },
+  { label: 'Network', icon: FiUsers },
   { label: 'Build', icon: FaCode },
-  { label: 'Grow', icon: FiBriefcase },
+  { label: 'Find opportunities', icon: FiBriefcase },
 ]
 
 const heroPhrases = ['together', 'with us', 'as one', 'differently']
@@ -117,8 +117,8 @@ const Hero = () => {
   const { dark } = useTheme()
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto flex min-h-[calc(100vh-64px)] max-w-7xl flex-col justify-center px-6 pb-24 pt-16 sm:pt-20 lg:min-h-[calc(100vh-80px)] lg:px-8 lg:pb-28 lg:pt-24">
-        <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-7xl px-6 pb-32 pt-20 lg:px-8 lg:pb-40 lg:pt-32">
+        <div className="mx-auto max-w-4xl lg:max-w-5xl">
           <Reveal>
             <span className="chip">
               <span className="presence-dot" />
@@ -127,7 +127,7 @@ const Hero = () => {
           </Reveal>
 
           <h1
-            className={`mt-7 font-display text-5xl font-bold leading-[1.02] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
+            className={`mt-8 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -136,18 +136,17 @@ const Hero = () => {
               delay={70}
               text="Build a better future for students"
             />
-            <span className="block">
-              <TypeWriter
-                phrases={heroPhrases}
-                className="text-gradient-animate"
-                startDelay={420}
-              />
-            </span>
+            {' '}
+            <TypeWriter
+              phrases={heroPhrases}
+              className="text-gradient-animate"
+              startDelay={420}
+            />
           </h1>
 
           <Reveal delay={220}>
             <p
-              className={`mt-7 max-w-2xl text-lg leading-relaxed transition-colors duration-300 sm:text-xl ${
+              className={`mt-8 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
@@ -187,7 +186,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={460}>
-            <div className="mt-12 flex items-center gap-8">
+            <div className="mt-14 flex items-center gap-8">
               <div className="flex -space-x-3">
                 {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
                   (g, i) => (
@@ -704,20 +703,18 @@ const Home = () => {
     <>
       <Hero />
       <Announcements />
-      <Communities />
       <Stats />
+      <Communities />
       <SkillsMarquee />
       <Spotlight />
       <Groups />
       <CtaBanner
         title={
           <>
-            Find your community.
-            <br />
-            <span className="text-gradient">Build your future.</span>
+            Ready to join the <span className="text-gradient">inner circle?</span>
           </>
         }
-        description="Learn something new, connect with people who push you, and turn opportunities into a career. Free for students — better together."
+        description="Become part of a growing community and start your journey in tech today. It's free, it's fast, and it's better together."
         primaryLabel="Join Nexcarinner"
         primaryTo="/contact"
         secondaryLabel="Explore events"
