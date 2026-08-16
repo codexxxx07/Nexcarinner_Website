@@ -437,8 +437,8 @@ export const communityMoments = [
     id: 'founding',
     title: 'The Founding Crew',
     description:
-      'Nexcarinner started in 2024 with a simple idea: connect student developers who care.',
-    year: '2024',
+      'Nexcarinner started in 2025 with a simple idea: connect student developers who care.',
+    year: '2025',
     icon: FiUsers,
     accent: 'from-brand-500 to-flare-pink',
     image: GunjanImg,
@@ -450,7 +450,7 @@ export const communityMoments = [
     id: 'community-moment-1',
     title: 'Community Time',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      "The Hack 1.0 event poster — Nexcarinner rallying the community to register on Unstop and bring their ideas to the hackathon floor.",
     year: '',
     icon: FiHeart,
     accent: 'from-brand-600 to-flare-cyan',
@@ -461,7 +461,7 @@ export const communityMoments = [
     id: 'community-moment-2',
     title: 'Team Collaboration',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'A proud collaboration with Builder Base — two communities, one vision, built on the shared promise to build, connect, and grow together.',
     year: '',
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-cyan',
@@ -472,7 +472,7 @@ export const communityMoments = [
     id: 'community-moment-3',
     title: 'Learning Together',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'The Buildathon poster where Nexcarinner stood among a lineup of student communities — one theme for everyone: code, build, and innovate.',
     year: '',
     icon: FiHeart,
     accent: 'from-flare-pink to-brand-500',
@@ -483,7 +483,7 @@ export const communityMoments = [
     id: 'community-moment-4',
     title: 'Community Workshop',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'A collaboration announcement with Elevate Nexus — two communities, same goal: students first. Sharing resources, connections, and support at every step.',
     year: '',
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-pink',
@@ -494,7 +494,7 @@ export const communityMoments = [
     id: 'community-moment-5',
     title: 'Building Together',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'The Tech4Hack Buildathon 2026 poster with Nexcarinner on board as a community partner — learn, build, and grow with workshops, mentorship, and internship opportunities for the winners.',
     year: '',
     icon: FiHeart,
     accent: 'from-flare-cyan to-brand-500',
@@ -505,7 +505,7 @@ export const communityMoments = [
     id: 'community-moment-6',
     title: 'Community Activities',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'An official partnership with HackQube — two communities hacking, building, and innovating to empower future innovators.',
     year: '',
     icon: FiHeart,
     accent: 'from-brand-600 to-flare-pink',
@@ -516,7 +516,7 @@ export const communityMoments = [
     id: 'community-moment-7',
     title: 'Sharing a Moment',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'An official partnership with Dev X — build, learn, and grow together, with one bold question for the community: are you ready for this?',
     year: '',
     icon: FiHeart,
     accent: 'from-flare-pink to-flare-cyan',
@@ -527,7 +527,7 @@ export const communityMoments = [
     id: 'community-moment-8',
     title: 'Collaboration in Action',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'Nexcarinner in the Unison Build-A-Thon line-up — an AI-powered build sprint where students code, elevate, compete, and connect.',
     year: '',
     icon: FiHeart,
     accent: 'from-brand-500 to-brand-700',
@@ -538,7 +538,7 @@ export const communityMoments = [
     id: 'community-moment-9',
     title: 'Working Together',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'A partnership teaser with Elevana — same energy, same question for the community: are you ready for this?',
     year: '',
     icon: FiHeart,
     accent: 'from-flare-cyan to-brand-600',
@@ -549,7 +549,7 @@ export const communityMoments = [
     id: 'community-moment-10',
     title: 'Community Meetup',
     description:
-      'A captured moment from the Nexcarinner community — replace this placeholder description with its story.',
+      'A collaboration with Coder Circle — two communities, one mission, coming together around a shared love for code.',
     year: '',
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-cyan',
