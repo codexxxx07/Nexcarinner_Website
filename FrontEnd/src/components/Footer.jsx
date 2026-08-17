@@ -85,8 +85,8 @@ const Footer = () => {
         } to-transparent`}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 pb-10 pt-16 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-12">
+      <div className="relative mx-auto max-w-7xl px-6 pb-8 pt-12 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-12">
           {/* Brand */}
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3">
@@ -100,14 +100,14 @@ const Footer = () => {
               </span>
             </div>
             <p
-              className={`mt-5 max-w-sm text-sm leading-relaxed transition-colors duration-300 ${
+              className={`mt-4 max-w-sm text-sm leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-500' : 'text-ink-400'
               }`}
             >
               A community for students to learn, connect, discover opportunities and grow together.
             </p>
 
-            <div className="mt-6 flex gap-3">
+            <div className="mt-5 flex gap-3">
               {socials.map((social) => (
                 <SocialIcon
                   key={social.name}
@@ -129,7 +129,7 @@ const Footer = () => {
             >
               Explore
             </h4>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-4 space-y-2.5 text-sm">
               {[
                 { to: '/', label: 'Home' },
                 { to: '/events', label: 'Events' },
@@ -169,7 +169,7 @@ const Footer = () => {
             >
               Resources
             </h4>
-            <ul className="mt-5 space-y-3 text-sm">
+            <ul className="mt-4 space-y-2.5 text-sm">
               {resourceLinks.map((item) => (
                 <li key={item.to}>
                   <Link
@@ -204,7 +204,7 @@ const Footer = () => {
               Stay in the loop
             </h4>
             <ul
-              className={`mt-5 space-y-3 text-sm transition-colors duration-300 ${
+              className={`mt-4 space-y-2.5 text-sm transition-colors duration-300 ${
                 dark ? 'text-gray-500' : 'text-ink-400'
               }`}
             >
@@ -228,7 +228,7 @@ const Footer = () => {
               </li>
             </ul>
 
-            <form onSubmit={handleSubscribe} className="mt-6">
+            <form onSubmit={handleSubscribe} className="mt-5">
               {subscribed ? (
                 <p
                   className={`rounded-xl border px-4 py-3 text-sm transition-colors duration-300 ${
@@ -272,7 +272,7 @@ const Footer = () => {
         </div>
 
         <div
-          className={`mt-14 flex flex-col items-center justify-between gap-4 border-t pt-8 text-xs transition-colors duration-300 sm:flex-row ${
+          className={`mt-10 flex flex-col items-center justify-between gap-4 border-t pt-6 text-xs transition-colors duration-300 sm:flex-row ${
             dark
               ? 'border-white/8 text-gray-600'
               : 'border-ink-800/80 text-ink-400'

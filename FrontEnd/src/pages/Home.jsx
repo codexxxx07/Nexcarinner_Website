@@ -118,7 +118,7 @@ const Hero = () => {
   const { dark } = useTheme()
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 pb-32 pt-20 lg:px-8 lg:pb-40 lg:pt-32">
+      <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:px-8 lg:pb-32 lg:pt-24">
         <div className="mx-auto max-w-4xl lg:max-w-5xl">
           <Reveal>
             <span className="chip">
@@ -128,7 +128,7 @@ const Hero = () => {
           </Reveal>
 
           <h1
-            className={`mt-8 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
+            className={`mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -147,7 +147,7 @@ const Hero = () => {
 
           <Reveal delay={220}>
             <p
-              className={`mt-8 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
+              className={`mt-6 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
@@ -157,7 +157,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-6 flex flex-wrap gap-2">
               {heroPillars.map((pillar) => (
                 <span key={pillar.label} className="skill-chip skill-chip-sm">
                   <pillar.icon
@@ -170,7 +170,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={380}>
-            <div className="mt-12 flex flex-wrap items-center gap-4">
+            <div className="mt-10 flex flex-wrap items-center gap-4">
               <Button asChild size="lg">
                 <Link to="/contact">
                   Join the Community
@@ -187,7 +187,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={460}>
-            <div className="mt-14 flex items-center gap-8">
+            <div className="mt-12 flex items-center gap-8">
               <div className="flex -space-x-3">
                 {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
                   (g, i) => (
@@ -323,7 +323,7 @@ const Announcements = () => {
 const Stats = () => {
   const { dark } = useTheme()
   return (
-  <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
     <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-4">
       {stats.map((stat, index) => (
         <Reveal key={stat.label} delay={index * 80}>
@@ -341,7 +341,7 @@ const Stats = () => {
               }`}
             />
             <p
-              className={`mt-2 text-sm transition-colors duration-300 ${
+              className={`mt-1.5 text-sm transition-colors duration-300 ${
                 dark ? 'text-gray-500' : 'text-ink-400'
               }`}
             >
@@ -358,7 +358,7 @@ const Stats = () => {
 const Communities = () => {
   const { dark } = useTheme()
   return (
-  <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
     <SectionHeading
       eyebrow="Our Communities"
       title={
@@ -402,21 +402,21 @@ const Communities = () => {
               </div>
 
               <h3
-                className={`mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                className={`mt-5 font-display text-xl font-bold transition-colors duration-300 ${
                   dark ? 'text-white' : 'text-ink-50'
                 }`}
               >
                 {community.title}
               </h3>
               <p
-                className={`mt-3 text-sm leading-relaxed transition-colors duration-300 ${
+                className={`mt-2.5 text-sm leading-relaxed transition-colors duration-300 ${
                   dark ? 'text-gray-400' : 'text-ink-400'
                 }`}
               >
                 {community.description}
               </p>
 
-              <div className="mt-5 flex flex-wrap gap-1.5">
+              <div className="mt-4 flex flex-wrap gap-1.5">
                 {community.groups.slice(0, 3).map((group) => (
                   <span key={group} className="skill-chip skill-chip-sm">
                     <span>{group}</span>
@@ -430,8 +430,8 @@ const Communities = () => {
               </div>
 
               <div
-                className={`mt-auto flex items-center justify-between border-t pt-5 transition-colors duration-300 ${
-                  dark ? 'mt-6 border-white/8' : 'mt-6 border-ink-800/70'
+                className={`mt-auto flex items-center justify-between border-t pt-4 transition-colors duration-300 ${
+                  dark ? 'mt-5 border-white/8' : 'mt-5 border-ink-800/70'
                 }`}
               >
                 <span
@@ -483,11 +483,11 @@ const SkillsMarquee = () => {
   )
 
   return (
-    <section className="py-8">
+    <section className="py-6">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <Reveal>
           <p
-            className={`mb-6 text-center text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
+            className={`mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
               dark ? 'text-gray-600' : 'text-ink-400'
             }`}
           >
@@ -505,7 +505,7 @@ const SkillsMarquee = () => {
 const Spotlight = () => {
   const { dark } = useTheme()
   return (
-  <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
     <SectionHeading
       eyebrow="This season"
       title={
@@ -520,7 +520,7 @@ const Spotlight = () => {
       {/* Large spotlight */}
       <Reveal variant="zoom" className="lg:col-span-2">
         <div
-          className="glass card-lift relative h-full overflow-hidden rounded-2xl p-8 sm:p-12"
+          className="glass card-lift relative h-full overflow-hidden rounded-2xl p-6 sm:p-10"
           style={
             dark
               ? undefined
@@ -530,25 +530,25 @@ const Spotlight = () => {
           }
         >
 
-          <div className="relative flex h-full flex-col justify-between gap-10 sm:flex-row sm:items-end">
+          <div className="relative flex h-full flex-col justify-between gap-8 sm:flex-row sm:items-end">
             <div className="max-w-md">
               <span className="chip">Hackathon · Feb 20, 2026</span>
               <h3
-                className={`mt-6 font-display text-3xl font-bold sm:text-4xl transition-colors duration-300 ${
+                className={`mt-5 font-display text-3xl font-bold sm:text-4xl transition-colors duration-300 ${
                   dark ? 'text-white' : 'text-ink-50'
                 }`}
               >
                 Annual Nexcarinner Hackathon
               </h3>
               <p
-                className={`mt-4 leading-relaxed transition-colors duration-300 ${
+                className={`mt-3 leading-relaxed transition-colors duration-300 ${
                   dark ? 'text-gray-400' : 'text-ink-400'
                 }`}
               >
                 48 hours. Real problems. Prizes for the bold. Bring your team —
                 or find one at the door.
               </p>
-              <Button asChild variant="soft" className="mt-8">
+              <Button asChild variant="soft" className="mt-6">
                 <Link to="/events">
                   Register now
                   <FiArrowRight className="h-4 w-4" />
@@ -591,7 +591,7 @@ const Spotlight = () => {
       {/* Side cards */}
       <div className="flex flex-col gap-6">
         <Reveal variant="left" delay={150}>
-          <div className="glass card-lift group h-full rounded-2xl p-8">
+          <div className="glass card-lift group h-full rounded-2xl p-6">
             <span
               className={`flex h-11 w-11 items-center justify-center rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition-colors duration-300 ${
                 dark
@@ -602,7 +602,7 @@ const Spotlight = () => {
               <FiUsers className="h-5 w-5" />
             </span>
             <h4
-              className={`mt-5 font-display text-lg font-bold transition-colors duration-300 ${
+              className={`mt-4 font-display text-lg font-bold transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
@@ -618,7 +618,7 @@ const Spotlight = () => {
           </div>
         </Reveal>
         <Reveal variant="left" delay={250}>
-          <div className="glass card-lift group h-full rounded-2xl p-8">
+          <div className="glass card-lift group h-full rounded-2xl p-6">
             <span
               className={`flex h-11 w-11 items-center justify-center rounded-xl shadow-[inset_0_1px_0_rgba(255,255,255,0.9)] transition-colors duration-300 ${
                 dark
@@ -629,7 +629,7 @@ const Spotlight = () => {
               <FiCalendar className="h-5 w-5" />
             </span>
             <h4
-              className={`mt-5 font-display text-lg font-bold transition-colors duration-300 ${
+              className={`mt-4 font-display text-lg font-bold transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
@@ -654,7 +654,7 @@ const Spotlight = () => {
 const Groups = () => {
   const { dark } = useTheme()
   return (
-  <section className="mx-auto max-w-7xl px-6 py-20 sm:py-24 lg:px-8">
+  <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
     <SectionHeading
       eyebrow="Active Groups"
       title={
@@ -669,9 +669,9 @@ const Groups = () => {
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
       {groups.map((group, index) => (
         <Reveal key={group.category} delay={index * 80}>
-          <div className="glass card-lift group h-full rounded-2xl p-7">
+          <div className="glass card-lift group h-full rounded-2xl p-6">
             <span className="chip">{group.category}</span>
-            <ul className="mt-5 space-y-3">
+            <ul className="mt-4 space-y-2.5">
               {group.items.map((item) => (
                 <li
                   key={item}
@@ -687,7 +687,7 @@ const Groups = () => {
               ))}
             </ul>
             <div
-              className={`mt-6 h-px w-full bg-linear-to-r ${
+              className={`mt-5 h-px w-full bg-linear-to-r ${
                 dark ? 'from-white/10' : 'from-brand-500/40'
               } to-transparent`}
             />

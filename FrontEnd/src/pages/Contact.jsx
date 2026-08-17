@@ -87,13 +87,13 @@ const Contact = () => {
   return (
     <>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-6 pb-8 pt-20 text-center lg:px-8 lg:pt-28">
+      <section className="mx-auto max-w-7xl px-6 pb-6 pt-16 text-center lg:px-8 lg:pt-24">
         <Reveal>
           <span className="chip">Say hello</span>
         </Reveal>
         <Reveal delay={100}>
           <h1
-            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -102,7 +102,7 @@ const Contact = () => {
         </Reveal>
         <Reveal delay={200}>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
               dark ? 'text-gray-400' : 'text-ink-400'
             }`}
           >
@@ -113,11 +113,11 @@ const Contact = () => {
       </section>
 
       {/* Form + Info */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Form */}
           <Reveal variant="left" className="lg:col-span-3">
-            <div className="glass relative h-full overflow-hidden rounded-3xl p-8 sm:p-10">
+            <div className="glass relative h-full overflow-hidden rounded-3xl p-6 sm:p-8">
               <div
                 className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
                   dark ? 'via-white/12' : 'via-brand-500/50'
@@ -130,13 +130,13 @@ const Contact = () => {
                     <FiCheck className="h-8 w-8" />
                   </span>
                   <h3
-                    className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                    className={`mt-5 font-display text-2xl font-bold transition-colors duration-300 ${
                       dark ? 'text-white' : 'text-ink-50'
                     }`}
                   >
                     Message sent!
                   </h3>
-                  <p className={`mt-3 max-w-sm transition-colors duration-300 ${dark ? 'text-gray-400' : 'text-ink-400'}`}>
+                  <p className={`mt-2.5 max-w-sm transition-colors duration-300 ${dark ? 'text-gray-400' : 'text-ink-400'}`}>
                     Thanks for reaching out, {formData.name || 'friend'}. We'll
                     get back to you within a day or two.
                   </p>
@@ -150,12 +150,12 @@ const Contact = () => {
                   </Button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="relative space-y-5">
-                  <div className="grid gap-5 sm:grid-cols-2">
+                <form onSubmit={handleSubmit} className="relative space-y-4">
+                  <div className="grid gap-4 sm:grid-cols-2">
                     <div>
                       <label
                         htmlFor="name"
-                        className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                        className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
                           dark ? 'text-gray-400' : 'text-ink-600'
                         }`}
                       >
@@ -175,7 +175,7 @@ const Contact = () => {
                     <div>
                       <label
                         htmlFor="email"
-                        className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                        className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
                           dark ? 'text-gray-400' : 'text-ink-600'
                         }`}
                       >
@@ -197,7 +197,7 @@ const Contact = () => {
                   <div>
                     <label
                       htmlFor="subject"
-                      className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                      className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
                         dark ? 'text-gray-400' : 'text-ink-600'
                       }`}
                     >
@@ -218,7 +218,7 @@ const Contact = () => {
                   <div>
                     <label
                       htmlFor="message"
-                      className={`mb-2 block text-sm font-medium transition-colors duration-300 ${
+                      className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
                         dark ? 'text-gray-400' : 'text-ink-600'
                       }`}
                     >
@@ -364,7 +364,7 @@ const Contact = () => {
       </section>
 
       {/* FAQ */}
-      <section className="mx-auto max-w-3xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-3xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="FAQ"
           title={
