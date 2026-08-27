@@ -150,7 +150,7 @@ const CardHeading = ({ dark, children }) => (
 
 const CardBody = ({ dark, children }) => (
   <p
-    className={`mt-2.5 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
+    className={`mt-2 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
       dark ? 'text-gray-400' : 'text-ink-400'
     }`}
   >
@@ -187,11 +187,11 @@ const OverviewCard = ({ item, size, dark }) => {
         />
 
         <div className="grid flex-1 lg:grid-cols-2">
-          <div className="relative aspect-[16/9] overflow-hidden lg:aspect-auto lg:h-full">
+          <div className="relative aspect-video overflow-hidden lg:aspect-auto lg:h-full">
             <GalleryCover item={item} accent={item.accent} />
             <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
           </div>
-          <div className="flex flex-col justify-center p-8 lg:p-12">
+          <div className="flex flex-col justify-center p-6 lg:p-10">
             <h3
               className={`font-display text-2xl font-bold tracking-tight transition-colors duration-300 sm:text-3xl ${
                 dark ? 'text-white' : 'text-ink-50'
@@ -200,13 +200,13 @@ const OverviewCard = ({ item, size, dark }) => {
               {item.title}
             </h3>
             <p
-              className={`mt-3 max-w-md leading-relaxed transition-colors duration-300 ${
+              className={`mt-2.5 max-w-md leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
               {item.description}
             </p>
-            {item.link && <GalleryLink item={item} dark={dark} className="mt-6" />}
+            {item.link && <GalleryLink item={item} dark={dark} className="mt-5" />}
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@ const OverviewCard = ({ item, size, dark }) => {
         } to-transparent`}
       />
 
-      <div className={`relative overflow-hidden ${size === 'wide' ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${size === 'wide' ? 'aspect-video' : 'aspect-4/3'}`}>
         <GalleryCover item={item} accent={item.accent} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
       </div>
@@ -231,7 +231,7 @@ const OverviewCard = ({ item, size, dark }) => {
         <CardBody dark={dark}>{item.description}</CardBody>
         {item.link && (
           <div
-            className={`mt-5 flex items-center justify-between border-t pt-4 transition-colors duration-300 ${
+            className={`mt-4 flex items-center justify-between border-t pt-3.5 transition-colors duration-300 ${
               dark ? 'border-white/8' : 'border-ink-800/70'
             }`}
           >
@@ -250,7 +250,7 @@ const ProjectCard = ({ item, size, dark }) => {
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
         <GalleryCover item={item} accent={item.accent} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
           <span
@@ -266,9 +266,9 @@ const ProjectCard = ({ item, size, dark }) => {
         <CardHeading dark={dark}>{item.title}</CardHeading>
         <CardBody dark={dark}>{item.description}</CardBody>
         {(item.creator || item.link) && (
-          <div className="mt-auto pt-5">
+          <div className="mt-auto pt-4">
             <div
-              className={`flex items-center justify-between gap-3 border-t pt-4 transition-colors duration-300 ${
+              className={`flex items-center justify-between gap-3 border-t pt-3.5 transition-colors duration-300 ${
                 dark ? 'border-white/8' : 'border-ink-800/70'
               }`}
             >
@@ -299,7 +299,7 @@ const CollabCard = ({ item, size, dark }) => {
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
         {item.image ? (
           <ImageSkeleton
             src={item.image}
@@ -346,7 +346,7 @@ const CollabCard = ({ item, size, dark }) => {
           Nexcarinner <span className={dark ? 'text-brand-400' : 'text-brand-600'}>×</span> {item.name}
         </h3>
         <CardBody dark={dark}>{item.description}</CardBody>
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           <span
             className={`inline-flex items-center gap-2 text-xs font-semibold transition-colors duration-300 ${
               dark ? 'text-gray-500' : 'text-ink-400'
@@ -367,7 +367,7 @@ const CertificationCard = ({ item, size, dark }) => {
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
         <GalleryCover item={item} accent={item.accent} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
           <span
@@ -394,14 +394,14 @@ const CertificationCard = ({ item, size, dark }) => {
         </p>
         <CardHeading dark={dark}>{item.certificateTitle}</CardHeading>
         <p
-          className={`mt-2 text-sm font-medium transition-colors duration-300 ${
+          className={`mt-1.5 text-sm font-medium transition-colors duration-300 ${
             dark ? 'text-gray-500' : 'text-ink-400'
           }`}
         >
           {item.issuer}
         </p>
 
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           {item.verificationUrl ? (
             <a
               href={item.verificationUrl}
@@ -527,12 +527,12 @@ const AwardCard = ({ item, size, dark }) => {
       >
         {topLine}
         <div className="grid flex-1 lg:grid-cols-2">
-          <div className="relative aspect-[4/3] overflow-hidden sm:aspect-[16/10] lg:aspect-auto lg:h-full">
+          <div className="relative aspect-4/3 overflow-hidden sm:aspect-16/10 lg:aspect-auto lg:h-full">
             <AwardImage item={item} dark={dark} />
             <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
             <FeaturedBadge dark={dark} />
           </div>
-          <div className="flex flex-col justify-center p-8 lg:p-12">
+          <div className="flex flex-col justify-center p-6 lg:p-10">
             <p
               className={`text-xs font-semibold uppercase tracking-widest transition-colors duration-300 ${
                 dark ? 'text-amber-300' : 'text-amber-600'
@@ -541,20 +541,20 @@ const AwardCard = ({ item, size, dark }) => {
               Featured recognition
             </p>
             <h3
-              className={`mt-2 whitespace-normal font-display text-2xl font-bold leading-tight tracking-tight break-words transition-colors duration-300 sm:text-3xl ${
+              className={`mt-2 whitespace-normal font-display text-2xl font-bold leading-tight tracking-tight wrap-break-word transition-colors duration-300 sm:text-3xl ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
               {item.title}
             </h3>
             <p
-              className={`mt-3 max-w-md leading-relaxed transition-colors duration-300 ${
+              className={`mt-2.5 max-w-md leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
               {item.description}
             </p>
-            {item.link && <GalleryLink item={item} dark={dark} className="mt-6" />}
+            {item.link && <GalleryLink item={item} dark={dark} className="mt-5" />}
           </div>
         </div>
       </div>
@@ -564,7 +564,7 @@ const AwardCard = ({ item, size, dark }) => {
   return (
     <CardShell dark={dark} className={`${wide ? 'sm:col-span-2' : ''} ${ring}`}>
       {topLine}
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/10]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${wide ? 'aspect-16/10' : 'aspect-4/3'}`}>
         <AwardImage item={item} dark={dark} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">{chip}</div>
         <div className="absolute bottom-4 left-4 z-10 flex h-11 w-11 items-center justify-center rounded-2xl border border-white/30 bg-white/15 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.45),0_8px_20px_-8px_rgba(0,0,0,0.45)] backdrop-blur-md">
@@ -575,10 +575,10 @@ const AwardCard = ({ item, size, dark }) => {
       <div className="flex flex-1 flex-col p-6">
         <CardHeading dark={dark}>{item.title}</CardHeading>
         <CardBody dark={dark}>{item.description}</CardBody>
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           {item.link ? (
             <div
-              className={`flex items-center justify-between border-t pt-4 transition-colors duration-300 ${
+              className={`flex items-center justify-between border-t pt-3.5 transition-colors duration-300 ${
                 dark ? 'border-white/8' : 'border-ink-800/70'
               }`}
             >
@@ -586,7 +586,7 @@ const AwardCard = ({ item, size, dark }) => {
             </div>
           ) : (
             <div
-              className={`flex items-center justify-between border-t pt-4 transition-colors duration-300 ${
+              className={`flex items-center justify-between border-t pt-3.5 transition-colors duration-300 ${
                 dark ? 'border-white/8' : 'border-ink-800/70'
               }`}
             >
@@ -613,7 +613,7 @@ const EventCard = ({ item, size, dark }) => {
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-[16/9]' : 'aspect-[4/3]'}`}>
+      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
         <GalleryCover item={item} accent={item.accent} />
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
           <span
@@ -628,9 +628,9 @@ const EventCard = ({ item, size, dark }) => {
       <div className="flex flex-1 flex-col p-6">
         <CardHeading dark={dark}>{item.title}</CardHeading>
         <CardBody dark={dark}>{item.description}</CardBody>
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           <div
-            className={`flex items-center justify-between gap-3 border-t pt-4 text-sm transition-colors duration-300 ${
+            className={`flex items-center justify-between gap-3 border-t pt-3.5 text-sm transition-colors duration-300 ${
               dark ? 'border-white/8 text-gray-500' : 'border-ink-800/70 text-ink-400'
             }`}
           >
@@ -700,7 +700,7 @@ const MomentCard = ({ item, size, dark }) => {
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
       <div
         className={`relative overflow-hidden ${
-          item.imageAspect || (wide ? 'aspect-[16/9]' : 'aspect-[4/3]')
+          item.imageAspect || (wide ? 'aspect-video' : 'aspect-4/3')
         }`}
       >
         {cover}
@@ -710,7 +710,7 @@ const MomentCard = ({ item, size, dark }) => {
       <div className="flex flex-1 flex-col p-6">
         <CardHeading dark={dark}>{item.title}</CardHeading>
         <CardBody dark={dark}>{item.description}</CardBody>
-        <div className="mt-auto pt-5">
+        <div className="mt-auto pt-4">
           <span
             className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest transition-colors duration-300 ${
               dark ? 'text-fuchsia-300' : 'text-fuchsia-600'
@@ -794,9 +794,9 @@ const Gallery = () => {
   return (
     <>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-6 pb-10 pt-20 text-center lg:px-8 lg:pt-28">
+      <section className="mx-auto max-w-7xl px-6 pb-8 pt-16 text-center lg:px-8 lg:pt-24">
         {activeCategory !== 'all' && (
-          <Reveal className="mb-10 flex justify-start">
+          <Reveal className="mb-8 flex justify-start">
             <BackButton to="/gallery" />
           </Reveal>
         )}
@@ -812,13 +812,13 @@ const Gallery = () => {
               text="Inside Nexcarinner"
               wordClassNames={['', 'text-gradient-animate']}
               delay={60}
-              className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+              className={`mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             />
           ) : (
             <h1
-              className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+              className={`mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
@@ -829,7 +829,7 @@ const Gallery = () => {
 
         <Reveal delay={200}>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
               dark ? 'text-gray-400' : 'text-ink-400'
             }`}
           >
@@ -861,7 +861,7 @@ const Gallery = () => {
       </section>
 
       {/* Gallery grid */}
-      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid grid-flow-dense grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {renderGrid()}
         </div>

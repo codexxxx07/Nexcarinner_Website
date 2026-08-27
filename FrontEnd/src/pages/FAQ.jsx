@@ -118,7 +118,7 @@ const FAQ = () => {
         </Reveal>
         <Reveal delay={120}>
           <h1
-            className={`mt-5 font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+            className={`mt-4 font-display text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -128,7 +128,7 @@ const FAQ = () => {
         </Reveal>
         <Reveal delay={180}>
           <p
-            className={`mt-5 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+            className={`mt-4 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
               dark ? 'text-gray-400' : 'text-ink-400'
             }`}
           >
@@ -138,13 +138,13 @@ const FAQ = () => {
         </Reveal>
 
         {/* FAQ sections */}
-        <div className="mt-16 space-y-14">
+        <div className="mt-12 space-y-12">
           {faqData.map((section, catIndex) => (
             <Reveal key={section.category} delay={catIndex * 60}>
               <div>
                 {/* Category heading */}
                 <h2
-                  className={`mb-5 font-display text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${
+                  className={`mb-4 font-display text-xs font-bold uppercase tracking-widest transition-colors duration-300 ${
                     dark ? 'text-gray-600' : 'text-ink-500'
                   }`}
                 >
@@ -161,7 +161,7 @@ const FAQ = () => {
         {/* Still have questions? */}
         <Reveal delay={300}>
           <div
-            className={`mt-20 rounded-2xl border p-10 text-center transition-colors duration-300 ${
+            className={`mt-16 rounded-2xl border p-8 text-center transition-colors duration-300 ${
               dark
                 ? 'border-white/8 bg-[#1a1a1a]'
                 : 'glass'
@@ -175,7 +175,7 @@ const FAQ = () => {
               Still have questions?
             </span>
             <p
-              className={`mt-3 text-sm transition-colors duration-300 ${
+              className={`mt-2.5 text-sm transition-colors duration-300 ${
                 dark ? 'text-gray-500' : 'text-ink-400'
               }`}
             >

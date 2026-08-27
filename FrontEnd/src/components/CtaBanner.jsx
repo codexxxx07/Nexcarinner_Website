@@ -15,10 +15,10 @@ const CtaBanner = ({
   const { dark } = useTheme()
 
   return (
-    <section className="mx-auto max-w-7xl px-6 lg:px-8 py-20 sm:py-24">
+    <section className="mx-auto max-w-7xl px-6 lg:px-8 py-16 sm:py-20">
       <Reveal variant="zoom">
         <div
-          className="relative overflow-hidden rounded-4xl border p-10 sm:p-16 text-center transition-colors duration-300"
+          className="relative overflow-hidden rounded-4xl border p-8 sm:p-12 text-center transition-colors duration-300"
           style={
             dark
               ? {
@@ -60,13 +60,13 @@ const CtaBanner = ({
               {title}
             </h2>
             <p
-              className={`mx-auto mt-5 max-w-xl text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
+              className={`mx-auto mt-4 max-w-xl text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
               {description}
             </p>
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Button asChild size="lg">
                 <Link to={primaryTo}>
                   {primaryLabel}

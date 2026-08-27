@@ -7,8 +7,8 @@ const SectionHeading = ({ eyebrow, title, description, align = 'center', classNa
     align === 'left' ? 'text-left items-start' : 'text-center items-center'
 
   return (
-    <Reveal className={`flex flex-col ${alignment} mb-14 ${className}`}>
-      {eyebrow && <span className="chip mb-5">{eyebrow}</span>}
+    <Reveal className={`flex flex-col ${alignment} mb-10 ${className}`}>
+      {eyebrow && <span className="chip mb-3">{eyebrow}</span>}
       <h2
         className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight transition-colors duration-300 ${
           dark ? 'text-white' : 'text-ink-50'
@@ -18,7 +18,7 @@ const SectionHeading = ({ eyebrow, title, description, align = 'center', classNa
       </h2>
       {description && (
         <p
-          className={`mt-5 text-base sm:text-lg max-w-2xl leading-relaxed transition-colors duration-300 ${
+          className={`mt-4 text-base sm:text-lg max-w-2xl leading-relaxed transition-colors duration-300 ${
             dark ? 'text-gray-400' : 'text-ink-400'
           }`}
         >

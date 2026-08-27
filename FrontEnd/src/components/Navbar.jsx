@@ -173,7 +173,7 @@ const Navbar = () => {
               : 'border-white/50 bg-white/80 shadow-[0_12px_30px_rgba(0,0,0,0.12),0_6px_12px_rgba(0,0,0,0.08)]'
           }`}
         >
-          <div className="flex flex-col gap-1 px-6 py-6">
+          <div className="flex flex-col gap-1 px-6 py-5">
             {links.map((link) => (
               <NavLink
                 key={link.to}
@@ -195,7 +195,7 @@ const Navbar = () => {
                 {link.label}
               </NavLink>
             ))}
-            <div className="my-3 h-px w-full bg-linear-to-r from-transparent via-ink-800/80 to-transparent dark:via-white/12" />
+            <div className="my-2 h-px w-full bg-linear-to-r from-transparent via-ink-800/80 to-transparent dark:via-white/12" />
             <Link
               to="/login"
               onClick={() => setOpen(false)}
@@ -206,7 +206,7 @@ const Navbar = () => {
             <Link
               to="/signup"
               onClick={() => setOpen(false)}
-              className="btn-gradient mt-3 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
+              className="btn-gradient mt-2 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
             >
               Sign Up
             </Link>

@@ -244,7 +244,7 @@ const TeamCard = ({ member }) => {
   const { dark } = useTheme()
   return (
     <div className="group relative h-full">
-      <div className="glass card-lift relative h-full overflow-hidden rounded-3xl p-8 transition-all duration-300 ease-out hover:-translate-y-1.5">
+      <div className="glass card-lift relative h-full overflow-hidden rounded-3xl p-6 transition-all duration-300 ease-out hover:-translate-y-1.5">
         <div
           className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
             dark ? 'via-white/12' : 'via-brand-500/40'
@@ -283,7 +283,7 @@ const TeamCard = ({ member }) => {
         </div>
 
         {/* Name and Role */}
-        <div className="mt-6 text-center">
+        <div className="mt-5 text-center">
           <h3
             className={`font-display text-xl font-bold transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
@@ -302,7 +302,7 @@ const TeamCard = ({ member }) => {
 
         {/* Description */}
         <p
-          className={`mt-4 text-center text-sm leading-relaxed transition-colors duration-300 ${
+          className={`mt-3 text-center text-sm leading-relaxed transition-colors duration-300 ${
             dark ? 'text-gray-500' : 'text-ink-400'
           }`}
         >
@@ -310,7 +310,7 @@ const TeamCard = ({ member }) => {
         </p>
 
         {/* Social Icons — rendered only when a real link exists */}
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-5 flex justify-center gap-3">
           {socialConfig.map(({ key, label, icon, hover }) =>
             member.socials[key] && member.socials[key] !== '#' ? (
               <SocialIcon
@@ -333,13 +333,13 @@ const About = () => {
   return (
     <>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-6 pb-8 pt-20 text-center lg:px-8 lg:pt-28">
+      <section className="mx-auto max-w-7xl px-6 pb-6 pt-16 text-center lg:px-8 lg:pt-24">
         <Reveal>
           <span className="chip">Who we are</span>
         </Reveal>
         <Reveal delay={100}>
           <h1
-            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -348,7 +348,7 @@ const About = () => {
         </Reveal>
         <Reveal delay={200}>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
               dark ? 'text-gray-400' : 'text-ink-400'
             }`}
           >
@@ -359,20 +359,20 @@ const About = () => {
       </section>
 
       {/* Mission / Vision */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal variant="left">
-            <div className="glass card-lift h-full rounded-2xl p-8 sm:p-10">
+            <div className="glass card-lift h-full rounded-2xl p-6 sm:p-8">
               <span className="chip">Our mission</span>
               <h2
-                className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                className={`mt-5 font-display text-2xl font-bold transition-colors duration-300 ${
                   dark ? 'text-white' : 'text-ink-50'
                 }`}
               >
                 Make learning feel alive
               </h2>
               <p
-                className={`mt-4 leading-relaxed transition-colors duration-300 ${
+                className={`mt-3 leading-relaxed transition-colors duration-300 ${
                   dark ? 'text-gray-400' : 'text-ink-400'
                 }`}
               >
@@ -383,17 +383,17 @@ const About = () => {
             </div>
           </Reveal>
           <Reveal variant="right" delay={120}>
-            <div className="glass card-lift h-full rounded-2xl p-8 sm:p-10">
+            <div className="glass card-lift h-full rounded-2xl p-6 sm:p-8">
               <span className="chip">Our vision</span>
               <h2
-                className={`mt-6 font-display text-2xl font-bold transition-colors duration-300 ${
+                className={`mt-5 font-display text-2xl font-bold transition-colors duration-300 ${
                   dark ? 'text-white' : 'text-ink-50'
                 }`}
               >
                 The default home for student builders
               </h2>
               <p
-                className={`mt-4 leading-relaxed transition-colors duration-300 ${
+                className={`mt-3 leading-relaxed transition-colors duration-300 ${
                   dark ? 'text-gray-400' : 'text-ink-400'
                 }`}
               >
@@ -407,7 +407,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="Our values"
           title={
@@ -419,21 +419,21 @@ const About = () => {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {values.map((value, index) => (
             <Reveal key={value.title} delay={(index % 3) * 80}>
-              <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-8">
+              <div className="glass card-lift group relative h-full overflow-hidden rounded-2xl p-6">
                 <span
                   className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-linear-to-br ${value.gradient} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
                 >
                   <value.icon className="h-5 w-5" />
                 </span>
                 <h3
-                  className={`relative mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                  className={`relative mt-5 font-display text-xl font-bold transition-colors duration-300 ${
                     dark ? 'text-white' : 'text-ink-50'
                   }`}
                 >
                   {value.title}
                 </h3>
                 <p
-                  className={`relative mt-3 text-sm leading-relaxed transition-colors duration-300 ${
+                  className={`relative mt-2.5 text-sm leading-relaxed transition-colors duration-300 ${
                     dark ? 'text-gray-400' : 'text-ink-400'
                   }`}
                 >
@@ -446,7 +446,7 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="The team"
           title={
@@ -466,7 +466,7 @@ const About = () => {
       </section>
 
       {/* Timeline */}
-      <section className="mx-auto max-w-4xl px-6 py-20 lg:px-8">
+      <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
         <SectionHeading
           eyebrow="Our journey"
           title={
@@ -477,7 +477,7 @@ const About = () => {
         />
         <div className="relative">
           <div className="absolute left-5.5 top-2 h-full w-px bg-linear-to-b from-brand-500 via-flare-pink to-transparent sm:left-1/2" />
-          <div className="space-y-12">
+          <div className="space-y-10">
             {timeline.map((item, index) => (
               <Reveal
                 key={item.year}
@@ -485,18 +485,18 @@ const About = () => {
                 className="relative"
               >
                 <div
-                  className={`flex flex-col gap-6 pl-16 sm:w-1/2 sm:pl-0 ${
+                  className={`flex flex-col gap-5 pl-16 sm:w-1/2 sm:pl-0 ${
                     index % 2 === 0
                       ? 'sm:pr-14 sm:text-right'
                       : 'sm:ml-auto sm:pl-14'
                   }`}
                 >
-                  <div className="glass card-lift rounded-2xl p-7">
+                  <div className="glass card-lift rounded-2xl p-6">
                     <span className="font-display text-3xl font-bold text-gradient">
                       {item.year}
                     </span>
                     <h3
-                      className={`mt-3 font-display text-xl font-bold transition-colors duration-300 ${
+                      className={`mt-2.5 font-display text-xl font-bold transition-colors duration-300 ${
                         dark ? 'text-white' : 'text-ink-50'
                       }`}
                     >

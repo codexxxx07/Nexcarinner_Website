@@ -97,13 +97,13 @@ const Events = () => {
   return (
     <>
       {/* Header */}
-      <section className="mx-auto max-w-7xl px-6 pb-10 pt-20 text-center lg:px-8 lg:pt-28">
+      <section className="mx-auto max-w-7xl px-6 pb-8 pt-16 text-center lg:px-8 lg:pt-24">
         <Reveal>
           <span className="chip">What's happening</span>
         </Reveal>
         <Reveal delay={100}>
           <h1
-            className={`mx-auto mt-6 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-3xl font-display text-4xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-6xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -112,7 +112,7 @@ const Events = () => {
         </Reveal>
         <Reveal delay={200}>
           <p
-            className={`mx-auto mt-6 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
+            className={`mx-auto mt-5 max-w-2xl text-lg leading-relaxed transition-colors duration-300 ${
               dark ? 'text-gray-400' : 'text-ink-400'
             }`}
           >
@@ -140,7 +140,7 @@ const Events = () => {
       </section>
 
       {/* Events grid */}
-      <section className="mx-auto max-w-7xl px-6 py-14 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredEvents.map((event, index) => {
             const styleSet = typeStyles[event.type] || typeStyles.Workshops
@@ -148,7 +148,7 @@ const Events = () => {
             return (
               <Reveal key={event.title} delay={(index % 3) * 100}>
                 <div
-                  className={`glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-8 ${
+                  className={`glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 ${
                     event.featured ? 'ring-2 ring-brand-600/30' : ''
                   }`}
                 >
@@ -178,14 +178,14 @@ const Events = () => {
                   </div>
 
                   <h3
-                    className={`mt-6 font-display text-xl font-bold transition-colors duration-300 ${
+                    className={`mt-5 font-display text-xl font-bold transition-colors duration-300 ${
                       dark ? 'text-white' : 'text-ink-50'
                     }`}
                   >
                     {event.title}
                   </h3>
                   <p
-                    className={`mt-3 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
+                    className={`mt-2.5 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
                       dark ? 'text-gray-400' : 'text-ink-400'
                     }`}
                   >
@@ -193,7 +193,7 @@ const Events = () => {
                   </p>
 
                   <div
-                    className={`mt-6 flex items-center gap-6 border-t pt-5 text-sm transition-colors duration-300 ${
+                    className={`mt-5 flex items-center gap-6 border-t pt-4 text-sm transition-colors duration-300 ${
                       dark
                         ? 'border-white/8 text-gray-500'
                         : 'border-ink-800/80 text-ink-400'
