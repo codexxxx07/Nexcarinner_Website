@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi'
+import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { useTheme } from '../context/ThemeContext'
 import Logo from './Logo'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './ui/tooltip'
+import { clerkAppearance, clerkUrl } from '../lib/clerkAppearance'
 
 const links = [
   { to: '/', label: 'Home' },
@@ -42,6 +44,20 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const scrolledRef = useRef(false)
+
+  const userButtonAppearance = {
+    ...clerkAppearance(dark),
+    elements: {
+      avatarBox: {
+        width: '2.25rem',
+        height: '2.25rem',
+        borderRadius: '9999px',
+        border: dark
+          ? '1px solid rgba(255,255,255,0.14)'
+          : '1px solid rgba(34,29,58,0.18)',
+      },
+    },
+  }
 
   useEffect(() => {
     const onScroll = () => {
@@ -132,18 +148,26 @@ const Navbar = () => {
               4500+ members
             </span>
             <ThemeToggle />
-            <Link
-              to="/login"
-              className="btn-outline inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              className="btn-gradient inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white"
-            >
-              Sign Up
-            </Link>
+            <SignedOut>
+              <Link
+                to="/sign-in"
+                className="btn-outline inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold"
+              >
+                Login
+              </Link>
+              <Link
+                to="/sign-up"
+                className="btn-gradient inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-semibold text-white"
+              >
+                Sign Up
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <UserButton
+                afterSignOutUrl={clerkUrl('/')}
+                appearance={userButtonAppearance}
+              />
+            </SignedIn>
           </div>
 
           {/* Mobile controls */}
@@ -196,20 +220,43 @@ const Navbar = () => {
               </NavLink>
             ))}
             <div className="my-2 h-px w-full bg-linear-to-r from-transparent via-ink-800/80 to-transparent dark:via-white/12" />
-            <Link
-              to="/login"
-              onClick={() => setOpen(false)}
-              className="btn-outline mt-1 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold"
-            >
-              Login
-            </Link>
-            <Link
-              to="/signup"
-              onClick={() => setOpen(false)}
-              className="btn-gradient mt-2 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
-            >
-              Sign Up
-            </Link>
+            <SignedOut>
+              <Link
+                to="/sign-in"
+                onClick={() => setOpen(false)}
+                className="btn-outline mt-1 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold"
+              >
+                Login
+              </Link>
+              <Link
+                to="/sign-up"
+                onClick={() => setOpen(false)}
+                className="btn-gradient mt-2 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
+              >
+                Sign Up
+              </Link>
+            </SignedOut>
+            <SignedIn>
+              <div
+                className={`mt-1 flex items-center justify-between rounded-full border px-4 py-2.5 transition-colors duration-300 ${
+                  dark
+                    ? 'border-white/10 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
+                    : 'border-ink-800/60 bg-white/80 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)]'
+                }`}
+              >
+                <UserButton
+                  afterSignOutUrl={clerkUrl('/')}
+                  appearance={userButtonAppearance}
+                />
+                <Link
+                  to="/app"
+                  onClick={() => setOpen(false)}
+                  className="btn-gradient inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white"
+                >
+                  Dashboard
+                </Link>
+              </div>
+            </SignedIn>
           </div>
         </div>
       )}

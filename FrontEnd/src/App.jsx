@@ -1,9 +1,8 @@
-import { Routes, Route ,Navigate } from 'react-router-dom'
-import { SignIn, SignUp, SignedIn, SignedOut, UserButton, RedirectToSignIn, 
-  SignInButton, SignUpButton, useAuth }
-  from '@clerk/clerk-react'
+import { useEffect } from 'react'
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/Layout'
-import { ThemeProvider } from './context/ThemeContext'
+import { ThemeProvider, useTheme } from './context/ThemeContext'
 import PageSkeletonLoader from './components/Skeleton/PageSkeletonLoader'
 import Home from './pages/Home'
 import Events from './pages/Events'
@@ -14,29 +13,39 @@ import Blog from './pages/Blog'
 import Documentation from './pages/Documentation'
 import Guides from './pages/Guides'
 import FAQ from './pages/FAQ'
-// import Signin from './pages/Signin'
-// import SignUp from './pages/SignUp'
-import NotFound from './pages/NotFound'
 import Dashboard from './pages/Dashboard.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 
+function ScrollToTop() {
+  const { pathname } = useLocation()
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
 
+  return null
+}
 
-
-function AppPage() {
+function ClerkSignInPage() {
+  const { dark } = useTheme()
   return (
-    <main>
-      <header>
-        <h1>My App</h1>
+    <SignIn
+      signUpUrl={clerkUrl('/sign-up')}
+      fallbackRedirectUrl={clerkUrl('/app')}
+      appearance={clerkAppearance(dark)}
+    />
+  )
+}
 
-      <UserButton />
-
-      <SignOutButton redirectUrl="/">
-        <button type="button">Sign out</button>
-      </SignOutButton>
-      </header>
-    </main>
+function ClerkSignUpPage() {
+  const { dark } = useTheme()
+  return (
+    <SignUp
+      signInUrl={clerkUrl('/sign-in')}
+      fallbackRedirectUrl={clerkUrl('/app')}
+      appearance={clerkAppearance(dark)}
+    />
   )
 }
 
@@ -45,6 +54,7 @@ function App() {
     <ThemeProvider>
       <PageSkeletonLoader>
         <Layout>
+          <ScrollToTop />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/events" element={<Events />} />
@@ -55,37 +65,20 @@ function App() {
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/faq" element={<FAQ />} />
-              <Route
-        path="/sign-in"
-        element={
-          <SignIn
-            signUpUrl="/sign-up"
-            fallbackRedirectUrl="/app"
-          />
-        }
-      />
-
-      <Route
-        path="/sign-up"
-        element={
-          <SignUp
-            signInUrl="/sign-in"
-            fallbackRedirectUrl="/app"
-          />
-        }
-      />
-           <Route path="*" element={<Navigate to="/" replace />} />
-             <Route
-        path="/app/*"
-        element={
-          <ProtectedRoute>
-            <Dashboard />
-          </ProtectedRoute>
-        }
-      />
-            
+            <Route path="/sign-in" element={<ClerkSignInPage />} />
+            <Route path="/sign-up" element={<ClerkSignUpPage />} />
+            <Route path="/login" element={<Navigate to="/sign-in" replace />} />
+            <Route path="/signup" element={<Navigate to="/sign-up" replace />} />
+            <Route
+              path="/app/*"
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              }
+            />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-          
         </Layout>
       </PageSkeletonLoader>
     </ThemeProvider>

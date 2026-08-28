@@ -27,9 +27,8 @@ import BlurText from '../components/reactbits/BlurText'
 import TypeWriter from '../components/TypeWriter'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
-import { SignInButton, SignUpButton, useAuth } from '@clerk/clerk-react'
-import { Navigate } from 'react-router-dom'
-import { UserButton, useUser } from '@clerk/clerk-react'
+import { UserButton } from '@clerk/clerk-react'
+import { clerkAppearance, clerkUrl } from '../lib/clerkAppearance'
 
 
 const stats = [
@@ -173,7 +172,10 @@ const Hero = () => {
               ))}
             </div>
           </Reveal>
-          <UserButton afterSignOutUrl="/sign-in" />
+          <UserButton
+            afterSignOutUrl={clerkUrl('/')}
+            appearance={clerkAppearance(dark)}
+          />
 
           <Reveal delay={380}>
             <div className="mt-12 flex flex-wrap items-center gap-4">
@@ -706,9 +708,7 @@ const Groups = () => {
 }
 
 const Dashboard = () => {
-    const { user } = useUser()
-    
-  
+    const { dark } = useTheme()
 
   return (
     <>
@@ -721,7 +721,10 @@ const Dashboard = () => {
       <SkillsMarquee />
       <Spotlight />
       <Groups />
-      <UserButton />
+      <UserButton
+        afterSignOutUrl={clerkUrl('/')}
+        appearance={clerkAppearance(dark)}
+      />
       <CtaBanner
         title={
           <>
