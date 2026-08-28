@@ -1,10 +1,96 @@
+import { Link, Navigate } from 'react-router-dom'
+import { useAuth } from '@clerk/clerk-react'
+import { FaCode, FaGlobe } from 'react-icons/fa'
+import { FaLightbulb } from "react-icons/fa";
+import { IoBarChartSharp } from "react-icons/io5";
+import {
+  FiArrowRight,
+  FiArrowUpRight,
+  FiCalendar,
+  FiUsers,
+  FiZap,
+  FiMapPin,
+  FiBookOpen,
+  FiCpu,
+  FiBriefcase,
+  FiTarget,
+  FiActivity,
+  FiShield,
+  FiDatabase,
+} from 'react-icons/fi'
+import Reveal from '../components/Reveal'
+import Marquee from '../components/Marquee'
+import CountUp from '../components/CountUp'
+import SectionHeading from '../components/SectionHeading'
+import CtaBanner from '../components/CtaBanner'
+import BlurText from '../components/reactbits/BlurText'
+import TypeWriter from '../components/TypeWriter'
+import { Button } from '../components/ui/button'
+import { useTheme } from '../context/ThemeContext'
 
-import { UserButton } from '@clerk/clerk-react'
-import { SignInButton, SignUpButton, useAuth } from '@clerk/clerk-react'
-import { Navigate } from 'react-router-dom'
+const stats = [
+  { end: 4500, suffix: '+', label: 'Active Members' },
+  { end: 1, label: 'Event Hosted' },
+  { end: 20, suffix: '+', label: 'Live Projects' },
+  { end: 9, suffix: '+', label: 'Industry Partners' },
+]
 
+const communities = [
+  {
+    title: 'Nexcarinner',
+    members: '1800+',
+    description: 'Opportunities, jobs, skills, and hackathons all in one place.',
+    icon: FaGlobe,
+    accent: 'from-flare-pink to-brand-500',
+    link: 'https://chat.whatsapp.com/LFpegPQ2vMkKnQ4W07DDqH?s=cl&p=a&ilr=1',
+    groups: ['Internship & Job Alerts', 'Government Job Alerts', 'Skill Building & Learning', 'Hackathons & Competitions'],
+  },
+  {
+    title: 'Nexcarinner Network',
+    members: '1300+',
+    description: 'A central hub for networking, resources, promotions, and general discussions.',
+    icon: FiUsers,
+    accent: 'from-brand-500 to-brand-600',
+    link: 'https://chat.whatsapp.com/HRMehMJ6vCnK1vP3qR7gyH?s=cl&p=a&ilr=1',
+    groups: ['Networking Group', 'General Group', 'Learning Resources', 'Promotion Group'],
+  },
+  {
+    title: 'Nexcarinner Tech',
+    members: '1200+',
+    description: 'Dedicated tech community covering Web Development, AI/ML, cybersecurity & Ethical Hacking, Data Science and Data Analytics',
+    icon: FaCode,
+    accent: 'from-flare-cyan to-brand-500',
+    link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
+    groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
+  },
+]
 
+const groups = [
+  {
+    category: 'Study Groups',
+    items: ['React Study Group', 'Python Bootcamp', 'Algorithm Practice'],
+  },
+  {
+    category: 'Project Teams',
+    items: ['Open Source Contributors', 'Hackathon Team', 'Startup Builders'],
+  },
+  {
+    category: 'Workshops',
+    items: ['Design Systems', 'API Development', 'DevOps Basics'],
+  },
+  {
+    category: 'Mentorship',
+    items: ['Peer Mentoring', 'Industry Mentors', 'Career Guidance'],
+  },
+]
 
+const announcements = [
+  { icon: FiZap, text: 'Annual Hackathon registrations are open — Feb 20, 2026' },
+  { icon: FiUsers, text: 'New AI & Machine Learning study group starts this week' },
+  { icon: FiCalendar, text: 'Monthly demo day — every last Friday' },
+  { icon: FiTarget, text: 'Mentorship 1:1s now open for Spring 2026' },
+  { icon: FiMapPin, text: 'Cloud Computing meetup at Tech Hub — Jun 18, 2026' },
+]
 
 const skills = [
   { label: 'Technology', icon: FiCpu },
@@ -377,9 +463,25 @@ const Communities = () => {
   )
 }
 
-  if (isSignedIn) {
-    return <Navigate to="/app" replace />
-  }
+const SkillsMarquee = () => {
+  const { dark } = useTheme()
+  const row = (
+    <div className="flex items-center">
+      {skills.map((skill) => (
+        <span key={skill.label} className="flex items-center">
+          <span className="skill-chip px-6 py-2.5 text-sm">
+            <skill.icon className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+            {skill.label}
+          </span>
+          <span
+            className={`mx-6 h-1.5 w-1.5 shrink-0 rotate-45 rounded-xs ${
+              dark ? 'bg-white/15' : 'bg-ink-300'
+            }`}
+          />
+        </span>
+      ))}
+    </div>
+  )
 
   return (
     <section className="py-6">
@@ -401,6 +503,8 @@ const Communities = () => {
   )
 }
 
+const Spotlight = () => {
+  const { dark } = useTheme()
   return (
   <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
     <SectionHeading
@@ -597,6 +701,16 @@ const Groups = () => {
 }
 
 const Home = () => {
+  const { isLoaded, isSignedIn } = useAuth()
+
+  if (!isLoaded) {
+    return <p>Loading...</p>
+  }
+
+  if (isSignedIn) {
+    return <Navigate to="/app" replace />
+  }
+
   return (
     <>
       <Hero />
