@@ -1,5 +1,4 @@
-import { useEffect } from 'react'
-import { useLocation, useNavigate, useParams, Link } from 'react-router-dom'
+import { useNavigate, useParams, Link } from 'react-router-dom'
 import {
   FiArrowUpRight,
   FiAward,
@@ -738,18 +737,11 @@ const Gallery = () => {
   const { dark } = useTheme()
   const { category = 'all' } = useParams()
   const navigate = useNavigate()
-  const location = useLocation()
 
   const activeCategory = galleryCategories.some((c) => c.slug === category) ? category : 'all'
   const meta = categoryMeta[activeCategory]
 
   usePageTitle(meta.label)
-
-  // Every gallery route opens from the top — handled here for the single
-  // /gallery/:category? route, so no duplicate global scroll logic is needed.
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [location.pathname])
 
   const sizeFor = (item, index) => {
     if (activeCategory === 'all') {

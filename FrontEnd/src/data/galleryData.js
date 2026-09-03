@@ -11,7 +11,6 @@ import {
   FiLayout,
   FiCloud,
   FiHeart,
-  FiFilm,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
 import demoCollab1 from '../assets/demo/collab-1.svg'
@@ -658,6 +657,3 @@ export const gallerySections = {
   events,
   'community-moments': communityMoments,
 }
-
-/* Used as a branded accent on gallery section headings / dividers. */
-export const galleryIcon = FiFilm

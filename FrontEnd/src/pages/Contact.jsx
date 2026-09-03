@@ -36,10 +36,10 @@ const contactInfo = [
 ]
 
 const socials = [
-  { name: 'GitHub', icon: FaGithub },
-  { name: 'LinkedIn', icon: FaLinkedinIn },
-  { name: 'Discord', icon: FaDiscord },
-  { name: 'X', icon: FaXTwitter },
+  { name: 'GitHub', icon: FaGithub, url: 'https://github.com/codexxxx07/Nexcarinner_Website' },
+  { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/nexcarinner/' },
+  { name: 'Discord', icon: FaDiscord, url: 'https://discord.gg/6hprSUpY' },
+  { name: 'X', icon: FaXTwitter, url: 'https://x.com/nexcarinner' },
 ]
 
 const faqs = [
@@ -292,7 +292,9 @@ const Contact = () => {
                   {socials.map((social) => (
                     <a
                       key={social.name}
-                      href="#"
+                      href={social.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       aria-label={social.name}
                       className={`flex h-12 items-center justify-center rounded-xl border transition-colors duration-200 ${
                         dark
@@ -346,7 +348,7 @@ const Contact = () => {
                     We're always open to collaborations that help students grow.
                   </p>
                   <a
-                    href="#"
+                    href="mailto:nexcarinner.support@gmail.com"
                     className={`mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold backdrop-blur transition-colors ${
                       dark
                         ? 'bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white border border-white/10'

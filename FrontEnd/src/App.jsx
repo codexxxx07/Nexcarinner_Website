@@ -15,6 +15,7 @@ import Documentation from './pages/Documentation'
 import Guides from './pages/Guides'
 import FAQ from './pages/FAQ'
 import Dashboard from './pages/Dashboard.jsx'
+import NotFound from './pages/NotFound.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 
@@ -83,7 +84,7 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
       </PageSkeletonLoader>

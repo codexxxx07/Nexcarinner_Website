@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600" role="img" aria-label="Best Student Community">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f59e0b"/><stop offset="1" stop-color="#e11d48"/></linearGradient></defs>
-<rect width="800" height="600" fill="url(#g)"/>
-<ellipse cx="400" cy="0" rx="520" ry="380" fill="rgba(255,255,255,0.16)"/>
-<g stroke="rgba(255,255,255,0.09)" stroke-width="1"><path d="M0 120H800M0 240H800M0 360H800M0 480H800"/><path d="M133 0V600M266 0V600M400 0V600M533 0V600M666 0V600"/></g><path d="M400 158 L425 233 L506 233 L442 278 L467 353 L400 309 L333 353 L358 278 L294 233 L375 233 Z" fill="rgba(255,255,255,0.22)" stroke="rgba(255,255,255,0.55)" stroke-width="3"/>
-<text x="400" y="248" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="26" font-weight="800" fill="rgba(255,255,255,0.9)">A2</text>
-<text x="400" y="408" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="28" font-weight="700" fill="rgba(255,255,255,0.95)">Best Student Community</text>
-<text x="400" y="446" text-anchor="middle" font-family="Inter,Arial,sans-serif" font-size="16" font-weight="500" fill="rgba(255,255,255,0.6)">Community Award</text></svg>
