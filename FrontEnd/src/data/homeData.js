@@ -55,7 +55,7 @@ export const communities = [
     description: 'A dedicated space for students and creators to explore freelance opportunities, offer services, discuss projects, and grow their freelance journey.',
     icon: FiBriefcase,
     accent: 'from-emerald-400 to-brand-500',
-    link: '#',
+    link: 'https://chat.whatsapp.com/FuEkJM7uBqbC26GPpSscUO',
     groups: ['Tech Freelance', 'Nexcarinner Service', 'Freelance Discussion', 'Non Tech Freelance'],
   },
   {
@@ -64,7 +64,7 @@ export const communities = [
     description: 'A creative community for students interested in non-technical skills, creative work, digital marketing, content creation, and design.',
     icon: FaPalette,
     accent: 'from-amber-400 to-orange-500',
-    link: '#',
+    link: 'https://chat.whatsapp.com/CLd3b32akHN89WMMIgC2eR',
     groups: ['Non Tech Video Editing', 'Non Tech Graphic Designing', 'Non Tech Discussion', 'Non Tech Digital Marketing', 'Non Tech Content Writing'],
   },
 ]
