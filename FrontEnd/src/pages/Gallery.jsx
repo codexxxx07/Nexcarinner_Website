@@ -789,7 +789,7 @@ const Gallery = () => {
       <section className="mx-auto max-w-7xl px-6 pb-8 pt-16 text-center lg:px-8 lg:pt-24">
         {activeCategory !== 'all' && (
           <Reveal className="mb-8 flex justify-start">
-            <BackButton to="/gallery" />
+            <BackButton to="/gallery" disableCursor />
           </Reveal>
         )}
 
