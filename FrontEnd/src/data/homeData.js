@@ -1,4 +1,4 @@
-import { FaCode, FaGlobe, FaLightbulb } from 'react-icons/fa'
+import { FaCode, FaGlobe, FaLightbulb, FaPalette } from 'react-icons/fa'
 import { IoBarChartSharp } from 'react-icons/io5'
 import {
   FiUsers,
@@ -48,6 +48,24 @@ export const communities = [
     accent: 'from-flare-cyan to-brand-500',
     link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
     groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
+  },
+  {
+    title: 'Nexcarinner Freelance',
+    members: '500+',
+    description: 'A dedicated space for students and creators to explore freelance opportunities, offer services, discuss projects, and grow their freelance journey.',
+    icon: FiBriefcase,
+    accent: 'from-emerald-400 to-brand-500',
+    link: '#',
+    groups: ['Tech Freelance', 'Nexcarinner Service', 'Freelance Discussion', 'Non Tech Freelance'],
+  },
+  {
+    title: 'Nexcarinner Non Tech',
+    members: '400+',
+    description: 'A creative community for students interested in non-technical skills, creative work, digital marketing, content creation, and design.',
+    icon: FaPalette,
+    accent: 'from-amber-400 to-orange-500',
+    link: '#',
+    groups: ['Non Tech Video Editing', 'Non Tech Graphic Designing', 'Non Tech Discussion', 'Non Tech Digital Marketing', 'Non Tech Content Writing'],
   },
 ]
 
