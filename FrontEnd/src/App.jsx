@@ -31,22 +31,26 @@ function ScrollToTop() {
 function ClerkSignInPage() {
   const { dark } = useTheme()
   return (
-    <SignIn
-      signUpUrl={clerkUrl('/sign-up')}
-      fallbackRedirectUrl={clerkUrl('/app')}
-      appearance={clerkAppearance(dark)}
-    />
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12 lg:min-h-[calc(100vh-5rem)]">
+      <SignIn
+        signUpUrl={clerkUrl('/sign-up')}
+        fallbackRedirectUrl={clerkUrl('/app')}
+        appearance={clerkAppearance(dark)}
+      />
+    </div>
   )
 }
 
 function ClerkSignUpPage() {
   const { dark } = useTheme()
   return (
-    <SignUp
-      signInUrl={clerkUrl('/sign-in')}
-      fallbackRedirectUrl={clerkUrl('/app')}
-      appearance={clerkAppearance(dark)}
-    />
+    <div className="flex min-h-[calc(100vh-4rem)] items-center justify-center px-4 py-12 lg:min-h-[calc(100vh-5rem)]">
+      <SignUp
+        signInUrl={clerkUrl('/sign-in')}
+        fallbackRedirectUrl={clerkUrl('/app')}
+        appearance={clerkAppearance(dark)}
+      />
+    </div>
   )
 }
 
