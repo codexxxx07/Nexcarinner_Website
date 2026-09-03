@@ -279,8 +279,96 @@ const Communities = () => {
     />
 
     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-      {communities.map((community, index) => (
+      {communities.slice(0, 3).map((community, index) => (
         <Reveal key={community.title} delay={index * 80}>
+          <a
+            href={community.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block h-full"
+          >
+            <div className="glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1">
+              <div className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${dark ? 'via-white/12' : 'via-brand-500/40'} to-transparent`} />
+
+              <div className="flex items-start justify-between gap-4">
+                <span
+                  className={`inline-flex h-13 w-13 items-center justify-center rounded-xl bg-linear-to-br ${community.accent} text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35),inset_0_-1px_0_rgba(0,0,0,0.1)]`}
+                >
+                  <community.icon className="h-5.5 w-5.5" />
+                </span>
+                <span
+                  className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs font-semibold transition-colors duration-200 ${
+                    dark
+                      ? 'border-white/10 bg-white/5 text-gray-400'
+                      : 'border-ink-300/60 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_2px_rgba(34,29,58,0.05)]'
+                  }`}
+                >
+                  <FiUsers className={`h-3 w-3 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+                  {community.members} members
+                </span>
+              </div>
+
+              <h3
+                className={`mt-5 font-display text-xl font-bold transition-colors duration-300 ${
+                  dark ? 'text-white' : 'text-ink-50'
+                }`}
+              >
+                {community.title}
+              </h3>
+              <p
+                className={`mt-2.5 text-sm leading-relaxed transition-colors duration-300 ${
+                  dark ? 'text-gray-400' : 'text-ink-400'
+                }`}
+              >
+                {community.description}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5">
+                {community.groups.slice(0, 3).map((group) => (
+                  <span key={group} className="skill-chip skill-chip-sm">
+                    <span>{group}</span>
+                  </span>
+                ))}
+                {community.groups.length > 3 && (
+                  <span className="skill-chip skill-chip-sm">
+                    <span>+{community.groups.length - 3} more</span>
+                  </span>
+                )}
+              </div>
+
+              <div
+                className={`mt-auto flex items-center justify-between border-t pt-4 transition-colors duration-300 ${
+                  dark ? 'mt-5 border-white/8' : 'mt-5 border-ink-800/70'
+                }`}
+              >
+                <span
+                  className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ${
+                    dark
+                      ? 'text-gray-300 group-hover:text-white'
+                      : 'text-ink-700 group-hover:text-brand-700'
+                  }`}
+                >
+                  Join the group
+                </span>
+                <span
+                  className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-200 ${
+                    dark
+                      ? 'border-white/10 bg-white/5 text-gray-400 group-hover:border-white/20 group-hover:text-white group-hover:translate-x-0.5'
+                      : 'border-ink-300/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] group-hover:border-brand-600/50 group-hover:text-brand-700 group-hover:translate-x-0.5'
+                  }`}
+                >
+                  <FiArrowUpRight className="h-4 w-4" />
+                </span>
+              </div>
+            </div>
+          </a>
+        </Reveal>
+      ))}
+    </div>
+
+    <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-6">
+      {communities.slice(3).map((community, index) => (
+        <Reveal key={community.title} delay={(index + 3) * 80} className={index === 0 ? 'lg:col-span-2 lg:col-start-2' : 'lg:col-span-2'}>
           <a
             href={community.link}
             target="_blank"
