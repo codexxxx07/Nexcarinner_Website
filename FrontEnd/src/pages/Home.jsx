@@ -1,4 +1,5 @@
-import { Link, Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import { FiArrowRight, FiArrowUpRight, FiCalendar, FiUsers, FiZap } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
@@ -607,14 +608,15 @@ const Groups = () => {
 
 const Home = () => {
   const { isLoaded, isSignedIn } = useAuth()
+  const navigate = useNavigate()
 
-  if (!isLoaded) {
-    return <p>Loading...</p>
-  }
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      navigate('/app', { replace: true })
+    }
+  }, [isLoaded, isSignedIn, navigate])
 
-  if (isSignedIn) {
-    return <Navigate to="/app" replace />
-  }
+  if (isLoaded && isSignedIn) return null
 
   return (
     <>
