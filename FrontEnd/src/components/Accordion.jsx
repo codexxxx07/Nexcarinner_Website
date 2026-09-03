@@ -21,7 +21,7 @@ const AccordionItem = ({ question, answer, isOpen, onToggle }) => {
         type="button"
         onClick={onToggle}
         aria-expanded={isOpen}
-        className={`flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-200 ${
+        className={`flex w-full items-center justify-between px-6 py-5 text-left transition-colors duration-200 cursor-target ${
           dark ? 'hover:bg-white/4' : 'hover:bg-brand-500/5'
         }`}
       >

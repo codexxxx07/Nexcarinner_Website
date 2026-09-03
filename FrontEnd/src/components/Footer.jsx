@@ -140,7 +140,7 @@ const Footer = () => {
                 <li key={link.to}>
                   <Link
                     to={link.to}
-                    className={`group inline-flex items-center gap-2 transition-colors duration-200 ${
+                    className={`group inline-flex items-center gap-2 transition-colors duration-200 cursor-target ${
                       dark
                         ? 'text-gray-500 hover:text-white'
                         : 'text-ink-400 hover:text-brand-700'
@@ -174,7 +174,7 @@ const Footer = () => {
                 <li key={item.to}>
                   <Link
                     to={item.to}
-                    className={`group inline-flex items-center gap-2 transition-colors duration-200 ${
+                    className={`group inline-flex items-center gap-2 transition-colors duration-200 cursor-target ${
                       dark
                         ? 'text-gray-500 hover:text-white'
                         : 'text-ink-400 hover:text-brand-700'
@@ -261,7 +261,7 @@ const Footer = () => {
                   <button
                     type="submit"
                     aria-label="Subscribe"
-                    className="btn-gradient m-1.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white"
+                    className="btn-gradient m-1.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-white cursor-target"
                   >
                     <FiArrowRight className="h-4 w-4" />
                   </button>
@@ -282,7 +282,7 @@ const Footer = () => {
           <div className="flex items-center gap-6">
             <a
               href="#"
-              className={`transition-colors ${
+              className={`transition-colors cursor-target ${
                 dark ? 'hover:text-white' : 'hover:text-brand-700'
               }`}
             >
@@ -290,7 +290,7 @@ const Footer = () => {
             </a>
             <a
               href="#"
-              className={`transition-colors ${
+              className={`transition-colors cursor-target ${
                 dark ? 'hover:text-white' : 'hover:text-brand-700'
               }`}
             >

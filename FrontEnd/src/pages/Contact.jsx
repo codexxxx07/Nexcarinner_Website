@@ -385,7 +385,7 @@ const Contact = () => {
                 >
                   <button
                     onClick={() => setOpenFaq(isOpen ? -1 : index)}
-                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left"
+                    className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left cursor-target"
                   >
                     <span
                       className={`font-semibold transition-colors duration-300 ${

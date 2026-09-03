@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import TargetCursor from './components/reactbits/TargetCursor'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/Layout'
@@ -52,6 +53,7 @@ function ClerkSignUpPage() {
 function App() {
   return (
     <ThemeProvider>
+      <TargetCursor targetSelector=".cursor-target" />
       <PageSkeletonLoader>
         <Layout>
           <ScrollToTop />

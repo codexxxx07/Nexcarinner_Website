@@ -24,7 +24,7 @@ const ThemeToggle = () => {
           <button
             onClick={toggle}
             aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 ${
+            className={`flex h-9 w-9 items-center justify-center rounded-full border transition-all duration-300 cursor-target ${
               dark
                 ? 'border-white/15 bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white'
                 : 'border-ink-800/60 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.07)] hover:-translate-y-px hover:text-ink-900'
@@ -73,7 +73,7 @@ const Navbar = () => {
   }, [])
 
   const navLinkClass = ({ isActive }) =>
-    `relative text-base font-semibold transition-all duration-200 ease-in-out ${
+    `relative text-base font-semibold transition-all duration-200 ease-in-out cursor-target ${
       isActive
         ? dark ? 'text-white' : 'text-brand-700'
         : dark ? 'text-gray-400 hover:text-white' : 'text-ink-400 hover:text-ink-900'
@@ -91,7 +91,7 @@ const Navbar = () => {
         }`}
       >
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 lg:h-20 lg:px-8">
-          <Link to="/" className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3 cursor-target">
             <Logo />
             <span
               className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
@@ -176,7 +176,7 @@ const Navbar = () => {
             <button
               onClick={() => setOpen((v) => !v)}
               aria-label="Toggle menu"
-              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 ${
+              className={`flex h-10 w-10 items-center justify-center rounded-xl border transition-all duration-300 cursor-target ${
                 dark
                   ? 'border-white/12 bg-white/8 text-gray-300 hover:text-white'
                   : 'border-ink-800/70 bg-white/80 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_3px_rgba(34,29,58,0.08)] hover:-translate-y-px hover:text-ink-900'
@@ -205,7 +205,7 @@ const Navbar = () => {
                 end={link.to === '/'}
                 onClick={() => setOpen(false)}
                 className={({ isActive }) =>
-                  `rounded-xl px-4 py-3 font-medium transition-colors duration-200 ${
+                  `rounded-xl px-4 py-3 font-medium transition-colors duration-200 cursor-target ${
                     isActive
                       ? dark
                         ? 'bg-white/10 text-white'
