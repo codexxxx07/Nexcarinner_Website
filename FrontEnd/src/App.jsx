@@ -14,6 +14,8 @@ import Blog from './pages/Blog'
 import Documentation from './pages/Documentation'
 import Guides from './pages/Guides'
 import FAQ from './pages/FAQ'
+import PrivacyPolicy from './pages/PrivacyPolicy'
+import TermsOfService from './pages/TermsOfService'
 import Dashboard from './pages/Dashboard.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
@@ -72,6 +74,8 @@ function App() {
             <Route path="/documentation" element={<Documentation />} />
             <Route path="/guides" element={<Guides />} />
             <Route path="/faq" element={<FAQ />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="/sign-in" element={<ClerkSignInPage />} />
             <Route path="/sign-up" element={<ClerkSignUpPage />} />
             <Route path="/login" element={<Navigate to="/sign-in" replace />} />

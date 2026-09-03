@@ -280,22 +280,22 @@ const Footer = () => {
         >
           <p>&copy; 2026 Nexcarinner. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a
-              href="#"
+            <Link
+              to="/privacy-policy"
               className={`transition-colors cursor-target ${
                 dark ? 'hover:text-white' : 'hover:text-brand-700'
               }`}
             >
               Privacy Policy
-            </a>
-            <a
-              href="#"
+            </Link>
+            <Link
+              to="/terms-of-service"
               className={`transition-colors cursor-target ${
                 dark ? 'hover:text-white' : 'hover:text-brand-700'
               }`}
             >
               Terms of Service
-            </a>
+            </Link>
             <span className="flex items-center gap-1.5">
               <span
                 className={`h-1.5 w-1.5 rounded-full ${
