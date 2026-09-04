@@ -20,13 +20,19 @@ import Dashboard from './pages/Dashboard.jsx'
 import NotFound from './pages/NotFound.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
+import { useLenis } from 'lenis/react'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
+  const lenis = useLenis()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true })
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, lenis])
 
   return null
 }
