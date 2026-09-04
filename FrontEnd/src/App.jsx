@@ -1,26 +1,28 @@
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import TargetCursor from './components/reactbits/TargetCursor'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/Layout'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
 import PageSkeletonLoader from './components/Skeleton/PageSkeletonLoader'
-import Home from './pages/Home'
-import Events from './pages/Events'
-import Gallery from './pages/Gallery'
-import About from './pages/About'
-import Contact from './pages/Contact'
-import Blog from './pages/Blog'
-import Documentation from './pages/Documentation'
-import Guides from './pages/Guides'
-import FAQ from './pages/FAQ'
-import PrivacyPolicy from './pages/PrivacyPolicy'
-import TermsOfService from './pages/TermsOfService'
-import Dashboard from './pages/Dashboard.jsx'
-import NotFound from './pages/NotFound.jsx'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
+import ErrorBoundary from './components/ErrorBoundary.jsx'
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 import { useLenis } from 'lenis/react'
+
+const Home = lazy(() => import('./pages/Home'))
+const Events = lazy(() => import('./pages/Events'))
+const Gallery = lazy(() => import('./pages/Gallery'))
+const About = lazy(() => import('./pages/About'))
+const Contact = lazy(() => import('./pages/Contact'))
+const Blog = lazy(() => import('./pages/Blog'))
+const Documentation = lazy(() => import('./pages/Documentation'))
+const Guides = lazy(() => import('./pages/Guides'))
+const FAQ = lazy(() => import('./pages/FAQ'))
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'))
+const TermsOfService = lazy(() => import('./pages/TermsOfService'))
+const Dashboard = lazy(() => import('./pages/Dashboard.jsx'))
+const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -70,32 +72,36 @@ function App() {
       <PageSkeletonLoader>
         <Layout>
           <ScrollToTop />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/gallery/:category?" element={<Gallery />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
-            <Route path="/documentation" element={<Documentation />} />
-            <Route path="/guides" element={<Guides />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-            <Route path="/terms-of-service" element={<TermsOfService />} />
-            <Route path="/sign-in" element={<ClerkSignInPage />} />
-            <Route path="/sign-up" element={<ClerkSignUpPage />} />
-            <Route path="/login" element={<Navigate to="/sign-in" replace />} />
-            <Route path="/signup" element={<Navigate to="/sign-up" replace />} />
-            <Route
-              path="/app/*"
-              element={
-                <ProtectedRoute>
-                  <Dashboard />
-                </ProtectedRoute>
-              }
-            />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+          <ErrorBoundary>
+            <Suspense fallback={null}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/events" element={<Events />} />
+                <Route path="/gallery/:category?" element={<Gallery />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/documentation" element={<Documentation />} />
+                <Route path="/guides" element={<Guides />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-of-service" element={<TermsOfService />} />
+                <Route path="/sign-in" element={<ClerkSignInPage />} />
+                <Route path="/sign-up" element={<ClerkSignUpPage />} />
+                <Route path="/login" element={<Navigate to="/sign-in" replace />} />
+                <Route path="/signup" element={<Navigate to="/sign-up" replace />} />
+                <Route
+                  path="/app/*"
+                  element={
+                    <ProtectedRoute>
+                      <Dashboard />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </Suspense>
+          </ErrorBoundary>
         </Layout>
       </PageSkeletonLoader>
     </ThemeProvider>

@@ -41,6 +41,13 @@ const ShapeGrid = ({
   const hoveredSquare = useRef(null);
   const trailCells = useRef([]);
   const cellOpacities = useRef(new Map());
+  const borderColorRef = useRef(borderColor);
+  const hoverFillColorRef = useRef(hoverFillColor);
+
+  useEffect(() => {
+    borderColorRef.current = borderColor;
+    hoverFillColorRef.current = hoverFillColor;
+  }, [borderColor, hoverFillColor]);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -114,13 +121,13 @@ const ShapeGrid = ({
             if (alpha) {
               ctx.globalAlpha = alpha;
               drawHex(cx, cy, squareSize);
-              ctx.fillStyle = hoverFillColor;
+              ctx.fillStyle = hoverFillColorRef.current;
               ctx.fill();
               ctx.globalAlpha = 1;
             }
 
             drawHex(cx, cy, squareSize);
-            ctx.strokeStyle = borderColor;
+            ctx.strokeStyle = borderColorRef.current;
             ctx.stroke();
           }
         }
@@ -145,13 +152,13 @@ const ShapeGrid = ({
             if (alpha) {
               ctx.globalAlpha = alpha;
               drawTriangle(cx, cy, squareSize, flip);
-              ctx.fillStyle = hoverFillColor;
+              ctx.fillStyle = hoverFillColorRef.current;
               ctx.fill();
               ctx.globalAlpha = 1;
             }
 
             drawTriangle(cx, cy, squareSize, flip);
-            ctx.strokeStyle = borderColor;
+            ctx.strokeStyle = borderColorRef.current;
             ctx.stroke();
           }
         }
@@ -172,13 +179,13 @@ const ShapeGrid = ({
             if (alpha) {
               ctx.globalAlpha = alpha;
               drawCircle(cx, cy, squareSize);
-              ctx.fillStyle = hoverFillColor;
+              ctx.fillStyle = hoverFillColorRef.current;
               ctx.fill();
               ctx.globalAlpha = 1;
             }
 
             drawCircle(cx, cy, squareSize);
-            ctx.strokeStyle = borderColor;
+            ctx.strokeStyle = borderColorRef.current;
             ctx.stroke();
           }
         }
@@ -198,12 +205,12 @@ const ShapeGrid = ({
             const alpha = cellOpacities.current.get(cellKey);
             if (alpha) {
               ctx.globalAlpha = alpha;
-              ctx.fillStyle = hoverFillColor;
+              ctx.fillStyle = hoverFillColorRef.current;
               ctx.fillRect(sx, sy, squareSize, squareSize);
               ctx.globalAlpha = 1;
             }
 
-            ctx.strokeStyle = borderColor;
+            ctx.strokeStyle = borderColorRef.current;
             ctx.strokeRect(sx, sy, squareSize, squareSize);
           }
         }
@@ -433,7 +440,7 @@ const ShapeGrid = ({
       window.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
-  }, [direction, speed, borderColor, hoverFillColor, squareSize, shape, hoverTrailAmount]);
+  }, [direction, speed, squareSize, shape, hoverTrailAmount]);
 
   return <canvas ref={canvasRef} className={`shapegrid-canvas ${className}`}></canvas>;
 };

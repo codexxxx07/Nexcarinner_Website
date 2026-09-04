@@ -13,7 +13,24 @@ const ClickSpark = ({
 }) => {
   const canvasRef = useRef(null)
   const sparksRef = useRef([])
-  const startTimeRef = useRef(null)
+  const rafIdRef = useRef(null)
+  const drawRef = useRef(null)
+
+  const easeFunc = useCallback(
+    (t) => {
+      switch (easing) {
+        case 'linear':
+          return t
+        case 'ease-in':
+          return t * t
+        case 'ease-in-out':
+          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
+        default:
+          return t * (2 - t)
+      }
+    },
+    [easing],
+  )
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -48,33 +65,17 @@ const ClickSpark = ({
     }
   }, [])
 
-  const easeFunc = useCallback(
-    (t) => {
-      switch (easing) {
-        case 'linear':
-          return t
-        case 'ease-in':
-          return t * t
-        case 'ease-in-out':
-          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t
-        default:
-          return t * (2 - t)
-      }
-    },
-    [easing],
-  )
-
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
 
-    let animationId
-
     const draw = (timestamp) => {
-      if (!startTimeRef.current) {
-        startTimeRef.current = timestamp
+      if (sparksRef.current.length === 0) {
+        rafIdRef.current = null
+        return
       }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
       sparksRef.current = sparksRef.current.filter((spark) => {
@@ -104,13 +105,15 @@ const ClickSpark = ({
         return true
       })
 
-      animationId = requestAnimationFrame(draw)
+      rafIdRef.current = requestAnimationFrame(draw)
     }
 
-    animationId = requestAnimationFrame(draw)
+    drawRef.current = draw
 
     return () => {
-      cancelAnimationFrame(animationId)
+      cancelAnimationFrame(rafIdRef.current)
+      rafIdRef.current = null
+      drawRef.current = null
     }
   }, [sparkColor, sparkSize, sparkRadius, sparkCount, duration, easeFunc, extraScale])
 
@@ -130,6 +133,10 @@ const ClickSpark = ({
     }))
 
     sparksRef.current.push(...newSparks)
+
+    if (!rafIdRef.current && drawRef.current) {
+      rafIdRef.current = requestAnimationFrame(drawRef.current)
+    }
   }
 
   return (
@@ -152,7 +159,7 @@ const ClickSpark = ({
           position: 'absolute',
           top: 0,
           left: 0,
-          zIndex: 9999,
+          zIndex: 50,
           pointerEvents: 'none',
         }}
       />
