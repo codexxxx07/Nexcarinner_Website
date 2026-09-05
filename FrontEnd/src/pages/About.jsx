@@ -70,7 +70,7 @@ const values = [
 
 const team = [
   {
-    name: 'Gunjan Kumar Gupta',
+    name: 'Gunjan Kumar',
     role: 'Founder',
     description: 'Visionary behind NexCarInner, leading the community with ideas, direction, and long-term goals',
     image: GunjanImg,

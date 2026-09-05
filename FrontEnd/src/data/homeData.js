@@ -32,7 +32,7 @@ export const communities = [
     groups: ['Internship & Job Alerts', 'Government Job Alerts', 'Skill Building & Learning', 'Hackathons & Competitions'],
   },
   {
-    title: 'Nexcarinner Network',
+    title: 'Nexcarinner Network & Support',
     members: '1300+',
     description: 'A central hub for networking, resources, promotions, and general discussions.',
     icon: FiUsers,
