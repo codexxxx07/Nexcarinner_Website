@@ -7,6 +7,8 @@ import { ThemeProvider, useTheme } from './context/ThemeContext'
 import PageSkeletonLoader from './components/Skeleton/PageSkeletonLoader'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
+import { ToastProvider } from './context/ToastContext'
+import { SignInNotification, SignUpNotification } from './components/auth/AuthNotifications'
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 import { useLenis } from 'lenis/react'
 
@@ -48,6 +50,7 @@ function ClerkSignInPage() {
         fallbackRedirectUrl={clerkUrl('/app')}
         appearance={clerkAppearance(dark)}
       />
+      <SignInNotification />
     </div>
   )
 }
@@ -61,6 +64,7 @@ function ClerkSignUpPage() {
         fallbackRedirectUrl={clerkUrl('/app')}
         appearance={clerkAppearance(dark)}
       />
+      <SignUpNotification />
     </div>
   )
 }
@@ -70,39 +74,41 @@ function App() {
     <ThemeProvider>
       <TargetCursor targetSelector=".cursor-target" />
       <PageSkeletonLoader>
-        <Layout>
-          <ScrollToTop />
-          <ErrorBoundary>
-            <Suspense fallback={null}>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/gallery/:category?" element={<Gallery />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/documentation" element={<Documentation />} />
-                <Route path="/guides" element={<Guides />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms-of-service" element={<TermsOfService />} />
-                <Route path="/sign-in" element={<ClerkSignInPage />} />
-                <Route path="/sign-up" element={<ClerkSignUpPage />} />
-                <Route path="/login" element={<Navigate to="/sign-in" replace />} />
-                <Route path="/signup" element={<Navigate to="/sign-up" replace />} />
-                <Route
-                  path="/app/*"
-                  element={
-                    <ProtectedRoute>
-                      <Dashboard />
-                    </ProtectedRoute>
-                  }
-                />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </ErrorBoundary>
-        </Layout>
+        <ToastProvider>
+          <Layout>
+            <ScrollToTop />
+            <ErrorBoundary>
+              <Suspense fallback={null}>
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/events" element={<Events />} />
+                  <Route path="/gallery/:category?" element={<Gallery />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/documentation" element={<Documentation />} />
+                  <Route path="/guides" element={<Guides />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms-of-service" element={<TermsOfService />} />
+                  <Route path="/sign-in" element={<ClerkSignInPage />} />
+                  <Route path="/sign-up" element={<ClerkSignUpPage />} />
+                  <Route path="/login" element={<Navigate to="/sign-in" replace />} />
+                  <Route path="/signup" element={<Navigate to="/sign-up" replace />} />
+                  <Route
+                    path="/app/*"
+                    element={
+                      <ProtectedRoute>
+                        <Dashboard />
+                      </ProtectedRoute>
+                    }
+                  />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
+            </ErrorBoundary>
+          </Layout>
+        </ToastProvider>
       </PageSkeletonLoader>
     </ThemeProvider>
   )
