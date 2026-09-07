@@ -50,15 +50,6 @@ export const communities = [
     groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
   },
   {
-    title: 'Nexcarinner Freelance',
-    members: '500+',
-    description: 'A dedicated space for students and creators to explore freelance opportunities, offer services, discuss projects, and grow their freelance journey.',
-    icon: FiBriefcase,
-    accent: 'from-emerald-400 to-brand-500',
-    link: 'https://chat.whatsapp.com/FuEkJM7uBqbC26GPpSscUO',
-    groups: ['Tech Freelance', 'Nexcarinner Service', 'Freelance Discussion', 'Non Tech Freelance'],
-  },
-  {
     title: 'Nexcarinner Non Tech',
     members: '400+',
     description: 'A creative community for students interested in non-technical skills, creative work, digital marketing, content creation, and design.',
@@ -66,6 +57,15 @@ export const communities = [
     accent: 'from-amber-400 to-orange-500',
     link: 'https://chat.whatsapp.com/CLd3b32akHN89WMMIgC2eR',
     groups: ['Non Tech Video Editing', 'Non Tech Graphic Designing', 'Non Tech Discussion', 'Non Tech Digital Marketing', 'Non Tech Content Writing'],
+  },
+  {
+    title: 'Nexcarinner Freelance',
+    members: '500+',
+    description: 'A dedicated space for students and creators to explore freelance opportunities, offer services, discuss projects, and grow their freelance journey.',
+    icon: FiBriefcase,
+    accent: 'from-emerald-400 to-brand-500',
+    link: 'https://chat.whatsapp.com/FuEkJM7uBqbC26GPpSscUO',
+    groups: ['Tech Freelance', 'Nexcarinner Service', 'Freelance Discussion', 'Non Tech Freelance'],
   },
 ]
 
