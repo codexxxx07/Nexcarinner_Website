@@ -137,16 +137,6 @@ const Navbar = () => {
           </div>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <span
-              className={`flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs font-medium transition-colors duration-300 ${
-                dark
-                  ? 'border-white/10 bg-white/5 text-gray-400 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]'
-                  : 'border-ink-800/60 bg-white/70 text-ink-500 shadow-[inset_0_1px_0_rgba(255,255,255,1),0_1px_2px_rgba(34,29,58,0.06)]'
-              }`}
-            >
-              <span className="presence-dot" />
-              4500+ members
-            </span>
             <ThemeToggle />
             <SignedOut>
               <Link
