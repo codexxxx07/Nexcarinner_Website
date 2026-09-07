@@ -12,7 +12,7 @@ import { Button } from '../components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
 
-const filters = ['All', 'Workshops', 'Hackathons', 'Meetups', 'Webinars']
+const filters = ['All', 'Workshops', 'Hackathons', 'Webinars']
 
 const typeStyles = {
   Workshops: {
@@ -22,10 +22,6 @@ const typeStyles = {
   Hackathons: {
     light: { text: 'text-pink-600', bg: 'bg-pink-100/70', border: 'border-pink-200' },
     dark: { text: 'text-pink-300', bg: 'bg-pink-900/20', border: 'border-pink-800/40' },
-  },
-  Meetups: {
-    light: { text: 'text-violet-700', bg: 'bg-violet-100/70', border: 'border-violet-200' },
-    dark: { text: 'text-violet-300', bg: 'bg-violet-900/20', border: 'border-violet-800/40' },
   },
   Webinars: {
     light: { text: 'text-sky-700', bg: 'bg-sky-100/70', border: 'border-sky-200' },
@@ -52,14 +48,6 @@ const events = [
     featured: true,
   },
   {
-    title: 'Tech Meetup',
-    date: 'Mar 10, 2026',
-    time: '6:00 PM',
-    location: 'Community Center',
-    type: 'Meetups',
-    description: 'Network with fellow tech enthusiasts and share your experiences.',
-  },
-  {
     title: 'AI Webinar',
     date: 'Apr 5, 2026',
     time: '3:00 PM',
@@ -74,14 +62,6 @@ const events = [
     location: 'Design Lab',
     type: 'Workshops',
     description: 'Build scalable and consistent design systems for your projects.',
-  },
-  {
-    title: 'Cloud Computing Meetup',
-    date: 'Jun 18, 2026',
-    time: '5:00 PM',
-    location: 'Tech Hub',
-    type: 'Meetups',
-    description: 'Discuss cloud architecture and deployment strategies.',
   },
 ]
 
