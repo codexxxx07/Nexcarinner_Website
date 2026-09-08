@@ -92,7 +92,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={460}>
-            <div className="mt-14 flex items-center gap-8">
+            <div className="mt-14 hidden items-center gap-8 md:flex">
               <div className="flex -space-x-3">
                 {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
                   (g, i) => (

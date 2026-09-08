@@ -384,7 +384,7 @@ const About = () => {
       </section>
 
       {/* Mission / Vision */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
         <div className="grid gap-6 lg:grid-cols-2">
           <Reveal variant="left">
             <div className="glass card-lift h-full rounded-2xl p-6 sm:p-8">
@@ -524,7 +524,7 @@ const About = () => {
       </section>
 
       {/* Values */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
         <SectionHeading
           eyebrow="Our values"
           title={
@@ -563,7 +563,7 @@ const About = () => {
       </section>
 
       {/* Team */}
-      <section className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
         <SectionHeading
           eyebrow="The team"
           title={
@@ -583,7 +583,7 @@ const About = () => {
       </section>
 
       {/* Timeline */}
-      <section className="mx-auto max-w-4xl px-6 py-16 lg:px-8">
+      <section className="mx-auto max-w-4xl px-6 py-16 sm:py-20 lg:px-8">
         <SectionHeading
           eyebrow="Our journey"
           title={

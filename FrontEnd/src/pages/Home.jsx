@@ -54,7 +54,7 @@ const Hero = () => {
 
           <Reveal delay={220}>
             <p
-              className={`mt-2 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
+              className={`mt-4 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
@@ -94,7 +94,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={460}>
-            <div className="mt-8 flex items-center gap-8">
+            <div className="mt-8 hidden items-center gap-8 md:flex">
               <div className="flex -space-x-3">
                 {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
                   (g, i) => (

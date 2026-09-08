@@ -144,7 +144,7 @@ const Contact = () => {
                     onClick={() => setSubmitted(false)}
                     variant="outline"
                     size="md"
-                    className={dark ? 'text-gray-300' : 'text-ink-300'}
+                    className={`mt-6 ${dark ? 'text-gray-300' : 'text-ink-300'}`}
                   >
                     Send another
                   </Button>

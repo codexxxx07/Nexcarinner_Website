@@ -181,7 +181,7 @@ const FAQ = () => {
             >
               We are active on Discord every day. Come say hi.
             </p>
-            <Button onClick={() => navigate('/contact')}>
+            <Button onClick={() => navigate('/contact')} className="mt-6">
               Contact us
             </Button>
           </div>

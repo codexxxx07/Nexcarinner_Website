@@ -192,7 +192,7 @@ const Events = () => {
                   <Button
                     variant="outline"
                     size="md"
-                    className={`w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
+                    className={`mt-5 w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
                   >
                     Register
                     <FiArrowRight className="h-4 w-4" />
