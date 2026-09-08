@@ -25,7 +25,7 @@ const Hero = () => {
   const { dark } = useTheme()
   return (
     <section className="relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:px-8 lg:pb-32 lg:pt-24">
+      <div className="mx-auto max-w-7xl px-6 pb-20 pt-12 lg:px-8 lg:pb-28 lg:pt-20">
         <div className="mx-auto max-w-4xl lg:max-w-5xl">
           <Reveal>
             <span className="chip">
@@ -35,7 +35,7 @@ const Hero = () => {
           </Reveal>
 
           <h1
-            className={`mt-6 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
+            className={`mt-4 font-display text-5xl font-bold leading-[1.05] tracking-tight sm:text-6xl lg:text-7xl transition-colors duration-300 ${
               dark ? 'text-white' : 'text-ink-50'
             }`}
           >
@@ -54,7 +54,7 @@ const Hero = () => {
 
           <Reveal delay={220}>
             <p
-              className={`mt-6 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
+              className={`mt-2 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
@@ -64,7 +64,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={300}>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="mt-4 flex flex-wrap gap-2">
               {heroPillars.map((pillar) => (
                 <span key={pillar.label} className="skill-chip skill-chip-sm">
                   <pillar.icon
@@ -77,7 +77,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={380}>
-            <div className="mt-10 flex flex-wrap items-center gap-4">
+            <div className="mt-6 flex flex-wrap items-center gap-4">
               <Button asChild size="lg">
                 <Link to="/contact">
                   Join the Community
@@ -94,7 +94,7 @@ const Hero = () => {
           </Reveal>
 
           <Reveal delay={460}>
-            <div className="mt-12 flex items-center gap-8">
+            <div className="mt-8 flex items-center gap-8">
               <div className="flex -space-x-3">
                 {['from-brand-500 to-flare-pink', 'from-flare-cyan to-brand-500', 'from-flare-pink to-brand-500', 'from-brand-500 to-flare-cyan'].map(
                   (g, i) => (
@@ -125,7 +125,7 @@ const Hero = () => {
           </Reveal>
 
           {/* Mobile-only stats */}
-          <div className="mt-10 flex flex-col gap-3 md:hidden">
+          <div className="mt-6 flex flex-col gap-3 md:hidden">
             <Reveal variant="up" delay={200}>
               <div className="glass card-lift rounded-2xl p-4">
                 <div className="flex items-center gap-3">
