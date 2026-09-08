@@ -54,7 +54,7 @@ const Hero = () => {
 
           <Reveal delay={220}>
             <p
-              className={`mt-4 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
+              className={`mt-1 max-w-3xl text-xl leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'
               }`}
             >
