@@ -29,7 +29,7 @@ const contactInfo = [
   },
   {
     label: 'Location',
-    value: 'Bihar, Aurangabad',
+    value: 'India',
     icon: FiMapPin,
     gradient: 'from-flare-pink to-brand-500',
   },

@@ -218,7 +218,7 @@ const Footer = () => {
                 <FiMapPin
                   className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`}
                 />
-                Bihar, Aurangabad 
+                 India 
               </li>
               <li className="flex items-center gap-3">
                 <FiPhone

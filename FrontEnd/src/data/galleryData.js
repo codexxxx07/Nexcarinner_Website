@@ -48,7 +48,6 @@ export const galleryCategories = [
   { slug: 'community-collab', label: 'Community Collab' },
   { slug: 'certifications', label: 'Certifications' },
   { slug: 'awards', label: 'Awards' },
-  { slug: 'events', label: 'Events' },
   { slug: 'community-moments', label: 'Community Moments' },
 ]
 
@@ -574,7 +573,7 @@ export const overviewItems = [
     year: 'Feb 2026',
     icon: FiZap,
     accent: 'from-brand-500 to-flare-pink',
-    link: '/gallery/events',
+    link: '/events',
     linkLabel: 'Explore events',
     featured: 'hero',
   },
