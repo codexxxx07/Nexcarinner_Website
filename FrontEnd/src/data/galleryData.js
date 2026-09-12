@@ -415,21 +415,6 @@ export const events = [
   },
 ]
 
-/*
- * ----------------------------------------------------------------
- * Community Moments — casual and memorable moments from the
- * community. Fields: id, title, description, year, icon, accent,
- * image, featured.
- *
- * `fit` controls how the photo fills the card cover:
- *   'cover'   — fills the frame (slight crop, no letterbox)
- *   'contain' — shows the whole photo (letterboxed, never cropped)
- * `imageAspect` optionally overrides the cover's aspect ratio for the
- *   card (e.g. to fit a portrait photo without heavy letterboxing).
- * Real photos live in ../assets/CommunityMoments/. To add one later,
- * drop the file in that folder, import it above, and append an entry.
- * ----------------------------------------------------------------
- */
 export const communityMoments = [
   {
     id: 'founding',

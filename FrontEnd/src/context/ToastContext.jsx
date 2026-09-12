@@ -58,11 +58,6 @@ const consumeAuthToast = () => {
   }
 }
 
-/* ---------------------------------------------------------------------------
- * Toast surface — skeuomorphic card matching the Nexcarinner design system.
- * Light mode uses the crisp white raised face; dark mode the liquid-glass
- * override. Entrance/exit are cheap transform+opacity transitions.
- * ------------------------------------------------------------------------- */
 const Toast = ({ toast, open, onClose }) => (
   <div
     role="status"
