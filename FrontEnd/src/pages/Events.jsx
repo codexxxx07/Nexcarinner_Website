@@ -8,6 +8,7 @@ import {
 } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import CtaBanner from '../components/CtaBanner'
+import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
@@ -65,14 +66,149 @@ const events = [
   },
 ]
 
+const sections = [
+  {
+    key: 'upcoming',
+    eyebrow: "What's next",
+    title: 'Upcoming Events',
+    empty: 'No upcoming events at the moment. Stay tuned!',
+  },
+  {
+    key: 'past',
+    eyebrow: 'Already happened',
+    title: 'Past Events',
+    empty: 'No past events to show yet — check back soon.',
+  },
+]
+
+const parseEventDate = (dateStr) => {
+  const parsed = new Date(`${dateStr} 12:00:00`)
+  return Number.isNaN(parsed.getTime()) ? null : parsed
+}
+
+const now = Date.now()
+
+const upcomingEventsSource = []
+const pastEventsSource = []
+
+for (const event of events) {
+  const timestamp = parseEventDate(event.date)
+  if (!timestamp || timestamp.getTime() > now) {
+    upcomingEventsSource.push(event)
+  } else {
+    pastEventsSource.push(event)
+  }
+}
+
+const EventCard = ({ event, dark, delay }) => {
+  const styleSet = typeStyles[event.type] || typeStyles.Workshops
+  const style = dark ? styleSet.dark : styleSet.light
+
+  return (
+    <Reveal delay={delay}>
+      <div
+        className={`glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 ${
+          event.featured ? 'ring-2 ring-brand-600/30' : ''
+        }`}
+      >
+        {event.featured && (
+          <div
+            className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
+              dark ? 'via-white/20' : 'via-flare-pink'
+            } to-transparent`}
+          />
+        )}
+
+        <div className="flex items-center justify-between gap-3">
+          <span
+            className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${style.bg} ${style.border} ${style.text}`}
+          >
+            {event.type === 'Webinars' && <FiRadio className="h-3 w-3" />}
+            {event.type}
+          </span>
+          <span
+            className={`flex items-center gap-1.5 text-xs transition-colors duration-300 ${
+              dark ? 'text-gray-500' : 'text-ink-400'
+            }`}
+          >
+            <FiCalendar className="h-3.5 w-3.5" />
+            {event.date}
+          </span>
+        </div>
+
+        <h3
+          className={`mt-5 font-display text-xl font-bold transition-colors duration-300 ${
+            dark ? 'text-white' : 'text-ink-50'
+          }`}
+        >
+          {event.title}
+        </h3>
+        <p
+          className={`mt-2.5 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
+            dark ? 'text-gray-400' : 'text-ink-400'
+          }`}
+        >
+          {event.description}
+        </p>
+
+        <div
+          className={`mt-5 flex items-center gap-6 border-t pt-4 text-sm transition-colors duration-300 ${
+            dark
+              ? 'border-white/8 text-gray-500'
+              : 'border-ink-800/80 text-ink-400'
+          }`}
+        >
+          <span className="flex items-center gap-2">
+            <FiClock className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+            {event.time}
+          </span>
+          <span className="flex items-center gap-2 truncate">
+            <FiMapPin className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+            {event.location}
+          </span>
+        </div>
+
+        <Button
+          variant="outline"
+          size="md"
+          className={`mt-5 w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
+        >
+          Register
+          <FiArrowRight className="h-4 w-4" />
+        </Button>
+      </div>
+    </Reveal>
+  )
+}
+
+const EmptySection = ({ message, dark }) => (
+  <Reveal>
+    <div className="glass flex flex-col items-center justify-center rounded-2xl px-6 py-16 text-center">
+      <FiCalendar className={`h-8 w-8 ${dark ? 'text-gray-500' : 'text-ink-300'}`} />
+      <p
+        className={`mt-4 max-w-sm text-sm leading-relaxed transition-colors duration-300 ${
+          dark ? 'text-gray-400' : 'text-ink-400'
+        }`}
+      >
+        {message}
+      </p>
+    </div>
+  </Reveal>
+)
+
 const Events = () => {
   const { dark } = useTheme()
   const [activeFilter, setActiveFilter] = useState('All')
 
-  const filteredEvents =
+  const upcomingEvents =
     activeFilter === 'All'
-      ? events
-      : events.filter((event) => event.type === activeFilter)
+      ? upcomingEventsSource
+      : upcomingEventsSource.filter((event) => event.type === activeFilter)
+
+  const pastEvents =
+    activeFilter === 'All'
+      ? pastEventsSource
+      : pastEventsSource.filter((event) => event.type === activeFilter)
 
   return (
     <>
@@ -119,90 +255,29 @@ const Events = () => {
         </Reveal>
       </section>
 
-      {/* Events grid */}
-      <section className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredEvents.map((event, index) => {
-            const styleSet = typeStyles[event.type] || typeStyles.Workshops
-            const style = dark ? styleSet.dark : styleSet.light
-            return (
-              <Reveal key={event.title} delay={(index % 3) * 100}>
-                <div
-                  className={`glass card-lift group relative flex h-full flex-col overflow-hidden rounded-2xl p-6 ${
-                    event.featured ? 'ring-2 ring-brand-600/30' : ''
-                  }`}
-                >
-                  {event.featured && (
-                    <div
-                      className={`pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent ${
-                        dark ? 'via-white/20' : 'via-flare-pink'
-                      } to-transparent`}
-                    />
-                  )}
-
-                  <div className="flex items-center justify-between gap-3">
-                    <span
-                      className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${style.bg} ${style.border} ${style.text}`}
-                    >
-                      {event.type === 'Webinars' && <FiRadio className="h-3 w-3" />}
-                      {event.type}
-                    </span>
-                    <span
-                      className={`flex items-center gap-1.5 text-xs transition-colors duration-300 ${
-                        dark ? 'text-gray-500' : 'text-ink-400'
-                      }`}
-                    >
-                      <FiCalendar className="h-3.5 w-3.5" />
-                      {event.date}
-                    </span>
-                  </div>
-
-                  <h3
-                    className={`mt-5 font-display text-xl font-bold transition-colors duration-300 ${
-                      dark ? 'text-white' : 'text-ink-50'
-                    }`}
-                  >
-                    {event.title}
-                  </h3>
-                  <p
-                    className={`mt-2.5 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
-                      dark ? 'text-gray-400' : 'text-ink-400'
-                    }`}
-                  >
-                    {event.description}
-                  </p>
-
-                  <div
-                    className={`mt-5 flex items-center gap-6 border-t pt-4 text-sm transition-colors duration-300 ${
-                      dark
-                        ? 'border-white/8 text-gray-500'
-                        : 'border-ink-800/80 text-ink-400'
-                    }`}
-                  >
-                    <span className="flex items-center gap-2">
-                      <FiClock className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-                      {event.time}
-                    </span>
-                    <span className="flex items-center gap-2 truncate">
-                      <FiMapPin className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-                      {event.location}
-                    </span>
-                  </div>
-
-                  <Button
-                    variant="outline"
-                    size="md"
-                    className={`mt-5 w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
-                  >
-                    Register
-                    <FiArrowRight className="h-4 w-4" />
-                  </Button>
-                </div>
-              </Reveal>
-            )
-          })}
-        </div>
-      </section>
+      {/* Event sections */}
+      {sections.map((section) => {
+        const items = section.key === 'upcoming' ? upcomingEvents : pastEvents
+        return (
+          <section key={section.key} className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
+            <SectionHeading eyebrow={section.eyebrow} title={section.title} />
+            {items.length > 0 ? (
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {items.map((event, index) => (
+                  <EventCard
+                    key={event.title}
+                    event={event}
+                    dark={dark}
+                    delay={(index % 3) * 100}
+                  />
+                ))}
+              </div>
+            ) : (
+              <EmptySection message={section.empty} dark={dark} />
+            )}
+          </section>
+        )
+      })}
 
       <CtaBanner
         title={
