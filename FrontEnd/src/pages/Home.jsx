@@ -14,7 +14,6 @@ import { useTheme } from '../context/ThemeContext'
 import {
   stats,
   communities,
-  groups,
   announcements,
   skills,
   heroPillars,
@@ -646,54 +645,6 @@ const Spotlight = () => {
   )
 }
 
-const Groups = () => {
-  const { dark } = useTheme()
-  return (
-  <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
-    <SectionHeading
-      eyebrow="Active Groups"
-      title={
-        <>
-          Small teams.
-          <span className="text-gradient"> Big momentum.</span>
-        </>
-      }
-      description="Focused study groups and collaborative teams working on real projects — join one that fits."
-    />
-
-    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-      {groups.map((group, index) => (
-        <Reveal key={group.category} delay={index * 80}>
-          <div className="glass card-lift group h-full rounded-2xl p-6">
-            <span className="chip">{group.category}</span>
-            <ul className="mt-4 space-y-2.5">
-              {group.items.map((item) => (
-                <li
-                  key={item}
-                  className={`flex items-center gap-3 text-sm transition-colors duration-200 ${
-                    dark
-                      ? 'text-gray-500 group-hover:text-gray-300'
-                      : 'text-ink-400 group-hover:text-ink-700'
-                  }`}
-                >
-                  <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-linear-to-r from-brand-600 to-flare-pink" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <div
-              className={`mt-5 h-px w-full bg-linear-to-r ${
-                dark ? 'from-white/10' : 'from-brand-500/40'
-              } to-transparent`}
-            />
-          </div>
-        </Reveal>
-      ))}
-    </div>
-  </section>
-  )
-}
-
 const Home = () => {
   const { isLoaded, isSignedIn } = useAuth()
   const navigate = useNavigate()
@@ -714,7 +665,6 @@ const Home = () => {
       <Communities />
       <SkillsMarquee />
       <Spotlight />
-      <Groups />
       <CtaBanner
         title={
           <>
