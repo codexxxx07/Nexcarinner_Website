@@ -110,7 +110,7 @@ const Blog = () => {
           {posts.map((post, index) => (
             <Reveal key={post.id} delay={(index % 3) * 80}>
               <article
-                className={`group h-full cursor-pointer rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 ${
+                className={`group h-full rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 ${
                   dark
                     ? 'bg-[#1a1a1a] border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:border-white/14 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]'
                     : 'glass card-lift'

@@ -160,7 +160,7 @@ export const HomeSkeleton = () => (
       </div>
 
       <div className="relative mx-auto w-full max-w-lg">
-        <Skeleton className="aspect-[4/5] w-full rounded-[1.75rem]" />
+        <Skeleton className="aspect-4/5 w-full rounded-[1.75rem]" />
         <div className="absolute right-2 top-8 sm:-right-4">
           <div className="skeleton-surface flex items-center gap-3 px-4 py-3">
             <Skeleton className="h-10 w-10 rounded-xl" />
@@ -249,7 +249,7 @@ export const GallerySkeleton = () => (
       </div>
       <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3" aria-hidden="true">
         {[0, 1, 2, 3, 4, 5].map((i) => (
-          <div key={i} className="skeleton-surface relative aspect-[4/3] overflow-hidden p-0">
+          <div key={i} className="skeleton-surface relative aspect-4/3 overflow-hidden p-0">
             <Skeleton className="absolute inset-0 h-full w-full rounded-none" />
           </div>
         ))}
@@ -338,6 +338,44 @@ export const BlogSkeleton = () => (
   </PageFrame>
 )
 
+export const GuidesSkeleton = () => (
+  <PageFrame>
+    <section className="mx-auto w-full max-w-7xl px-6 lg:px-8" aria-hidden="true">
+      <Skeleton className="h-9 w-20 rounded-full" />
+      <div className="mt-8 max-w-3xl">
+        <SkeletonChip />
+        <SkeletonHeroHeading className="mt-5" />
+        <SkeletonParagraph className="mt-5 max-w-2xl" lines={2} />
+      </div>
+      <CardGrid count={6} variant="icon" className="mt-16 sm:grid-cols-2 lg:grid-cols-3" />
+    </section>
+  </PageFrame>
+)
+
+export const StaticSkeleton = () => (
+  <PageFrame>
+    <section className="mx-auto w-full max-w-3xl px-6 lg:px-8" aria-hidden="true">
+      <Skeleton className="h-9 w-20 rounded-full" />
+      <div className="mt-8 max-w-xl">
+        <SkeletonChip />
+        <SkeletonHeroHeading className="mt-5" />
+        <SkeletonParagraph className="mt-5" lines={2} />
+      </div>
+      <div className="mt-10 space-y-4">
+        {[0, 1, 2].map((i) => (
+          <div key={i} className="skeleton-surface p-6">
+            <Skeleton className="h-6 w-48 rounded-lg" />
+            <SkeletonParagraph className="mt-4" lines={3} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-10">
+        <PageSkeletonCtaBanner />
+      </div>
+    </section>
+  </PageFrame>
+)
+
 export const DocumentationSkeleton = () => (
   <PageFrame>
     <section className="mx-auto w-full max-w-7xl px-6 lg:px-8" aria-hidden="true">
@@ -417,9 +455,20 @@ const PageSkeleton = ({ pathname = '/' }) => {
   if (path.startsWith('/contact')) return <ContactSkeleton />
   if (path.startsWith('/blog')) return <BlogSkeleton />
   if (path.startsWith('/documentation')) return <DocumentationSkeleton />
-  if (path.startsWith('/guides')) return <BlogSkeleton />
+  if (path.startsWith('/guides')) return <GuidesSkeleton />
   if (path.startsWith('/faq')) return <FaqSkeleton />
   if (path === '/') return <HomeSkeleton />
+  if (path === '/app' || path.startsWith('/app/')) return <HomeSkeleton />
+  if (
+    path === '/privacy-policy' ||
+    path === '/terms-of-service' ||
+    path === '/sign-in' ||
+    path === '/sign-up' ||
+    path === '/login' ||
+    path === '/signup'
+  ) {
+    return <StaticSkeleton />
+  }
   return <NotFoundSkeleton />
 }
 

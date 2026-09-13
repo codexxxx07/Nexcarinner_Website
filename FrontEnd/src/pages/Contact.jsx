@@ -81,6 +81,11 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const subject = encodeURIComponent(formData.subject || 'Contact via Nexcarinner website')
+    const body = encodeURIComponent(
+      [formData.name, formData.email, '', formData.message].join('\n')
+    )
+    window.location.href = `mailto:nexcarinner.support@gmail.com?subject=${subject}&body=${body}`
     setSubmitted(true)
   }
 

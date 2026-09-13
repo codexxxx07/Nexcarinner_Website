@@ -141,7 +141,7 @@ const Documentation = () => {
                   {section.items.map((item) => (
                     <li key={item}>
                       <span
-                        className={`group/link inline-flex cursor-pointer items-center gap-2 text-sm transition-colors duration-200 ${
+                        className={`group/link inline-flex items-center gap-2 text-sm transition-colors duration-200 ${
                           dark
                             ? 'text-gray-600 hover:text-gray-200'
                             : 'text-ink-400 hover:text-brand-700'
