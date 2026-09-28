@@ -8,12 +8,6 @@ import {
 import CardSkeleton from './CardSkeleton'
 import { cn } from '../../lib/utils'
 
-/* ============================================================
- * Reusable wireframe fragments. Every block is aria-hidden and
- * sized to the real page structure so there is no layout jump
- * when the real content mounts underneath.
- * ============================================================ */
-
 const NAV_LINKS = ['Home', 'Events', 'Gallery', 'About', 'Contact']
 
 export const PageSkeletonNavbar = () => (

@@ -1,23 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-/*
- * React Bits — BlurText (adapted).
- * React Bits distributes via copy-paste (shadcn/jsrepo); you own the code.
- * Words/letters start blurred and resolve crisply when scrolled into view.
- *
- * Adapted to run on IntersectionObserver + CSS transitions instead of a
- * motion dependency — identical visual effect, zero added bundle weight.
- *
- * Props:
- *   text          – string to reveal
- *   delay         – ms between each word/letter
- *   className     – applied to the root element
- *   animateBy     – "words" (default) | "letters"
- *   direction     – "top" (default) | "bottom"
- *   threshold     – IntersectionObserver threshold
- *   as            – root element tag (default "p")
- *   wordClassNames – optional array of classes, one per word (words mode)
- */
 const BlurText = ({
   text = '',
   delay = 80,
