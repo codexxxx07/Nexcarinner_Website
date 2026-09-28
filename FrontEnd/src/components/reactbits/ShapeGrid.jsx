@@ -1,28 +1,6 @@
 import { useRef, useEffect } from 'react';
 import './ShapeGrid.css';
 
-/*
- * React Bits — ShapeGrid (adapted).
- * React Bits distributes via copy-paste (shadcn/jsrepo); you own the code.
- * Animated grid of shapes that scrolls in one direction and fills the
- * shape under the cursor (with an optional fading trail).
- *
- * Adapted to run as a site-wide background: the canvas sits behind the
- * page content with pointer-events: none, so hover tracking listens on
- * window/document instead of the canvas itself. Identical visual effect,
- * zero added bundle weight, and the cursor still lights up cells on every
- * page.
- *
- * Props:
- *   direction        – 'right' (default) | 'up' | 'down' | 'left' | 'diagonal'
- *   speed            – animation speed multiplier
- *   borderColor      – color of the shape borders
- *   squareSize       – size of individual shapes in pixels
- *   hoverFillColor   – fill color when hovering over shapes
- *   shape            – 'square' (default) | 'hexagon' | 'circle' | 'triangle'
- *   hoverTrailAmount – number of trailing hovered shapes (0 = no trail)
- *   className        – applied to the canvas element
- */
 const ShapeGrid = ({
   direction = 'right',
   speed = 1,
