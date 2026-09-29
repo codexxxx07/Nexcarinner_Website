@@ -1,5 +1,14 @@
 import { Component } from 'react'
 
+/*
+ * The fallback was hardcoded `text-white`, which is invisible in light mode
+ * (the page is #f2f0f7) and left a blank panel with only the reload button
+ * visible. Both themes are now explicit.
+ *
+ * `resetKey` is expected to change with the route so navigating away from a
+ * crashed page clears the error state; otherwise the boundary latched the
+ * whole app on one throw.
+ */
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props)
@@ -14,12 +23,20 @@ class ErrorBoundary extends Component {
     console.error('ErrorBoundary caught:', error, errorInfo)
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.state.hasError && prevProps.resetKey !== this.props.resetKey) {
+      this.setState({ hasError: false })
+    }
+  }
+
   render() {
     if (this.state.hasError) {
       return (
         <div className="flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
-          <h2 className="mb-3 text-2xl font-bold text-white">Something went wrong</h2>
-          <p className="mb-6 max-w-md text-sm text-white/60">
+          <h2 className="mb-3 text-2xl font-bold text-ink-50 dark:text-white">
+            Something went wrong
+          </h2>
+          <p className="mb-6 max-w-md text-sm text-ink-400 dark:text-white/60">
             An unexpected error occurred. Please try refreshing the page.
           </p>
           <button

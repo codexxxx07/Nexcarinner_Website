@@ -12,6 +12,7 @@ import SectionHeading from "../components/SectionHeading";
 import CtaBanner from "../components/CtaBanner";
 import SocialIcon from "../components/SocialIcon";
 import { useTheme } from "../context/ThemeContext";
+import { usePageTitle } from "../hooks/usePageTitle";
 import ImageSkeleton from "../components/Skeleton/ImageSkeleton";
 import GunjanImg from "../assets/images/Gunjan.jpg";
 import AnkitaImg from "../assets/images/Ankita.jpg";
@@ -356,6 +357,8 @@ const TeamCard = ({ member }) => {
 };
 
 const About = () => {
+  usePageTitle("About")
+
   const { dark } = useTheme();
   return (
     <>

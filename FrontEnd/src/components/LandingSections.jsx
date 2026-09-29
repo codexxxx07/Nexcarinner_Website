@@ -167,7 +167,7 @@ export const LandingHero = ({ variant = 'home' }) => {
               <div className="text-sm">
                 <p
                   className={`font-semibold transition-colors duration-300 ${
-                    dark ? 'text-gray-200' : 'text-ink-700'
+                    dark ? 'text-gray-200' : 'text-ink-50'
                   }`}
                 >
                   4500+ members
@@ -188,7 +188,7 @@ export const LandingHero = ({ variant = 'home' }) => {
                     <FiZap className="h-4 w-4" />
                   </span>
                   <div>
-                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-50'}`}>
                       Annual Hackathon
                     </p>
                     <p className={`text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
@@ -215,7 +215,7 @@ export const LandingHero = ({ variant = 'home' }) => {
                     ))}
                   </div>
                   <div>
-                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-700'}`}>
+                    <p className={`text-xs font-semibold ${dark ? 'text-gray-200' : 'text-ink-50'}`}>
                       4500+ members
                     </p>
                     <p className={`flex items-center gap-1.5 text-xs ${dark ? 'text-gray-500' : 'text-ink-400'}`}>
@@ -380,7 +380,7 @@ export const LandingCommunities = ({ variant = 'home' }) => {
           className={`inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ${
             dark
               ? 'text-gray-300 group-hover:text-white'
-              : 'text-ink-700 group-hover:text-brand-700'
+              : 'text-ink-50 group-hover:text-brand-700'
           }`}
         >
           Join the group
@@ -663,7 +663,7 @@ export const LandingGroups = () => {
                   className={`flex items-center gap-3 text-sm transition-colors duration-200 ${
                     dark
                       ? 'text-gray-500 group-hover:text-gray-300'
-                      : 'text-ink-400 group-hover:text-ink-700'
+                      : 'text-ink-400 group-hover:text-ink-50'
                   }`}
                 >
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-linear-to-r from-brand-600 to-flare-pink" />

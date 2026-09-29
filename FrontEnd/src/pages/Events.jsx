@@ -12,6 +12,7 @@ import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/ui/button'
 import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const filters = ['All', 'Workshops', 'Hackathons', 'Webinars']
 
@@ -197,6 +198,8 @@ const EmptySection = ({ message, dark }) => (
 )
 
 const Events = () => {
+  usePageTitle('Events')
+
   const { dark } = useTheme()
   const [activeFilter, setActiveFilter] = useState('All')
 
@@ -242,7 +245,7 @@ const Events = () => {
       <section className="mx-auto max-w-7xl px-6 pt-6 lg:px-8">
         <Reveal>
           <div className="flex flex-wrap items-center justify-center">
-            <Tabs value={activeFilter} onValueChange={setActiveFilter} defaultValue="All">
+            <Tabs value={activeFilter} onValueChange={setActiveFilter}>
               <TabsList className="flex-wrap h-auto py-1.5">
                 {filters.map((filter) => (
                   <TabsTrigger key={filter} value={filter}>

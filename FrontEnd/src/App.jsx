@@ -4,6 +4,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/Layout'
 import { ThemeProvider, useTheme } from './context/ThemeContext'
+import PageSkeleton from './components/Skeleton/PageSkeleton'
 import PageSkeletonLoader from './components/Skeleton/PageSkeletonLoader'
 import ProtectedRoute from './components/ProtectedRoute.jsx'
 import ErrorBoundary from './components/ErrorBoundary.jsx'
@@ -70,6 +71,8 @@ function ClerkSignUpPage() {
 }
 
 function App() {
+  const location = useLocation()
+
   return (
     <ThemeProvider>
       <TargetCursor targetSelector=".cursor-target" />
@@ -77,8 +80,18 @@ function App() {
         <ToastProvider>
           <Layout>
             <ScrollToTop />
-            <ErrorBoundary>
-              <Suspense fallback={null}>
+            <ErrorBoundary resetKey={location.pathname}>
+              {/* fallback={null} painted a blank route area while a lazy
+                  chunk loaded on in-app navigation. The page overlay only
+                  waits on document state and image decode, not on the chunk,
+                  so the two can cover the gap independently. */}
+              <Suspense
+                fallback={
+                  <div className="bg-ink-950 dark:bg-[#0f0f0f]">
+                    <PageSkeleton pathname={location.pathname} />
+                  </div>
+                }
+              >
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/events" element={<Events />} />

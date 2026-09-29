@@ -1,4 +1,5 @@
 import CtaBanner from '../components/CtaBanner'
+import { usePageTitle } from '../hooks/usePageTitle'
 import {
   LandingHero,
   LandingAnnouncements,
@@ -10,6 +11,8 @@ import {
 } from '../components/LandingSections'
 
 const Dashboard = () => {
+  usePageTitle('Dashboard')
+
   return (
     <>
       <LandingHero variant="dashboard" />

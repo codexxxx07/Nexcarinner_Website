@@ -17,7 +17,7 @@ const buttonVariants = cva(
         gradient: 'btn-gradient text-white',
         outline: 'btn-outline',
         soft: 'text-brand-700 border border-brand-500/20 bg-brand-500/10 hover:bg-brand-500/15 hover:border-brand-500/35 shadow-[inset_0_1px_0_rgba(255,255,255,0.7)] dark:text-gray-200 dark:bg-white/6 dark:border-white/12 dark:hover:bg-white/10 dark:hover:border-white/22 dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]',
-        ghost: 'text-ink-400 hover:bg-white/70 hover:text-ink-900 dark:text-gray-400 dark:hover:bg-white/8 dark:hover:text-white',
+        ghost: 'text-ink-400 hover:bg-white/70 hover:text-ink-50 dark:text-gray-400 dark:hover:bg-white/8 dark:hover:text-white',
         link: 'text-brand-700 underline-offset-4 hover:underline dark:text-gray-200',
       },
       size: {

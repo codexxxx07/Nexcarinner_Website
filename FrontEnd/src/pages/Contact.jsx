@@ -13,6 +13,7 @@ import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/ui/button'
 import { useTheme } from '../context/ThemeContext'
+import { usePageTitle } from '../hooks/usePageTitle'
 
 const contactInfo = [
   {
@@ -62,6 +63,8 @@ const faqs = [
 ]
 
 const Contact = () => {
+  usePageTitle('Contact')
+
   const { dark } = useTheme()
   const [formData, setFormData] = useState({
     name: '',
@@ -161,7 +164,7 @@ const Contact = () => {
                       <label
                         htmlFor="name"
                         className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
-                          dark ? 'text-gray-400' : 'text-ink-600'
+                          dark ? 'text-gray-400' : 'text-ink-400'
                         }`}
                       >
                         Name
@@ -181,7 +184,7 @@ const Contact = () => {
                       <label
                         htmlFor="email"
                         className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
-                          dark ? 'text-gray-400' : 'text-ink-600'
+                          dark ? 'text-gray-400' : 'text-ink-400'
                         }`}
                       >
                         Email
@@ -203,7 +206,7 @@ const Contact = () => {
                     <label
                       htmlFor="subject"
                       className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
-                        dark ? 'text-gray-400' : 'text-ink-600'
+                        dark ? 'text-gray-400' : 'text-ink-400'
                       }`}
                     >
                       Subject
@@ -224,7 +227,7 @@ const Contact = () => {
                     <label
                       htmlFor="message"
                       className={`mb-1.5 block text-sm font-medium transition-colors duration-300 ${
-                        dark ? 'text-gray-400' : 'text-ink-600'
+                        dark ? 'text-gray-400' : 'text-ink-400'
                       }`}
                     >
                       Message
@@ -323,7 +326,7 @@ const Contact = () => {
                     : 'linear-gradient(135deg, #7c3aed 0%, #8b5cf6 50%, #c026d3 100%)',
                   border: dark ? '1px solid rgba(255,255,255,0.1)' : undefined,
                   boxShadow: dark
-                    ? 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px_20px_-8px_rgba(0,0,0,0.5)'
+                    ? 'inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 20px -8px rgba(0,0,0,0.5)'
                     : [
                         'inset 0 1px 0 rgba(255,255,255,0.25)',
                         '0 1px 2px rgba(34,29,58,0.15)',

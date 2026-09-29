@@ -1,6 +1,6 @@
-import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
+import { usePageTitle } from '../hooks/usePageTitle'
 import CtaBanner from '../components/CtaBanner'
 import {
   LandingHero,
@@ -13,15 +13,12 @@ import {
 
 const Home = () => {
   const { isLoaded, isSignedIn } = useAuth()
-  const navigate = useNavigate()
 
-  useEffect(() => {
-    if (isLoaded && isSignedIn) {
-      navigate('/app', { replace: true })
-    }
-  }, [isLoaded, isSignedIn, navigate])
+  usePageTitle('Home')
 
-  if (isLoaded && isSignedIn) return null
+  // Declarative redirect: an effect + `return null` still painted the landing
+  // page for a frame before the navigation committed.
+  if (isLoaded && isSignedIn) return <Navigate to="/app" replace />
 
   return (
     <>

@@ -104,6 +104,26 @@
     outline-offset: 3px;
     border-radius: 4px;
   }
+
+  /*
+   * Theme switch crossfade — every element fades color/background/border
+   * changes so toggling dark mode is not an instant repaint.
+   *
+   * MUST live in @layer base. Unlayered rules outrank every layered rule
+   * regardless of specificity, so declaring this `*` selector unlayered
+   * silently overrode Tailwind's entire `transition-*` / `duration-*` /
+   * `ease-*` utility set sitewide: `transition-transform`, `transition-all`
+   * and `transition-opacity` stopped animating (accordion chevrons, card
+   * lift, toast slide-in all snapped), and every `duration-*` collapsed to
+   * 0.3s. In `base`, the utilities layer wins as intended.
+   */
+  *,
+  *::before,
+  *::after {
+    transition-property: background-color, border-color, color, box-shadow, backdrop-filter;
+    transition-duration: 0.3s;
+    transition-timing-function: ease;
+  }
 }
 
 @layer components {
@@ -605,13 +625,8 @@
 .text-balance { text-wrap: balance; }
 
 
-/* Transition everything smoothly on theme switch */
-*, *::before, *::after {
-  transition-property: background-color, border-color, color, box-shadow, backdrop-filter;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-/* But don't override animation durations for reveal/marquee */
+/* But don't override animation durations for reveal/marquee.
+   Unlayered so it still wins over the `*` rule in @layer base. */
 .reveal, .reveal * {
   transition-property: opacity, transform, background-color, border-color, color, box-shadow;
 }

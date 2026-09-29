@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi'
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
 import { useTheme } from '../context/ThemeContext'
@@ -47,23 +47,30 @@ const ThemeToggle = () => {
 
 const Navbar = () => {
   const { dark } = useTheme()
+  const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
   const scrolledRef = useRef(false)
+  const openRef = useRef(false)
 
-  const userButtonAppearance = {
-    ...clerkAppearance(dark),
-    elements: {
-      avatarBox: {
-        width: '2.25rem',
-        height: '2.25rem',
-        borderRadius: '9999px',
-        border: dark
-          ? '1px solid rgba(255,255,255,0.14)'
-          : '1px solid rgba(34,29,58,0.18)',
+  // Rebuilt every render without useMemo, so Clerk re-parsed this appearance
+  // object on every Navbar render.
+  const userButtonAppearance = useMemo(
+    () => ({
+      ...clerkAppearance(dark),
+      elements: {
+        avatarBox: {
+          width: '2.25rem',
+          height: '2.25rem',
+          borderRadius: '9999px',
+          border: dark
+            ? '1px solid rgba(255,255,255,0.14)'
+            : '1px solid rgba(34,29,58,0.18)',
+        },
       },
-    },
-  }
+    }),
+    [dark],
+  )
 
   useEffect(() => {
     const onScroll = () => {
@@ -77,6 +84,15 @@ const Navbar = () => {
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Browser back/forward never fires a click, so the mobile sheet stayed open
+  // across history navigation.
+  useEffect(() => {
+    if (openRef.current) {
+      openRef.current = false
+      setOpen(false)
+    }
+  }, [pathname])
 
   return (
     <header className="nx-nav fixed inset-x-0 top-0 z-50">
@@ -142,7 +158,10 @@ const Navbar = () => {
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <button
-              onClick={() => setOpen((v) => !v)}
+              onClick={() => {
+                openRef.current = !open
+                setOpen((v) => !v)
+              }}
               aria-label="Toggle menu"
               aria-expanded={open}
               className="nx-nav__icon flex h-10 w-10 cursor-target items-center justify-center rounded-2xl border"

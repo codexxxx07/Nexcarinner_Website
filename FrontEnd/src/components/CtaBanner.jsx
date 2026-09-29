@@ -33,7 +33,11 @@ const CtaBanner = ({
                 }
               : {
                   background: 'linear-gradient(160deg, #ffffff 0%, #faf9fc 45%, #f3f0ff 100%)',
-                  border: undefined,
+                  /* The `border` utility sets width only — with no
+                     border-color it resolves to currentColor, which
+                     inherits body ink-300 and drew a hard dark ring
+                     on the light card. Use the .glass light hairline. */
+                  border: '1px solid rgba(34, 29, 58, 0.09)',
                   boxShadow: [
                     'inset 0 1px 0 rgba(255,255,255,1)',
                     '0 1px 2px rgba(34,29,58,0.05)',

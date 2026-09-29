@@ -6,7 +6,9 @@ const Logo = ({ className = '' }) => {
 
   if (error) {
     return (
-      <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-linear-to-br from-brand-500 to-brand-700 font-display text-xs font-bold text-white md:h-10 md:w-10 md:text-sm">
+      <span
+        className={`flex items-center justify-center rounded-xl bg-linear-to-br from-brand-500 to-brand-700 font-display text-xs font-bold text-white md:text-sm ${className}`}
+      >
         NC
       </span>
     )

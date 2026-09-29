@@ -25,7 +25,7 @@ const TabsTrigger = forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      'inline-flex items-center justify-center whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold text-ink-400 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(124,58,237,0.08),0_2px_8px_-2px_rgba(124,58,237,0.18)] hover:text-ink-700 dark:text-gray-400 dark:data-[state=active]:bg-white/10 dark:data-[state=active]:text-white dark:data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:text-gray-200',
+      'inline-flex items-center justify-center whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold text-ink-400 transition-all duration-200 ease-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-white data-[state=active]:text-brand-700 data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.9),inset_0_-1px_0_rgba(124,58,237,0.08),0_2px_8px_-2px_rgba(124,58,237,0.18)] hover:text-ink-50 dark:text-gray-400 dark:data-[state=active]:bg-white/10 dark:data-[state=active]:text-white dark:data-[state=active]:shadow-[inset_0_1px_0_rgba(255,255,255,0.08)] dark:hover:text-gray-200',
       className,
     )}
     {...props}

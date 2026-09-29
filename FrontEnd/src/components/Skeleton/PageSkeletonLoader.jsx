@@ -76,6 +76,21 @@ const PageSkeletonLoader = ({ children }) => {
   )
   const revealing = useSkeletonReady(preloads)
 
+  /* The overlay fades out over 340ms but stayed mounted at opacity 0, so the
+   * wireframe and its infinite shimmer animations kept running for the whole
+   * session. Drop the children once the fade has finished. Tracked by
+   * navigation key rather than a boolean, so a new navigation re-arms it with
+   * no synchronous reset inside the effect. */
+  const [fadedKey, setFadedKey] = useState(null)
+
+  useEffect(() => {
+    if (!revealing) return
+    const timer = setTimeout(() => setFadedKey(location.key), 400)
+    return () => clearTimeout(timer)
+  }, [revealing, location.key])
+
+  const fadedOut = revealing && fadedKey === location.key
+
   return (
     <>
       <div
@@ -88,7 +103,7 @@ const PageSkeletonLoader = ({ children }) => {
         role={revealing ? undefined : 'status'}
         aria-label={revealing ? undefined : 'Loading page'}
       >
-        <PageSkeleton key={location.key} pathname={location.pathname} />
+        {!fadedOut && <PageSkeleton key={location.key} pathname={location.pathname} />}
       </div>
       <div className="relative z-0">{children}</div>
     </>

@@ -4,7 +4,7 @@ import ClickSpark from './ClickSpark'
 import ShapeGrid from './reactbits/ShapeGrid'
 import { useTheme } from '../context/ThemeContext'
 
-const LayoutInner = ({ children }) => {
+const Layout = ({ children }) => {
   const { dark } = useTheme()
 
   return (
@@ -67,10 +67,6 @@ const LayoutInner = ({ children }) => {
       </ClickSpark>
     </div>
   )
-}
-
-const Layout = ({ children }) => {
-  return <LayoutInner>{children}</LayoutInner>
 }
 
 export default Layout

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useCallback, useMemo } from 'react';
+import { useEffect, useRef, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import './TargetCursor.css';
@@ -44,7 +44,6 @@ const TargetCursor = ({
   const dotRef = useRef(null);
   const containingBlockRef = useRef(null);
 
-  const isActiveRef = useRef(false);
   const targetCornerPositionsRef = useRef(null);
   const tickerFnRef = useRef(null);
   const activeStrengthRef = useRef(0);
@@ -66,17 +65,6 @@ const TargetCursor = ({
     }),
     []
   );
-
-  const moveCursor = useCallback((x, y) => {
-    if (!cursorRef.current) return;
-    const { x: offsetX, y: offsetY } = getContainingBlockOffset(containingBlockRef.current);
-    gsap.to(cursorRef.current, {
-      x: x - offsetX,
-      y: y - offsetY,
-      duration: 0.1,
-      ease: 'power3.out'
-    });
-  }, []);
 
   useEffect(() => {
     if (isMobile || !cursorRef.current) return;
@@ -158,7 +146,16 @@ const TargetCursor = ({
 
     tickerFnRef.current = tickerFn;
 
-    const moveHandler = e => moveCursor(e.clientX, e.clientY);
+    // gsap.quickTo reuses one tween per property instead of allocating a new
+    // gsap.to() on every mousemove event.
+    const setCursorX = gsap.quickTo(cursor, 'x', { duration: 0.1, ease: 'power3.out' });
+    const setCursorY = gsap.quickTo(cursor, 'y', { duration: 0.1, ease: 'power3.out' });
+
+    const moveHandler = e => {
+      const { x: offsetX, y: offsetY } = getOffset();
+      setCursorX(e.clientX - offsetX);
+      setCursorY(e.clientY - offsetY);
+    };
     window.addEventListener('mousemove', moveHandler);
 
     const scrollHandler = () => {
@@ -250,7 +247,6 @@ const TargetCursor = ({
         { x: rect.left - borderWidth - offsetX, y: rect.bottom + borderWidth - cornerSize - offsetY }
       ];
 
-      isActiveRef.current = true;
       gsap.ticker.add(tickerFnRef.current);
 
       gsap.to(activeStrengthRef, {
@@ -271,7 +267,6 @@ const TargetCursor = ({
       const leaveHandler = () => {
         gsap.ticker.remove(tickerFnRef.current);
 
-        isActiveRef.current = false;
         targetCornerPositionsRef.current = null;
         gsap.set(activeStrengthRef, { current: 0, overwrite: true });
         activeTarget = null;
@@ -366,17 +361,23 @@ const TargetCursor = ({
         cleanupTarget(activeTarget);
       }
 
+      // A pending resume callback would otherwise fire after unmount and
+      // start a new `repeat: -1` timeline that nothing ever kills.
+      if (resumeTimeout) {
+        clearTimeout(resumeTimeout);
+        resumeTimeout = null;
+      }
+
       spinTl.current?.kill();
+      spinTl.current = null;
       document.body.style.cursor = originalCursor;
 
-      isActiveRef.current = false;
       targetCornerPositionsRef.current = null;
       activeStrengthRef.current = 0;
     };
   }, [
     targetSelector,
     spinDuration,
-    moveCursor,
     constants,
     hideDefaultCursor,
     isMobile,
@@ -385,16 +386,6 @@ const TargetCursor = ({
     cursorColor,
     cursorColorOnTarget
   ]);
-
-  useEffect(() => {
-    if (isMobile || !cursorRef.current || !spinTl.current) return;
-    if (spinTl.current.isActive()) {
-      spinTl.current.kill();
-      spinTl.current = gsap
-        .timeline({ repeat: -1 })
-        .to(cursorRef.current, { rotation: '+=360', duration: spinDuration, ease: 'none' });
-    }
-  }, [spinDuration, isMobile]);
 
   if (isMobile || typeof document === 'undefined') {
     return null;
