@@ -213,6 +213,9 @@ const team = [
   },
 ];
 
+const featureTeam = team.slice(0, -2);
+const closingTeam = team.slice(-2);
+
 const timeline = [
   {
     year: "2024",
@@ -574,8 +577,19 @@ const About = () => {
           description="A small, obsessed crew keeping the community sharp, welcoming, and always moving."
         />
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {team.map((member, index) => (
+          {featureTeam.map((member, index) => (
             <Reveal key={member.name} delay={(index % 3) * 80}>
+              <TeamCard member={member} />
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-8 flex flex-wrap justify-center gap-8">
+          {closingTeam.map((member, index) => (
+            <Reveal
+              key={member.name}
+              delay={((featureTeam.length + index) % 3) * 80}
+              className="w-full sm:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-4rem)/3)]"
+            >
               <TeamCard member={member} />
             </Reveal>
           ))}
