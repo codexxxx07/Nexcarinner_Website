@@ -617,6 +617,273 @@
 }
 
 /* ============================================================
+ * NEUMORPHIC NAVBAR
+ * ------------------------------------------------------------
+ * Scoped to `.nx-nav` so nothing leaks into the rest of the app.
+ * Declared unlayered (same as .skill-chip / .presence-dot) so these
+ * rules can win over the global `*` transition rule and over
+ * Tailwind's layered utilities.
+ *
+ * Depth model — light source at the top-left, which is the same
+ * direction the existing glass / btn-* system uses, so the navbar
+ * still reads as part of the Nexcarinner 3D language:
+ *   raised  = soft dark shadow down-right + soft sheen up-left
+ *   pressed = inner shadow, no outer lift
+ * Every state keeps the SAME number of shadow layers so the
+ * box-shadow transition interpolates instead of snapping.
+ * No backdrop-filter: the surfaces are near-opaque, so the blur
+ * would cost GPU time for no visual gain.
+ * ============================================================ */
+.nx-nav {
+  /* surfaces */
+  --nx-face-rest: linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0%, rgba(246, 245, 250, 0.84) 100%);
+  --nx-face-pinned: linear-gradient(180deg, #ffffff 0%, #f8f7fc 100%);
+  --nx-face-rail: linear-gradient(180deg, #f8f7fc 0%, #efedf7 100%);
+  --nx-face-control: linear-gradient(180deg, #ffffff 0%, #f6f5fb 100%);
+  --nx-face-active: #eceaf5;
+  --nx-hover-wash: rgba(34, 29, 58, 0.04);
+  --nx-line: rgba(34, 29, 58, 0.07);
+  --nx-line-soft: rgba(34, 29, 58, 0.05);
+  --nx-sheen: rgba(255, 255, 255, 0.95);
+  --nx-ink-soft: #7c7694;
+  --nx-ink: #221d3a;
+  --nx-brand-ring: rgba(124, 58, 237, 0.14);
+
+  /* elevation stacks */
+  --nx-elev-rest:
+    inset 0 1px 0 var(--nx-sheen),
+    inset 0 -1px 0 rgba(34, 29, 58, 0.04),
+    -2px -2px 6px rgba(255, 255, 255, 0.8),
+    2px 3px 7px rgba(34, 29, 58, 0.05),
+    10px 14px 28px -20px rgba(34, 29, 58, 0.2);
+  --nx-elev-pinned:
+    inset 0 1px 0 var(--nx-sheen),
+    inset 0 -1px 0 rgba(34, 29, 58, 0.045),
+    -2px -2px 6px rgba(255, 255, 255, 0.8),
+    3px 4px 9px rgba(34, 29, 58, 0.06),
+    14px 20px 36px -22px rgba(34, 29, 58, 0.24);
+  --nx-elev-rail:
+    inset 0 1px 0 var(--nx-sheen),
+    -1px -1px 3px rgba(255, 255, 255, 0.85),
+    1px 1px 4px rgba(34, 29, 58, 0.05),
+    4px 6px 14px -10px rgba(34, 29, 58, 0.16);
+  --nx-raise:
+    inset 0 1px 0 var(--nx-sheen),
+    -1px -1px 3px rgba(255, 255, 255, 0.9),
+    1px 1px 3px rgba(34, 29, 58, 0.05),
+    3px 5px 12px -8px rgba(34, 29, 58, 0.14);
+  --nx-raise-hi:
+    inset 0 1px 0 var(--nx-sheen),
+    -1px -1px 3px rgba(255, 255, 255, 0.9),
+    1px 2px 4px rgba(34, 29, 58, 0.06),
+    5px 9px 18px -10px rgba(34, 29, 58, 0.18);
+  --nx-press:
+    inset 0 2px 4px rgba(34, 29, 58, 0.13),
+    inset 0 -1px 0 var(--nx-sheen),
+    inset 0 0 0 1px var(--nx-brand-ring),
+    0 0 0 0 rgba(34, 29, 58, 0);
+  --nx-press-plain:
+    inset 0 2px 4px rgba(34, 29, 58, 0.13),
+    inset 0 -1px 0 var(--nx-sheen),
+    0 0 0 0 rgba(34, 29, 58, 0);
+}
+
+/* Dark surfaces. Shadows are deep indigo-charcoal, never pure
+ * black, so the island keeps its soft volume instead of reading
+ * like a flat cut-out. */
+.dark .nx-nav {
+  --nx-face-rest: linear-gradient(180deg, rgba(255, 255, 255, 0.055) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --nx-face-pinned: linear-gradient(180deg, rgba(255, 255, 255, 0.075) 0%, rgba(255, 255, 255, 0.03) 100%);
+  --nx-face-rail: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.016) 100%);
+  --nx-face-control: linear-gradient(180deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.028) 100%);
+  --nx-face-active: rgba(0, 0, 0, 0.24);
+  --nx-hover-wash: rgba(255, 255, 255, 0.06);
+  --nx-line: rgba(255, 255, 255, 0.075);
+  --nx-line-soft: rgba(255, 255, 255, 0.06);
+  --nx-sheen: rgba(255, 255, 255, 0.09);
+  --nx-ink-soft: #9ca3af;
+  --nx-ink: #f3f4f6;
+  --nx-brand-ring: rgba(167, 139, 250, 0.2);
+
+  --nx-elev-rest:
+    inset 0 1px 0 rgba(255, 255, 255, 0.07),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.32),
+    -1px -1px 3px rgba(255, 255, 255, 0.03),
+    2px 3px 8px rgba(9, 6, 24, 0.5),
+    12px 16px 32px -20px rgba(5, 3, 16, 0.68);
+  --nx-elev-pinned:
+    inset 0 1px 0 rgba(255, 255, 255, 0.085),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.36),
+    -1px -1px 3px rgba(255, 255, 255, 0.035),
+    3px 4px 10px rgba(9, 6, 24, 0.55),
+    16px 22px 40px -22px rgba(5, 3, 16, 0.75);
+  --nx-elev-rail:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    -1px -1px 2px rgba(255, 255, 255, 0.025),
+    1px 1px 4px rgba(9, 6, 24, 0.45),
+    4px 6px 14px -10px rgba(5, 3, 16, 0.55);
+  --nx-raise:
+    inset 0 1px 0 rgba(255, 255, 255, 0.075),
+    -1px -1px 2px rgba(255, 255, 255, 0.03),
+    1px 1px 3px rgba(9, 6, 24, 0.5),
+    3px 5px 12px -8px rgba(5, 3, 16, 0.6);
+  --nx-raise-hi:
+    inset 0 1px 0 rgba(255, 255, 255, 0.09),
+    -1px -1px 2px rgba(255, 255, 255, 0.04),
+    1px 2px 4px rgba(9, 6, 24, 0.55),
+    5px 9px 18px -10px rgba(5, 3, 16, 0.68);
+  --nx-press:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    inset 0 0 0 1px var(--nx-brand-ring),
+    0 0 0 0 rgba(0, 0, 0, 0);
+  --nx-press-plain:
+    inset 0 2px 4px rgba(0, 0, 0, 0.4),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 0 rgba(0, 0, 0, 0);
+}
+
+/* Floating island — the gently lifted navbar surface */
+.nx-nav__island {
+  border-color: var(--nx-line);
+  background: var(--nx-face-rest);
+  box-shadow: var(--nx-elev-rest);
+  transition: box-shadow 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+.nx-nav__island--pinned {
+  background: var(--nx-face-pinned);
+  box-shadow: var(--nx-elev-pinned);
+}
+
+/* Brand lockup */
+.nx-nav__brand {
+  transition: transform 0.2s ease;
+}
+.nx-nav__brand:hover {
+  transform: translateY(-1px);
+}
+
+/* Nav rail — one cohesive tray, not a row of floating buttons */
+.nx-nav__rail {
+  border-color: var(--nx-line-soft);
+  background: var(--nx-face-rail);
+  box-shadow: var(--nx-elev-rail);
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Links — flat at rest, small lift on hover, pressed when current.
+ * The rest/hover stacks mirror --nx-press layer-for-layer (fully
+ * transparent) so the shadow morphs instead of snapping. */
+.nx-nav__link {
+  color: var(--nx-ink-soft);
+  background-color: transparent;
+  box-shadow:
+    inset 0 2px 4px rgba(34, 29, 58, 0),
+    inset 0 -1px 0 rgba(255, 255, 255, 0),
+    inset 0 0 0 1px rgba(124, 58, 237, 0),
+    0 0 0 0 rgba(34, 29, 58, 0);
+  transform: translateY(0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.nx-nav__link:hover {
+  color: var(--nx-ink);
+  background-color: var(--nx-hover-wash);
+  box-shadow:
+    inset 0 2px 4px rgba(34, 29, 58, 0),
+    inset 0 -1px 0 rgba(255, 255, 255, 0),
+    inset 0 0 0 1px rgba(124, 58, 237, 0),
+    0 1px 2px rgba(34, 29, 58, 0.07);
+  transform: translateY(-1px);
+}
+.dark .nx-nav__link:hover {
+  box-shadow:
+    inset 0 2px 4px rgba(0, 0, 0, 0),
+    inset 0 -1px 0 rgba(255, 255, 255, 0),
+    inset 0 0 0 1px rgba(167, 139, 250, 0),
+    0 1px 2px rgba(5, 3, 16, 0.5);
+}
+.nx-nav__link:active {
+  transform: translateY(0);
+}
+.nx-nav__link[aria-current='page'],
+.nx-nav__link[aria-current='page']:hover {
+  color: var(--color-brand-700);
+  background-color: var(--nx-face-active);
+  box-shadow: var(--nx-press);
+  transform: translateY(0);
+}
+.dark .nx-nav__link[aria-current='page'],
+.dark .nx-nav__link[aria-current='page']:hover {
+  color: #ffffff;
+}
+
+/* Compact icon controls — theme toggle + mobile menu button */
+.nx-nav__icon {
+  border-color: var(--nx-line-soft);
+  background: var(--nx-face-control);
+  color: var(--nx-ink-soft);
+  box-shadow: var(--nx-raise);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.nx-nav__icon:hover {
+  color: var(--nx-ink);
+  box-shadow: var(--nx-raise-hi);
+  transform: translateY(-1px);
+}
+.nx-nav__icon:active {
+  transform: translateY(0);
+  box-shadow: var(--nx-press-plain);
+}
+
+/* Auth buttons keep btn-outline / btn-gradient (brand identity);
+ * this only adds the soft hover lift + press settle. */
+.nx-nav__auth {
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+.nx-nav__auth:hover {
+  transform: translateY(-1px);
+}
+.nx-nav__auth:active {
+  transform: translateY(0);
+}
+
+/* Mobile menu links */
+.nx-nav__menu-link {
+  color: var(--nx-ink-soft);
+  box-shadow:
+    inset 0 2px 4px rgba(34, 29, 58, 0),
+    inset 0 -1px 0 rgba(255, 255, 255, 0),
+    inset 0 0 0 1px rgba(124, 58, 237, 0),
+    0 0 0 0 rgba(34, 29, 58, 0);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.nx-nav__menu-link:hover {
+  color: var(--nx-ink);
+  background-color: transparent;
+  box-shadow: var(--nx-raise);
+  transform: translateY(-1px);
+}
+.nx-nav__menu-link[aria-current='page'],
+.nx-nav__menu-link[aria-current='page']:hover {
+  color: var(--color-brand-700);
+  background-color: var(--nx-face-active);
+  box-shadow: var(--nx-press);
+  transform: translateY(0);
+}
+.dark .nx-nav__menu-link[aria-current='page'],
+.dark .nx-nav__menu-link[aria-current='page']:hover {
+  color: #ffffff;
+}
+
+/* Signed-in row inside the mobile menu */
+.nx-nav__account {
+  border-color: var(--nx-line-soft);
+  background: var(--nx-face-rail);
+  box-shadow: var(--nx-raise);
+  transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
+}
+
+/* ============================================================
  * SKELETON LOADING SYSTEM
  * Wireframe surfaces that mirror the Nexcarinner design system.
  * Light: soft off-white/gray faces. Dark: #232323 (lighter than
