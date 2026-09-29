@@ -16,7 +16,7 @@ import {
 
 export const stats = [
   { end: 4500, suffix: '+', label: 'Active Members' },
-  { end: 1, label: 'Event Hosted' },
+  { end: 10, suffix: '+', label: 'Event Hosted' },
   { end: 20, suffix: '+', label: 'Live Projects' },
   { end: 9, suffix: '+', label: 'Industry Partners' },
 ]
