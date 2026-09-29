@@ -379,7 +379,7 @@ const Contact = () => {
           eyebrow="FAQ"
           title={
             <>
-              Common <span className="text-gradient">questions</span>
+              Frequently Asked <span className="text-gradient">Questions</span>
             </>
           }
         />
