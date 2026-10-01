@@ -18,6 +18,18 @@ const Logo = ({ className = '' }) => {
     <img
       src={LogoImg}
       alt="Nexcarinner Logo"
+      /*
+       * Explicit width/height prevent CLS — the browser reserves the
+       * correct aspect ratio before the image loads.
+       * fetchpriority="high" ensures this above-the-fold LCP candidate
+       * is fetched as early as possible.
+       * These match the rendered sizes set by the h-8/h-10/h-12 classes
+       * (32px/40px/48px). The aspect ratio is ~1:1 for the logo.
+       */
+      width={48}
+      height={48}
+      fetchPriority="high"
+      decoding="async"
       onError={() => setError(true)}
       className={`h-8 w-auto rounded-xl object-contain md:h-10 lg:h-12 dark:brightness-125 ${className}`}
     />

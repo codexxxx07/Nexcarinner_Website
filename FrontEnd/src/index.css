@@ -1,5 +1,6 @@
 @import "tailwindcss";
-@import "lenis/dist/lenis.css";
+/* lenis.css moved to LenisProvider.jsx — only imported when JS loads
+   the smooth-scroll library, so it doesn't bloat the critical CSS path. */
 
 /* Enable class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
@@ -106,20 +107,26 @@
   }
 
   /*
-   * Theme switch crossfade — every element fades color/background/border
-   * changes so toggling dark mode is not an instant repaint.
+   * Theme switch crossfade — only active during the brief window when the
+   * user toggles dark mode. Applied via the .theme-transitioning class on
+   * <html> for exactly 300ms, then removed.
    *
-   * MUST live in @layer base. Unlayered rules outrank every layered rule
-   * regardless of specificity, so declaring this `*` selector unlayered
-   * silently overrode Tailwind's entire `transition-*` / `duration-*` /
-   * `ease-*` utility set sitewide: `transition-transform`, `transition-all`
-   * and `transition-opacity` stopped animating (accordion chevrons, card
-   * lift, toast slide-in all snapped), and every `duration-*` collapsed to
-   * 0.3s. In `base`, the utilities layer wins as intended.
+   * Previously this was a permanent `* { transition-property: ... }` rule
+   * which registered active transitions on every DOM element at all times.
+   * During scroll, intersection observer callbacks, and any state changes
+   * the browser had to re-evaluate transitions across the entire tree —
+   * significant style recalculation cost that contributed to TBT and
+   * degraded scroll performance.
+   *
+   * Scoping it to .theme-transitioning means the cost is paid only once
+   * (~300ms) when the user deliberately clicks the theme toggle, not on
+   * every frame of every scroll.
+   *
+   * MUST live in @layer base so Tailwind utility layers still win.
    */
-  *,
-  *::before,
-  *::after {
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after {
     transition-property: background-color, border-color, color, box-shadow, backdrop-filter;
     transition-duration: 0.3s;
     transition-timing-function: ease;
@@ -625,8 +632,11 @@
 .text-balance { text-wrap: balance; }
 
 
-/* But don't override animation durations for reveal/marquee.
-   Unlayered so it still wins over the `*` rule in @layer base. */
+/* Reveal elements need opacity + transform in their transition-property so
+   the scroll-reveal animation works correctly. The global `*` theme-transition
+   rule is now gated on .theme-transitioning, so this unlayered rule ensures
+   reveal elements always animate their opacity/transform (for scroll-reveal)
+   AND color/background (for dark mode) without depending on the global rule. */
 .reveal, .reveal * {
   transition-property: opacity, transform, background-color, border-color, color, box-shadow;
 }

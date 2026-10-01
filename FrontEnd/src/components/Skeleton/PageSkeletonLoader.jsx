@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import PageSkeleton from './PageSkeleton'
 import { criticalAssetsForPath, preloadImage } from '../../lib/criticalAssets'
@@ -6,25 +6,43 @@ import { cn } from '../../lib/utils'
 
 /*
  * PageSkeletonLoader — full-page Nexcarinner wireframe that covers the
- * freshly routed page until it is genuinely ready, then fades out.
+ * routed page until it is genuinely ready, then fades out.
  *
- * Readiness is driven by real state, never fake timers:
- *   1. The page module and styles are already fetched (doc readyState).
- *   2. Critical above-the-fold images for the current route have decoded.
- *   3. A very short paint window only when the network actually did work —
- *      if everything came from cache the wireframe is dismissed instantly.
+ * PERFORMANCE NOTE:
+ * On the initial page load (hard navigate / refresh) the skeleton must
+ * never block FCP / LCP. The browser's native loading pipeline already
+ * handles the first paint — adding a JS-driven overlay on top only
+ * delays it. We detect "initial load" by tracking whether any client-
+ * side navigation has occurred yet; if not, we skip the blocking phase
+ * entirely and reveal immediately.
  *
- * Navigation re-arms the overlay (location.key) so every route change
- * shows the matching wireframe and reveals cleanly.
+ * On subsequent client-side navigations the overlay is still useful:
+ * it covers the brief gap between a route change and the lazy chunk
+ * resolving.  MIN_PAINT_MS is kept short (80 ms) so it only flashes
+ * for genuine network work, not on cache hits.
  */
-const MIN_PAINT_MS = 260
 
-const useSkeletonReady = (preloads) => {
+/** Minimum overlay time on a *client-side* navigation. Never applied on
+ *  the initial load. Keep this short — just long enough to mask a brief
+ *  flash between the old route unmounting and the new one painting. */
+const MIN_PAINT_MS = 80
+
+/**
+ * Returns the stable initial location.key captured on mount.
+ * Any subsequent key is a client-side navigation.
+ */
+const useIsInitialLoad = () => {
   const location = useLocation()
-  /* Which navigation key has finished loading. A navigation changes the
-   * key, so a stale key here means "loading" for the current route —
-   * no explicit reset step required. */
-  const [doneKey, setDoneKey] = useState(null)
+  const initialKeyRef = useRef(location.key)
+  return location.key === initialKeyRef.current
+}
+
+const useSkeletonReady = (preloads, isInitialLoad) => {
+  const location = useLocation()
+  const [doneKey, setDoneKey] = useState(() =>
+    // On initial load mark as already done — don't block first paint.
+    isInitialLoad ? location.key : null,
+  )
 
   useEffect(() => {
     if (doneKey === location.key) return
@@ -47,14 +65,14 @@ const useSkeletonReady = (preloads) => {
         return
       }
 
-      /* Everything resolved from the cache — reveal immediately. */
+      /* All assets already in cache — reveal immediately. */
       if (cached.every(Boolean)) {
         fire()
         return
       }
 
-      /* The network did real work; keep the wireframe on screen just
-       * long enough to read as a page loading, then reveal. */
+      /* Network did real work — keep the wireframe just long enough to
+       * look intentional, then reveal. */
       timer = setTimeout(fire, MIN_PAINT_MS)
     }
 
@@ -70,18 +88,18 @@ const useSkeletonReady = (preloads) => {
 
 const PageSkeletonLoader = ({ children }) => {
   const location = useLocation()
+  const isInitialLoad = useIsInitialLoad()
   const preloads = useMemo(
     () => criticalAssetsForPath(location.pathname),
     [location.pathname],
   )
-  const revealing = useSkeletonReady(preloads)
+  const revealing = useSkeletonReady(preloads, isInitialLoad)
 
-  /* The overlay fades out over 340ms but stayed mounted at opacity 0, so the
-   * wireframe and its infinite shimmer animations kept running for the whole
-   * session. Drop the children once the fade has finished. Tracked by
-   * navigation key rather than a boolean, so a new navigation re-arms it with
-   * no synchronous reset inside the effect. */
-  const [fadedKey, setFadedKey] = useState(null)
+  /* Drop the skeleton DOM once the fade has finished so its shimmer
+   * animations don't keep running. */
+  const [fadedKey, setFadedKey] = useState(() =>
+    isInitialLoad ? location.key : null,
+  )
 
   useEffect(() => {
     if (!revealing) return
@@ -90,6 +108,12 @@ const PageSkeletonLoader = ({ children }) => {
   }, [revealing, location.key])
 
   const fadedOut = revealing && fadedKey === location.key
+
+  /* On the initial page load skip rendering the overlay entirely so
+   * nothing sits between the browser and the first meaningful paint. */
+  if (isInitialLoad && fadedOut) {
+    return <>{children}</>
+  }
 
   return (
     <>

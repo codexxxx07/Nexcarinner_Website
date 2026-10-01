@@ -1,5 +1,4 @@
-import { lazy, Suspense, useEffect } from 'react'
-import TargetCursor from './components/reactbits/TargetCursor'
+import { lazy, Suspense, useEffect, useState } from 'react'
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { SignIn, SignUp } from '@clerk/clerk-react'
 import Layout from './components/Layout'
@@ -12,6 +11,15 @@ import { ToastProvider } from './context/ToastContext'
 import { SignInNotification, SignUpNotification } from './components/auth/AuthNotifications'
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 import { useLenis } from 'lenis/react'
+
+/*
+ * TargetCursor is lazy-loaded and deferred until after first paint.
+ * It depends on GSAP (which is already in the vendor-animation chunk),
+ * but its ticker, spin timeline, and event listeners should not start
+ * during the critical rendering path — they add main-thread work with
+ * no visual benefit until the page is interactive anyway.
+ */
+const TargetCursor = lazy(() => import('./components/reactbits/TargetCursor'))
 
 const Home = lazy(() => import('./pages/Home'))
 const Events = lazy(() => import('./pages/Events'))
@@ -73,9 +81,26 @@ function ClerkSignUpPage() {
 function App() {
   const location = useLocation()
 
+  /*
+   * Defer TargetCursor until after the first paint. The cursor has no
+   * visual presence until the user moves the mouse anyway, so there is
+   * zero user-visible difference — but it prevents GSAP's ticker and
+   * the mousemove/mouseover/scroll listeners from running during the
+   * critical rendering path and contributing to TBT.
+   */
+  const [cursorReady, setCursorReady] = useState(false)
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setCursorReady(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
+
   return (
     <ThemeProvider>
-      <TargetCursor targetSelector=".cursor-target" />
+      {cursorReady && (
+        <Suspense fallback={null}>
+          <TargetCursor targetSelector=".cursor-target" />
+        </Suspense>
+      )}
       <PageSkeletonLoader>
         <ToastProvider>
           <Layout>

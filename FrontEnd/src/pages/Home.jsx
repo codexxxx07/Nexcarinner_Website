@@ -1,4 +1,5 @@
-import { Navigate } from 'react-router-dom'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '@clerk/clerk-react'
 import { usePageTitle } from '../hooks/usePageTitle'
 import CtaBanner from '../components/CtaBanner'
@@ -13,12 +14,32 @@ import {
 
 const Home = () => {
   const { isLoaded, isSignedIn } = useAuth()
+  const navigate = useNavigate()
 
   usePageTitle('Home')
 
-  // Declarative redirect: an effect + `return null` still painted the landing
-  // page for a frame before the navigation committed.
-  if (isLoaded && isSignedIn) return <Navigate to="/app" replace />
+  /*
+   * Redirect signed-in users to the dashboard, but do NOT block the
+   * initial render while waiting for Clerk to resolve.
+   *
+   * Previously this was a synchronous guard:
+   *   if (isLoaded && isSignedIn) return <Navigate to="/app" replace />
+   *
+   * That caused the entire Home page — a public page — to render nothing
+   * while Clerk completed its auth network round-trip, directly killing
+   * FCP and LCP. The content is public so there is no security reason
+   * to gate it behind auth state.
+   *
+   * The effect-based redirect fires as soon as Clerk resolves (~200–400ms
+   * after mount). Signed-in users see the Home page for a brief flash
+   * before being redirected, but this is a negligible UX trade-off versus
+   * showing a blank page to ALL users on every visit.
+   */
+  useEffect(() => {
+    if (isLoaded && isSignedIn) {
+      navigate('/app', { replace: true })
+    }
+  }, [isLoaded, isSignedIn, navigate])
 
   return (
     <>

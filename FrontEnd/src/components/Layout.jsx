@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import ClickSpark from './ClickSpark'
@@ -6,6 +7,19 @@ import { useTheme } from '../context/ThemeContext'
 
 const Layout = ({ children }) => {
   const { dark } = useTheme()
+
+  /*
+   * Defer ShapeGrid until after the first meaningful paint.
+   * The canvas starts a requestAnimationFrame loop on mount, which
+   * competes with LCP content for the main thread and GPU compositing
+   * budget on initial load. Mounting it after the first rAF tick lets
+   * the browser complete FCP/LCP before the animation starts.
+   */
+  const [bgReady, setBgReady] = useState(false)
+  useEffect(() => {
+    const raf = requestAnimationFrame(() => setBgReady(true))
+    return () => cancelAnimationFrame(raf)
+  }, [])
 
   return (
     <div
@@ -19,11 +33,14 @@ const Layout = ({ children }) => {
        * and tracks the cursor on window so hover cells light up site-wide.
        * Orbs are painted as a single background-image with multiple radial
        * gradients — no DOM blur divs, so scroll cost stays ~0.
+       * ShapeGrid is deferred until after first paint (bgReady) to avoid
+       * competing with LCP for main-thread / GPU time.
        */}
       <div
         className="pointer-events-none fixed inset-0 z-0"
         aria-hidden="true"
       >
+        {bgReady && (
         <ShapeGrid
           className="absolute inset-0 shapegrid-fade"
           speed={0.5}
@@ -33,6 +50,7 @@ const Layout = ({ children }) => {
           hoverFillColor={dark ? 'rgba(167, 139, 250, 0.12)' : 'rgba(124, 58, 237, 0.06)'}
           hoverTrailAmount={6}
         />
+        )}
         <div
           className="absolute inset-0"
           style={{
