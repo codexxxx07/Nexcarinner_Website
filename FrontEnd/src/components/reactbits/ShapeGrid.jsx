@@ -260,10 +260,22 @@ const ShapeGrid = ({
       }
     };
 
-    const handleMouseMove = event => {
+    /*
+     * Throttle mousemove to one cell-calculation per animation frame.
+     * The handler fires at pointer rate (up to 1000Hz on some devices),
+     * but the grid only redraws at 60fps anyway. Storing the raw clientX/Y
+     * and deferring the math to rAF means the main thread is free during
+     * pointer events — directly reducing INP processing time.
+     */
+    let pendingMouseX = -1;
+    let pendingMouseY = -1;
+    let mouseRafId = null;
+
+    const processMouseMove = () => {
+      mouseRafId = null;
       const rect = canvas.getBoundingClientRect();
-      const mouseX = event.clientX - rect.left;
-      const mouseY = event.clientY - rect.top;
+      const mouseX = pendingMouseX - rect.left;
+      const mouseY = pendingMouseY - rect.top;
 
       if (isHex) {
         const colShift = Math.floor(gridOffset.current.x / hexHoriz);
@@ -354,7 +366,20 @@ const ShapeGrid = ({
       }
     };
 
+    /* Thin event handler — just records coords and schedules one rAF. */
+    const handleMouseMove = event => {
+      pendingMouseX = event.clientX;
+      pendingMouseY = event.clientY;
+      if (!mouseRafId) {
+        mouseRafId = requestAnimationFrame(processMouseMove);
+      }
+    };
+
     const handleMouseLeave = () => {
+      if (mouseRafId) {
+        cancelAnimationFrame(mouseRafId);
+        mouseRafId = null;
+      }
       if (hoveredSquare.current && hoverTrailAmount > 0) {
         trailCells.current.unshift({ ...hoveredSquare.current });
         if (trailCells.current.length > hoverTrailAmount) trailCells.current.length = hoverTrailAmount;
@@ -403,6 +428,10 @@ const ShapeGrid = ({
       io.disconnect();
       document.removeEventListener('visibilitychange', onVisibility);
       window.removeEventListener('mousemove', handleMouseMove);
+      if (mouseRafId) {
+        cancelAnimationFrame(mouseRafId);
+        mouseRafId = null;
+      }
       document.removeEventListener('mouseleave', handleMouseLeave);
     };
   }, [direction, speed, squareSize, shape, hoverTrailAmount]);

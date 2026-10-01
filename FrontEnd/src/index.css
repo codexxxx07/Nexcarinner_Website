@@ -636,9 +636,16 @@
    the scroll-reveal animation works correctly. The global `*` theme-transition
    rule is now gated on .theme-transitioning, so this unlayered rule ensures
    reveal elements always animate their opacity/transform (for scroll-reveal)
-   AND color/background (for dark mode) without depending on the global rule. */
-.reveal, .reveal * {
-  transition-property: opacity, transform, background-color, border-color, color, box-shadow;
+   AND color/background (for dark mode) without depending on the global rule.
+   PERF: The previous rule matched every descendant of every Reveal element
+   (`.reveal *`) forcing the browser to style-recalc 150-300+ elements on
+   every interaction (tab click, scroll, hover). Split into two focused rules:
+   — The container gets opacity+transform (required for scroll-reveal).
+   — Children inherit color properties naturally via the cascade; no forced
+     re-match needed since Tailwind's transition-colors utility handles them
+     on the specific elements that actually transition colors. */
+.reveal {
+  transition-property: opacity, transform;
 }
 
 /* ============================================================

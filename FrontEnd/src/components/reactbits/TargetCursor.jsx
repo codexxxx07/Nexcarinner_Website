@@ -192,16 +192,21 @@ const TargetCursor = ({
 
     const enterHandler = e => {
       const directTarget = e.target;
-      const allTargets = [];
-      let current = directTarget;
-      while (current && current !== document.body) {
-        if (current.matches(targetSelector)) {
-          allTargets.push(current);
-        }
-        current = current.parentElement;
-      }
-      const target = allTargets[0] || null;
-      if (!target || !cursorRef.current || !cornersRef.current) return;
+      /*
+       * Fast pre-check: if neither the event target nor any of its ancestors
+       * match the targetSelector, bail immediately — before the ancestor walk
+       * and before getContainingBlock() runs. This short-circuits the vast
+       * majority of mouseover events (every non-target element boundary the
+       * pointer crosses) at near-zero cost, since Element.closest() stops
+       * at the first match and doesn't call getComputedStyle.
+       */
+      const nearestTarget = directTarget.closest
+        ? directTarget.closest(targetSelector)
+        : null;
+      if (!nearestTarget) return;
+
+      const target = nearestTarget;
+      if (!cursorRef.current || !cornersRef.current) return;
       if (activeTarget === target) return;
       if (activeTarget) {
         cleanupTarget(activeTarget);

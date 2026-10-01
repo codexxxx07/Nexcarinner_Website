@@ -1,3 +1,4 @@
+import { memo, useCallback } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import {
   FiArrowUpRight,
@@ -44,7 +45,7 @@ const eventTypeStyles = {
   },
 }
 
-const GalleryLink = ({ item, dark, className = '' }) => {
+const GalleryLink = memo(function GalleryLink({ item, dark, className = '' }) {
   const arrow = (
     <FiArrowUpRight
       className={`h-4 w-4 transition-transform duration-200 group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 ${
@@ -80,10 +81,10 @@ const GalleryLink = ({ item, dark, className = '' }) => {
       {arrow}
     </Link>
   )
-}
+})
 
 /* Branded cover — image when present, otherwise a tactile gradient tile. */
-const GalleryCover = ({ item, accent }) => {
+const GalleryCover = memo(function GalleryCover({ item, accent }) {
   if (item.image) {
     return (
       <ImageSkeleton
@@ -113,10 +114,11 @@ const GalleryCover = ({ item, accent }) => {
       </span>
     </div>
   )
-}
+})
 
 /* Shared card shell — the physical glass face with a top highlight line. */
-const CardShell = ({ dark, className = '', children }) => (
+const CardShell = memo(function CardShell({ dark, className = '', children }) {
+  return (
   <div
     className={`glass card-lift group relative flex h-full flex-col overflow-hidden rounded-3xl transition-all duration-300 ease-out hover:-translate-y-1.5 ${className}`}
   >
@@ -127,17 +129,21 @@ const CardShell = ({ dark, className = '', children }) => (
     />
     {children}
   </div>
-)
+  )
+})
 
-const YearChip = ({ year, className = '' }) => (
+const YearChip = memo(function YearChip({ year, className = '' }) {
+  return (
   <span
     className={`flex h-7 items-center rounded-full border border-white/25 bg-black/20 px-2.5 text-xs font-semibold text-white backdrop-blur-md ${className}`}
   >
     {year}
   </span>
-)
+  )
+})
 
-const CardHeading = ({ dark, children }) => (
+const CardHeading = memo(function CardHeading({ dark, children }) {
+  return (
   <h3
     className={`font-display text-lg font-bold leading-snug tracking-tight transition-colors duration-300 ${
       dark ? 'text-white' : 'text-ink-50'
@@ -145,9 +151,11 @@ const CardHeading = ({ dark, children }) => (
   >
     {children}
   </h3>
-)
+  )
+})
 
-const CardBody = ({ dark, children }) => (
+const CardBody = memo(function CardBody({ dark, children }) {
+  return (
   <p
     className={`mt-2 flex-1 text-sm leading-relaxed transition-colors duration-300 ${
       dark ? 'text-gray-400' : 'text-ink-400'
@@ -155,10 +163,11 @@ const CardBody = ({ dark, children }) => (
   >
     {children}
   </p>
-)
+  )
+})
 
 /* ---------------------------------------------------------------- Overview */
-const OverviewCard = ({ item, size, dark }) => {
+const OverviewCard = memo(function OverviewCard({ item, size, dark }) {
   const meta = categoryMeta[item.category]
   const badge = dark ? meta.badge.dark : meta.badge.light
   const isHero = size === 'hero'
@@ -240,10 +249,10 @@ const OverviewCard = ({ item, size, dark }) => {
       </div>
     </div>
   )
-}
+})
 
 /* ------------------------------------------------------------------ Projects */
-const ProjectCard = ({ item, size, dark }) => {
+const ProjectCard = memo(function ProjectCard({ item, size, dark }) {
   const badge = dark ? categoryMeta.projects.badge.dark : categoryMeta.projects.badge.light
   const wide = size === 'wide'
 
@@ -290,10 +299,10 @@ const ProjectCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 /* ------------------------------------------------------------ Community Collab */
-const CollabCard = ({ item, size, dark }) => {
+const CollabCard = memo(function CollabCard({ item, size, dark }) {
   const wide = size === 'wide'
 
   return (
@@ -358,10 +367,10 @@ const CollabCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 /* ----------------------------------------------------------- Certifications */
-const CertificationCard = ({ item, size, dark }) => {
+const CertificationCard = memo(function CertificationCard({ item, size, dark }) {
   const wide = size === 'wide'
 
   return (
@@ -427,10 +436,11 @@ const CertificationCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 /* ------------------------------------------------------------------- Awards */
-const FeaturedBadge = ({ dark }) => (
+const FeaturedBadge = memo(function FeaturedBadge({ dark }) {
+  return (
   <span
     className={`absolute bottom-4 right-4 z-10 inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur-md ${
       dark
@@ -441,7 +451,8 @@ const FeaturedBadge = ({ dark }) => (
     <FiAward className="h-3.5 w-3.5" />
     Featured recognition
   </span>
-)
+  )
+})
 
 /*
  * Award image area — unlike the shared GalleryCover (object-cover),
@@ -450,7 +461,7 @@ const FeaturedBadge = ({ dark }) => (
  * The letterbox band gets a soft framed backdrop so it looks intentional
  * in both light and dark mode.
  */
-const AwardImage = ({ item, dark }) => {
+const AwardImage = memo(function AwardImage({ item, dark }) {
   if (!item.image) {
     return (
       <div className={`relative flex h-full w-full items-center justify-center bg-linear-to-br ${item.accent}`}>
@@ -481,9 +492,9 @@ const AwardImage = ({ item, dark }) => {
       />
     </div>
   )
-}
+})
 
-const AwardCard = ({ item, size, dark }) => {
+const AwardCard = memo(function AwardCard({ item, size, dark }) {
   const isHero = size === 'hero'
   const wide = size === 'wide'
   const featured = Boolean(item.featured)
@@ -602,10 +613,10 @@ const AwardCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 /* -------------------------------------------------------------------- Events */
-const EventCard = ({ item, size, dark }) => {
+const EventCard = memo(function EventCard({ item, size, dark }) {
   const wide = size === 'wide'
   const styleSet = eventTypeStyles[item.type] || eventTypeStyles.Workshops
   const style = dark ? styleSet.dark : styleSet.light
@@ -651,10 +662,10 @@ const EventCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 /* ------------------------------------------------------- Community Moments */
-const MomentCard = ({ item, size, dark }) => {
+const MomentCard = memo(function MomentCard({ item, size, dark }) {
   const wide = size === 'wide'
   const contain = item.fit === 'contain'
 
@@ -722,7 +733,7 @@ const MomentCard = ({ item, size, dark }) => {
       </div>
     </CardShell>
   )
-}
+})
 
 const cardBySlug = {
   projects: ProjectCard,
@@ -743,7 +754,7 @@ const Gallery = () => {
 
   usePageTitle(meta.label)
 
-  const sizeFor = (item, index) => {
+  const sizeFor = useCallback((item, index) => {
     if (activeCategory === 'all') {
       if (item.featured === 'hero') return 'hero'
       if (item.featured === 'wide') return 'wide'
@@ -755,9 +766,9 @@ const Gallery = () => {
       return undefined
     }
     return index === 0 ? 'wide' : undefined
-  }
+  }, [activeCategory])
 
-  const renderGrid = () => {
+  const renderGrid = useCallback(() => {
     if (activeCategory === 'all') {
       return overviewItems.map((item, index) => (
         <Reveal key={item.id} delay={(index % 3) * 80} className="h-full">
@@ -781,7 +792,7 @@ const Gallery = () => {
         </Reveal>
       )
     })
-  }
+  }, [activeCategory, dark, sizeFor])
 
   return (
     <>
