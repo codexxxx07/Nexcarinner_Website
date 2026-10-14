@@ -75,7 +75,7 @@ const team = [
     gradient: "from-brand-500 to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/with-gunjan",
-      instagram: "https://www.instagram.com/with_gunjan_",
+      
     },
   },
   {
@@ -101,9 +101,9 @@ const team = [
     gradient: "from-flare-pink to-brand-500",
     socials: {
       linkedin: "https://www.linkedin.com/in/krishanjit-chakraborty-258a5237a",
-      instagram: "https://www.instagram.com/_k_r_i_s_h_x_",
+      
       github: "https://github.com/codexxxx07",
-      discord: "https://discord.com/channels/krish014669",
+      
     },
   },
   {
@@ -129,7 +129,7 @@ const team = [
     gradient: "from-brand-600 to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/hrpahulpreetofficial",
-      instagram: "https://www.instagram.com/hrpahulpreetofficial",
+      
     },
   },
   {
@@ -142,7 +142,7 @@ const team = [
     gradient: "from-brand-600 to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/gourab-gorai-4a51541ba",
-      instagram: "https://www.instagram.com/gourab.gorai.9862",
+      
       github: "https://github.com/GourabGorai",
     },
   },
@@ -180,9 +180,9 @@ const team = [
     gradient: "from-flare-cyan to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/ankur-kumar-gupta-8b3b903a6",
-      instagram: "https://www.instagram.com/ankur4965423",
+      
       github: "https://github.com/ankurkrgupta22122006-oss",
-      discord: "https://discordapp.com/users/krrish0998",
+      
     },
   },
   {
@@ -195,7 +195,6 @@ const team = [
     gradient: "from-flare-cyan to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/harshialrawat",
-      instagram: "https://www.instagram.com/shadow_slave_02",
       discord: "https://discord.gg/6hprSUpY",
     },
   },
@@ -209,7 +208,7 @@ const team = [
     gradient: "from-flare-cyan to-flare-pink",
     socials: {
       linkedin: "https://www.linkedin.com/in/lakshya10",
-      instagram: "https://www.instagram.com/__.lakxz.tkdian.__",
+      
     },
   },
 ];
@@ -240,10 +239,9 @@ const timeline = [
 
 const socialHover = {
   linkedin: "hover:bg-[#0077b5] hover:text-white hover:border-transparent",
-  instagram:
-    "hover:bg-linear-to-br hover:from-[#f09433] hover:via-[#e6683c] hover:to-[#bc1888] hover:text-white hover:border-transparent",
+  
   github: "hover:bg-gray-900 hover:text-white hover:border-transparent",
-  discord: "hover:bg-[#5865F2] hover:text-white hover:border-transparent",
+ 
 };
 
 const socialConfig = [
@@ -253,19 +251,9 @@ const socialConfig = [
     icon: FaLinkedin,
     hover: socialHover.linkedin,
   },
-  {
-    key: "instagram",
-    label: "Instagram",
-    icon: FaInstagram,
-    hover: socialHover.instagram,
-  },
+  
   { key: "github", label: "GitHub", icon: FaGithub, hover: socialHover.github },
-  {
-    key: "discord",
-    label: "Discord",
-    icon: FaDiscord,
-    hover: socialHover.discord,
-  },
+  
 ];
 
 const TeamCard = ({ member }) => {
