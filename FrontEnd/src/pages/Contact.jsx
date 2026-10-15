@@ -8,7 +8,7 @@ import {
   FiSend,
   FiCheck,
 } from 'react-icons/fi'
-import { FaGithub, FaLinkedinIn, FaDiscord, FaXTwitter } from 'react-icons/fa6'
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaXTwitter } from 'react-icons/fa6'
 import Reveal from '../components/Reveal'
 import SectionHeading from '../components/SectionHeading'
 import { Button } from '../components/ui/button'
@@ -39,7 +39,7 @@ const contactInfo = [
 const socials = [
   { name: 'GitHub', icon: FaGithub, url: 'https://github.com/codexxxx07/Nexcarinner_Website' },
   { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/nexcarinner/' },
-  { name: 'Discord', icon: FaDiscord, url: 'https://discord.gg/6hprSUpY' },
+  { name: 'WhatsApp', icon: FaWhatsapp, url: 'https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID' },
   { name: 'X', icon: FaXTwitter, url: 'https://x.com/nexcarinner' },
 ]
 
