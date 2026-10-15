@@ -367,7 +367,7 @@ const Contact = () => {
                     We're always open to collaborations that help students grow.
                   </p>
                   <a
-                    href="mailto:nexcarinner.support@gmail.com"
+                    href="mailto:nexcarinner@gmail.com"
                     className={`mt-4 inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold backdrop-blur transition-colors ${
                       dark
                         ? 'bg-white/8 text-gray-300 hover:bg-white/15 hover:text-white border border-white/10'
