@@ -56,13 +56,13 @@ const CtaBanner = ({
           />
 
           <div className="relative">
-            <h2
+            <h3
               className={`font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight transition-colors duration-300 ${
                 dark ? 'text-white' : 'text-ink-50'
               }`}
             >
               {title}
-            </h2>
+            </h3>
             <p
               className={`mx-auto mt-4 max-w-xl text-base sm:text-lg leading-relaxed transition-colors duration-300 ${
                 dark ? 'text-gray-400' : 'text-ink-400'

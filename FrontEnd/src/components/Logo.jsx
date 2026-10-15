@@ -25,9 +25,10 @@ const Logo = ({ className = '' }) => {
        * is fetched as early as possible.
        * These match the rendered sizes set by the h-8/h-10/h-12 classes
        * (32px/40px/48px). The aspect ratio is ~1:1 for the logo.
+       * Image is now optimized to 64x64 (was 1038x1024).
        */
-      width={48}
-      height={48}
+      width={64}
+      height={64}
       fetchPriority="high"
       decoding="async"
       onError={() => setError(true)}
