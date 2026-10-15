@@ -28,7 +28,7 @@ const socials = [
   {
     name: 'WhatsApp',
     icon: FaWhatsapp,
-    url: 'https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID',
+    url: 'https://whatsapp.com/channel/0029VbCgUvZBA1eycwNogK2D',
     hover: 'hover:bg-[#25D366] hover:text-white hover:border-transparent',
   },
   {
