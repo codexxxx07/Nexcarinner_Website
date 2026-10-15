@@ -41,15 +41,6 @@ export const communities = [
     groups: ['Networking Group', 'General Group', 'Learning Resources', 'Promotion Group'],
   },
   {
-    title: 'Nexcarinner Tech',
-    members: '1200+',
-    description: 'Dedicated tech community covering Web Development, AI/ML, cybersecurity & Ethical Hacking, Data Science and Data Analytics',
-    icon: FaCode,
-    accent: 'from-flare-cyan to-brand-500',
-    link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
-    groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
-  },
-  {
     title: 'Nexcarinner Freelance',
     members: '500+',
     description: 'A dedicated space for students and creators to explore freelance opportunities, offer services, discuss projects, and grow their freelance journey.',
@@ -57,6 +48,15 @@ export const communities = [
     accent: 'from-emerald-400 to-brand-500',
     link: 'https://chat.whatsapp.com/FuEkJM7uBqbC26GPpSscUO',
     groups: ['Tech Freelance', 'Nexcarinner Service', 'Freelance Discussion', 'Non Tech Freelance'],
+  },
+  {
+    title: 'Nexcarinner Tech',
+    members: '1200+',
+    description: 'Dedicated tech community covering Web Development, AI/ML, cybersecurity & Ethical Hacking, Data Science and Data Analytics',
+    icon: FaCode,
+    accent: 'from-flare-cyan to-brand-500',
+    link: 'https://chat.whatsapp.com/BDg0TFynjZ7JmZkWiFvdWI?s=cl&p=a&ilr=1',
+    groups: ['Tech Full Stack', 'Tech Cybersecurity & Ethical Hacking', 'Tech AI/ML', 'Tech Data Science', 'Data Analysis', 'Tech Discussion'],
   },
   {
     title: 'Nexcarinner Non Tech',
