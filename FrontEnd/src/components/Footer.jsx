@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import {
   FaGithub,
   FaLinkedinIn,
-  FaDiscord,
+  FaWhatsapp,
   FaXTwitter,
   FaInstagram,
 } from 'react-icons/fa6'
@@ -26,10 +26,10 @@ const socials = [
     hover: 'hover:bg-[#0077b5] hover:text-white hover:border-transparent',
   },
   {
-    name: 'Discord',
-    icon: FaDiscord,
-    url: 'https://discord.gg/6hprSUpY',
-    hover: 'hover:bg-[#5865F2] hover:text-white hover:border-transparent',
+    name: 'WhatsApp',
+    icon: FaWhatsapp,
+    url: 'https://whatsapp.com/channel/REPLACE_WITH_YOUR_CHANNEL_ID',
+    hover: 'hover:bg-[#25D366] hover:text-white hover:border-transparent',
   },
   {
     name: 'X',
