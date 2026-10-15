@@ -275,13 +275,24 @@ const Contact = () => {
                     >
                       {item.label}
                     </p>
-                    <p
-                      className={`mt-1 font-semibold transition-colors duration-300 ${
-                        dark ? 'text-gray-200' : 'text-ink-700'
-                      }`}
-                    >
-                      {item.value}
-                    </p>
+                    {item.label === 'Email' ? (
+                      <a
+                        href={`mailto:${item.value}`}
+                        className={`mt-1 block font-semibold transition-colors duration-300 ${
+                          dark ? 'text-gray-200' : 'text-ink-700'
+                        }`}
+                      >
+                        {item.value}
+                      </a>
+                    ) : (
+                      <p
+                        className={`mt-1 font-semibold transition-colors duration-300 ${
+                          dark ? 'text-gray-200' : 'text-ink-700'
+                        }`}
+                      >
+                        {item.value}
+                      </p>
+                    )}
                   </div>
                 </div>
               </Reveal>

@@ -212,7 +212,16 @@ const Footer = () => {
                 <FiMail
                   className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`}
                 />
-                nexcarinner.support@gmail.com
+                <a
+                  href="mailto:nexcarinner.support@gmail.com"
+                  className={`transition-colors duration-200 cursor-target ${
+                    dark
+                      ? 'text-gray-500 hover:text-white'
+                      : 'text-ink-400 hover:text-brand-700'
+                  }`}
+                >
+                  nexcarinner.support@gmail.com
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <FiMapPin
