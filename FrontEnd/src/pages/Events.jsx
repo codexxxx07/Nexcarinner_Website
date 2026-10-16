@@ -89,17 +89,16 @@ const parseEventDate = (dateStr) => {
 
 const now = Date.now()
 
-const upcomingEventsSource = []
-const pastEventsSource = []
-
-for (const event of events) {
+// The list above is the live listing rendered under Upcoming Events, so those
+// entries are never surfaced as completed events.
+const upcomingEventsSource = events.filter((event) => {
   const timestamp = parseEventDate(event.date)
-  if (!timestamp || timestamp.getTime() > now) {
-    upcomingEventsSource.push(event)
-  } else {
-    pastEventsSource.push(event)
-  }
-}
+  return !timestamp || timestamp.getTime() > now
+})
+
+// Genuine, already-concluded events. None recorded yet, so the Past Events
+// section renders its empty state.
+const pastEventsSource = []
 
 const EventCard = ({ event, dark, delay }) => {
   const styleSet = typeStyles[event.type] || typeStyles.Workshops
