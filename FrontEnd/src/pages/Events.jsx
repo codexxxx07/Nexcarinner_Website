@@ -89,15 +89,13 @@ const parseEventDate = (dateStr) => {
 
 const now = Date.now()
 
-// The list above is the live listing rendered under Upcoming Events, so those
-// entries are never surfaced as completed events.
 const upcomingEventsSource = events.filter((event) => {
   const timestamp = parseEventDate(event.date)
   return !timestamp || timestamp.getTime() > now
 })
 
-// Genuine, already-concluded events. None recorded yet, so the Past Events
-// section renders its empty state.
+// No genuine, already-concluded events recorded yet — Past Events renders its
+// empty state instead of placeholder cards.
 const pastEventsSource = []
 
 const EventCard = ({ event, dark, delay }) => {
