@@ -37,7 +37,7 @@ const contactInfo = [
 ]
 
 const socials = [
-  { name: 'GitHub', icon: FaGithub, url: 'https://github.com/codexxxx07/Nexcarinner_Website' },
+  { name: 'GitHub', icon: FaGithub, url: 'https://github.com/nexcarinner' },
   { name: 'LinkedIn', icon: FaLinkedinIn, url: 'https://www.linkedin.com/company/nexcarinner/' },
   { name: 'WhatsApp', icon: FaWhatsapp, url: 'https://whatsapp.com/channel/0029VbCgUvZBA1eycwNogK2D' },
   { name: 'X', icon: FaXTwitter, url: 'https://x.com/nexcarinner' },

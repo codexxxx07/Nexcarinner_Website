@@ -16,7 +16,7 @@ const socials = [
   {
     name: 'GitHub',
     icon: FaGithub,
-    url: 'https://github.com/codexxxx07/Nexcarinner_Website',
+    url: 'https://github.com/nexcarinner',
     hover: 'hover:bg-gray-900 hover:text-white hover:border-transparent',
   },
   {
