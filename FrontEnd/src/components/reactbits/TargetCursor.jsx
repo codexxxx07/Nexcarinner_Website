@@ -1,4 +1,4 @@
-import { useEffect, useRef, useMemo } from 'react';
+import { useEffect, useRef, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { gsap } from 'gsap';
 import './TargetCursor.css';
@@ -29,6 +29,50 @@ const getContainingBlockOffset = block => {
   return { x: rect.left + block.clientLeft, y: rect.top + block.clientTop };
 };
 
+const MOBILE_UA_REGEX = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
+
+/*
+ * Capability-based mobile detection.
+ *
+ * Screen width is deliberately NOT the primary signal: a narrow desktop
+ * window is still a desktop, and a large tablet is still touch-first. We
+ * prefer input-capability media queries, which describe the *kind* of
+ * pointer rather than its size:
+ *
+ *   - `(hover: none) and (pointer: coarse)` — the primary input cannot
+ *     hover and is coarse (finger) => phone/tablet. This is true even for
+ *     large tablets and foldables.
+ *   - `onTouchStart`/`maxTouchPoints` combined with the absence of ANY
+ *     fine pointer (`(any-pointer: fine)`) — a touch-only device with no
+ *     mouse/trackpad. Touchscreen laptops keep their cursor because they
+ *     still expose a fine pointer.
+ *   - User-agent sniffing as a final fallback for browsers that report
+ *     hover/pointer inaccurately (e.g. older iPad Safari).
+ *
+ * Width is only consulted when `matchMedia` is unavailable at all.
+ */
+const detectMobile = () => {
+  if (typeof window === 'undefined' || typeof document === 'undefined') {
+    return false;
+  }
+
+  const hasTouch = 'ontouchstart' in window || (navigator.maxTouchPoints || 0) > 0;
+
+  if (typeof window.matchMedia === 'function') {
+    if (window.matchMedia('(hover: none) and (pointer: coarse)').matches) {
+      return true;
+    }
+    if (hasTouch && !window.matchMedia('(any-pointer: fine)').matches) {
+      return true;
+    }
+  } else if (hasTouch && window.innerWidth <= 768) {
+    return true;
+  }
+
+  const userAgent = navigator.userAgent || navigator.vendor || window.opera || '';
+  return MOBILE_UA_REGEX.test(userAgent.toLowerCase());
+};
+
 const TargetCursor = ({
   targetSelector = '.cursor-target',
   spinDuration = 2,
@@ -48,14 +92,28 @@ const TargetCursor = ({
   const tickerFnRef = useRef(null);
   const activeStrengthRef = useRef(0);
 
-  const isMobile = useMemo(() => {
-    if (typeof window === 'undefined') return false;
-    const hasTouchScreen = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    const isSmallScreen = window.innerWidth <= 768;
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-    const mobileRegex = /android|webos|iphone|ipad|ipod|blackberry|iemobile|opera mini/i;
-    const isMobileUserAgent = mobileRegex.test(userAgent.toLowerCase());
-    return (hasTouchScreen && isSmallScreen) || isMobileUserAgent;
+  /*
+   * Track mobile/touch state in state (not useMemo) so the cursor tears
+   * down if the input capabilities change at runtime, and re-initializes
+   * if they change back.
+   */
+  const [isMobile, setIsMobile] = useState(detectMobile);
+
+  useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const queries = [
+      window.matchMedia('(hover: none) and (pointer: coarse)'),
+      window.matchMedia('(any-pointer: fine)')
+    ];
+    const update = () => setIsMobile(detectMobile());
+
+    queries.forEach(query => query.addEventListener('change', update));
+    return () => {
+      queries.forEach(query => query.removeEventListener('change', update));
+    };
   }, []);
 
   const constants = useMemo(
