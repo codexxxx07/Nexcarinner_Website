@@ -4,8 +4,10 @@ import {
   FiMapPin,
   FiArrowRight,
   FiCalendar,
+  FiCheck,
   FiRadio,
 } from 'react-icons/fi'
+import CertificationTrackImg from '../assets/images/Certification Track.jpg'
 import Reveal from '../components/Reveal'
 import CtaBanner from '../components/CtaBanner'
 import SectionHeading from '../components/SectionHeading'
@@ -28,6 +30,10 @@ const typeStyles = {
   Webinars: {
     light: { text: 'text-sky-700', bg: 'bg-sky-100/70', border: 'border-sky-200' },
     dark: { text: 'text-sky-300', bg: 'bg-sky-900/20', border: 'border-sky-800/40' },
+  },
+  'Certification / Skill Assessment': {
+    light: { text: 'text-violet-700', bg: 'bg-violet-100/70', border: 'border-violet-200' },
+    dark: { text: 'text-violet-300', bg: 'bg-violet-900/20', border: 'border-violet-800/40' },
   },
 }
 
@@ -94,9 +100,31 @@ const upcomingEventsSource = events.filter((event) => {
   return !timestamp || timestamp.getTime() > now
 })
 
-// No genuine, already-concluded events recorded yet — Past Events renders its
-// empty state instead of placeholder cards.
-const pastEventsSource = []
+// Genuine, already-concluded events.
+const pastEventsSource = [
+  {
+    title: 'Nexcarinner | Certificate Tracking',
+    type: 'Certification / Skill Assessment',
+    status: 'Past Event',
+    image: CertificationTrackImg,
+    imageAlt: 'Nexcarinner Certificate Tracking skill assessment flyer',
+    description:
+      'Nexcarinner conducted a skill assessment initiative covering AI/ML, Full Stack Development, Cybersecurity & Ethical Hacking, and Data Science. Participants were evaluated through multiple-choice questions (MCQs) and a mandatory project. Winners were selected based on their performance in the assessments and the completion and evaluation of the required project.',
+    highlights: [
+      'Multiple-choice question (MCQ) assessments.',
+      'A mandatory project for participants.',
+      'Evaluation of technical knowledge and practical skills.',
+      'Winners selected based on assessment and project performance.',
+      'Learning and assessment across four technology domains.',
+    ],
+    domains: [
+      'AI / ML — Advanced Principles',
+      'Full Stack Development — MERN/MEAN',
+      'Cybersecurity & Ethical Hacking',
+      'Data Science',
+    ],
+  },
+]
 
 const EventCard = ({ event, dark, delay }) => {
   const styleSet = typeStyles[event.type] || typeStyles.Workshops
@@ -117,6 +145,17 @@ const EventCard = ({ event, dark, delay }) => {
           />
         )}
 
+        {event.image && (
+          <div className="-mx-6 -mt-6 mb-5 overflow-hidden">
+            <img
+              src={event.image}
+              alt={event.imageAlt || event.title}
+              loading="lazy"
+              className="aspect-square w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+        )}
+
         <div className="flex items-center justify-between gap-3">
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-semibold ${style.bg} ${style.border} ${style.text}`}
@@ -124,14 +163,16 @@ const EventCard = ({ event, dark, delay }) => {
             {event.type === 'Webinars' && <FiRadio className="h-3 w-3" />}
             {event.type}
           </span>
-          <span
-            className={`flex items-center gap-1.5 text-xs transition-colors duration-300 ${
-              dark ? 'text-gray-500' : 'text-ink-400'
-            }`}
-          >
-            <FiCalendar className="h-3.5 w-3.5" />
-            {event.date}
-          </span>
+          {(event.date || event.status) && (
+            <span
+              className={`flex items-center gap-1.5 text-xs transition-colors duration-300 ${
+                dark ? 'text-gray-500' : 'text-ink-400'
+              }`}
+            >
+              <FiCalendar className="h-3.5 w-3.5" />
+              {event.date || event.status}
+            </span>
+          )}
         </div>
 
         <h3
@@ -149,31 +190,94 @@ const EventCard = ({ event, dark, delay }) => {
           {event.description}
         </p>
 
-        <div
-          className={`mt-5 flex items-center gap-6 border-t pt-4 text-sm transition-colors duration-300 ${
-            dark
-              ? 'border-white/8 text-gray-500'
-              : 'border-ink-800/80 text-ink-400'
-          }`}
-        >
-          <span className="flex items-center gap-2">
-            <FiClock className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-            {event.time}
-          </span>
-          <span className="flex items-center gap-2 truncate">
-            <FiMapPin className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
-            {event.location}
-          </span>
-        </div>
+        {event.highlights?.length > 0 && (
+          <div className="mt-4">
+            <h4
+              className={`text-xs font-semibold uppercase tracking-wider transition-colors duration-300 ${
+                dark ? 'text-gray-300' : 'text-ink-300'
+              }`}
+            >
+              Event Highlights
+            </h4>
+            <ul className="mt-2 space-y-1.5">
+              {event.highlights.map((item) => (
+                <li
+                  key={item}
+                  className={`flex items-start gap-2 text-sm leading-relaxed transition-colors duration-300 ${
+                    dark ? 'text-gray-400' : 'text-ink-400'
+                  }`}
+                >
+                  <FiCheck
+                    className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${
+                      dark ? 'text-gray-300' : 'text-brand-600'
+                    }`}
+                  />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
-        <Button
-          variant="outline"
-          size="md"
-          className={`mt-5 w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
-        >
-          Register
-          <FiArrowRight className="h-4 w-4" />
-        </Button>
+        {event.domains?.length > 0 && (
+          <div className="mt-4">
+            <h4
+              className={`text-xs font-semibold uppercase tracking-wider transition-colors duration-300 ${
+                dark ? 'text-gray-300' : 'text-ink-300'
+              }`}
+            >
+              Technology Domains
+            </h4>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {event.domains.map((domain) => (
+                <span
+                  key={domain}
+                  className={`rounded-full border px-2.5 py-1 text-xs font-medium transition-colors duration-300 ${
+                    dark
+                      ? 'border-white/10 bg-white/5 text-gray-300'
+                      : 'border-ink-800/80 bg-ink-900 text-ink-300'
+                  }`}
+                >
+                  {domain}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {(event.time || event.location) && (
+          <div
+            className={`mt-5 flex items-center gap-6 border-t pt-4 text-sm transition-colors duration-300 ${
+              dark
+                ? 'border-white/8 text-gray-500'
+                : 'border-ink-800/80 text-ink-400'
+            }`}
+          >
+            {event.time && (
+              <span className="flex items-center gap-2">
+                <FiClock className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+                {event.time}
+              </span>
+            )}
+            {event.location && (
+              <span className="flex items-center gap-2 truncate">
+                <FiMapPin className={`h-4 w-4 ${dark ? 'text-gray-400' : 'text-brand-600'}`} />
+                {event.location}
+              </span>
+            )}
+          </div>
+        )}
+
+        {event.status !== 'Past Event' && (
+          <Button
+            variant="outline"
+            size="md"
+            className={`mt-5 w-full ${dark ? 'text-gray-300' : 'text-ink-300'}`}
+          >
+            Register
+            <FiArrowRight className="h-4 w-4" />
+          </Button>
+        )}
       </div>
     </Reveal>
   )
