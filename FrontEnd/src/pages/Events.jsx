@@ -107,19 +107,27 @@ const pastEventsSource = [
     type: 'Certification / Skill Assessment',
     status: 'Past Event',
     image: CertificationTrackImg,
-    imageAlt: 'Nexcarinner Certificate Tracking skill assessment flyer',
+    imageAlt: 'Nexcarinner Certificate Tracking promotional poster',
     description:
-      'Nexcarinner conducted a skill assessment initiative covering AI/ML, Full Stack Development, Cybersecurity & Ethical Hacking, and Data Science. Participants were evaluated through multiple-choice questions (MCQs) and a mandatory project. Winners were selected based on their performance in the assessments and the completion and evaluation of the required project.',
-    highlights: [
-      'Multiple-choice question (MCQ) assessments.',
-      'A mandatory project for participants.',
-      'Evaluation of technical knowledge and practical skills.',
-      'Winners selected based on assessment and project performance.',
-      'Learning and assessment across four technology domains.',
+      'A skill-assessment initiative by Nexcarinner to evaluate and recognize technical talent across four in-demand technology domains.',
+    infoSections: [
+      {
+        title: 'Assessment Format',
+        items: [
+          'MCQ assessment covering core concepts.',
+          'Mandatory project demonstrating practical skills.',
+        ],
+      },
+      {
+        title: 'Winner Selection',
+        items: [
+          'Winners were selected based on their combined performance in the MCQ assessment and project evaluation.',
+        ],
+      },
     ],
     domains: [
-      'AI / ML — Advanced Principles',
-      'Full Stack Development — MERN/MEAN',
+      'AI / ML',
+      'Full Stack Development',
       'Cybersecurity & Ethical Hacking',
       'Data Science',
     ],
@@ -129,6 +137,11 @@ const pastEventsSource = [
 const EventCard = ({ event, dark, delay }) => {
   const styleSet = typeStyles[event.type] || typeStyles.Workshops
   const style = dark ? styleSet.dark : styleSet.light
+  const infoSections =
+    event.infoSections ??
+    (event.highlights?.length
+      ? [{ title: 'Event Highlights', items: event.highlights }]
+      : [])
 
   return (
     <Reveal delay={delay}>
@@ -190,34 +203,35 @@ const EventCard = ({ event, dark, delay }) => {
           {event.description}
         </p>
 
-        {event.highlights?.length > 0 && (
-          <div className="mt-4">
-            <h4
-              className={`text-xs font-semibold uppercase tracking-wider transition-colors duration-300 ${
-                dark ? 'text-gray-300' : 'text-ink-300'
-              }`}
-            >
-              Event Highlights
-            </h4>
-            <ul className="mt-2 space-y-1.5">
-              {event.highlights.map((item) => (
-                <li
-                  key={item}
-                  className={`flex items-start gap-2 text-sm leading-relaxed transition-colors duration-300 ${
-                    dark ? 'text-gray-400' : 'text-ink-400'
-                  }`}
-                >
-                  <FiCheck
-                    className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${
-                      dark ? 'text-gray-300' : 'text-brand-600'
+        {infoSections.length > 0 &&
+          infoSections.map((section) => (
+            <div key={section.title} className="mt-4">
+              <h4
+                className={`text-xs font-semibold uppercase tracking-wider transition-colors duration-300 ${
+                  dark ? 'text-gray-300' : 'text-ink-300'
+                }`}
+              >
+                {section.title}
+              </h4>
+              <ul className="mt-2 space-y-1.5">
+                {section.items.map((item) => (
+                  <li
+                    key={item}
+                    className={`flex items-start gap-2 text-sm leading-relaxed transition-colors duration-300 ${
+                      dark ? 'text-gray-400' : 'text-ink-400'
                     }`}
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
+                  >
+                    <FiCheck
+                      className={`mt-0.5 h-3.5 w-3.5 shrink-0 ${
+                        dark ? 'text-gray-300' : 'text-brand-600'
+                      }`}
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
 
         {event.domains?.length > 0 && (
           <div className="mt-4">
