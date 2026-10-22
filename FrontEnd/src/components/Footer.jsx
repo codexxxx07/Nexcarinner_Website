@@ -49,7 +49,6 @@ const socials = [
 const resourceLinks = [
   { label: 'Blog', to: '/blog' },
   { label: 'Documentation', to: '/documentation' },
-  { label: 'Guides', to: '/guides' },
   { label: 'FAQ', to: '/faq' },
 ]
 
