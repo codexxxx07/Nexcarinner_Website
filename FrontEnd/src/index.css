@@ -1,6 +1,4 @@
 @import "tailwindcss";
-/* lenis.css moved to LenisProvider.jsx — only imported when JS loads
-   the smooth-scroll library, so it doesn't bloat the critical CSS path. */
 
 /* Enable class-based dark mode */
 @custom-variant dark (&:where(.dark, .dark *));
