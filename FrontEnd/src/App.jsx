@@ -12,13 +12,6 @@ import { SignInNotification, SignUpNotification } from './components/auth/AuthNo
 import { clerkAppearance, clerkUrl } from './lib/clerkAppearance'
 import { useLenis } from 'lenis/react'
 
-/*
- * TargetCursor is lazy-loaded and deferred until after first paint.
- * It depends on GSAP (which is already in the vendor-animation chunk),
- * but its ticker, spin timeline, and event listeners should not start
- * during the critical rendering path — they add main-thread work with
- * no visual benefit until the page is interactive anyway.
- */
 const TargetCursor = lazy(() => import('./components/reactbits/TargetCursor'))
 
 const Home = lazy(() => import('./pages/Home'))
