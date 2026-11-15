@@ -500,13 +500,16 @@ export const LandingCommunityPartners = () => {
   const partnerSet = (setIndex) => (
     <div
       key={setIndex}
-      className="flex items-center"
+      className="flex items-start"
       aria-hidden={setIndex > 0 ? 'true' : undefined}
     >
       {communityPartners.map((partner) => (
-        <div key={`${setIndex}-${partner.name}`} className="mx-3 sm:mx-4 lg:mx-5">
+        <div
+          key={`${setIndex}-${partner.name}`}
+          className="mx-3 flex w-40 shrink-0 flex-col items-center sm:mx-4 sm:w-48 lg:mx-5 lg:w-56"
+        >
           <div
-            className={`flex h-20 w-40 items-center justify-center rounded-2xl border p-3 transition-colors duration-300 sm:h-24 sm:w-48 sm:p-4 lg:h-28 lg:w-56 ${
+            className={`flex h-20 w-full items-center justify-center rounded-2xl border p-3 transition-colors duration-300 sm:h-24 sm:p-4 lg:h-28 ${
               dark
                 ? 'border-white/8 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
                 : 'border-ink-800/70 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_3px_rgba(34,29,58,0.06)]'
@@ -520,13 +523,20 @@ export const LandingCommunityPartners = () => {
               className="h-full w-full rounded-lg object-contain"
             />
           </div>
+          <span
+            className={`mt-3 w-full text-balance break-words px-1 text-center text-xs font-medium leading-snug tracking-wide transition-colors duration-300 sm:text-sm ${
+              dark ? 'text-gray-200' : 'text-ink-100'
+            }`}
+          >
+            {partner.name}
+          </span>
         </div>
       ))}
     </div>
   )
 
   const row = (
-    <div className="flex items-center">
+    <div className="flex items-start">
       {[0, 1, 2].map((setIndex) => partnerSet(setIndex))}
     </div>
   )
