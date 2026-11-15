@@ -782,6 +782,12 @@ const Gallery = () => {
       if (item.featured === 'wide') return 'wide'
       return undefined
     }
+    // Community Collab is a grid of equal tiles: no card spans two columns, so
+    // none of them may take the "wide" treatment either. Passing 'wide' here
+    // gave the first tile (Unison) the 16:9 cover instead of the 4:3 one used
+    // by its siblings, which shrank its logo band and shifted its internal
+    // spacing while the outer card stayed the same width.
+    if (activeCategory === 'community-collab') return undefined
     return index === 0 ? 'wide' : undefined
   }, [activeCategory])
 
