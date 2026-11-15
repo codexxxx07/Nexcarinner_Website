@@ -18,6 +18,7 @@ import { Tabs, TabsList, TabsTrigger } from '../components/ui/tabs'
 import { useTheme } from '../context/ThemeContext'
 import { usePageTitle } from '../hooks/usePageTitle'
 import ImageSkeleton from '../components/Skeleton/ImageSkeleton'
+import nexcarinnerLogo from '../assets/images/NCW_Logo.jpg'
 import {
   galleryCategories,
   categoryMeta,
@@ -179,9 +180,11 @@ const OverviewCard = memo(function OverviewCard({ item, size, dark }) {
       >
         {meta.label}
       </span>
-      <span className="flex h-7 items-center rounded-full border border-white/25 bg-black/20 px-2.5 text-xs font-semibold text-white backdrop-blur-md">
-        {item.year}
-      </span>
+      {item.year && (
+        <span className="flex h-7 items-center rounded-full border border-white/25 bg-black/20 px-2.5 text-xs font-semibold text-white backdrop-blur-md">
+          {item.year}
+        </span>
+      )}
     </>
   )
 
@@ -302,40 +305,54 @@ const ProjectCard = memo(function ProjectCard({ item, size, dark }) {
 })
 
 /* ------------------------------------------------------------ Community Collab */
+/*
+ * A single logo tile in the collab card's visual area. Fixed square frame
+ * with object-contain keeps logos of any aspect ratio visually balanced.
+ * Mirrors the Home partner-marquee logo treatment so both surfaces match.
+ */
+const CollabLogo = memo(function CollabLogo({ src, alt }) {
+  return (
+    <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl border border-white/70 bg-white p-2.5 shadow-[0_12px_28px_-14px_rgba(0,0,0,0.55)] ring-1 ring-black/5 sm:h-24 sm:w-24 sm:p-3 lg:h-28 lg:w-28 lg:p-4">
+      <ImageSkeleton
+        src={src}
+        alt={alt}
+        wrapperClassName="h-full w-full"
+        imgClassName="h-full w-full object-contain"
+      />
+    </div>
+  )
+})
+
 const CollabCard = memo(function CollabCard({ item, size, dark }) {
   const wide = size === 'wide'
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
       <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
-        {item.image ? (
-          <ImageSkeleton
-            src={item.image}
-            alt={item.name}
-            wrapperClassName="h-full w-full"
-            imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-          />
-        ) : (
-          <div className="relative flex h-full w-full items-center justify-center bg-linear-to-br from-flare-cyan to-brand-500">
-            <FiUsers className="h-12 w-12 text-white/90" />
-          </div>
-        )}
+        {/* Retained gradient treatment from the original collab cover */}
+        <div className="absolute inset-0 bg-linear-to-br from-flare-cyan to-brand-500" />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage:
+              'radial-gradient(ellipse 65% 55% at 50% 0%, rgba(255,255,255,0.32) 0%, transparent 68%)',
+          }}
+        />
+        <div className="absolute inset-3 rounded-2xl border border-white/20" />
 
-        {/* Nexcarinner × partner connector */}
-        <div className="absolute left-4 top-4 z-10">
+        {/* Nexcarinner logo × partner community logo */}
+        <div className="relative z-10 flex h-full w-full items-center justify-center gap-3 px-5 sm:gap-5 sm:px-8">
+          <CollabLogo src={nexcarinnerLogo} alt="Nexcarinner logo" />
           <span
-            className={`inline-flex items-center gap-1 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur-md ${
-              dark
-                ? 'border-white/20 bg-black/50 text-brand-300'
-                : 'border-brand-500/30 bg-white/90 text-brand-700'
-            }`}
+            aria-hidden="true"
+            className="font-display text-3xl font-bold leading-none text-white/90 drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)] sm:text-4xl"
           >
-            <FiUsers className="h-3.5 w-3.5" />
-            Nexcarinner
-            <span className={`text-[10px] ${dark ? 'text-gray-500' : 'text-ink-400'}`}>×</span>
+            ×
           </span>
+          <CollabLogo src={item.logo} alt={`${item.name} logo`} />
         </div>
-        <YearChip year={item.year} className="absolute right-4 top-4 z-10" />
+
+        {item.year && <YearChip year={item.year} className="absolute right-4 top-4 z-10" />}
       </div>
 
       <div className="flex flex-1 flex-col p-6">
@@ -353,7 +370,7 @@ const CollabCard = memo(function CollabCard({ item, size, dark }) {
         >
           Nexcarinner <span className={dark ? 'text-brand-400' : 'text-brand-600'}>×</span> {item.name}
         </h3>
-        <CardBody dark={dark}>{item.description}</CardBody>
+        {item.description && <CardBody dark={dark}>{item.description}</CardBody>}
         <div className="mt-auto pt-4">
           <span
             className={`inline-flex items-center gap-2 text-xs font-semibold transition-colors duration-300 ${
@@ -361,7 +378,7 @@ const CollabCard = memo(function CollabCard({ item, size, dark }) {
             }`}
           >
             <FiUsers className="h-3.5 w-3.5" />
-            Partnership · {item.year}
+            {item.year ? `Partnership · ${item.year}` : 'Partnership'}
           </span>
         </div>
       </div>

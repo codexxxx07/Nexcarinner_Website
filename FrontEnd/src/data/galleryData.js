@@ -13,9 +13,9 @@ import {
   FiHeart,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
-import demoCollab1 from '../assets/demo/collab-1.svg'
-import demoCollab2 from '../assets/demo/collab-2.svg'
-import demoCollab3 from '../assets/demo/collab-3.svg'
+import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
+import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
+import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import demoCert1 from '../assets/demo/cert-1.svg'
 import demoCert2 from '../assets/demo/cert-2.svg'
 import demoCert3 from '../assets/demo/cert-3.svg'
@@ -237,36 +237,37 @@ export const projects = [
  * ----------------------------------------------------------------
  * Community Collab — collaborations between Nexcarinner and OTHER
  * communities / organizations. Each entry showcases the partner
- * (logo/image + name), not an internal Nexcarinner initiative.
- * Fields: id, name, image, description, year, featured.
+ * (logo + name), not an internal Nexcarinner initiative.
+ * Fields: id, name, logo, description, year (optional), featured.
+ *
+ * Only partnerships documented in the project are listed here:
+ *   · Unison    — Nexcarinner in the Unison Build-A-Thon line-up.
+ *   · Tech4Hack — official community partner for Buildathon 2026.
+ *   · Elevana   — strategic ecosystem collaboration.
  * ----------------------------------------------------------------
  */
 export const communityCollabs = [
   {
-    id: 'demo-collab-1',
-    name: 'Demo Community',
-    image: demoCollab1,
+    id: 'unison',
+    name: 'Unison',
+    logo: unisonLogo,
     description:
-      'A partner community we co-run workshops and tech meetups with — shared events, shared energy.',
-    year: '2026',
+      'Nexcarinner joined the Unison Build-A-Thon line-up — an AI-powered build sprint where students code, elevate, compete, and connect.',
     featured: true,
   },
   {
-    id: 'demo-collab-2',
-    name: 'Demo Organization',
-    image: demoCollab2,
+    id: 'tech4hack',
+    name: 'Tech4Hack',
+    logo: tech4HackLogo,
     description:
-      'A collaboration around mentorship and open-source — their mentors, our members, one cohort.',
-    year: '2026',
-    featured: 'wide',
+      'An official community partnership with Tech4Hack for the Buildathon 2026 — workshops, mentorship, and internship opportunities that let Nexcarinner members build real-world projects.',
   },
   {
-    id: 'demo-collab-3',
-    name: 'Demo University',
-    image: demoCollab3,
+    id: 'elevana',
+    name: 'Elevana',
+    logo: elevanaLogo,
     description:
-      'A campus partnership that brings hackathons and student programs to a wider audience.',
-    year: '2025',
+      "A strategic ecosystem collaboration with Elevana, a fellow youth platform — shared execution infrastructure that helps turn students' startup and tech ideas into concrete outcomes.",
   },
 ]
 
@@ -591,11 +592,11 @@ export const overviewItems = [
   {
     id: 'ov-collab',
     category: 'community-collab',
-    title: 'Demo Community',
+    title: 'Nexcarinner × Unison',
     description:
-      'One of the communities we partner with — shared workshops, shared energy.',
-    year: '2026',
-    image: demoCollab1,
+      'Nexcarinner joined the Unison Build-A-Thon line-up — an AI-powered build sprint where students code, elevate, compete, and connect.',
+    year: '',
+    image: unisonLogo,
     accent: 'from-flare-cyan to-brand-500',
     link: '/gallery/community-collab',
     linkLabel: 'See collaborations',
