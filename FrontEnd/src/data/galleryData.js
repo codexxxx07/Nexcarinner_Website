@@ -416,6 +416,22 @@ export const events = [
   },
 ]
 
+/*
+ * ----------------------------------------------------------------
+ * Community Moments — partnership posters, announcement graphics
+ * and photographs shared by the community.
+ *
+ * Every image fills its card's square cover frame edge to edge with
+ * object-fit: cover: the frame is never letterboxed and no image is
+ * ever stretched. `objectPosition` optionally shifts the crop
+ * (defaults to 'center') so a subject stays in view; any overflow is
+ * cropped, never padded.
+ *
+ * Every card uses the same square frame (MOMENT_IMAGE_ASPECT in
+ * Gallery.jsx) so the grid stays uniform at every breakpoint. Images
+ * live in ../assets/CommunityMoments/.
+ * ----------------------------------------------------------------
+ */
 export const communityMoments = [
   {
     id: 'founding',
@@ -427,8 +443,9 @@ export const communityMoments = [
     accent: 'from-brand-500 to-flare-pink',
     image: GunjanImg,
     featured: true,
-    fit: 'contain',
-    imageAspect: 'aspect-[4/3]',
+    // Portrait photograph of a founding member — the square crop is biased
+    // upward so the face stays fully in view.
+    objectPosition: '50% 30%',
   },
   {
     id: 'community-moment-1',
@@ -439,7 +456,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-600 to-flare-cyan',
     image: communityMoment1,
-    fit: 'cover',
   },
   {
     id: 'community-moment-2',
@@ -450,7 +466,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-cyan',
     image: communityMoment2,
-    fit: 'cover',
   },
   {
     id: 'community-moment-3',
@@ -461,7 +476,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-flare-pink to-brand-500',
     image: communityMoment3,
-    fit: 'contain',
   },
   {
     id: 'community-moment-4',
@@ -472,7 +486,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-pink',
     image: communityMoment4,
-    fit: 'contain',
   },
   {
     id: 'community-moment-5',
@@ -483,7 +496,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-flare-cyan to-brand-500',
     image: communityMoment5,
-    fit: 'cover',
   },
   {
     id: 'community-moment-6',
@@ -494,7 +506,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-600 to-flare-pink',
     image: communityMoment6,
-    fit: 'cover',
   },
   {
     id: 'community-moment-7',
@@ -505,7 +516,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-flare-pink to-flare-cyan',
     image: communityMoment7,
-    fit: 'cover',
   },
   {
     id: 'community-moment-8',
@@ -516,7 +526,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-500 to-brand-700',
     image: communityMoment8,
-    fit: 'cover',
   },
   {
     id: 'community-moment-9',
@@ -527,7 +536,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-flare-cyan to-brand-600',
     image: communityMoment9,
-    fit: 'contain',
   },
   {
     id: 'community-moment-10',
@@ -538,7 +546,6 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-cyan',
     image: communityMoment10,
-    fit: 'contain',
   },
 ]
 

@@ -682,54 +682,42 @@ const EventCard = memo(function EventCard({ item, size, dark }) {
 })
 
 /* ------------------------------------------------------- Community Moments */
-const MomentCard = memo(function MomentCard({ item, size, dark }) {
-  const wide = size === 'wide'
-  const contain = item.fit === 'contain'
+/*
+ * Every Community Moment shares one square cover frame. A fixed, uniform
+ * aspect ratio is what keeps the grid visually consistent: the image area is
+ * the same size on every card, at every breakpoint, no matter what
+ * proportions the source file has.
+ */
+const MOMENT_IMAGE_ASPECT = 'aspect-square'
+
+const MomentCard = memo(function MomentCard({ item, dark }) {
+  // 'center' by default; a photo can override it so its subject is not
+  // cropped away while the image still covers the whole square.
+  const objectPosition = item.objectPosition || 'center'
 
   let cover = <GalleryCover item={item} accent={item.accent} />
 
   if (item.image) {
-    if (contain) {
-      /*
-       * Portrait/square photos that would be badly cropped by object-cover
-       * are shown whole with object-contain, on a soft framed backdrop so
-       * the letterboxing reads as intentional in both light and dark mode.
-       */
-      cover = (
-        <div
-          className={`flex h-full w-full items-center justify-center p-3 sm:p-5 ${
-            dark
-              ? 'bg-linear-to-br from-brand-500/15 via-black/30 to-flare-pink/15'
-              : 'bg-linear-to-br from-brand-100/50 via-white/70 to-flare-pink/30'
-          }`}
-        >
-          <ImageSkeleton
-            src={item.image}
-            alt={item.title}
-            wrapperClassName="h-full w-full"
-            imgClassName="h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)]"
-          />
-        </div>
-      )
-    } else {
-      cover = (
-        <ImageSkeleton
-          src={item.image}
-          alt={item.title}
-          wrapperClassName="h-full w-full"
-          imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      )
-    }
+    /*
+     * Every image covers the square edge to edge. object-fit: cover crops
+     * whatever does not fit instead of letterboxing, so no card ever shows
+     * empty space inside its frame. object-position keeps the subject in
+     * view without ever stretching the image.
+     */
+    cover = (
+      <ImageSkeleton
+        src={item.image}
+        alt={item.title}
+        wrapperClassName="h-full w-full"
+        imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        style={{ objectPosition }}
+      />
+    )
   }
 
   return (
-    <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div
-        className={`relative overflow-hidden ${
-          item.imageAspect || (wide ? 'aspect-video' : 'aspect-4/3')
-        }`}
-      >
+    <CardShell dark={dark}>
+      <div className={`relative overflow-hidden ${MOMENT_IMAGE_ASPECT}`}>
         {cover}
         {item.year && <YearChip year={item.year} className="absolute left-4 top-4 z-10" />}
       </div>
@@ -788,6 +776,10 @@ const Gallery = () => {
     // by its siblings, which shrank its logo band and shifted its internal
     // spacing while the outer card stayed the same width.
     if (activeCategory === 'community-collab') return undefined
+    // Community Moments uses one uniform square cover per card. A wide first
+    // card would make its square twice as large as its siblings', breaking the
+    // consistent 1:1 image dimensions the grid relies on.
+    if (activeCategory === 'community-moments') return undefined
     return index === 0 ? 'wide' : undefined
   }, [activeCategory])
 
