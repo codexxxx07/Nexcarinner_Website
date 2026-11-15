@@ -9,6 +9,7 @@ import {
   LandingStats,
   LandingCommunities,
   LandingSkillsMarquee,
+  LandingCommunityPartners,
 } from '../components/LandingSections'
 
 const Home = () => {
@@ -47,6 +48,7 @@ const Home = () => {
       <LandingStats variant="home" />
       <LandingCommunities variant="home" />
       <LandingSkillsMarquee variant="home" />
+      <LandingCommunityPartners />
       <CtaBanner
         title={
           <>

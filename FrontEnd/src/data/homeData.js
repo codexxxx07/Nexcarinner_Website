@@ -1,5 +1,8 @@
 import { FaCode, FaGlobe, FaLightbulb, FaPalette } from 'react-icons/fa'
 import { IoBarChartSharp } from 'react-icons/io5'
+import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
+import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
+import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import {
   FiUsers,
   FiZap,
@@ -19,6 +22,12 @@ export const stats = [
   { end: 10, suffix: '+', label: 'Event Hosted' },
   { end: 20, suffix: '+', label: 'Live Projects' },
   { end: 9, suffix: '+', label: 'Industry Partners' },
+]
+
+export const communityPartners = [
+  { name: 'Elevana', logo: elevanaLogo },
+  { name: 'Tech4Hack', logo: tech4HackLogo },
+  { name: 'Unison', logo: unisonLogo },
 ]
 
 export const communities = [

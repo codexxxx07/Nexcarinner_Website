@@ -11,6 +11,7 @@ import { useTheme } from '../context/ThemeContext'
 import {
   stats,
   communities,
+  communityPartners,
   groups,
   announcements,
   skills,
@@ -481,6 +482,78 @@ export const LandingSkillsMarquee = ({ variant = 'home' }) => {
         <Marquee reverse duration={42}>
           {row}
         </Marquee>
+      </div>
+    </section>
+  )
+}
+
+export const LandingCommunityPartners = () => {
+  const { dark } = useTheme()
+
+  /*
+   * Only three partner logos exist, so one pass of the set would be narrower
+   * than the viewport and the marquee would show empty gaps. Repeat the set
+   * three times inside each half of the Marquee track so the -50% translation
+   * always lands on identical content. This mirrors the loop behavior of the
+   * other marquees without changing the shared Marquee component.
+   */
+  const partnerSet = (setIndex) => (
+    <div
+      key={setIndex}
+      className="flex items-center"
+      aria-hidden={setIndex > 0 ? 'true' : undefined}
+    >
+      {communityPartners.map((partner) => (
+        <div key={`${setIndex}-${partner.name}`} className="mx-3 sm:mx-4 lg:mx-5">
+          <div
+            className={`flex h-20 w-40 items-center justify-center rounded-2xl border p-3 transition-colors duration-300 sm:h-24 sm:w-48 sm:p-4 lg:h-28 lg:w-56 ${
+              dark
+                ? 'border-white/8 bg-white/5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)]'
+                : 'border-ink-800/70 bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_1px_3px_rgba(34,29,58,0.06)]'
+            }`}
+          >
+            <img
+              src={partner.logo}
+              alt={setIndex === 0 ? `${partner.name} logo` : ''}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full rounded-lg object-contain"
+            />
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+
+  const row = (
+    <div className="flex items-center">
+      {[0, 1, 2].map((setIndex) => partnerSet(setIndex))}
+    </div>
+  )
+
+  return (
+    <section className="mx-auto max-w-7xl px-6 py-16 sm:py-20 lg:px-8">
+      <SectionHeading
+        eyebrow="Our Ecosystem"
+        title={
+          <>
+            Community <span className="text-gradient">Partners</span>
+          </>
+        }
+      />
+
+      <div className="relative overflow-hidden">
+        <div
+          className={`pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-linear-to-r sm:w-24 ${
+            dark ? 'from-[#0f0f0f]' : 'from-ink-950'
+          } to-transparent`}
+        />
+        <div
+          className={`pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-linear-to-l sm:w-24 ${
+            dark ? 'from-[#0f0f0f]' : 'from-ink-950'
+          } to-transparent`}
+        />
+        <Marquee duration={40}>{row}</Marquee>
       </div>
     </section>
   )
