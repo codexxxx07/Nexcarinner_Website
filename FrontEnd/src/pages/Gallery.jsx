@@ -694,6 +694,13 @@ const MomentCard = memo(function MomentCard({ item, dark }) {
   // 'center' by default; a photo can override it so its subject is not
   // cropped away while the image still covers the whole square.
   const objectPosition = item.objectPosition || 'center'
+  const imageScale = item.imageScale
+
+  // Only cards with an explicit scale get the zoomed classes. Everything else
+  // keeps the exact cover/hover styling the rest of the gallery already uses.
+  const scaleClasses = imageScale
+    ? 'scale-[var(--moment-image-scale)] group-hover:scale-[calc(var(--moment-image-scale)*1.04)]'
+    : 'group-hover:scale-[1.04]'
 
   let cover = <GalleryCover item={item} accent={item.accent} />
 
@@ -709,8 +716,11 @@ const MomentCard = memo(function MomentCard({ item, dark }) {
         src={item.image}
         alt={item.title}
         wrapperClassName="h-full w-full"
-        imgClassName="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        style={{ objectPosition }}
+        imgClassName={`h-full w-full object-cover transition-transform duration-500 ease-out ${scaleClasses}`}
+        style={{
+          objectPosition,
+          ...(imageScale ? { '--moment-image-scale': imageScale } : {}),
+        }}
       />
     )
   }

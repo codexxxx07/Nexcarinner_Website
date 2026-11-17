@@ -476,6 +476,10 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-flare-pink to-brand-500',
     image: communityMoment3,
+    // Centered 5% zoom trims a little from the top and bottom so this
+    // portrait poster sits in the square frame like its siblings.
+    objectPosition: '50% 50%',
+    imageScale: 1.05,
   },
   {
     id: 'community-moment-4',
@@ -486,6 +490,9 @@ export const communityMoments = [
     icon: FiHeart,
     accent: 'from-brand-500 to-flare-pink',
     image: communityMoment4,
+    // Same centered, slight vertical crop as Learning Together.
+    objectPosition: '50% 50%',
+    imageScale: 1.05,
   },
   {
     id: 'community-moment-5',
