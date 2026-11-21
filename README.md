@@ -25,23 +25,3 @@ Nexcarinner is a growing student-focused technology and learning community. Our 
 **Cross-Community Networking**: Hosts a centralized digital network where students discuss emerging tech trends, swap resources, and find potential project co-founders.
 
 
-## ⚡ Quick Start 🔨
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/codexxxx07/Nexcarinner_Website.git
-cd Nexcarinner_Website
-```
-
----
-
-### 2. Set up the Frontend
-
-```bash
-cd Frontend
-npm install
-npm run dev
-```
- 
----
