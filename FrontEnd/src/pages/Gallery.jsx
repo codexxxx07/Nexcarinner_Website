@@ -394,20 +394,12 @@ const CertificationCard = memo(function CertificationCard({ item, dark, onVerify
     <CardShell dark={dark}>
       <div className="relative aspect-4/3 overflow-hidden">
         {item.image ? (
-          <div
-            className={`flex h-full w-full items-center justify-center p-3 sm:p-4 ${
-              dark
-                ? 'bg-linear-to-br from-brand-500/15 via-black/30 to-flare-pink/15'
-                : 'bg-linear-to-br from-brand-100/50 via-white/70 to-flare-pink/30'
-            }`}
-          >
-            <ImageSkeleton
-              src={item.image}
-              alt={`${item.certificateTitle} certificate for ${item.memberName}`}
-              wrapperClassName="h-full w-full"
-              imgClassName="h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
-            />
-          </div>
+          <ImageSkeleton
+            src={item.image}
+            alt={`${item.certificateTitle} certificate for ${item.memberName}`}
+            wrapperClassName="h-full w-full"
+            imgClassName="h-full w-full object-cover object-center drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+          />
         ) : (
           <GalleryCover item={item} accent={item.accent} />
         )}
