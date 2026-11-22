@@ -1,6 +1,7 @@
 import { FaCode, FaGlobe, FaLightbulb, FaPalette } from 'react-icons/fa'
 import { IoBarChartSharp } from 'react-icons/io5'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
+import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
 import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
 import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import {
@@ -26,6 +27,7 @@ export const stats = [
 
 export const communityPartners = [
   { name: 'Elevana', logo: elevanaLogo },
+  { name: 'Event Dev X', logo: eventDevXLogo },
   { name: 'Tech4Hack', logo: tech4HackLogo },
   { name: 'Unison', logo: unisonLogo },
 ]

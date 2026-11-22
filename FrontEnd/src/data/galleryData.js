@@ -14,6 +14,7 @@ import {
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
+import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
 import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
 import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import abhijitPatraCert from '../assets/Certifications/AbhijitPatra.jpg'
@@ -274,6 +275,12 @@ export const communityCollabs = [
     logo: elevanaLogo,
     description:
       "A strategic ecosystem collaboration with Elevana, a fellow youth platform — shared execution infrastructure that helps turn students' startup and tech ideas into concrete outcomes.",
+  },
+  {
+    id: 'event-dev-x',
+    name: 'Event Dev X',
+    logo: eventDevXLogo,
+    description: '',
   },
 ]
 
