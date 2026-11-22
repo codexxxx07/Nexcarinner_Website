@@ -287,7 +287,7 @@ export const certifications = [
     date: '20 August 2026',
     year: '2026',
     image: abhijitPatraCert,
-    linkedinUrl: '',
+    linkedinUrl: 'https://www.linkedin.com/in/abhijit-axyon?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
   {
     id: 'cert-shaurya-gupta',
@@ -297,7 +297,7 @@ export const certifications = [
     date: '20 August 2026',
     year: '2026',
     image: shauryaGuptaCert,
-    linkedinUrl: '',
+    //linkedinUrl: '',
   },
   {
     id: 'cert-yukta-ravindra-thakur',
@@ -307,7 +307,7 @@ export const certifications = [
     date: '20 August 2026',
     year: '2026',
     image: yuktaRavindraCert,
-    linkedinUrl: '',
+    linkedinUrl: 'https://www.linkedin.com/in/yukta-thakur-38251a328?utm_source=share_via&utm_content=profile&utm_medium=member_android',
   },
 ]
 

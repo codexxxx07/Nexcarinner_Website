@@ -473,17 +473,9 @@ const CertificationCard = memo(function CertificationCard({ item, dark, onVerify
                 <FaLinkedinIn className="h-4 w-4" />
               </a>
             ) : (
-              <span
-                aria-label="LinkedIn profile link not added yet"
-                title="LinkedIn profile link not added yet"
-                className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 ${
-                  dark
-                    ? 'border-white/10 text-gray-500'
-                    : 'border-ink-800/70 text-ink-400'
-                }`}
-              >
-                <FaLinkedinIn className="h-4 w-4" />
-              </span>
+              /* Invisible, non-interactive spacer keeps the card layout identical
+                 without showing a LinkedIn icon or leaving a clickable/broken link. */
+              <span aria-hidden="true" className="h-9 w-9 shrink-0 pointer-events-none" />
             )}
           </div>
         </div>
