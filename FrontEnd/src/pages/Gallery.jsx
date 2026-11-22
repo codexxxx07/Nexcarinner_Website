@@ -389,12 +389,10 @@ const CollabCard = memo(function CollabCard({ item, size, dark }) {
 })
 
 /* ----------------------------------------------------------- Certifications */
-const CertificationCard = memo(function CertificationCard({ item, size, dark, onVerify }) {
-  const wide = size === 'wide'
-
+const CertificationCard = memo(function CertificationCard({ item, dark, onVerify }) {
   return (
-    <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
+    <CardShell dark={dark}>
+      <div className="relative aspect-4/3 overflow-hidden">
         {item.image ? (
           <div
             className={`flex h-full w-full items-center justify-center p-3 sm:p-4 ${
@@ -855,6 +853,9 @@ const Gallery = () => {
     // card would make its square twice as large as its siblings', breaking the
     // consistent 1:1 image dimensions the grid relies on.
     if (activeCategory === 'community-moments') return undefined
+    // Certifications must render as equally sized cards with consistent image
+    // areas, so no card receives the wide treatment.
+    if (activeCategory === 'certifications') return undefined
     return index === 0 ? 'wide' : undefined
   }, [activeCategory])
 
