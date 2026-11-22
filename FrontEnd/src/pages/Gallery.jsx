@@ -1,4 +1,4 @@
-import { memo, useCallback } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import {
   FiArrowUpRight,
@@ -9,7 +9,9 @@ import {
   FiHeart,
   FiMapPin,
   FiUsers,
+  FiX,
 } from 'react-icons/fi'
+import { FaLinkedinIn } from 'react-icons/fa'
 import Reveal from '../components/Reveal'
 import BackButton from '../components/BackButton'
 import CtaBanner from '../components/CtaBanner'
@@ -387,13 +389,30 @@ const CollabCard = memo(function CollabCard({ item, size, dark }) {
 })
 
 /* ----------------------------------------------------------- Certifications */
-const CertificationCard = memo(function CertificationCard({ item, size, dark }) {
+const CertificationCard = memo(function CertificationCard({ item, size, dark, onVerify }) {
   const wide = size === 'wide'
 
   return (
     <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
       <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
-        <GalleryCover item={item} accent={item.accent} />
+        {item.image ? (
+          <div
+            className={`flex h-full w-full items-center justify-center p-3 sm:p-4 ${
+              dark
+                ? 'bg-linear-to-br from-brand-500/15 via-black/30 to-flare-pink/15'
+                : 'bg-linear-to-br from-brand-100/50 via-white/70 to-flare-pink/30'
+            }`}
+          >
+            <ImageSkeleton
+              src={item.image}
+              alt={`${item.certificateTitle} certificate for ${item.memberName}`}
+              wrapperClassName="h-full w-full"
+              imgClassName="h-full w-full object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] transition-transform duration-500 ease-out group-hover:scale-[1.02]"
+            />
+          </div>
+        ) : (
+          <GalleryCover item={item} accent={item.accent} />
+        )}
         <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
           <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-xs font-bold shadow-sm backdrop-blur-md ${
@@ -418,37 +437,65 @@ const CertificationCard = memo(function CertificationCard({ item, size, dark }) 
           {item.memberName}
         </p>
         <CardHeading dark={dark}>{item.certificateTitle}</CardHeading>
-        <p
-          className={`mt-1.5 text-sm font-medium transition-colors duration-300 ${
-            dark ? 'text-gray-500' : 'text-ink-400'
+        <div
+          className={`mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm transition-colors duration-300 ${
+            dark ? 'text-gray-400' : 'text-ink-400'
           }`}
         >
-          {item.issuer}
-        </p>
+          {item.rank && (
+            <span>
+              <span className={`font-semibold ${dark ? 'text-gray-300' : 'text-ink-500'}`}>Rank:</span>{' '}
+              {item.rank}
+            </span>
+          )}
+          {item.date && <span>{item.date}</span>}
+        </div>
 
         <div className="mt-auto pt-4">
-          {item.verificationUrl ? (
-            <a
-              href={item.verificationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+          <div
+            className={`flex items-center justify-between gap-3 border-t pt-3.5 transition-colors duration-300 ${
+              dark ? 'border-white/8' : 'border-ink-800/70'
+            }`}
+          >
+            <button
+              type="button"
+              onClick={() => onVerify?.(item)}
               className={`group/verify inline-flex items-center gap-1.5 text-sm font-semibold transition-colors duration-200 ${
                 dark ? 'text-emerald-300 hover:text-emerald-200' : 'text-emerald-700 hover:text-emerald-800'
               }`}
             >
               Verify Certificate
               <FiExternalLink className="h-4 w-4 transition-transform duration-200 group-hover/verify:translate-x-0.5 group-hover/verify:-translate-y-0.5" />
-            </a>
-          ) : (
-            <span
-              className={`inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-widest transition-colors duration-300 ${
-                dark ? 'text-gray-500' : 'text-ink-400'
-              }`}
-            >
-              <FiCheckCircle className="h-3.5 w-3.5" />
-              Certificate on file
-            </span>
-          )}
+            </button>
+
+            {item.linkedinUrl ? (
+              <a
+                href={item.linkedinUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${item.memberName} on LinkedIn`}
+                className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 ${
+                  dark
+                    ? 'border-white/10 text-gray-300 hover:border-[#0A66C2]/50 hover:bg-[#0A66C2]/15 hover:text-[#0A66C2]'
+                    : 'border-ink-800/70 text-ink-500 hover:border-[#0A66C2]/40 hover:bg-[#0A66C2]/10 hover:text-[#0A66C2]'
+                }`}
+              >
+                <FaLinkedinIn className="h-4 w-4" />
+              </a>
+            ) : (
+              <span
+                aria-label="LinkedIn profile link not added yet"
+                title="LinkedIn profile link not added yet"
+                className={`inline-flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 ${
+                  dark
+                    ? 'border-white/10 text-gray-500'
+                    : 'border-ink-800/70 text-ink-400'
+                }`}
+              >
+                <FaLinkedinIn className="h-4 w-4" />
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </CardShell>
@@ -763,11 +810,29 @@ const Gallery = () => {
   const { dark } = useTheme()
   const { category = 'all' } = useParams()
   const navigate = useNavigate()
+  const [previewCert, setPreviewCert] = useState(null)
 
   const activeCategory = galleryCategories.some((c) => c.slug === category) ? category : 'all'
   const meta = categoryMeta[activeCategory]
 
   usePageTitle(meta.label)
+
+  useEffect(() => {
+    if (!previewCert) return undefined
+
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') setPreviewCert(null)
+    }
+
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [previewCert])
 
   const sizeFor = useCallback((item, index) => {
     if (activeCategory === 'all') {
@@ -813,7 +878,7 @@ const Gallery = () => {
             : ''
       return (
         <Reveal key={item.id} delay={(index % 3) * 80} className={`h-full ${span}`}>
-          <Card item={item} size={size} dark={dark} />
+          <Card item={item} size={size} dark={dark} onVerify={setPreviewCert} />
         </Reveal>
       )
     })
@@ -907,6 +972,66 @@ const Gallery = () => {
         secondaryLabel="Explore Events"
         secondaryTo="/events"
       />
+
+      {previewCert && (
+        <div
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/70 p-4 backdrop-blur-sm sm:p-6"
+          role="dialog"
+          aria-modal="true"
+          aria-label={`${previewCert.memberName} certificate preview`}
+          onClick={() => setPreviewCert(null)}
+        >
+          <div
+            className={`relative w-full max-w-5xl overflow-hidden rounded-3xl border shadow-2xl ${
+              dark ? 'border-white/10 bg-[#111827]' : 'border-ink-800/60 bg-white'
+            }`}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div
+              className={`flex items-center justify-between gap-4 border-b px-5 py-4 sm:px-6 ${
+                dark ? 'border-white/10' : 'border-ink-800/60'
+              }`}
+            >
+              <div className="min-w-0">
+                <p
+                  className={`text-xs font-semibold uppercase tracking-widest ${
+                    dark ? 'text-pink-300' : 'text-pink-600'
+                  }`}
+                >
+                  {previewCert.memberName}
+                </p>
+                <h2
+                  className={`mt-1 truncate font-display text-lg font-bold sm:text-xl ${
+                    dark ? 'text-white' : 'text-ink-50'
+                  }`}
+                >
+                  {previewCert.certificateTitle}
+                </h2>
+              </div>
+              <button
+                type="button"
+                onClick={() => setPreviewCert(null)}
+                aria-label="Close certificate preview"
+                className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-200 ${
+                  dark
+                    ? 'border-white/10 text-gray-300 hover:bg-white/10 hover:text-white'
+                    : 'border-ink-800/60 text-ink-500 hover:bg-ink-900/40 hover:text-ink-50'
+                }`}
+              >
+                <FiX className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className={`max-h-[75vh] overflow-auto p-4 sm:p-6 ${dark ? 'bg-black/20' : 'bg-ink-950/20'}`}>
+              <img
+                src={previewCert.image}
+                alt={`${previewCert.certificateTitle} certificate for ${previewCert.memberName}`}
+                className="mx-auto h-auto max-h-[68vh] w-full max-w-full rounded-xl object-contain"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </>
   )
 }

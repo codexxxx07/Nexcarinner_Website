@@ -16,9 +16,9 @@ import GunjanImg from '../assets/images/Gunjan.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
 import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
 import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
-import demoCert1 from '../assets/demo/cert-1.svg'
-import demoCert2 from '../assets/demo/cert-2.svg'
-import demoCert3 from '../assets/demo/cert-3.svg'
+import abhijitPatraCert from '../assets/Certifications/AbhijitPatra.jpg'
+import shauryaGuptaCert from '../assets/Certifications/ShauryaGupta.jpg'
+import yuktaRavindraCert from '../assets/Certifications/YuktaRavindra.jpg'
 import NexcarinnerCertTeck4Hack from '../assets/images/Nexcarinner_Cert_Teck4Hack.jpg'
 import demoEvent1 from '../assets/demo/event-1.svg'
 import demoEvent2 from '../assets/demo/event-2.svg'
@@ -275,36 +275,39 @@ export const communityCollabs = [
  * ----------------------------------------------------------------
  * Certifications — verified certificates earned by Nexcarinner
  * community members. Fields: id, memberName, certificateTitle,
- * issuer, image, year, verificationUrl (optional).
+ * rank, date, image, linkedinUrl.
  * ----------------------------------------------------------------
  */
 export const certifications = [
   {
-    id: 'cert-aiml',
-    memberName: 'Aarav Sharma',
-    certificateTitle: 'AI/ML Engineering Fundamentals',
-    issuer: 'Coursera',
-    image: demoCert1,
+    id: 'cert-abhijit-patra',
+    memberName: 'Abhijit Patra',
+    certificateTitle: 'Frontend Development Certification Test',
+    rank: '1st',
+    date: '20 August 2026',
     year: '2026',
-    verificationUrl: 'https://coursera.org/verify/nexcarinner-aiml',
+    image: abhijitPatraCert,
+    linkedinUrl: '',
   },
   {
-    id: 'cert-security',
-    memberName: 'Meera Patel',
-    certificateTitle: 'Ethical Hacking & Network Security',
-    issuer: 'TryHackMe',
-    image: demoCert2,
+    id: 'cert-shaurya-gupta',
+    memberName: 'Shaurya Gupta',
+    certificateTitle: 'Frontend Development Certification Test',
+    rank: '2nd',
+    date: '20 August 2026',
     year: '2026',
-    verificationUrl: '',
+    image: shauryaGuptaCert,
+    linkedinUrl: '',
   },
   {
-    id: 'cert-data',
-    memberName: 'Rohan Verma',
-    certificateTitle: 'Data Science with Python',
-    issuer: 'Kaggle Learn',
-    image: demoCert3,
+    id: 'cert-yukta-ravindra-thakur',
+    memberName: 'Yukta Ravindra Thakur',
+    certificateTitle: 'Frontend Development Certification Test',
+    rank: '1st',
+    date: '20 August 2026',
     year: '2026',
-    verificationUrl: 'https://kaggle.com/learn/verify/nexcarinner-data',
+    image: yuktaRavindraCert,
+    linkedinUrl: '',
   },
 ]
 
@@ -619,11 +622,11 @@ export const overviewItems = [
   {
     id: 'ov-cert',
     category: 'certifications',
-    title: 'Ethical Hacking & Network Security',
+    title: 'Frontend Development Certification Test',
     description:
-      'A verified certificate earned by community member Meera Patel.',
+      'A verified certificate earned by community member Abhijit Patra.',
     year: '2026',
-    image: demoCert2,
+    image: abhijitPatraCert,
     accent: 'from-flare-pink to-brand-500',
     link: '/gallery/certifications',
     linkLabel: 'See certifications',
