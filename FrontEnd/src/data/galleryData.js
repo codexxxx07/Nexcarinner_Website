@@ -19,6 +19,9 @@ import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import abhijitPatraCert from '../assets/Certifications/AbhijitPatra.jpg'
 import shauryaGuptaCert from '../assets/Certifications/ShauryaGupta.jpg'
 import yuktaRavindraCert from '../assets/Certifications/YuktaRavindra.jpg'
+import nadhiyaRCert from '../assets/Certifications/NADHIYAR.jpg'
+import aishwaryaCert from '../assets/Certifications/Aishwarya.jpg'
+import vibhuKumarCert from '../assets/Certifications/VibhuKumar.jpg'
 import NexcarinnerCertTeck4Hack from '../assets/images/Nexcarinner_Cert_Teck4Hack.jpg'
 import demoEvent1 from '../assets/demo/event-1.svg'
 import demoEvent2 from '../assets/demo/event-2.svg'
@@ -308,6 +311,39 @@ export const certifications = [
     year: '2026',
     image: yuktaRavindraCert,
     linkedinUrl: 'https://www.linkedin.com/in/yukta-thakur-38251a328?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+  },
+  {
+    id: 'cert-nadhiya-r',
+    memberName: 'Nadhiya R',
+    certificateTitle: 'Python for Data Science Certification Test',
+    rank: '1st',
+    date: '20 August 2026',
+    year: '2026',
+    image: nadhiyaRCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
+  },
+  {
+    id: 'cert-aishwarya',
+    memberName: 'Aishwarya',
+    certificateTitle: 'Python for Data Science Certification Test',
+    rank: '2nd',
+    date: '20 August 2026',
+    year: '2026',
+    image: aishwaryaCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
+  },
+  {
+    id: 'cert-vibhu-kumar',
+    memberName: 'Vibhu Kumar',
+    certificateTitle: 'Python for Data Science Certification Test',
+    rank: '1st',
+    date: '20 August 2026',
+    year: '2026',
+    image: vibhuKumarCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
   },
 ]
 

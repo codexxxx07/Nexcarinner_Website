@@ -472,6 +472,17 @@ const CertificationCard = memo(function CertificationCard({ item, dark, onVerify
               >
                 <FaLinkedinIn className="h-4 w-4" />
               </a>
+            ) : item.showLinkedinIcon ? (
+              /* Visible placeholder keeps the LinkedIn icon in its usual position
+                 until a URL is added. It is intentionally not a link. */
+              <span
+                aria-hidden="true"
+                className={`inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
+                  dark ? 'border-white/10 text-gray-300' : 'border-ink-800/70 text-ink-500'
+                }`}
+              >
+                <FaLinkedinIn className="h-4 w-4" />
+              </span>
             ) : (
               /* Invisible, non-interactive spacer keeps the card layout identical
                  without showing a LinkedIn icon or leaving a clickable/broken link. */
