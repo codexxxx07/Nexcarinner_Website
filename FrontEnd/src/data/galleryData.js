@@ -22,6 +22,9 @@ import yuktaRavindraCert from '../assets/Certifications/YuktaRavindra.jpg'
 import nadhiyaRCert from '../assets/Certifications/NADHIYAR.jpg'
 import aishwaryaCert from '../assets/Certifications/Aishwarya.jpg'
 import vibhuKumarCert from '../assets/Certifications/VibhuKumar.jpg'
+import devadharshiniSivaKumarCert from '../assets/Certifications/DevadharshiniSivaKumar.jpg'
+import paridhiLikhitkarCert from '../assets/Certifications/ParidhiLikhitkar.jpg'
+import samiyaMirzaCert from '../assets/Certifications/SamiyaMirza.jpg'
 import NexcarinnerCertTeck4Hack from '../assets/images/Nexcarinner_Cert_Teck4Hack.jpg'
 import demoEvent1 from '../assets/demo/event-1.svg'
 import demoEvent2 from '../assets/demo/event-2.svg'
@@ -342,6 +345,39 @@ export const certifications = [
     date: '20 August 2026',
     year: '2026',
     image: vibhuKumarCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
+  },
+  {
+    id: 'cert-devadharshini-siva-kumar',
+    memberName: 'Devadharshini Siva Kumar',
+    certificateTitle: 'AI Project Development Certification Test',
+    rank: '1st',
+    date: '20 August 2026',
+    year: '2026',
+    image: devadharshiniSivaKumarCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
+  },
+  {
+    id: 'cert-paridhi-likhitkar',
+    memberName: 'Paridhi Likhitkar',
+    certificateTitle: 'AI Project Development Certification Test',
+    rank: '2nd',
+    date: '20 August 2026',
+    year: '2026',
+    image: paridhiLikhitkarCert,
+    linkedinUrl: '',
+    showLinkedinIcon: true,
+  },
+  {
+    id: 'cert-samiya-mirza',
+    memberName: 'Samiya Mirza',
+    certificateTitle: 'AI Project Development Certification Test',
+    rank: '3rd',
+    date: '20 August 2026',
+    year: '2026',
+    image: samiyaMirzaCert,
     linkedinUrl: '',
     showLinkedinIcon: true,
   },
