@@ -480,19 +480,6 @@ export const communityMoments = [
  */
 export const overviewItems = [
   {
-    id: 'ov-hackathon',
-    category: 'events',
-    title: 'Annual Hackathon',
-    description:
-      'A 48-hour hackathon to build innovative solutions, with prizes for winners. Feb 20, 2026 · Campus Hall.',
-    year: 'Feb 2026',
-    icon: FiZap,
-    accent: 'from-brand-500 to-flare-pink',
-    link: '/events',
-    linkLabel: 'Explore events',
-    featured: 'hero',
-  },
-  {
     id: 'ov-platform',
     category: 'projects',
     title: 'The Nexcarinner Platform',
