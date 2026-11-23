@@ -28,6 +28,12 @@ import {
   overviewItems,
 } from '../data/galleryData'
 
+/* The Overview Tech4Hack tile reuses the Community Collab entry and card so
+ * both surfaces stay visually identical. */
+const overviewCollabItem = gallerySections['community-collab']?.find(
+  (item) => item.id === 'tech4hack',
+)
+
 /* Event type → badge colors, matching the Events page palette. */
 const eventTypeStyles = {
   Workshops: {
@@ -828,11 +834,19 @@ const Gallery = () => {
     if (!items?.length) return <EmptyGalleryState dark={dark} />
 
     if (activeCategory === 'all') {
-      return items.map((item, index) => (
-        <Reveal key={item.id} delay={(index % 3) * 80} className="h-full">
-          <OverviewCard item={item} size={sizeFor(item, index)} dark={dark} />
-        </Reveal>
-      ))
+      return items.map((item, index) => {
+        const collabItem = item.id === 'ov-tech4hack' ? overviewCollabItem : null
+
+        return (
+          <Reveal key={item.id} delay={(index % 3) * 80} className="h-full">
+            {collabItem ? (
+              <CollabCard item={collabItem} dark={dark} />
+            ) : (
+              <OverviewCard item={item} size={sizeFor(item, index)} dark={dark} />
+            )}
+          </Reveal>
+        )
+      })
     }
 
     const Card = cardBySlug[activeCategory]
