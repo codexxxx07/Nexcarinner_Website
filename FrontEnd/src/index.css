@@ -913,6 +913,128 @@
   transition: box-shadow 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
+/*
+ * Mobile dark-mode sheet.
+ * The desktop-friendly island face is intentionally translucent. When the
+ * mobile sheet expands, page content scrolls behind those few percent of
+ * white and bleeds through the links, so the open sheet gets its own solid
+ * surface here. Everything below is gated on both `.dark` and the mobile
+ * breakpoint: the light menu, the desktop rail and every other component
+ * keep their existing styling.
+ */
+@media (max-width: 1023.98px) {
+  .dark .nx-nav--menu-open {
+    /* Portaled tooltips also sit at z-50; keep the open sheet above them. */
+    z-index: 60;
+  }
+
+  .dark .nx-nav__island--menu-open {
+    overflow: visible;
+    border-color: rgba(255, 255, 255, 0.14);
+    background: linear-gradient(180deg, #1e1e25 0%, #16161b 100%);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      0 2px 6px rgba(0, 0, 0, 0.55),
+      0 18px 44px -18px rgba(0, 0, 0, 0.85);
+  }
+
+  .dark .nx-nav__island--menu-open .nx-nav__icon {
+    color: #f3f4f6;
+    border-color: rgba(255, 255, 255, 0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.05));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      1px 2px 6px rgba(0, 0, 0, 0.45);
+  }
+
+  .dark .nx-nav__island--menu-open .nx-nav__icon:hover {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.24);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.08));
+  }
+
+  .dark .nx-nav__menu {
+    max-height: calc(100vh - 84px);
+    max-height: calc(100dvh - 84px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
+    transform-origin: top center;
+    animation: nx-menu-in 220ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .dark .nx-nav__menu--closing {
+    pointer-events: none;
+    animation: nx-menu-out 200ms ease-in both;
+  }
+
+  .dark .nx-nav__island--menu-open .nx-nav__menu-link {
+    color: #e5e7eb;
+  }
+  .dark .nx-nav__island--menu-open .nx-nav__menu-link:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.1),
+      1px 2px 8px rgba(0, 0, 0, 0.4);
+  }
+  .dark .nx-nav__island--menu-open .nx-nav__menu-link[aria-current='page'],
+  .dark .nx-nav__island--menu-open .nx-nav__menu-link[aria-current='page']:hover {
+    color: #ffffff;
+    background-color: rgba(124, 58, 237, 0.34);
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.12),
+      inset 0 0 0 1px rgba(167, 139, 250, 0.38),
+      inset 0 2px 5px rgba(0, 0, 0, 0.28);
+  }
+
+  .dark .nx-nav__island--menu-open .nx-nav__menu-divider {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.22), transparent);
+  }
+
+  .dark .nx-nav__island--menu-open .btn-outline.nx-nav__auth {
+    color: #f3f4f6;
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+  .dark .nx-nav__island--menu-open .btn-outline.nx-nav__auth:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .dark .nx-nav__island--menu-open .nx-nav__account {
+    border-color: rgba(255, 255, 255, 0.16);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.08),
+      1px 2px 8px rgba(0, 0, 0, 0.4);
+  }
+}
+
+@keyframes nx-menu-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes nx-menu-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
 /* ============================================================
  * SKELETON LOADING SYSTEM
  * Wireframe surfaces that mirror the Nexcarinner design system.

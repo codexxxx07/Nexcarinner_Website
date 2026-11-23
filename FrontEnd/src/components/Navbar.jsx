@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { FiMenu, FiX, FiMoon, FiSun } from 'react-icons/fi'
 import { SignedIn, SignedOut, UserButton } from '@clerk/clerk-react'
@@ -50,8 +50,11 @@ const Navbar = () => {
   const { pathname } = useLocation()
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [closing, setClosing] = useState(false)
   const scrolledRef = useRef(false)
   const openRef = useRef(false)
+  const closingRef = useRef(false)
+  const closeTimerRef = useRef(null)
 
   // Rebuilt every render without useMemo, so Clerk re-parsed this appearance
   // object on every Navbar render.
@@ -72,6 +75,38 @@ const Navbar = () => {
     [dark],
   )
 
+  /*
+   * Keep the sheet mounted for its short exit animation. The visual
+   * treatment itself is scoped to `.dark` + mobile in index.css, so light
+   * mode and the desktop rail keep their existing behaviour.
+   */
+  const openMenu = useCallback(() => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+    closeTimerRef.current = null
+    closingRef.current = false
+    openRef.current = true
+    setClosing(false)
+    setOpen(true)
+  }, [])
+
+  const closeMenu = useCallback(() => {
+    if (!openRef.current && !closingRef.current) return
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+    openRef.current = false
+    closingRef.current = true
+    setOpen(false)
+    setClosing(true)
+    closeTimerRef.current = setTimeout(() => {
+      closingRef.current = false
+      closeTimerRef.current = null
+      setClosing(false)
+    }, 200)
+  }, [])
+
+  useEffect(() => () => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
+  }, [])
+
   useEffect(() => {
     const onScroll = () => {
       const shouldBeScrolled = window.scrollY > 24
@@ -88,18 +123,21 @@ const Navbar = () => {
   // Browser back/forward never fires a click, so the mobile sheet stayed open
   // across history navigation.
   useEffect(() => {
-    if (openRef.current) {
-      openRef.current = false
-      setOpen(false)
-    }
-  }, [pathname])
+    if (openRef.current || closingRef.current) closeMenu()
+  }, [pathname, closeMenu])
+
+  const menuMounted = open || closing
 
   return (
-    <header className="nx-nav fixed inset-x-0 top-0 z-50">
+    <header
+      className={`nx-nav fixed inset-x-0 top-0 z-50${
+        menuMounted ? ' nx-nav--menu-open' : ''
+      }`}
+    >
       <div
         className={`nx-nav__island mx-auto max-w-7xl rounded-3xl border px-3 pt-2 pb-2 sm:px-4 lg:px-5 lg:pt-3 lg:pb-3 ${
           scrolled ? 'nx-nav__island--pinned' : ''
-        } ${open ? 'overflow-hidden' : ''}`}
+        } ${menuMounted ? 'nx-nav__island--menu-open overflow-hidden' : ''}`}
       >
         <nav className="flex h-12 items-center justify-between gap-3 lg:h-14">
           <Link
@@ -158,13 +196,11 @@ const Navbar = () => {
           <div className="flex items-center gap-2 lg:hidden">
             <ThemeToggle />
             <button
-              onClick={() => {
-                openRef.current = !open
-                setOpen((v) => !v)
-              }}
+              onClick={open ? closeMenu : openMenu}
               aria-label="Toggle menu"
               aria-expanded={open}
-              className="nx-nav__icon flex h-10 w-10 cursor-target items-center justify-center rounded-2xl border"
+              aria-controls="nexcarinner-mobile-menu"
+              className="nx-nav__icon nx-nav__menu-toggle flex h-10 w-10 cursor-target items-center justify-center rounded-2xl border"
             >
               {open ? <FiX className="h-5 w-5" /> : <FiMenu className="h-5 w-5" />}
             </button>
@@ -172,32 +208,38 @@ const Navbar = () => {
         </nav>
 
         {/* Mobile menu — shares the island surface so the two read as one piece */}
-        {open && (
-          <div className="px-1 pt-1 pb-1 lg:hidden">
+        {menuMounted && (
+          <div
+            id="nexcarinner-mobile-menu"
+            aria-hidden={!open}
+            className={`nx-nav__menu px-1 pt-1 pb-1 lg:hidden${
+              closing ? ' nx-nav__menu--closing' : ''
+            }`}
+          >
             <div className="flex flex-col gap-1">
               {links.map((link) => (
                 <NavLink
                   key={link.to}
                   to={link.to}
                   end={link.to === '/'}
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   className="nx-nav__menu-link flex items-center rounded-xl px-4 py-3 font-medium cursor-target"
                 >
                   {link.label}
                 </NavLink>
               ))}
-              <div className="my-2 h-px w-full bg-linear-to-r from-transparent via-ink-800/60 to-transparent dark:via-white/12" />
+              <div className="nx-nav__menu-divider my-2 h-px w-full bg-linear-to-r from-transparent via-ink-800/60 to-transparent dark:via-white/12" />
               <SignedOut>
                 <Link
                   to="/sign-in"
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   className="btn-outline nx-nav__auth mt-1 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold"
                 >
                   Login
                 </Link>
                 <Link
                   to="/sign-up"
-                  onClick={() => setOpen(false)}
+                  onClick={closeMenu}
                   className="btn-gradient nx-nav__auth mt-2 inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white"
                 >
                   Sign Up
@@ -211,7 +253,7 @@ const Navbar = () => {
                   />
                   <Link
                     to="/app"
-                    onClick={() => setOpen(false)}
+                    onClick={closeMenu}
                     className="btn-gradient inline-flex items-center justify-center rounded-full px-5 py-2 text-sm font-semibold text-white"
                   >
                     Dashboard
