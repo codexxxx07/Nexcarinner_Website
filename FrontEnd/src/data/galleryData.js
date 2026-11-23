@@ -1,15 +1,9 @@
 import {
   FiCode,
   FiZap,
-  FiLayers,
-  FiCpu,
   FiUsers,
   FiShield,
-  FiDatabase,
   FiAward,
-  FiRadio,
-  FiLayout,
-  FiCloud,
   FiHeart,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
@@ -27,12 +21,6 @@ import devadharshiniSivaKumarCert from '../assets/Certifications/DevadharshiniSi
 import paridhiLikhitkarCert from '../assets/Certifications/ParidhiLikhitkar.jpg'
 import samiyaMirzaCert from '../assets/Certifications/SamiyaMirza.jpg'
 import NexcarinnerCertTeck4Hack from '../assets/images/Nexcarinner_Cert_Teck4Hack.jpg'
-import demoEvent1 from '../assets/demo/event-1.svg'
-import demoEvent2 from '../assets/demo/event-2.svg'
-import demoEvent3 from '../assets/demo/event-3.svg'
-import demoProject1 from '../assets/demo/project-1.svg'
-import demoProject2 from '../assets/demo/project-2.svg'
-import demoProject3 from '../assets/demo/project-3.svg'
 import communityMoment1 from '../assets/CommunityMoments/1.jpg'
 import communityMoment2 from '../assets/CommunityMoments/2.jpg'
 import communityMoment3 from '../assets/CommunityMoments/3.jpg'
@@ -73,7 +61,7 @@ export const categoryMeta = {
     chip: 'Projects',
     heading: 'Built by the community',
     description:
-      'From weekend hackathon builds to full-stack products, these are the projects Nexcarinner members design, code, and ship together.',
+      'Projects and initiatives from across the Nexcarinner community — the platforms we build and the programs we run together.',
     badge: {
       light: 'text-violet-700 bg-violet-100/90 border-white/60',
       dark: 'text-violet-200 bg-violet-900/50 border-white/15',
@@ -145,100 +133,6 @@ export const categoryMeta = {
     },
   },
 }
-
-/*
- * ----------------------------------------------------------------
- * Projects — built by Nexcarinner members / the community.
- * To add a project later, append an object here. Fields:
- *   id          – unique key
- *   title       – project name
- *   description – short card copy
- *   tech        – technology / category badge
- *   creator     – creator or team (optional)
- *   year        – shown on the cover
- *   icon        – shown on the branded fallback cover
- *   accent      – gradient for the fallback cover
- *   image       – optional image (import from ../assets or a URL)
- *   link        – optional destination; external requires external: true
- *   linkLabel   – text for the card's link
- *   featured    – 'hero' | 'wide' | true → shapes the overview bento layout
- * ----------------------------------------------------------------
- */
-export const projects = [
-  {
-    id: 'platform',
-    title: 'The Nexcarinner Platform',
-    description:
-      'The site you are on right now — designed, built, and shipped by our community tech team as living proof of what members can do.',
-    tech: 'Web Development',
-    creator: 'Community Tech Team',
-    year: '2026',
-    icon: FiCode,
-    accent: 'from-brand-500 to-brand-700',
-    featured: 'wide',
-    link: '/about',
-    linkLabel: 'Meet the team',
-  },
-  {
-    id: 'hackathon-builds',
-    title: '20+ Builds From One Weekend',
-    description:
-      'The first Nexcarinner hackathon sent 20 projects from pitch to shipped in 48 hours — the community building in public for the first time.',
-    tech: 'Hackathon Builds',
-    creator: 'Community Teams',
-    year: '2025',
-    icon: FiZap,
-    accent: 'from-brand-600 to-flare-pink',
-    featured: true,
-  },
-  {
-    id: 'fullstack-zero',
-    title: 'Full-Stack From Zero to Ship',
-    description:
-      'In six months, a member went from no web experience to shipping a complete SaaS app — a roadmap we keep sharing.',
-    tech: 'Full-Stack',
-    creator: 'Member Project',
-    year: '2025',
-    icon: FiLayers,
-    accent: 'from-brand-600 to-brand-700',
-  },
-  {
-    id: 'design-system',
-    title: 'The Nexcarinner Design System',
-    description:
-      'A shared component library and tokens that keep every Nexcarinner surface consistent, fast, and skeuomorphic.',
-    tech: 'Design Systems',
-    creator: 'Design Crew',
-    year: '2026',
-    icon: FiLayout,
-    accent: 'from-brand-500 to-flare-cyan',
-    image: demoProject1,
-  },
-  {
-    id: 'ai-assistant',
-    title: 'Community AI Assistant',
-    description:
-      'An internal AI assistant that answers community questions and helps newcomers find their lane.',
-    tech: 'AI / ML',
-    creator: 'AI Squad',
-    year: '2026',
-    icon: FiCpu,
-    accent: 'from-flare-cyan to-brand-500',
-    image: demoProject2,
-  },
-  {
-    id: 'data-dashboard',
-    title: 'Members Analytics Dashboard',
-    description:
-      'A dashboard that turns community activity into insight — attendance, growth, and engagement at a glance.',
-    tech: 'Data Science',
-    creator: 'Data Circle',
-    year: '2026',
-    icon: FiDatabase,
-    accent: 'from-flare-pink to-brand-600',
-    image: demoProject3,
-  },
-]
 
 /*
  * ----------------------------------------------------------------
@@ -435,67 +329,6 @@ export const events = [
     linkLabel: 'See the event',
     featured: 'hero',
   },
-  {
-    id: 'react-workshop',
-    title: 'React Workshop',
-    type: 'Workshops',
-    date: 'Jan 15, 2026',
-    location: 'Online',
-    description:
-      'Modern React patterns and best practices in a hands-on session — write real code, not just watch slides.',
-    year: 'Jan 2026',
-    icon: FiCode,
-    accent: 'from-flare-cyan to-brand-500',
-    image: demoEvent1,
-    featured: true,
-  },
-  {
-    id: 'tech-meetup',
-    title: 'Tech Meetup',
-    type: 'Meetups',
-    date: 'Mar 10, 2026',
-    location: 'Community Center',
-    description: 'Networking with fellow tech enthusiasts — the room where connections happen.',
-    year: 'Mar 2026',
-    icon: FiUsers,
-    accent: 'from-brand-500 to-brand-600',
-    image: demoEvent2,
-  },
-  {
-    id: 'ai-webinar',
-    title: 'AI Webinar',
-    type: 'Webinars',
-    date: 'Apr 5, 2026',
-    location: 'Online',
-    description: 'The latest trends in AI, explained for students — no fluff, just useful signal.',
-    year: 'Apr 2026',
-    icon: FiRadio,
-    accent: 'from-flare-pink to-brand-500',
-    image: demoEvent3,
-  },
-  {
-    id: 'design-workshop',
-    title: 'Design Systems Workshop',
-    type: 'Workshops',
-    date: 'May 12, 2026',
-    location: 'Design Lab',
-    description: 'Building scalable, consistent design systems for real products.',
-    year: 'May 2026',
-    icon: FiLayout,
-    accent: 'from-brand-600 to-flare-cyan',
-  },
-  {
-    id: 'cloud-meetup',
-    title: 'Cloud Computing Meetup',
-    type: 'Meetups',
-    date: 'Jun 18, 2026',
-    location: 'Tech Hub',
-    description:
-      'Cloud architecture and deployment strategies, discussed with peers who actually run things.',
-    year: 'Jun 2026',
-    icon: FiCloud,
-    accent: 'from-flare-cyan to-brand-600',
-  },
 ]
 
 /*
@@ -649,9 +482,9 @@ export const overviewItems = [
   {
     id: 'ov-hackathon',
     category: 'events',
-    title: 'Annual Nexcarinner Hackathon',
+    title: 'Annual Hackathon',
     description:
-      '48 hours, real problems, and prizes for the bold — our biggest event of the year.',
+      'A 48-hour hackathon to build innovative solutions, with prizes for winners. Feb 20, 2026 · Campus Hall.',
     year: 'Feb 2026',
     icon: FiZap,
     accent: 'from-brand-500 to-flare-pink',
@@ -664,7 +497,7 @@ export const overviewItems = [
     category: 'projects',
     title: 'The Nexcarinner Platform',
     description:
-      'This site, built by our community tech team — living proof of what members can do.',
+      'This website — Nexcarinner’s home for opportunities, events, and community projects.',
     year: '2026',
     icon: FiCode,
     accent: 'from-brand-500 to-brand-700',
@@ -673,56 +506,71 @@ export const overviewItems = [
     featured: 'wide',
   },
   {
+    id: 'ov-frontend-cert',
+    category: 'certifications',
+    title: 'Frontend Development Certification Test',
+    description: 'Verified certificate earned by Abhijit Patra, 1st place.',
+    year: '20 August 2026',
+    image: abhijitPatraCert,
+    accent: 'from-flare-pink to-brand-500',
+    link: '/gallery/certifications',
+    linkLabel: 'See certifications',
+  },
+  {
+    id: 'ov-tech4hack',
+    category: 'community-collab',
+    title: 'Nexcarinner × Tech4Hack',
+    description:
+      'Official community partner for Buildathon 2026 — workshops, mentorship, and internship opportunities.',
+    image: tech4HackLogo,
+    accent: 'from-flare-cyan to-brand-500',
+    link: '/gallery/community-collab',
+    linkLabel: 'See collaborations',
+  },
+  {
     id: 'ov-award',
     category: 'awards',
     title: 'Certificate of Participation',
-    description: 'Participating in buldathon',
+    description: 'Recognition from Tech4Hack for taking part in Buildathon 2026.',
     year: '1st Aug, 2026',
-    icon: FiAward,
-    accent: 'from-flare-cyan to-flare-pink',
     image: NexcarinnerCertTeck4Hack,
+    accent: 'from-flare-cyan to-flare-pink',
     link: '/gallery/awards',
     linkLabel: 'See the awards',
     featured: 'wide',
   },
   {
-    id: 'ov-collab',
+    id: 'ov-unison',
     category: 'community-collab',
     title: 'Nexcarinner × Unison',
     description:
       'Nexcarinner joined the Unison Build-A-Thon line-up — an AI-powered build sprint where students code, elevate, compete, and connect.',
-    year: '',
     image: unisonLogo,
     accent: 'from-flare-cyan to-brand-500',
     link: '/gallery/community-collab',
     linkLabel: 'See collaborations',
-    featured: true,
   },
   {
-    id: 'ov-cert',
+    id: 'ov-python-cert',
     category: 'certifications',
-    title: 'Frontend Development Certification Test',
-    description:
-      'A verified certificate earned by community member Abhijit Patra.',
-    year: '2026',
-    image: abhijitPatraCert,
+    title: 'Python for Data Science Certification Test',
+    description: 'Verified certificate earned by Nadhiya R, 1st place.',
+    year: '20 August 2026',
+    image: nadhiyaRCert,
     accent: 'from-flare-pink to-brand-500',
     link: '/gallery/certifications',
     linkLabel: 'See certifications',
-    featured: true,
   },
   {
     id: 'ov-moment',
     category: 'community-moments',
-    title: 'First Hackathon Energy',
+    title: 'Team Collaboration',
     description:
-      '100+ students, late-night debugging, first demos — the moment we knew this worked.',
-    year: '2025',
-    icon: FiZap,
-    accent: 'from-flare-pink to-brand-500',
+      'A proud collaboration with Builder Base — two communities, one vision, built on the promise to build, connect, and grow together.',
+    image: communityMoment2,
+    accent: 'from-brand-500 to-flare-cyan',
     link: '/gallery/community-moments',
     linkLabel: 'See the moments',
-    featured: true,
   },
 ]
 
@@ -731,7 +579,6 @@ export const overviewItems = [
  * Used by the Gallery page to render each section.
  */
 export const gallerySections = {
-  projects,
   'community-collab': communityCollabs,
   certifications,
   awards,

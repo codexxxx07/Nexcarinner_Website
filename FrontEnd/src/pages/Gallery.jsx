@@ -256,56 +256,6 @@ const OverviewCard = memo(function OverviewCard({ item, size, dark }) {
   )
 })
 
-/* ------------------------------------------------------------------ Projects */
-const ProjectCard = memo(function ProjectCard({ item, size, dark }) {
-  const badge = dark ? categoryMeta.projects.badge.dark : categoryMeta.projects.badge.light
-  const wide = size === 'wide'
-
-  return (
-    <CardShell dark={dark} className={wide ? 'sm:col-span-2' : ''}>
-      <div className={`relative overflow-hidden ${wide ? 'aspect-video' : 'aspect-4/3'}`}>
-        <GalleryCover item={item} accent={item.accent} />
-        <div className="absolute left-4 top-4 z-10 flex flex-wrap items-center gap-2">
-          <span
-            className={`inline-flex items-center rounded-full border px-3 py-1 text-xs font-semibold backdrop-blur-md shadow-sm ${badge}`}
-          >
-            {item.tech}
-          </span>
-          <YearChip year={item.year} />
-        </div>
-      </div>
-
-      <div className="flex flex-1 flex-col p-6">
-        <CardHeading dark={dark}>{item.title}</CardHeading>
-        <CardBody dark={dark}>{item.description}</CardBody>
-        {(item.creator || item.link) && (
-          <div className="mt-auto pt-4">
-            <div
-              className={`flex items-center justify-between gap-3 border-t pt-3.5 transition-colors duration-300 ${
-                dark ? 'border-white/8' : 'border-ink-800/70'
-              }`}
-            >
-              {item.creator ? (
-                <span
-                  className={`flex min-w-0 items-center gap-2 text-xs font-semibold ${
-                    dark ? 'text-gray-500' : 'text-ink-400'
-                  }`}
-                >
-                  <FiUsers className="h-3.5 w-3.5 shrink-0" />
-                  <span className="truncate">{item.creator}</span>
-                </span>
-              ) : (
-                <span />
-              )}
-              {item.link && <GalleryLink item={item} dark={dark} />}
-            </div>
-          </div>
-        )}
-      </div>
-    </CardShell>
-  )
-})
-
 /* ------------------------------------------------------------ Community Collab */
 /*
  * A single logo tile in the collab card's visual area. Fixed square frame
@@ -791,13 +741,32 @@ const MomentCard = memo(function MomentCard({ item, dark }) {
 })
 
 const cardBySlug = {
-  projects: ProjectCard,
   'community-collab': CollabCard,
   certifications: CertificationCard,
   awards: AwardCard,
   events: EventCard,
   'community-moments': MomentCard,
 }
+
+/* Clean, minimal fallback when a verified category has no entries yet. */
+const EmptyGalleryState = memo(function EmptyGalleryState({ dark }) {
+  return (
+    <div className="col-span-full">
+      <Reveal>
+        <div className="glass flex flex-col items-center justify-center rounded-3xl px-6 py-16 text-center">
+          <FiHeart className={`h-8 w-8 ${dark ? 'text-gray-500' : 'text-ink-300'}`} />
+          <p
+            className={`mt-4 max-w-sm text-sm leading-relaxed transition-colors duration-300 ${
+              dark ? 'text-gray-400' : 'text-ink-400'
+            }`}
+          >
+            No verified entries to show here yet. Check back soon.
+          </p>
+        </div>
+      </Reveal>
+    </div>
+  )
+})
 
 const Gallery = () => {
   const { dark } = useTheme()
@@ -855,8 +824,11 @@ const Gallery = () => {
   }, [activeCategory])
 
   const renderGrid = useCallback(() => {
+    const items = activeCategory === 'all' ? overviewItems : gallerySections[activeCategory]
+    if (!items?.length) return <EmptyGalleryState dark={dark} />
+
     if (activeCategory === 'all') {
-      return overviewItems.map((item, index) => (
+      return items.map((item, index) => (
         <Reveal key={item.id} delay={(index % 3) * 80} className="h-full">
           <OverviewCard item={item} size={sizeFor(item, index)} dark={dark} />
         </Reveal>
@@ -864,7 +836,7 @@ const Gallery = () => {
     }
 
     const Card = cardBySlug[activeCategory]
-    return gallerySections[activeCategory].map((item, index) => {
+    return items.map((item, index) => {
       const size = sizeFor(item, index)
       const span =
         activeCategory === 'awards' && size === 'hero'
