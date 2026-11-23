@@ -147,18 +147,6 @@ const team = [
     },
   },
   {
-    name: "Siddiqua",
-    role: "Opportunity Curator",
-    description:
-      "Finding and sharing valuable opportunities, resources, and updates for the community",
-    image: null,
-    initials: "SD",
-    gradient: "from-brand-600 to-flare-pink",
-    socials: {
-      github: "https://github.com/Siddiqua2007",
-    },
-  },
-  {
     name: "Ankita Pati",
     role: "AIML Mentor",
     description:
@@ -213,8 +201,8 @@ const team = [
   },
 ];
 
-const featureTeam = team.slice(0, -2);
-const closingTeam = team.slice(-2);
+const featureTeam = team.slice(0, -4);
+const closingTeam = team.slice(-4);
 
 const timeline = [
   {
