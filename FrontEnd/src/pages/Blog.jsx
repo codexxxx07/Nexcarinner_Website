@@ -1,71 +1,8 @@
-import { FiCalendar, FiClock, FiTag } from 'react-icons/fi'
+import { FiBell } from 'react-icons/fi'
 import Reveal from '../components/Reveal'
 import BackButton from '../components/BackButton'
 import { useTheme } from '../context/ThemeContext'
 import { usePageTitle } from '../hooks/usePageTitle'
-
-const posts = [
-  {
-    id: 1,
-    title: 'How We Ran Our First Hackathon with 100+ Students',
-    excerpt:
-      'From logistics to late-night debugging sessions — a behind-the-scenes look at what it takes to pull off a student hackathon.',
-    date: 'May 12, 2025',
-    readTime: '5 min read',
-    tag: 'Community',
-    gradient: 'from-brand-500 to-flare-pink',
-  },
-  {
-    id: 2,
-    title: 'Top 5 Open Source Projects Built by Our Members',
-    excerpt:
-      'Our members ship real things. Here are five projects that went from side idea to live product, built entirely inside Nexcarinner.',
-    date: 'Jun 3, 2025',
-    readTime: '4 min read',
-    tag: 'Projects',
-    gradient: 'from-flare-cyan to-brand-500',
-  },
-  {
-    id: 3,
-    title: 'Why Learning in Public Accelerates Growth',
-    excerpt:
-      'Building in private feels safe, but sharing your process — even when messy — is one of the fastest ways to level up.',
-    date: 'Jul 18, 2025',
-    readTime: '6 min read',
-    tag: 'Learning',
-    gradient: 'from-flare-pink to-brand-600',
-  },
-  {
-    id: 4,
-    title: 'Getting Started with Data Science as a Student',
-    excerpt:
-      'No fancy hardware, no PhD required. Here is the realistic roadmap our Data Science track recommends for absolute beginners.',
-    date: 'Aug 1, 2025',
-    readTime: '7 min read',
-    tag: 'Data Science',
-    gradient: 'from-brand-600 to-flare-cyan',
-  },
-  {
-    id: 5,
-    title: 'The Mentorship Model That Actually Works',
-    excerpt:
-      'Mentorship fails when it is too formal. We redesigned ours around async check-ins and peer pairing — here is what changed.',
-    date: 'Sep 22, 2025',
-    readTime: '5 min read',
-    tag: 'Mentorship',
-    gradient: 'from-flare-cyan to-flare-pink',
-  },
-  {
-    id: 6,
-    title: "Full-Stack in 6 Months: A Member's Journey",
-    excerpt:
-      'Ankur had zero web dev experience in January. By June, he shipped a full SaaS app. This is how he did it.',
-    date: 'Oct 5, 2025',
-    readTime: '8 min read',
-    tag: 'Stories',
-    gradient: 'from-brand-500 to-brand-700',
-  },
-]
 
 const Blog = () => {
   const { dark } = useTheme()
@@ -105,68 +42,34 @@ const Blog = () => {
           </p>
         </Reveal>
 
-        {/* Posts grid */}
-        <div className="mt-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {posts.map((post, index) => (
-            <Reveal key={post.id} delay={(index % 3) * 80}>
-              <article
-                className={`group h-full rounded-2xl p-7 transition-all duration-300 hover:-translate-y-1 ${
-                  dark
-                    ? 'bg-[#1a1a1a] border border-white/8 shadow-[0_8px_30px_rgba(0,0,0,0.5)] hover:border-white/14 hover:shadow-[0_20px_40px_rgba(0,0,0,0.6)]'
-                    : 'glass card-lift'
-                }`}
-              >
-                {/* Tag + read time */}
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold bg-linear-to-br ${post.gradient} text-white shadow-sm`}
-                  >
-                    <FiTag className="h-3 w-3" />
-                    {post.tag}
-                  </span>
-                  <span
-                    className={`flex items-center gap-1 text-xs transition-colors duration-300 ${
-                      dark ? 'text-gray-600' : 'text-ink-400'
-                    }`}
-                  >
-                    <FiClock className="h-3 w-3" />
-                    {post.readTime}
-                  </span>
-                </div>
-
-                {/* Title */}
-                <h2
-                  className={`mt-5 font-display text-lg font-bold leading-snug transition-colors duration-300 ${
-                    dark
-                      ? 'text-white group-hover:text-gray-100'
-                      : 'text-ink-50 group-hover:text-brand-700'
-                  }`}
-                >
-                  {post.title}
-                </h2>
-
-                {/* Excerpt */}
-                <p
-                  className={`mt-3 text-sm leading-relaxed transition-colors duration-300 ${
-                    dark ? 'text-gray-500' : 'text-ink-400'
-                  }`}
-                >
-                  {post.excerpt}
-                </p>
-
-                {/* Date */}
-                <div
-                  className={`mt-6 flex items-center gap-1.5 text-xs transition-colors duration-300 ${
-                    dark ? 'text-gray-600' : 'text-ink-500'
-                  }`}
-                >
-                  <FiCalendar className="h-3.5 w-3.5" />
-                  {post.date}
-                </div>
-              </article>
-            </Reveal>
-          ))}
-        </div>
+        {/* Coming soon */}
+        <Reveal delay={240}>
+          <div
+            className={`mx-auto mt-16 max-w-2xl rounded-2xl px-6 py-14 text-center transition-colors duration-300 sm:px-12 sm:py-16 ${
+              dark
+                ? 'border border-white/8 bg-[#1a1a1a] shadow-[0_8px_30px_rgba(0,0,0,0.5)]'
+                : 'glass card-lift'
+            }`}
+          >
+            <span className="mx-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-linear-to-br from-brand-500 to-flare-pink text-white shadow-[0_8px_18px_-8px_rgba(124,58,237,0.6),inset_0_1px_0_rgba(255,255,255,0.35)]">
+              <FiBell className="h-6 w-6" />
+            </span>
+            <h2
+              className={`mt-6 font-display text-2xl font-bold tracking-tight transition-colors duration-300 sm:text-3xl ${
+                dark ? 'text-white' : 'text-ink-50'
+              }`}
+            >
+              Coming Soon
+            </h2>
+            <p
+              className={`mx-auto mt-3 max-w-md text-sm leading-relaxed transition-colors duration-300 sm:text-base ${
+                dark ? 'text-gray-500' : 'text-ink-400'
+              }`}
+            >
+              We're working on something interesting. Stay tuned!
+            </p>
+          </div>
+        </Reveal>
       </div>
     </div>
   )
