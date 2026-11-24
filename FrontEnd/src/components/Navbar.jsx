@@ -77,8 +77,9 @@ const Navbar = () => {
 
   /*
    * Keep the sheet mounted for its short exit animation. The visual
-   * treatment itself is scoped to `.dark` + mobile in index.css, so light
-   * mode and the desktop rail keep their existing behaviour.
+   * treatment itself is scoped to the mobile breakpoint in index.css,
+   * with separate light and dark surfaces, so the desktop rail and the
+   * other theme keep their existing behaviour.
    */
   const openMenu = useCallback(() => {
     if (closeTimerRef.current) clearTimeout(closeTimerRef.current)
