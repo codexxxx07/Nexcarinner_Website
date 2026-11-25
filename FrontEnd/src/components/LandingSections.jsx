@@ -491,7 +491,7 @@ export const LandingCommunityPartners = () => {
   const { dark } = useTheme()
 
   /*
-   * Only three partner logos exist, so one pass of the set would be narrower
+   * A small set of partner logos means one pass of the set could be narrower
    * than the viewport and the marquee would show empty gaps. Repeat the set
    * three times inside each half of the Marquee track so the -50% translation
    * always lands on identical content. This mirrors the loop behavior of the
