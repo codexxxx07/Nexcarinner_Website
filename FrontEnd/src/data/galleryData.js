@@ -11,7 +11,9 @@ import builderBaseLogo from '../assets/CommunityPartners/BuilderBase.jpg'
 import codersCircleLogo from '../assets/CommunityPartners/CodersCircle.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
 import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
-import hackQubeLogo from '../assets/CommunityPartners/HackQube.jpg'
+// Square, tightly cropped variant for the fixed-square collab logo frames.
+// The Home community marquee keeps using the original rectangular asset.
+import hackQubeLogo from '../assets/CommunityPartners/HackQube_square.jpg'
 import tech4HackLogo from '../assets/CommunityPartners/Tech4Hack.jpg'
 import unisonLogo from '../assets/CommunityPartners/Unison.jpg'
 import abhijitPatraCert from '../assets/Certifications/AbhijitPatra.jpg'
