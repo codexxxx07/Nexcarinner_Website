@@ -7,6 +7,7 @@ import {
   FiHeart,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
+import builderBaseLogo from '../assets/CommunityPartners/BuilderBase.jpg'
 import codersCircleLogo from '../assets/CommunityPartners/CodersCircle.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
 import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
@@ -192,6 +193,13 @@ export const communityCollabs = [
     logo: codersCircleLogo,
     description:
       'A collaboration with Coders Circle — two communities, one mission, coming together around a shared love for code.',
+  },
+  {
+    id: 'builder-base',
+    name: 'Builder Base',
+    logo: builderBaseLogo,
+    description:
+      'A proud collaboration with Builder Base — two communities, one vision, built on the shared promise to build, connect, and grow together.',
   },
 ]
 
