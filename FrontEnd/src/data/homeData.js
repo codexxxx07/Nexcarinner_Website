@@ -1,5 +1,6 @@
 import { FaCode, FaGlobe, FaLightbulb, FaPalette } from 'react-icons/fa'
 import { IoBarChartSharp } from 'react-icons/io5'
+import codersCircleLogo from '../assets/CommunityPartners/CodersCircle.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
 import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
 import hackQubeLogo from '../assets/CommunityPartners/HackQube.jpg'
@@ -32,6 +33,7 @@ export const communityPartners = [
   { name: 'Tech4Hack', logo: tech4HackLogo },
   { name: 'Unison', logo: unisonLogo },
   { name: 'Hackqube', logo: hackQubeLogo },
+  { name: 'Coders Circle', logo: codersCircleLogo },
 ]
 
 export const communities = [

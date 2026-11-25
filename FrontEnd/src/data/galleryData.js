@@ -7,6 +7,7 @@ import {
   FiHeart,
 } from 'react-icons/fi'
 import GunjanImg from '../assets/images/Gunjan.jpg'
+import codersCircleLogo from '../assets/CommunityPartners/CodersCircle.jpg'
 import elevanaLogo from '../assets/CommunityPartners/Elevana.jpg'
 import eventDevXLogo from '../assets/CommunityPartners/EventDevX.jpg'
 import hackQubeLogo from '../assets/CommunityPartners/HackQube.jpg'
@@ -184,6 +185,13 @@ export const communityCollabs = [
     logo: hackQubeLogo,
     description:
       'An official partnership with Hackqube — two communities hacking, building, and innovating to empower future innovators.',
+  },
+  {
+    id: 'coders-circle',
+    name: 'Coders Circle',
+    logo: codersCircleLogo,
+    description:
+      'A collaboration with Coders Circle — two communities, one mission, coming together around a shared love for code.',
   },
 ]
 
