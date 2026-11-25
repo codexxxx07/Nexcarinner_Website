@@ -12,6 +12,11 @@ const BRAND = '#7c3aed'
 /**
  * Shared Clerk appearance so the auth UI follows the site's own light/dark
  * design tokens instead of Clerk's defaults.
+ *
+ * The social providers need an extra dark-only CSS override (see index.css):
+ * Clerk derives their label color from its light-theme neutral fallback, and
+ * its GitHub icon is dark by design. Keeping those buttons on a light surface
+ * is handled in CSS so the fix also survives a live light/dark toggle.
  */
 export const clerkAppearance = (dark) => ({
   variables: {
