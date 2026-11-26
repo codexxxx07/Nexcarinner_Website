@@ -214,10 +214,12 @@ Ways to take part include joining a domain track, forming a team at a hackathon,
 
 ---
 
-## 🙌 Credits & Acknowledgements
+## 👥 Built By
 
-Nexcarinner is shaped by its founder, **Gunjan Kumar (Gupta)**, co-founder **Saurya Kapoor**, and the community leads and mentors who keep the platform and its programmes moving — including the full-stack, AI/ML, cybersecurity, data science, analytics, recruitment, and coordination team members introduced on the About page.
+The Nexcarinner website was jointly built by the following co-creators and developers.
 
-Thank you to every member who asks a question, shares a resource, joins a hackathon, mentors a peer, or ships a project. Special appreciation goes to the collaboration partners featured on the site — **Tech4Hack, Elevana, Unison, Event Dev X, Hackqube, Coders Circle, and Builder Base** — for helping the community grow together.
-
-> *Built with passion, for students who build the future.*
+| | **Krish Chakraborty** | **Ankur Kumar Gupta** |
+|:---:|:---:|:---:|
+| **Role** | Co-Creator & Developer | Co-Creator & Developer |
+| **About** | Co-created and developed the Nexcarinner website, contributing to its design and implementation. Passionate about Game Development, Full-Stack Development, UI/UX Design, and Cybersecurity. | Co-created and developed the Nexcarinner website, contributing to its development and helping shape a welcoming digital platform for the student community. |
+| **Connect** | [LinkedIn](https://www.linkedin.com/in/krishanjit-chakraborty-258a5237a/) · [GitHub](https://github.com/codexxxx07) | [LinkedIn](https://www.linkedin.com/in/ankur-kumar-gupta-8b3b903a6) · [GitHub](https://github.com/ankurkrgupta22122006-oss) |
