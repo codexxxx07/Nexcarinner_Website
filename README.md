@@ -220,6 +220,6 @@ The Nexcarinner website was jointly built by the following co-creators and devel
 
 | | **Krish Chakraborty** | **Ankur Kumar Gupta** |
 |:---:|:---:|:---:|
-| **Role** | Co-Creator & Developer | Co-Creator & Developer |
-| **About** | Co-created and developed the Nexcarinner website, contributing to its design and implementation. Passionate about Game Development, Full-Stack Development, UI/UX Design, and Cybersecurity. | Co-created and developed the Nexcarinner website, contributing to its development and helping shape a welcoming digital platform for the student community. |
+| **Role** | Community Manager & Leader \| Tech Lead | Co-Creator & Developer |
+| **About** | Leads and manages the Nexcarinner community, guiding its technical direction and overseeing the development of the Nexcarinner website. Passionate about Game Development, Full-Stack Development, UI/UX Design, and Cybersecurity. | Co-created and developed the Nexcarinner website, contributing to its development and helping shape a welcoming digital platform for the student community. |
 | **Connect** | [LinkedIn](https://www.linkedin.com/in/krishanjit-chakraborty-258a5237a/) · [GitHub](https://github.com/codexxxx07) | [LinkedIn](https://www.linkedin.com/in/ankur-kumar-gupta-8b3b903a6) · [GitHub](https://github.com/ankurkrgupta22122006-oss) |
